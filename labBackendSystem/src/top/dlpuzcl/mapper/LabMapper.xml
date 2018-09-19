@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.dlpuzcl.mapper.LabMapper">
+
+    <sql id="user_where">
+        <where>
+            <if test="roomCode != null and roomCode != ''">
+                and l.room_code like '%${roomCode}%'
+            </if>
+            <if test="roomCollege != null and roomCollege != ''">
+                and l.room_college = #{roomCollege}
+            </if>
+
+        </where>
+    </sql>
+
+    <!--根据查询条件分页查询列表-->
+    <select id="getLabByQueryVo" parameterType="queryvo"  resultType="labroom">
+        select
+        l.room_id,
+        l.room_name,
+        l.room_code,
+        l.room_memo,
+        c.dict_item_name room_college,
+        l.place_count
+        from lab_room l
+        left join base_dict c on l.room_college = c.dict_id
+        <include refid="user_where"></include>
+        limit #{start},#{rows};
+    </select>
+
+    <!--根据条件查询总记录数-->
+    <select id="getCountByQueryVo" parameterType="queryvo" resultType="int">
+        select count(1)
+        from lab_room l
+        left join base_dict c on l.room_college = c.dict_id
+        <include refid="user_where"></include>
+    </select>
+
+    <!--根据ID查询实验室-->
+    <select id="getLabRoomById" parameterType="Int" resultType="labroom">
+        select
+            room_id,
+            room_name,
+            room_code,
+            room_memo,
+            room_college,
+            place_count
+        from
+            lab_room
+        where room_id = #{id};
+    </select>
+
+    <!--添加实验室-->
+    <insert id="addLab" parameterType="labroom">
+        insert into lab_room
+        (room_code,room_name,room_memo,place_count,room_college)
+        values
+            (#{room_code},#{room_name},#{room_memo},#{place_count},#{room_college});
+    </insert>
+
+    <update id="updateLab" parameterType="labroom">
+
+        update lab_room
+        <set>
+            <if test="room_name != null and room_name != ''">
+                room_name = #{room_name},
+            </if>
+            <if test="room_code != null and room_code != ''">
+                room_code = #{room_code},
+            </if>
+            <if test="room_memo != null and room_memo != ''">
+                room_memo = #{room_memo},
+            </if>
+            <if test="place_count != null and place_count != ''">
+                place_count = #{place_count},
+            </if>
+            <if test="room_college != null and room_college != ''">
+                room_college = #{room_college},
+            </if>
+        </set>
+        where room_id = #{room_id};
+
+    </update>
+</mapper>

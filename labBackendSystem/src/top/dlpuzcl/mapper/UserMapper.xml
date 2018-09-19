@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.dlpuzcl.mapper.UserMapper">
+
+    <sql id="user_where">
+        <where>
+            <if test="userName != null and userName != ''">
+                and u.user_name like '%${userName}%'
+            </if>
+            <if test="userCollege != null and userCollege != ''">
+                and u.college = #{userCollege}
+            </if>
+            <if test="professionalTitle != null and professionalTitle != ''">
+                and u.professional_title = #{professionalTitle}
+            </if>
+        </where>
+    </sql>
+
+    <!--根据查询条件分页查询列表-->
+    <select id="getUserByQueryVo" parameterType="queryvo"  resultType="user">
+        select
+            u.user_id,
+            u.user_name,
+            u.user_phone,
+            u.user_email,
+            c.dict_item_name college,
+            p.dict_item_name professional_title
+        from user u
+        left join base_dict c on u.college = c.dict_id
+        left join base_dict p on u.professional_title = p.dict_id
+        <include refid="user_where"></include>
+        limit #{start},#{rows};
+    </select>
+
+    <!--根据条件查询总记录数-->
+    <select id="getCountByQueryVo" parameterType="queryvo" resultType="int">
+        select count(1)
+        from user u
+        left join base_dict c on u.college = c.dict_id
+        left join base_dict p on u.professional_title = p.dict_id
+        <include refid="user_where"></include>
+    </select>
+
+    <!--根据ID查询用户信息-->
+    <select id="getUserById" parameterType="int" resultType="user">
+        select
+            user_id,
+            user_name,
+            user_phone,
+            user_email,
+            college,
+            professional_title
+        from user
+        where user_id = #{id};
+    </select>
+
+    <!--更新用户信息-->
+    <update id="updateUser" parameterType="user">
+        update user
+        <set>
+            <if test="user_name != null and user_name != ''">
+                user_name = #{user_name},
+            </if>
+            <if test="user_phone != null and user_phone != ''">
+                user_phone = #{user_phone},
+            </if>
+            <if test="user_email != null and user_email != ''">
+                user_email = #{user_email},
+            </if>
+            <if test="professional_title != null and professional_title != ''">
+                professional_title = #{professional_title},
+            </if>
+            <if test="college != null and college != ''">
+                college = #{college},
+            </if>
+        </set>
+        where user_id = #{user_id};
+    </update>
+
+    <!--删除用户-->
+    <delete id="deleteUserById" parameterType="int">
+        delete
+        from user
+        where user_id = #{user_id};
+    </delete>
+
+    <!--添加用户-->
+    <insert id="addUser" parameterType="user">
+        insert into user
+        (user_name,user_phone,user_email,user_password,college,professional_title)
+        values
+            (#{user_name},#{user_phone},#{user_email},#{user_password},#{college},#{professional_title});
+    </insert>
+</mapper>
