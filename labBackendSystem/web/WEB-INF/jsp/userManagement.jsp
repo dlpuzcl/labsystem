@@ -233,8 +233,13 @@
                                     <select class="form-control" id="edit_professionalTitle" name="professional_title">
                                         <option value="">--请选择--</option>
                                         <c:forEach items="${fromProfessionalTitle}" var="item">
-                                            <option value="${item.dict_id}"<c:if
-                                                    test="${item.dict_id == professionalTitle}"> selected</c:if>>${item.dict_item_name }</option>
+                                            <option value="${item.dict_id}"
+                                                    <c:if test="${item.dict_id == professionalTitle}">
+                                                        selected
+                                                    </c:if>
+                                            >
+                                                    ${item.dict_item_name }
+                                            </option>
                                         </c:forEach>
                                     </select>
                                 </div>
@@ -282,7 +287,7 @@
                     </div>
                     <div class="modal-body">
                         <form class="form-horizontal" id="add_User_form">
-                            <input type="hidden" id="add_userId" name="user_id"/>
+                            <%--<input type="hidden" id="add_userId" name="user_id"/>--%>
                             <div class="form-group">
                                 <label for="edit_userName" class="col-sm-2 control-label">姓名</label>
                                 <div class="col-sm-10">
@@ -509,7 +514,7 @@
                         if (data == "0"){
                             alert("用户删除成功！");
                         } else{
-                            alert("用删除失败！");
+                            alert("用户删除失败！");
                         }
                         window.location.reload();
                     });

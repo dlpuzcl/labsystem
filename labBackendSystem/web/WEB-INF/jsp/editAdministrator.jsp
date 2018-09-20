@@ -50,7 +50,7 @@
 
 		<div id="wrapper">
 
-			<%@ include file="/navigation.jsp" %>
+			<%@ include file="WEB-INF/jsp/navigation.jsp" %>
 			
 			<div id="page-wrapper">
 				<div class="row">

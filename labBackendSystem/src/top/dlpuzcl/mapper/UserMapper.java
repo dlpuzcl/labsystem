@@ -2,7 +2,6 @@ package top.dlpuzcl.mapper;
 
 import top.dlpuzcl.pojo.QueryVo;
 import top.dlpuzcl.pojo.User;
-import top.dlpuzcl.utils.Page;
 
 import java.util.List;
 

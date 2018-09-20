@@ -231,11 +231,11 @@
 
 																<div class="col-xs-12">
 																	<!-- PAGE CONTENT BEGINS -->
-																	<form class="form-horizontal" id="admiForm" action="${pageContext.request.contextPath }/addAdministrator">
+																	<form class="form-horizontal" id="add_admini_form" action="">
 																		<div class="form-group">
 																			<label class="col-lg-3 control-label">用户名</label>
 																			<div class="col-lg-5">
-																				<input type="text" class="form-control" name="adminame">
+																				<input type="text" class="form-control" id="admini_name" name="admini_name">
 																			</div>
 																		</div>
 
@@ -243,29 +243,29 @@
 																	<div class="form-group">
 																		<label class="col-lg-3 control-label">密码</label>
 																		<div class="col-lg-5">
-																			<input type="password" class="form-control" id="admipassword" name="password">
+																			<input type="password" class="form-control" id="admini_password" name="admini_password">
 																		</div>
 																	</div>
 																	<!--确认密码-->
 																	<div class="form-group">
 																		<label class="col-lg-3 control-label">确认密码</label>
 																		<div class="col-lg-5">
-																			<input type="password" class="form-control" id="repassword" name="repassword">
+																			<input type="password" class="form-control" id="admini_repassword" name="admini_repassword">
 																		</div>
 																	</div>
 
 																		<div class="form-group">
-																			<label class="col-lg-3 control-label no-padding-right" for="limited">备注</label>
+																			<label class="col-lg-3 control-label no-padding-right" for="admini_memo">备注</label>
 																			<div class="col-lg-5">
 																				<div class="pos-rel">
-																					<textarea class="form-control limited autosize-transition" id="limited" maxlength="50" name="adminote"></textarea>
+																					<textarea class="form-control limited autosize-transition" id="admini_memo" maxlength="50" name="admini_memo"></textarea>
 																				</div>
 																			</div>
 																		</div>
 
 																		<div class="clearfix form-actions">
 																			<div class="col-md-offset-3 col-md-9">
-																				<button class="btn btn-primary" >
+																				<button class="btn btn-primary" type="submit">
 																				<i class="ace-icon fa fa-check bigger-110"></i>
 																				立即提交
 																			</button> &nbsp; &nbsp; &nbsp;
@@ -457,59 +457,56 @@
         });
 
     		
-    		$("#admiForm").validate({
+    		$("#add_admini_form").validate({
     			rules:{
 
-    				"name":{
+    				"admini_name":{
     					"required":true,
     				},
-    				"telephone":{
-    					"required":true,
-    					"rangelength":[11,11]
-    				},
-    				"password":{
+
+    				"admini_password":{
     					"required":true,
     					"rangelength":[6,12]
     				},
-    				"repassword":{
+    				"admini_repassword":{
     					"required":true,
     					"rangelength":[6,12],
-    					"equalTo":"#admipassword"
+    					"equalTo":"#admini_password"
     				},
-    				"email":{
-    					"required":true,
-    					"email":true
-    				},
-
-
     			},
     			messages:{
-    				"username":{
+    				"admini_name":{
     					"required":"*用户名不能为空",
-    					"checkUsername":"用户名重复"
-    					
     				},
-    				"name":{
-    					"required":"*姓名不能为空",
-    				},
-    				"telephone":{
-    					"required":"*电话不能为空",
-    					"rangelength":"*电话号码格式不正确"
-    				},
-    				"password":{
+
+    				"admini_password":{
     					"required":"*密码不能为空",
     					"rangelength":"*密码长度6-12位"
     				},
-    				"repassword":{
+    				"admini_repassword":{
     					"required":"*密码不能为空",
     					"rangelength":"*密码长度6-12位",
     					"equalTo":"*两次密码不一致"
-    				},
-    				"email":{
-    					"required":"*邮箱不能为空",
-    					"email":"*邮箱格式不正确"
     				}
-    			}
+
+    			},
+
+                submitHandler:function(form){  //表单提交后要执行的内容
+                    $.post("<%=basePath%>admini/add.action",$("#add_admini_form").serialize(),function(data){
+                        if (data.status == 200){
+                            alert("管理员添加成功！");
+                            window.location = "<%=basePath%>user/list.action"
+
+                        } else{
+                            alert("管理员添加失败:"+data.msg);
+                            window.location.reload();
+                        }
+
+                    });
+                },
+                invalidHandler: function(form, validator) {  //不通过回调
+                    return false;
+                }
 
             });
   

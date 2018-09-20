@@ -84,4 +84,10 @@
         where room_id = #{room_id};
 
     </update>
+
+    <delete id="deleteLabById" parameterType="int">
+        delete
+        from lab_room
+        where room_id = #{room_id};
+    </delete>
 </mapper>

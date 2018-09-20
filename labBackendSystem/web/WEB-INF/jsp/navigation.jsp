@@ -215,7 +215,7 @@
 							实验室预约<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
 							<li><a
-								href="${pageContext.request.contextPath }/ApplyLab.jsp">单向预约</a></li>
+								href="${pageContext.request.contextPath }/apply/one.action">单向预约</a></li>
 							<li><a href="${pageContext.request.contextPath }/AddLab.jsp">批量预约</a>
 							</li>
 						</ul>

@@ -110,4 +110,17 @@ public class LabController {
         return msg;
     }
 
+    @RequestMapping("delete")
+    @ResponseBody
+    public String delete (Integer id){
+        String msg = "1";
+        try{
+            labService.deleteLabById(id);
+            msg = "0";
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return msg;
+    }
+
 }

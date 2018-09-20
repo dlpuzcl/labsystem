@@ -41,4 +41,10 @@ public interface LabMapper {
      */
     void updateLab(LabRoom labRoom);
 
+    /**
+     * 通过ID删除实验室
+     * @param id
+     */
+    void deleteLabById(Integer id);
+
 }

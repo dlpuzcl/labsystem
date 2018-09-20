@@ -33,4 +33,10 @@ public interface LabService {
      * @param labRoom
      */
     void updateLab(LabRoom labRoom);
+
+    /**
+     * 通过ID删除实验室
+     * @param id
+     */
+    void deleteLabById(Integer id);
 }

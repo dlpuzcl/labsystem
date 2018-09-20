@@ -1,6 +1,5 @@
 package top.dlpuzcl.mapper;
 
-import org.springframework.stereotype.Service;
 import top.dlpuzcl.pojo.BaseDict;
 
 import java.util.List;

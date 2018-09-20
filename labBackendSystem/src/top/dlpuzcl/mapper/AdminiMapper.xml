@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.dlpuzcl.mapper.AdminiMapper">
+    <insert id="addAdmini" parameterType="admini">
+        insert into admini
+          (admini_name,admini_password,admini_memo)
+        values
+          (#{admini_name},#{admini_password},#{admini_memo})
+    </insert>
+</mapper>
