@@ -68,4 +68,9 @@ public class UserServiceImpl implements UserService {
         userMapper.addUser(user);
         return  LabResult.ok();
     }
+
+    @Override
+    public List<User> queryAllUser() {
+        return userMapper.queryAllUser();
+    }
 }

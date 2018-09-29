@@ -39,4 +39,11 @@ public interface LabService {
      * @param id
      */
     void deleteLabById(Integer id);
+
+    /**
+     * 查询所有实验室
+     *
+     */
+
+    List<LabRoom> queryLabCode();
 }

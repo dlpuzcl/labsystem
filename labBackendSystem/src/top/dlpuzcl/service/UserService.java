@@ -6,6 +6,8 @@ import top.dlpuzcl.pojo.QueryVo;
 import top.dlpuzcl.pojo.User;
 import top.dlpuzcl.utils.Page;
 
+import java.util.List;
+
 /**
  * 用户信息业务逻辑接口
  */
@@ -42,4 +44,9 @@ public interface UserService {
      */
     LabResult addUser(User user);
 
+    /**
+     * 查询所有用户
+     * @return
+     */
+    List<User> queryAllUser();
 }

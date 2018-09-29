@@ -93,4 +93,16 @@
         values
             (#{user_name},#{user_phone},#{user_email},#{user_password},#{college},#{professional_title});
     </insert>
+
+    <!--查询所有用户-->
+    <select id="queryAllUser" resultType="user">
+        select
+            user_id,
+            user_name,
+            user_phone,
+            user_email,
+            college,
+            professional_title
+        from user
+    </select>
 </mapper>

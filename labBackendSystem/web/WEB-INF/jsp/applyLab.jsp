@@ -86,66 +86,63 @@
 					<div class="panel panel-default">
 						<div class="panel-heading" style="padding-bottom: 23px;">
 							<i class="fa fa-bar-chart-o fa-fw"></i> 实验室预约
-
+                            <button  onclick="getApply()" class="btn btn-primary pull-right" >查询</button>
 							<div class="pull-right">
-								<form action="" >
-									<div class="btn-group">
+                                    <form action="" id="queryApply">
+                                        <div class="btn-group">
 
-										<select class="form-control" name="lid">
+                                            <select class="form-control" name="room_id">
 
-											<c:forEach items="${labList }" var="lab">
+                                                <c:forEach items="${labRoom }" var="lab" varStatus="vs">
 
-												<option value="${lab.lid }">${lab.lroomid }</option>
+                                                    <option value="${lab.room_id }" >${lab.room_code }：${lab.place_count }人</option>
 
-											</c:forEach>
+                                                </c:forEach>
 
-										</select>
+                                            </select>
 
-									</div>
+                                        </div>
 
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-									<div class="btn-group">
+                                        <div class="btn-group">
 
-										<select class="form-control" name="weeks">
+                                            <select class="form-control" name="apply_week">
 
 
 
-											<option value="1">第一周</option>
-											<option value="2">第二周</option>
-											<option value="3">第三周</option>
-											<option value="4">第四周</option>
-											<option value="5">第五周</option>
-											<option value="6">第六周</option>
-											<option value="7">第七周</option>
-											<option value="8">第八周</option>
-											<option value="9">第九周</option>
-											<option value="10">第十周</option>
-											<option value="11">第十一周</option>
-											<option value="12">第十二周</option>
-											<option value="13">第十三周</option>
-											<option value="14">第十四周</option>
-											<option value="15">第十五周</option>
-											<option value="16">第十六周</option>
-											<option value="17">第十七周</option>
-											<option value="18">第十八周</option>
-											<option value="19">第十九周</option>
-											<option value="20">第二十周</option>
-										</select>
+                                                <option value="1">第一周</option>
+                                                <option value="2">第二周</option>
+                                                <option value="3">第三周</option>
+                                                <option value="4">第四周</option>
+                                                <option value="5">第五周</option>
+                                                <option value="6">第六周</option>
+                                                <option value="7">第七周</option>
+                                                <option value="8">第八周</option>
+                                                <option value="9">第九周</option>
+                                                <option value="10">第十周</option>
+                                                <option value="11">第十一周</option>
+                                                <option value="12">第十二周</option>
+                                                <option value="13">第十三周</option>
+                                                <option value="14">第十四周</option>
+                                                <option value="15">第十五周</option>
+                                                <option value="16">第十六周</option>
+                                                <option value="17">第十七周</option>
+                                                <option value="18">第十八周</option>
+                                                <option value="19">第十九周</option>
+                                                <option value="20">第二十周</option>
+                                            </select>
 
-									</div>
+                                        </div>
 
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-									<div class="btn-group">
-
-										<button  onclick="getApply()" class="btn btn-primary">查询</button>
-
-									</div>
-								</form>
-
+                                    </form>
 							</div>
-						</div>
+
+
+                        </div>
+
 
 
 						<!-- /.panel-heading -->
@@ -153,9 +150,11 @@
 							<div class="row">
 								<div class=" col-md-12">
 									<div class="table-responsive">
-										<table width="100%" class="table table-bordered "
-											style="text-align: center;">
-											<thead >
+										<form id="form1">
+
+											<table width="100%" class="table table-bordered "
+												   style="text-align: center;">
+												<thead >
 												<tr class="info">
 												<tr >
 													<th scope="col"></th>
@@ -168,106 +167,125 @@
 													<th scope="col">星期天</th>
 												</tr>
 												</tr>
-											</thead>
+												</thead>
 
 
-											<tbody style="text-align: center;">
-											<tr style="height: 80px">
-												<th scope="row">1-2节
-												</th>
-												<td id="table_1_1"></td>
-												<td id="table_2_1"></td>
-												<td id="table_3_1"></td>
-												<td id="table_4_1"></td>
-												<td id="table_5_1"></td>
-												<td id="table_6_1"></td>
-												<td id="table_7_1"></td>
+												<tbody style="text-align: center;">
+												<tr style="height: 80px">
+													<th scope="row">1-2节
+													</th>
+													<td id="table_1_1">
+														<%--<input type="checkbox" id="11" value="11">--%>
+													</td>
+													<td id="table_2_1"></td>
+													<td id="table_3_1"></td>
+													<td id="table_4_1"></td>
+													<td id="table_5_1"></td>
+													<td id="table_6_1"></td>
+													<td id="table_7_1"></td>
 
-											</tr>
-											<tr style="height: 80px">
-												<th scope="row">3-4节
-												</th>
-												<td id="table_1_2"></td>
-												<td id="table_2_2"></td>
-												<td id="table_3_2"></td>
-												<td id="table_4_2"></td>
-												<td id="table_5_2"></td>
-												<td id="table_6_2"></td>
-												<td id="table_7_2"></td>
-											</tr>
-											<tr style="height: 80px">
-												<th scope="row">5-6节
-												</th>
-												<td id="table_1_3"></td>
-												<td id="table_2_3"></td>
-												<td id="table_3_3"></td>
-												<td id="table_4_3"></td>
-												<td id="table_5_3"></td>
-												<td id="table_6_3"></td>
-												<td id="table_7_3"></td>
-											</tr>
-											<tr style="height: 80px">
-												<th scope="row">7-8节
-												</th>
-												<td id="table_1_4"></td>
-												<td id="table_2_4"></td>
-												<td id="table_3_4"></td>
-												<td id="table_4_4"></td>
-												<td id="table_5_4"></td>
-												<td id="table_6_4"></td>
-												<td id="table_7_4"></td>
-											</tr>
-											<tr style="height: 80px">
-												<th scope="row">9-10节
-												</th>
-												<td id="table_1_5"></td>
-												<td id="table_2_5"></td>
-												<td id="table_3_5"></td>
-												<td id="table_4_5"></td>
-												<td id="table_5_5"></td>
-												<td id="table_6_5"></td>
-												<td id="table_7_5"></td>
-											</tr>
-											<tr style="height: 80px">
-												<th scope="row">11-12节
-												</th>
-												<td id="table_1_6"></td>
-												<td id="table_2_6"></td>
-												<td id="table_3_6"></td>
-												<td id="table_4_6"></td>
-												<td id="table_5_6"></td>
-												<td id="table_6_6"></td>
-												<td id="table_7_6"></td>
-											</tr>
-											</tbody>
+												</tr>
+												<tr style="height: 80px">
+													<th scope="row">3-4节
+													</th>
+													<td id="table_1_2"></td>
+													<td id="table_2_2"></td>
+													<td id="table_3_2"></td>
+													<td id="table_4_2"></td>
+													<td id="table_5_2"></td>
+													<td id="table_6_2"></td>
+													<td id="table_7_2"></td>
+												</tr>
+												<tr style="height: 80px">
+													<th scope="row">5-6节
+													</th>
+													<td id="table_1_3"></td>
+													<td id="table_2_3"></td>
+													<td id="table_3_3"></td>
+													<td id="table_4_3"></td>
+													<td id="table_5_3"></td>
+													<td id="table_6_3"></td>
+													<td id="table_7_3"></td>
+												</tr>
+												<tr style="height: 80px">
+													<th scope="row">7-8节
+													</th>
+													<td id="table_1_4"></td>
+													<td id="table_2_4"></td>
+													<td id="table_3_4"></td>
+													<td id="table_4_4"></td>
+													<td id="table_5_4"></td>
+													<td id="table_6_4"></td>
+													<td id="table_7_4"></td>
+												</tr>
+												<tr style="height: 80px">
+													<th scope="row">9-10节
+													</th>
+													<td id="table_1_5"></td>
+													<td id="table_2_5"></td>
+													<td id="table_3_5"></td>
+													<td id="table_4_5"></td>
+													<td id="table_5_5"></td>
+													<td id="table_6_5"></td>
+													<td id="table_7_5"></td>
+												</tr>
+												<tr style="height: 80px">
+													<th scope="row">11-12节
+													</th>
+													<td id="table_1_6"></td>
+													<td id="table_2_6"></td>
+													<td id="table_3_6"></td>
+													<td id="table_4_6"></td>
+													<td id="table_5_6"></td>
+													<td id="table_6_6"></td>
+													<td id="table_7_6"></td>
+												</tr>
+												</tbody>
+											</table>
 
+											<div class="col-md-4 col-md-offset-4">
+												<div class=" panel-default">
 
-
-										</table>
-
-										<div class="col-md-4 col-md-offset-4">
-											<div class=" panel-default">
-
-												<div class="panel-body">
-													<form role="form">
+													<div class="panel-body">
 														<div class="form-group">
-															<select class="form-control">
 
-																<option value="">选择课程</option>
-																<c:forEach items="${CourseList }" var="course">
+															<select class="form-control" id="user" name="user_id">
 
-																	<option value="${course.couid }">${course.couname }</option>
+																<option value="">--选择教师--</option>
+																<c:forEach items="${userList }" var="user">
 
+
+																		<option value="${user.user_id }" >
+																				${user.user_name }
+																		</option>
 																</c:forEach>
 															</select>
 														</div>
-														<button type="submit"
-															class="btn btn-lg btn-success btn-block">提交</button>
-													</form>
+
+													</div>
+
+													<div class="panel-body">
+															<div class="form-group">
+
+																<select class="form-control" id="course" name="course_id">
+
+																	<option value ="">--请先选择教师--</option>
+
+
+																</select>
+															</div>
+
+													</div>
 												</div>
 											</div>
-										</div>
+
+										</form>
+
+										<button onclick="apply()"
+												class="btn btn-lg btn-success btn-block">提交
+										</button>
 									</div>
+
 									<!-- /.table-responsive -->
 								</div>
 								<!-- /.col-lg-4 (nested) -->
@@ -318,21 +336,70 @@
             $.ajax({
                 type:"get",
                 url:"<%=basePath%>apply/query.action",
-
+                data:$('#queryApply').serialize(),
                 success:function(data) {
                     //清空课程表
                     for(var i=1;i<7;i++){
                         for(var j=1;j<8;j++){
-                            $("#table_"+j+"_"+i).html("<input type=\"checkbox\" id=\"inlineCheckbox1\" value=\"option1\">");
+
+                            var checkbox = "<input type='checkbox' name='day_section'  value='"+i+j+"'>"
+
+                            $("#table_"+j+"_"+i).html(checkbox);
                         }
                     }
                     //遍历课程表
                     for (var i=0;i<data.length;i++) {
-                        $("#table_"+data[i].apply_day+"_"+data[i].apply_section).html(data[i].course_name+"<br>"+data[i].room_name+"<br>"+data[i].user_name);
+                        $("#table_"+data[i].apply_day+"_"+data[i].apply_section).html(data[i].course_name+"<br>"+data[i].course_class+"<br>"+data[i].user_name);
                     }
                 }
             });
         }
+
+        function apply() {
+
+            var queryApply=$('#queryApply').serialize();
+            var form1 = $('#form1').serialize();
+            var formdata = queryApply+'&'+form1
+            $.ajax({
+                type:"get",
+                url:"<%=basePath%>apply/submit.action",
+                data:formdata,
+                success:function (data) {
+
+                    if (data == "0") {
+                        alert("预约成功！");
+                    } else {
+                        alert("预约失败！");
+                    }
+                    getApply();
+                    // window.location.reload();
+                    <%--window.location = "<%=basePath%>user/list.action"--%>
+
+                }
+            })
+        }
+
+
+        $("#user").change(function(){
+            var id=$("#user").val();
+            $.ajax({
+                type:"get",
+                url:"<%=basePath%>apply/courseByUser.action",
+                data:{"id":id},
+                success:function (data) {
+
+                    //清空列表
+                    $("#course").html("");
+
+                    //遍历课程表
+                    for (var i=0;i<data.length;i++) {
+                        $("#course").append("<option value='"+data[i].course_id+"'>"+data[i].course_name+'：'+data[i].course_class+"</option>");
+                    }
+
+                }
+            })
+        });
+
 	</script>
 
 

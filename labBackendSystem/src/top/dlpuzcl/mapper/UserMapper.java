@@ -47,4 +47,11 @@ public interface UserMapper {
      * @param user
      */
     void addUser(User user);
+
+    /**
+     * 查询所有用户
+     * @return
+     */
+
+    List<User> queryAllUser();
 }

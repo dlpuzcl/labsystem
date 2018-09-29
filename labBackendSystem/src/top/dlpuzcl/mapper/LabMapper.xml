@@ -90,4 +90,8 @@
         from lab_room
         where room_id = #{room_id};
     </delete>
+
+    <select id="queryLabCode" resultType="labroom">
+        select * from lab_room;
+    </select>
 </mapper>

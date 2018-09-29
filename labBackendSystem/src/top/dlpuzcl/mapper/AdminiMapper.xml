@@ -9,4 +9,5 @@
         values
           (#{admini_name},#{admini_password},#{admini_memo})
     </insert>
+
 </mapper>
