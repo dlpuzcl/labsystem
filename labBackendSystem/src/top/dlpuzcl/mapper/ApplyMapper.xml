@@ -13,9 +13,15 @@
               and a.room_id = #{room_id}
     </select>
 
-    <insert id="addApply" parameterType="apply">
+    <insert id="addApply" parameterType="apply" >
         insert into apply
         (apply_week,apply_day,apply_section,room_id,user_id,course_id)
          values (#{apply_week},#{apply_day},#{apply_section},#{room_id},#{user_id},#{course_id})
+    </insert>
+
+    <insert id="addBatchApply" parameterType="applyBatch" >
+        insert into apply
+        (apply_week,apply_day,apply_section,room_id,user_id,course_id)
+        values (#{apply_week},#{apply_day},#{apply_section},#{room_id},#{user_id},#{course_id})
     </insert>
 </mapper>

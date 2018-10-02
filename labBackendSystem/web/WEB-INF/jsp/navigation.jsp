@@ -171,14 +171,14 @@
 
 		<div class="navbar-default sidebar" role="navigation">
 			<div class="sidebar-nav navbar-collapse">
-				<div class="user-panel" style="margin-top: 20px;">
-					<img src="<%=basePath%>img/user/pyy.png" class="img-circle center-block"
-						height="100px" />
+				<div class="user-panel" style="margin-top: 13px;">
+					<img src="<%=basePath%>img/user/b631.jpg" class="img-circle center-block"
+						height="130px" />
 				</div>
 
 				<ul class="nav" id="side-menu" style="text-align: center;">
 
-					<li class="sidebar-search">
+					<li style="padding: 7px;">
 						<!-- /input-group -->
 					</li>
 					<li><a href="${pageContext.request.contextPath }/homePage.jsp"><i
@@ -210,13 +210,24 @@
 							</li>
 						</ul>
 					</li>
+
+					<li><a href="#"><i class="fa fa-calendar fa-fw"></i>
+						课程管理<span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<%--<li><a href="${pageContext.request.contextPath }/lab/addview.action">课程添加</a>--%>
+							<%--</li>--%>
+							<li><a
+									href="${pageContext.request.contextPath}/course/list.action">课程管理</a>
+							</li>
+						</ul>
+					</li>
 					
-					<li><a href="#"><i class="fa fa-institution fa-fw"></i>
-							实验室预约<span class="fa arrow"></span></a>
+					<li><a href="#"><i class="fa fa-tasks fa-fw"></i>
+							教室预约<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
 							<li><a
 								href="${pageContext.request.contextPath }/apply/one.action">单向预约</a></li>
-							<li><a href="${pageContext.request.contextPath }/AddLab.jsp">批量预约</a>
+							<li><a href="${pageContext.request.contextPath }/apply/batch.action">批量预约</a>
 							</li>
 						</ul>
 					</li>
@@ -228,7 +239,7 @@
 						</ul>
 					</li>
 
-					<li><a href="#"><i class="fa fa-wrench fa-fw"></i> 预约管理<span
+					<li><a href="#"><i class="fa fa-codepen fa-fw"></i> 预约管理<span
 							class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
 							<li><a href="#">学期设置</a></li>

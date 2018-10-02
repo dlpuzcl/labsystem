@@ -106,11 +106,7 @@
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                                         <div class="btn-group">
-
                                             <select class="form-control" name="apply_week">
-
-
-
                                                 <option value="1">第一周</option>
                                                 <option value="2">第二周</option>
                                                 <option value="3">第三周</option>
@@ -172,7 +168,7 @@
 
 												<tbody style="text-align: center;">
 												<tr style="height: 80px">
-													<th scope="row">1-2节
+													<th scope="row">1节
 													</th>
 													<td id="table_1_1">
 														<%--<input type="checkbox" id="11" value="11">--%>
@@ -186,7 +182,7 @@
 
 												</tr>
 												<tr style="height: 80px">
-													<th scope="row">3-4节
+													<th scope="row">2节
 													</th>
 													<td id="table_1_2"></td>
 													<td id="table_2_2"></td>
@@ -197,7 +193,7 @@
 													<td id="table_7_2"></td>
 												</tr>
 												<tr style="height: 80px">
-													<th scope="row">5-6节
+													<th scope="row">3节
 													</th>
 													<td id="table_1_3"></td>
 													<td id="table_2_3"></td>
@@ -208,7 +204,7 @@
 													<td id="table_7_3"></td>
 												</tr>
 												<tr style="height: 80px">
-													<th scope="row">7-8节
+													<th scope="row">4节
 													</th>
 													<td id="table_1_4"></td>
 													<td id="table_2_4"></td>
@@ -219,7 +215,7 @@
 													<td id="table_7_4"></td>
 												</tr>
 												<tr style="height: 80px">
-													<th scope="row">9-10节
+													<th scope="row">5节
 													</th>
 													<td id="table_1_5"></td>
 													<td id="table_2_5"></td>
@@ -230,7 +226,7 @@
 													<td id="table_7_5"></td>
 												</tr>
 												<tr style="height: 80px">
-													<th scope="row">11-12节
+													<th scope="row">6节
 													</th>
 													<td id="table_1_6"></td>
 													<td id="table_2_6"></td>
@@ -239,6 +235,74 @@
 													<td id="table_5_6"></td>
 													<td id="table_6_6"></td>
 													<td id="table_7_6"></td>
+												</tr>
+												<tr style="height: 80px">
+													<th scope="row">7节
+													</th>
+													<td id="table_1_7">
+													</td>
+													<td id="table_2_7"></td>
+													<td id="table_3_7"></td>
+													<td id="table_4_7"></td>
+													<td id="table_5_7"></td>
+													<td id="table_6_7"></td>
+													<td id="table_7_7"></td>
+
+												</tr>
+												<tr style="height: 80px">
+													<th scope="row">8节
+													</th>
+													<td id="table_1_8"></td>
+													<td id="table_2_8"></td>
+													<td id="table_3_8"></td>
+													<td id="table_4_8"></td>
+													<td id="table_5_8"></td>
+													<td id="table_6_8"></td>
+													<td id="table_7_8"></td>
+												</tr>
+												<tr style="height: 80px">
+													<th scope="row">9节
+													</th>
+													<td id="table_1_9"></td>
+													<td id="table_2_9"></td>
+													<td id="table_3_9"></td>
+													<td id="table_4_9"></td>
+													<td id="table_5_9"></td>
+													<td id="table_6_9"></td>
+													<td id="table_7_9"></td>
+												</tr>
+												<tr style="height: 80px">
+													<th scope="row">10节
+													</th>
+													<td id="table_1_10"></td>
+													<td id="table_2_10"></td>
+													<td id="table_3_10"></td>
+													<td id="table_4_10"></td>
+													<td id="table_5_10"></td>
+													<td id="table_6_10"></td>
+													<td id="table_7_10"></td>
+												</tr>
+												<tr style="height: 80px">
+													<th scope="row">11节
+													</th>
+													<td id="table_1_11"></td>
+													<td id="table_2_11"></td>
+													<td id="table_3_11"></td>
+													<td id="table_4_11"></td>
+													<td id="table_5_11"></td>
+													<td id="table_6_11"></td>
+													<td id="table_7_11"></td>
+												</tr>
+												<tr style="height: 80px">
+													<th scope="row">12节
+													</th>
+													<td id="table_1_12"></td>
+													<td id="table_2_12"></td>
+													<td id="table_3_12"></td>
+													<td id="table_4_12"></td>
+													<td id="table_5_12"></td>
+													<td id="table_6_12"></td>
+													<td id="table_7_12"></td>
 												</tr>
 												</tbody>
 											</table>
@@ -253,32 +317,23 @@
 
 																<option value="">--选择教师--</option>
 																<c:forEach items="${userList }" var="user">
-
-
 																		<option value="${user.user_id }" >
 																				${user.user_name }
 																		</option>
 																</c:forEach>
 															</select>
 														</div>
-
 													</div>
-
 													<div class="panel-body">
 															<div class="form-group">
 
 																<select class="form-control" id="course" name="course_id">
-
 																	<option value ="">--请先选择教师--</option>
-
-
 																</select>
 															</div>
-
 													</div>
 												</div>
 											</div>
-
 										</form>
 
 										<button onclick="apply()"
@@ -300,11 +355,8 @@
 					</div>
 					<!-- /.panel -->
 				</div>
-
-
 				<!-- /.col-lg-12 -->
 			</div>
-			<!-- /.row -->
 
 			<!-- /.row -->
 		</div>
@@ -321,11 +373,6 @@
 	<!-- Metis Menu Plugin JavaScript -->
 	<script src="<%=basePath%>metisMenu/metisMenu.min.js"></script>
 
-	<!-- Morris Charts JavaScript -->
-	<script src="<%=basePath%>raphael/raphael.min.js"></script>
-	<script src="morrisjs/morris.min.js"></script>
-	<script src="<%=basePath%>/morris-data.js"></script>
-
 	<!-- Custom Theme JavaScript -->
 	<script src="<%=basePath%>dist/js/sb-admin-2.js"></script>
 
@@ -339,7 +386,7 @@
                 data:$('#queryApply').serialize(),
                 success:function(data) {
                     //清空课程表
-                    for(var i=1;i<7;i++){
+                    for(var i=1;i<13;i++){
                         for(var j=1;j<8;j++){
 
                             var checkbox = "<input type='checkbox' name='day_section'  value='"+i+j+"'>"
@@ -379,7 +426,6 @@
             })
         }
 
-
         $("#user").change(function(){
             var id=$("#user").val();
             $.ajax({
@@ -395,7 +441,6 @@
                     for (var i=0;i<data.length;i++) {
                         $("#course").append("<option value='"+data[i].course_id+"'>"+data[i].course_name+'：'+data[i].course_class+"</option>");
                     }
-
                 }
             })
         });

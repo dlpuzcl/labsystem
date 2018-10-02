@@ -1,7 +1,5 @@
 package top.dlpuzcl.pojo;
 
-import org.springframework.stereotype.Service;
-
 public class ApplyData {
     private int apply_id;
     private int apply_week;

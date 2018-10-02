@@ -3,9 +3,7 @@ package top.dlpuzcl.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.dlpuzcl.mapper.ApplyMapper;
-import top.dlpuzcl.pojo.Apply;
-import top.dlpuzcl.pojo.ApplyData;
-import top.dlpuzcl.pojo.QueryApply;
+import top.dlpuzcl.pojo.*;
 import top.dlpuzcl.service.ApplyService;
 
 import java.util.List;
@@ -22,7 +20,7 @@ public class ApplyServiceImpl implements ApplyService {
 
 
     /**
-     * 添加申请
+     * 添加单向申请
      * @param apply
      */
     @Override
@@ -44,5 +42,40 @@ public class ApplyServiceImpl implements ApplyService {
             applyMapper.addApply(apply);
 
         }
+    }
+
+    @Override
+    public LabResult addBatchApply(ApplyBatch applyBatch) {
+        int apply_week_first = applyBatch.getApply_week_first();
+        int apply_week_last = applyBatch.getApply_week_last();
+        int apply_section_first = applyBatch.getApply_section_first();
+        int apply_section_last = applyBatch.getApply_section_last();
+
+        int week = apply_week_last - apply_week_first;
+        int section = apply_section_last - apply_section_first;
+        if(week < 0 ){
+            return LabResult.build(400, "预约失败：周次必须先小后大，如：第一周——>第五周");
+        }
+        if(section < 0){
+            return LabResult.build(400, "预约失败：节次必须先小后大,如：第一节——>第五节");
+        }
+
+        try {
+            for (int i=apply_week_first; i <= apply_week_last; i++){
+                for(int j=apply_section_first; j <= apply_section_last; j++ ){
+                    applyBatch.setApply_week(i);
+                    applyBatch.setApply_section(j);
+                    applyMapper.addBatchApply(applyBatch);
+                    System.out.println(applyBatch.toString());
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return LabResult.build(400, "预约失败：时间重复，请重新选择！");
+        }
+
+
+        return  LabResult.ok();
+
     }
 }

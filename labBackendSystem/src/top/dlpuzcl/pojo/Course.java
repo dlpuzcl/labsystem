@@ -5,7 +5,8 @@ public class Course {
     private String course_name;
     private String course_memo;
     private String course_class;
-    private int user_id;
+//    private int user_id;
+    private String user_id;
 
     public int getCourse_id() {
         return course_id;
@@ -39,11 +40,11 @@ public class Course {
         this.course_class = course_class;
     }
 
-    public int getUser_id() {
+    public String getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUser_id(String user_id) {
         this.user_id = user_id;
     }
 }

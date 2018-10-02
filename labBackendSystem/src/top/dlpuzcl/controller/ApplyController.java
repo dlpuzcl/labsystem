@@ -61,6 +61,17 @@ public class ApplyController {
         return "applyLab";
     }
 
+    @RequestMapping("batch")
+    public String batch(Model model){
+        List<LabRoom> labRoom = labService.queryLabCode();
+        model.addAttribute("labRoom",labRoom);
+
+        List<User> userList = userService.queryAllUser();
+
+        model.addAttribute("userList",userList);
+        return "batchApply";
+    }
+
     /**
      * 查询申请列表
      * @param apply
@@ -90,7 +101,7 @@ public class ApplyController {
     }
 
     /**
-     * 提交申请
+     * 单向预约提交申请
      * @param apply
      * @return
      */
@@ -106,6 +117,16 @@ public class ApplyController {
             e.printStackTrace();
         }
         return msg;
+    }
+
+    @RequestMapping("batchSubmit")
+    @ResponseBody
+    public LabResult batchSubmit(ApplyBatch applyBatch){
+
+
+        LabResult labResult = applyService.addBatchApply(applyBatch);
+
+        return labResult;
     }
 
 }
