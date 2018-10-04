@@ -23,6 +23,13 @@ public class CourseController {
 
     @Autowired
     CourseService courseService;
+
+    /**
+     * 查询课程
+     * @param model
+     * @param queryVo
+     * @return
+     */
     @RequestMapping("list")
     public String list(Model model, QueryVo queryVo){
 

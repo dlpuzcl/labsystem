@@ -158,10 +158,8 @@
                                     <td>${course.course_name }</td>
                                     <td>${course.course_class }</td>
                                     <td>${course.user_id }</td>
-                                    <td>${course.course_memo }</td
-                                    <td>
+                                    <td>${course.course_memo }</td>
 
-                                    </td>
                                     <td>
                                         <a href="#" class="btn btn-primary btn-xs" data-toggle="modal"
                                            data-target="#courseEditDialog"

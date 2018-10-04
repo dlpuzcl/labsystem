@@ -25,5 +25,24 @@ public interface ApplyMapper {
      */
     void addBatchApply (ApplyBatch applyBatch);
 
+    /**
+     * 通过user查询申请
+     * @param queryVo
+     * @return
+     */
+    List<Apply> queryApplyByUser (QueryVo queryVo);
 
+    /**
+     * 查询总记录数
+     * @param queryVo
+     * @return
+     */
+
+    Integer getCountByQueryVo(QueryVo queryVo);
+
+    /**
+     * 删除申请通过id
+     */
+
+    void deleteById(Integer id);
 }

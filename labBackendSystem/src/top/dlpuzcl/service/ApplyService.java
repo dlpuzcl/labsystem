@@ -1,9 +1,7 @@
 package top.dlpuzcl.service;
 
-import top.dlpuzcl.pojo.Apply;
-import top.dlpuzcl.pojo.ApplyBatch;
-import top.dlpuzcl.pojo.ApplyData;
-import top.dlpuzcl.pojo.LabResult;
+import top.dlpuzcl.pojo.*;
+import top.dlpuzcl.utils.Page;
 
 import java.util.List;
 
@@ -27,5 +25,16 @@ public interface ApplyService {
      */
     LabResult addBatchApply (ApplyBatch applyBatch);
 
+    /**
+     * 通过user查询申请
+     * @param queryVo
+     * @return
+     */
+    Page<Apply> queryApplyByUser (QueryVo queryVo);
 
+    /**
+     * 删除申请通过id
+     */
+
+    void deleteById(Integer id);
 }

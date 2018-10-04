@@ -1,12 +1,13 @@
 package top.dlpuzcl.pojo;
 
 public class Apply {
+    private int apply_id;
     private int room_id;
     private int apply_day;
     private int apply_section;
     private int apply_week;
-    private int user_id = 1;
-    private int course_id = 1;
+    private int user_id;
+    private int course_id;
     private String day_section[];
     private String user_name;
     private String room_name;
@@ -14,36 +15,12 @@ public class Apply {
     private String room_code;
     private String course_class;
 
-    public String getCourse_class() {
-        return course_class;
+    public int getApply_id() {
+        return apply_id;
     }
 
-    public void setCourse_class(String course_class) {
-        this.course_class = course_class;
-    }
-
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
-    }
-
-    public int getCourse_id() {
-        return course_id;
-    }
-
-    public void setCourse_id(int course_id) {
-        this.course_id = course_id;
-    }
-
-    public String[] getDay_section() {
-        return day_section;
-    }
-
-    public void setDay_section(String[] day_section) {
-        this.day_section = day_section;
+    public void setApply_id(int apply_id) {
+        this.apply_id = apply_id;
     }
 
     public int getRoom_id() {
@@ -52,14 +29,6 @@ public class Apply {
 
     public void setRoom_id(int room_id) {
         this.room_id = room_id;
-    }
-
-    public String getRoom_code() {
-        return room_code;
-    }
-
-    public void setRoom_code(String room_code) {
-        this.room_code = room_code;
     }
 
     public int getApply_day() {
@@ -86,6 +55,30 @@ public class Apply {
         this.apply_week = apply_week;
     }
 
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public int getCourse_id() {
+        return course_id;
+    }
+
+    public void setCourse_id(int course_id) {
+        this.course_id = course_id;
+    }
+
+    public String[] getDay_section() {
+        return day_section;
+    }
+
+    public void setDay_section(String[] day_section) {
+        this.day_section = day_section;
+    }
+
     public String getUser_name() {
         return user_name;
     }
@@ -108,5 +101,21 @@ public class Apply {
 
     public void setCourse_name(String course_name) {
         this.course_name = course_name;
+    }
+
+    public String getRoom_code() {
+        return room_code;
+    }
+
+    public void setRoom_code(String room_code) {
+        this.room_code = room_code;
+    }
+
+    public String getCourse_class() {
+        return course_class;
+    }
+
+    public void setCourse_class(String course_class) {
+        this.course_class = course_class;
     }
 }

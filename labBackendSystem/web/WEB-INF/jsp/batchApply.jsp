@@ -51,8 +51,8 @@
     </script>
 
     <style type="text/css">
-        .error{
-            color:red
+        .error {
+            color: red
         }
     </style>
 </head>
@@ -91,11 +91,11 @@
         </div>
 
 
-        <div class="panel panel-default " >
+        <div class="panel panel-default ">
             <div class="panel-body">
                 <form class="form-inline" id="form1">
                     <div class="form-group">
-                        <label >--从--</label>
+                        <label>--从--</label>
                         <select class="form-control" name="apply_week_first">
                             <option value="1">第一周</option>
                             <option value="2">第二周</option>
@@ -121,7 +121,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label >--到--</label>
+                        <label>--到--</label>
                         <select class="form-control" name="apply_week_last">
                             <option value="1">第一周</option>
                             <option value="2">第二周</option>
@@ -147,7 +147,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label >--</label>
+                        <label>--</label>
                         <select class="form-control" name="apply_day">
                             <option value="1">星期一</option>
                             <option value="2">星期二</option>
@@ -160,7 +160,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label >--的--</label>
+                        <label>--的--</label>
                         <select class="form-control" name="apply_section_first">
                             <option value="1">第一节</option>
                             <option value="2">第二节</option>
@@ -178,7 +178,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label >--到--</label>
+                        <label>--到--</label>
                         <select class="form-control" name="apply_section_last">
                             <option value="1">第一节</option>
                             <option value="2">第二节</option>
@@ -218,11 +218,11 @@
 
                                                             <c:forEach items="${labRoom }" var="lab" varStatus="vs">
 
-                                                                <option value="${lab.room_id }" >${lab.room_code }：${lab.place_count }人</option>
+                                                                <option value="${lab.room_id }">${lab.room_code }：${lab.place_count }人</option>
 
                                                             </c:forEach>
 
-                                                    </select>
+                                                        </select>
                                                     </div>
                                                 </div>
 
@@ -233,7 +233,7 @@
 
                                                             <option value="">--选择教师--</option>
                                                             <c:forEach items="${userList }" var="user">
-                                                                <option value="${user.user_id }" >
+                                                                <option value="${user.user_id }">
                                                                         ${user.user_name }
                                                                 </option>
                                                             </c:forEach>
@@ -244,7 +244,7 @@
                                                     <div class="form-group">
 
                                                         <select class="form-control" id="course" name="course_id">
-                                                            <option value ="">--请先选择教师--</option>
+                                                            <option value="">--请先选择教师--</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -300,12 +300,12 @@
 
             var form2 = $('#form2').serialize();
             var form1 = $('#form1').serialize();
-            var formdata = form2+'&'+form1
+            var formdata = form2 + '&' + form1
             $.ajax({
-                type:"get",
-                url:"<%=basePath%>apply/batchSubmit.action",
-                data:formdata,
-                success:function (data) {
+                type: "get",
+                url: "<%=basePath%>apply/batchSubmit.action",
+                data: formdata,
+                success: function (data) {
 
                     if (data.status == 200) {
                         alert("预约成功！");
@@ -320,20 +320,20 @@
             })
         }
 
-        $("#user").change(function(){
-            var id=$("#user").val();
+        $("#user").change(function () {
+            var id = $("#user").val();
             $.ajax({
-                type:"get",
-                url:"<%=basePath%>apply/courseByUser.action",
-                data:{"id":id},
-                success:function (data) {
+                type: "get",
+                url: "<%=basePath%>apply/courseByUser.action",
+                data: {"id": id},
+                success: function (data) {
 
                     //清空列表
                     $("#course").html("");
 
                     //遍历课程表
-                    for (var i=0;i<data.length;i++) {
-                        $("#course").append("<option value='"+data[i].course_id+"'>"+data[i].course_name+'：'+data[i].course_class+"</option>");
+                    for (var i = 0; i < data.length; i++) {
+                        $("#course").append("<option value='" + data[i].course_id + "'>" + data[i].course_name + '：' + data[i].course_class + "</option>");
                     }
                 }
             })

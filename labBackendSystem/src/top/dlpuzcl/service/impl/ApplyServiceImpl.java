@@ -1,10 +1,12 @@
 package top.dlpuzcl.service.impl;
 
+import org.apache.tomcat.util.http.mapper.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.dlpuzcl.mapper.ApplyMapper;
 import top.dlpuzcl.pojo.*;
 import top.dlpuzcl.service.ApplyService;
+import top.dlpuzcl.utils.Page;
 
 import java.util.List;
 
@@ -77,5 +79,26 @@ public class ApplyServiceImpl implements ApplyService {
 
         return  LabResult.ok();
 
+    }
+
+    @Override
+    public Page<Apply> queryApplyByUser(QueryVo queryVo) {
+        //计算分页查询从那条记录开始
+        queryVo.setStart((queryVo.getPage()-1)*queryVo.getRows());
+
+        //查询总记录数
+        Integer total = applyMapper.getCountByQueryVo(queryVo);
+
+        List<Apply> list = applyMapper.queryApplyByUser(queryVo);
+
+        //包装分页数据
+        Page<Apply> page = new Page<>(total,queryVo.getPage(),queryVo.getRows(),list);
+
+        return page;
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        applyMapper.deleteById(id);
     }
 }

@@ -231,11 +231,11 @@
 							</li>
 						</ul>
 					</li>
-					<li><a href="#"><i class="fa fa-search fa-fw"></i> 课程查询<span
+					<li><a href="#"><i class="fa fa-search fa-fw"></i> 预约查询<span
 							class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
-							<li><a href="#">实验室查询</a></li>
-							<li><a href="#">任课教师查询</a></li>
+							<li><a href="${pageContext.request.contextPath }/apply/queryApplyByLab.action">实验室查询</a></li>
+							<li><a href="${pageContext.request.contextPath }/apply/queryApplyByUser.action">任课教师查询</a></li>
 						</ul>
 					</li>
 

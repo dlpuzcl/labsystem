@@ -9,6 +9,7 @@ import top.dlpuzcl.pojo.*;
 import top.dlpuzcl.service.*;
 import top.dlpuzcl.utils.Page;
 
+import javax.jws.WebParam;
 import java.util.List;
 
 @Controller
@@ -119,6 +120,11 @@ public class ApplyController {
         return msg;
     }
 
+    /**
+     * 批量预约提交申请
+     * @param applyBatch
+     * @return
+     */
     @RequestMapping("batchSubmit")
     @ResponseBody
     public LabResult batchSubmit(ApplyBatch applyBatch){
@@ -127,6 +133,49 @@ public class ApplyController {
         LabResult labResult = applyService.addBatchApply(applyBatch);
 
         return labResult;
+    }
+
+    @RequestMapping("queryApplyByLab")
+    public String  queryApplyByLab(Model model){
+
+        //查询实验室信息
+        List<LabRoom> labRoom = labService.queryLabCode();
+        model.addAttribute("labRoom",labRoom);
+
+        return "queryApplyByLab";
+
+    }
+
+    @RequestMapping("queryApplyByUser")
+    public String queryApplyByUser(QueryVo queryVo,Model model){
+
+        List<User> userList = userService.queryAllUser();
+
+        model.addAttribute("userList",userList);
+
+        //根据查询条件分页查询用户列表
+        Page<Apply> page = applyService.queryApplyByUser(queryVo);
+
+        //设置分页返回
+        model.addAttribute("page",page);
+
+        //返回查询条件
+        model.addAttribute("vo",queryVo);
+        return "queryApplyByUser";
+    }
+
+    @RequestMapping("delete")
+    @ResponseBody
+    public String delete(Integer id){
+        String msg = "1";
+        try {
+            applyService.deleteById(id);
+            msg = "0";
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return msg;
     }
 
 }

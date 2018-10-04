@@ -24,4 +24,55 @@
         (apply_week,apply_day,apply_section,room_id,user_id,course_id)
         values (#{apply_week},#{apply_day},#{apply_section},#{room_id},#{user_id},#{course_id})
     </insert>
+
+    <select id="queryApplyByUser" parameterType="queryVo" resultType="apply">
+        select
+            a.apply_id,
+            a.apply_week,
+            a.apply_day,
+            a.apply_section,
+            a.user_id,
+            c.course_name,
+            c.course_class,
+            u.user_name,
+            l.room_name
+        from apply a
+            left join course c on a.course_id = c.course_id
+            left join user u on a.user_id = u.user_id
+            left join lab_room l on a.room_id = l.room_id
+        <where>
+            <if test="userName != null and userName != ''">
+                and a.user_id = #{ userName}
+            </if>
+            <if test="applyWeek != null and applyWeek != ''">
+                and a.apply_week = #{applyWeek}
+            </if>
+        </where>
+        ORDER BY a.apply_day,a.apply_section ASC
+        limit #{start},#{rows};
+    </select>
+
+    <select id="getCountByQueryVo" resultType="integer" parameterType="queryvo">
+        select
+          count(1)
+        from apply a
+        left join course c on a.course_id = c.course_id
+        left join user u on a.user_id = u.user_id
+        left join lab_room l on a.room_id = l.room_id
+        <where>
+            <if test="userName != null and userName != ''">
+                and a.user_id = #{userName}
+            </if>
+            <if test="applyWeek != null and applyWeek != ''">
+                and a.apply_week = #{applyWeek}
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteById" parameterType="integer">
+        delete
+        from
+        apply
+        where apply_id = #{id};
+    </delete>
 </mapper>
