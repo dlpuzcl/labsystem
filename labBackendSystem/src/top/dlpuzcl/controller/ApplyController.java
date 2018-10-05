@@ -164,6 +164,11 @@ public class ApplyController {
         return "queryApplyByUser";
     }
 
+    /**
+     * 删除申请
+     * @param id
+     * @return
+     */
     @RequestMapping("delete")
     @ResponseBody
     public String delete(Integer id){
@@ -176,6 +181,22 @@ public class ApplyController {
         }
 
         return msg;
+    }
+
+    @RequestMapping("setItermView")
+    public String setItermView(Model model){
+
+        ItermYear itermYear = applyService.queryItermYear();
+        model.addAttribute("itermYear",itermYear);
+
+        return "setIterm";
+    }
+
+    @RequestMapping("setIterm")
+    @ResponseBody
+    public LabResult setIterm(ItermYear itermYear){
+        LabResult labResult = applyService.setItermYear(itermYear);
+        return labResult;
     }
 
 }

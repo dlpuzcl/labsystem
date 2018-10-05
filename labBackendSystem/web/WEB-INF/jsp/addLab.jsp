@@ -94,12 +94,7 @@
 									<div class="col-xs-12">
 										<!-- PAGE CONTENT BEGINS -->
 										<form class="form-horizontal" id="add_Lab_form" action="" >
-											<div class="form-group">
-												<label class="col-lg-3 control-label" >实验室名称</label>
-												<div class="col-lg-5">
-													<input type="text" class="form-control" name="room_name">
-												</div>
-											</div>
+
 											<!--房间号-->
 											<div class="form-group">
 												<label class="col-lg-3 control-label" >房间号</label>
@@ -107,6 +102,13 @@
 													<input type="text" class="form-control" name="room_code">
 												</div>
 											</div>
+											<div class="form-group">
+												<label class="col-lg-3 control-label" >实验室名称</label>
+												<div class="col-lg-5">
+													<input type="text" class="form-control" name="room_name">
+												</div>
+											</div>
+
 											<%--学院--%>
 											<div class="form-group">
 												<label class="col-lg-3 control-label">学院</label>

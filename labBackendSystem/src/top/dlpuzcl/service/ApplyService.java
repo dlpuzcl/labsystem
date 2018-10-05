@@ -37,4 +37,16 @@ public interface ApplyService {
      */
 
     void deleteById(Integer id);
+
+    /**
+     *查询当前学年学期
+     * @return
+     */
+
+    ItermYear queryItermYear ();
+
+    /**
+     * 学期设置
+     */
+    LabResult setItermYear(ItermYear itermYear);
 }

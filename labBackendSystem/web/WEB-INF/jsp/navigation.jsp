@@ -242,7 +242,7 @@
 					<li><a href="#"><i class="fa fa-codepen fa-fw"></i> 预约管理<span
 							class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
-							<li><a href="#">学期设置</a></li>
+							<li><a href="${pageContext.request.contextPath }/apply/setItermView.action">学期设置</a></li>
 							<li><a href="#">时间设置</a></li>
 							<li><a href="#">哈哈</a></li>
 

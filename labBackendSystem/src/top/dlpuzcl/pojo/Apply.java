@@ -14,6 +14,24 @@ public class Apply {
     private String course_name;
     private String room_code;
     private String course_class;
+    private String years;
+    private int iterm;
+
+    public String getYears() {
+        return years;
+    }
+
+    public void setYears(String years) {
+        this.years = years;
+    }
+
+    public int getIterm() {
+        return iterm;
+    }
+
+    public void setIterm(int iterm) {
+        this.iterm = iterm;
+    }
 
     public int getApply_id() {
         return apply_id;

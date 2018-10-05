@@ -11,6 +11,24 @@ public class ApplyBatch {
     private int apply_day;
     private int apply_week;
     private  int apply_section;
+    private String years;
+    private int iterm;
+
+    public String getYears() {
+        return years;
+    }
+
+    public void setYears(String years) {
+        this.years = years;
+    }
+
+    public int getIterm() {
+        return iterm;
+    }
+
+    public void setIterm(int iterm) {
+        this.iterm = iterm;
+    }
 
     public int getApply_day() {
         return apply_day;

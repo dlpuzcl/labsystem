@@ -8,6 +8,8 @@ public class QueryVo {
     private String roomCollege;
     private String courseName;
     private String applyWeek;
+    private String years;
+    private int iterm;
     //当前页码数
     private Integer page = 1;
     //数据库从哪一条数据开始查
@@ -91,7 +93,24 @@ public class QueryVo {
         return rows;
     }
 
+
     public void setRows(Integer rows) {
         this.rows = rows;
+    }
+
+    public String getYears() {
+        return years;
+    }
+
+    public void setYears(String years) {
+        this.years = years;
+    }
+
+    public int getIterm() {
+        return iterm;
+    }
+
+    public void setIterm(int iterm) {
+        this.iterm = iterm;
     }
 }

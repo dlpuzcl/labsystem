@@ -7,22 +7,24 @@
         select u.user_name,a.apply_day,a.apply_section,a.apply_week,c.course_name,c.course_class
         from user u,lab_room l,apply a,course c
         WHERE u.user_id=a.user_id
-              and l.room_id=a.room_id
-              and c.course_id = a.course_id
-              and a.apply_week = #{apply_week}
-              and a.room_id = #{room_id}
+          and l.room_id=a.room_id
+          and c.course_id = a.course_id
+          and a.apply_week = #{apply_week}
+          and a.room_id = #{room_id}
+          and a.years = #{years}
+          and a.iterm = #{iterm}
     </select>
 
     <insert id="addApply" parameterType="apply" >
         insert into apply
-        (apply_week,apply_day,apply_section,room_id,user_id,course_id)
-         values (#{apply_week},#{apply_day},#{apply_section},#{room_id},#{user_id},#{course_id})
+        (apply_week,apply_day,apply_section,room_id,user_id,course_id,years,iterm)
+        values (#{apply_week},#{apply_day},#{apply_section},#{room_id},#{user_id},#{course_id},#{years},#{iterm})
     </insert>
 
     <insert id="addBatchApply" parameterType="applyBatch" >
         insert into apply
-        (apply_week,apply_day,apply_section,room_id,user_id,course_id)
-        values (#{apply_week},#{apply_day},#{apply_section},#{room_id},#{user_id},#{course_id})
+        (apply_week,apply_day,apply_section,room_id,user_id,course_id,years,iterm)
+        values (#{apply_week},#{apply_day},#{apply_section},#{room_id},#{user_id},#{course_id},#{years},#{iterm})
     </insert>
 
     <select id="queryApplyByUser" parameterType="queryVo" resultType="apply">
@@ -47,6 +49,13 @@
             <if test="applyWeek != null and applyWeek != ''">
                 and a.apply_week = #{applyWeek}
             </if>
+            <if test="years != null and years != ''">
+                and a.years = #{years}
+            </if>
+            <if test="iterm == 1 or iterm == 2">
+                and a.iterm = #{iterm}
+            </if>
+
         </where>
         ORDER BY a.apply_day,a.apply_section ASC
         limit #{start},#{rows};
@@ -75,4 +84,17 @@
         apply
         where apply_id = #{id};
     </delete>
+
+    <select id="queryItermYear" resultType="itermyear">
+          select iterm_year_id,iterm,years
+          from iterm_year;
+
+    </select>
+
+    <update id="setItermYear" parameterType="itermyear">
+        update iterm_year
+        set
+            iterm = #{iterm},
+            years = #{years};
+    </update>
 </mapper>
