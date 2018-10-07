@@ -192,6 +192,12 @@ public class ApplyController {
         return "setIterm";
     }
 
+    /**
+     * 设置学期和学年
+     * @param itermYear
+     * @return
+     */
+
     @RequestMapping("setIterm")
     @ResponseBody
     public LabResult setIterm(ItermYear itermYear){
@@ -199,4 +205,38 @@ public class ApplyController {
         return labResult;
     }
 
+    @RequestMapping("labRatioView")
+    public String labRatioView(){
+        return "labRatio";
+    }
+
+    /**
+     * 查询实验室本学期利用率
+     * @return
+     */
+    @RequestMapping("labRatio")
+    @ResponseBody
+    public List<LabRatio> labRatio() {
+
+        List<LabRatio> labRatios = applyService.labRatioByItermYear();
+
+        return labRatios;
+    }
+
+
+    /**
+     * 查询实验室本学期总利用率
+     * @return
+     */
+    @RequestMapping("labRatioSum")
+    @ResponseBody
+    public LabRatio labRatioSum() {
+
+        LabRatio labRatio = applyService.labRatioSum();
+
+        return labRatio;
+    }
+
+
 }
+

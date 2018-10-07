@@ -53,4 +53,6 @@ public interface LabMapper {
      */
 
     List<LabRoom> queryLabCode();
+
+
 }

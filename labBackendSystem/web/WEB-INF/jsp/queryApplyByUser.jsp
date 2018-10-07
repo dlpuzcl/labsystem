@@ -200,7 +200,7 @@
                                         <td>星期日</td>
                                     </c:if>
                                     <td>第${item.apply_section}节</td>
-                                    <td>${item.room_name}</td>
+                                    <td>${item.room_code}</td>
                                     <td>${item.course_class }</td>
                                     <td>${item.user_name}</td>
 
