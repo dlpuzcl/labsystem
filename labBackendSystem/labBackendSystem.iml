@@ -28,5 +28,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" scope="PROVIDED" name="Tomcat7" level="application_server_libraries" />
     <orderEntry type="library" exported="" name="aopalliance-1.0" level="project" />
+    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
+    <orderEntry type="library" name="poi-4.0.0" level="project" />
   </component>
 </module>

@@ -1,5 +1,7 @@
 package top.dlpuzcl.controller;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,13 +13,20 @@ import top.dlpuzcl.pojo.QueryVo;
 import top.dlpuzcl.pojo.User;
 import top.dlpuzcl.service.BaseDictService;
 import top.dlpuzcl.service.UserService;
+import top.dlpuzcl.utils.ExcelBeanUtil;
+import top.dlpuzcl.utils.ExcelUtil;
 import top.dlpuzcl.utils.Page;
+import top.dlpuzcl.utils.WebUtil;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("user")
 public class UserController {
+
+
 
     @Autowired
     private BaseDictService baeDictService;
@@ -28,6 +37,11 @@ public class UserController {
     private String college = "002";
 
     private String professional_title = "001";
+
+    private String excelUserName = "用户信息.xls";
+
+    private String sheetUserName = "用户信息";
+
     /**
      *显示客户列表
      */
@@ -139,6 +153,30 @@ public class UserController {
             LabResult labResult = userService.addUser(user);
 
         return labResult;
+    }
+
+
+    @RequestMapping("userExcel")
+    @ResponseBody
+    public String downlodeUser(HttpServletResponse response){
+
+        try {
+        List<User> users = userService.queryAllUser();
+        String[] headers = new String[]{"姓名","电话","邮箱","职称","学院"};
+
+        List<Map<Integer, Object>> dataList = ExcelBeanUtil.manageUserList(users);
+
+        Workbook wb = new HSSFWorkbook();
+
+        ExcelUtil.fillExcelSheetData(dataList,wb,headers,sheetUserName);
+
+
+            WebUtil.downloadExcel(response,wb,excelUserName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
 
