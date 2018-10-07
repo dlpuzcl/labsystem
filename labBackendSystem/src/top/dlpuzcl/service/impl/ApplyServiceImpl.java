@@ -1,13 +1,17 @@
 package top.dlpuzcl.service.impl;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.tomcat.util.http.mapper.Mapper;
+import org.springframework.beans.PropertyValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.dlpuzcl.mapper.ApplyMapper;
+import top.dlpuzcl.mapper.LabMapper;
 import top.dlpuzcl.pojo.*;
 import top.dlpuzcl.service.ApplyService;
 import top.dlpuzcl.utils.Page;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,6 +19,8 @@ public class ApplyServiceImpl implements ApplyService {
     @Autowired
     ApplyMapper applyMapper;
 
+    @Autowired
+    LabMapper labMapper;
 
     @Override
     public List<Apply> getApplyList(Apply apply) {
@@ -31,6 +37,7 @@ public class ApplyServiceImpl implements ApplyService {
 
     /**
      * 添加单向申请
+     *
      * @param apply
      */
     @Override
@@ -43,7 +50,7 @@ public class ApplyServiceImpl implements ApplyService {
         String[] day_section = apply.getDay_section();
 
         //将表格中的所有数据分开
-        for (int i=0; i<day_section.length; i++){
+        for (int i = 0; i < day_section.length; i++) {
 
             String daySection = day_section[i];
             //将那节课跟周几分开
@@ -64,6 +71,7 @@ public class ApplyServiceImpl implements ApplyService {
 
     /**
      * 添加批量申请
+     *
      * @param applyBatch
      * @return
      */
@@ -79,16 +87,16 @@ public class ApplyServiceImpl implements ApplyService {
 
         int week = apply_week_last - apply_week_first;
         int section = apply_section_last - apply_section_first;
-        if(week < 0 ){
+        if (week < 0) {
             return LabResult.build(400, "预约失败：周次必须先小后大，如：第一周——>第五周");
         }
-        if(section < 0){
+        if (section < 0) {
             return LabResult.build(400, "预约失败：节次必须先小后大,如：第一节——>第五节");
         }
 
         try {
-            for (int i=apply_week_first; i <= apply_week_last; i++){
-                for(int j=apply_section_first; j <= apply_section_last; j++ ){
+            for (int i = apply_week_first; i <= apply_week_last; i++) {
+                for (int j = apply_section_first; j <= apply_section_last; j++) {
 
                     //设置周
                     applyBatch.setApply_week(i);
@@ -105,18 +113,19 @@ public class ApplyServiceImpl implements ApplyService {
                     applyMapper.addBatchApply(applyBatch);
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return LabResult.build(400, "预约失败：时间重复，请重新选择！");
         }
 
 
-        return  LabResult.ok();
+        return LabResult.ok();
 
     }
 
     /**
      * 查询所有申请
+     *
      * @param queryVo
      * @return
      */
@@ -129,7 +138,7 @@ public class ApplyServiceImpl implements ApplyService {
         queryVo.setYears(itermYear.getYears());
 
         //计算分页查询从那条记录开始
-        queryVo.setStart((queryVo.getPage()-1)*queryVo.getRows());
+        queryVo.setStart((queryVo.getPage() - 1) * queryVo.getRows());
 
         //查询总记录数
         Integer total = applyMapper.getCountByQueryVo(queryVo);
@@ -137,13 +146,14 @@ public class ApplyServiceImpl implements ApplyService {
         List<Apply> list = applyMapper.queryApplyByUser(queryVo);
 
         //包装分页数据
-        Page<Apply> page = new Page<>(total,queryVo.getPage(),queryVo.getRows(),list);
+        Page<Apply> page = new Page<>(total, queryVo.getPage(), queryVo.getRows(), list);
 
         return page;
     }
 
     /**
      * 删除申请
+     *
      * @param id
      */
     @Override
@@ -152,47 +162,137 @@ public class ApplyServiceImpl implements ApplyService {
     }
 
 
-
     /**
      * 设置学期
+     *
      * @param itermYear
      * @return
      */
     @Override
     public LabResult setItermYear(ItermYear itermYear) {
 
-        if(StringUtils.isEmpty(itermYear.getYears())) {
+        if (StringUtils.isEmpty(itermYear.getYears())) {
             return LabResult.build(400, "添加失败.请校验数据后请再提交数据！");
         }
 
-        if(itermYear.getIterm()==1 || itermYear.getIterm()==2) {
+        if (itermYear.getIterm() == 1 || itermYear.getIterm() == 2) {
 
             try {
                 applyMapper.setItermYear(itermYear);
-                return  LabResult.ok();
-            }catch (Exception e){
+                return LabResult.ok();
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return LabResult.build(400, "添加失败.SQl异常！");
 
-        }else {
+        } else {
             return LabResult.build(400, "添加失败.学期只能为1或2！");
         }
     }
 
+    /**
+     * 查询实验室利用率
+     * @return
+     */
     @Override
     public List<LabRatio> labRatioByItermYear() {
-        return null;
+
+        ItermYear itermYear = applyMapper.queryItermYear();
+
+        Apply apply = new Apply();
+
+        //设置学期，学年
+        apply.setYears(itermYear.getYears());
+        apply.setIterm(itermYear.getIterm());
+
+        //查询所有的实验室
+        List<LabRoom> labRooms = labMapper.queryLabCode();
+
+        ArrayList<LabRatio> labRatios = new ArrayList<>()  ;
+
+        int length = labRooms.size();
+
+        //根据实验室数量循环查询每个实验室的利用率
+        for (int i = 0; i < length; i++) {
+
+            LabRatio labRatio = new LabRatio();
+
+            //获得LabRoom
+            LabRoom labRoom = labRooms.get(i);
+
+            apply.setRoom_id(labRoom.getRoom_id());
+
+            Integer labCount = applyMapper.queryApplyByItermYear(apply);
+
+            //计算单个利用率
+            double useRatio = (float) labCount / (20 * 40);
+
+            //添加数据
+            labRatio.setValue(useRatio);
+            labRatio.setLabel(labRoom.getRoom_code());
+
+
+            //将值加入list
+            labRatios.add(labRatio);
+        }
+
+
+        return labRatios;
     }
 
     @Override
     public LabRatio labRatioSum() {
-        return null;
+
+        ItermYear itermYear = applyMapper.queryItermYear();
+
+        Apply apply = new Apply();
+
+        //设置学期，学年
+        apply.setYears(itermYear.getYears());
+        apply.setIterm(itermYear.getIterm());
+        //查询所有的实验室
+        List<LabRoom> labRooms = labMapper.queryLabCode();
+
+        int length = labRooms.size();
+        LabRatio labRatio = new LabRatio();
+
+        double sum = 0;
+        //根据实验室数量循环查询每个实验室的利用率
+        for (int i = 0; i < length; i++) {
+
+            //获得LabRoom
+            LabRoom labRoom = labRooms.get(i);
+
+            apply.setRoom_id(labRoom.getRoom_id());
+
+            Integer labCount = applyMapper.queryApplyByItermYear(apply);
+
+            //计算单个利用率
+            double useRatio = (float) labCount / (20 * 40);
+
+            //计算总利用率
+            sum = sum+useRatio;
+
+
+        }
+
+        //添加数据
+        labRatio.setValue(sum);
+        labRatio.setLabel("总利用率");
+
+        System.out.println(sum +"。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。");
+
+
+
+
+        return labRatio;
+
     }
 
 
     /**
      * 查询当前学期
+     *
      * @return
      */
     @Override
