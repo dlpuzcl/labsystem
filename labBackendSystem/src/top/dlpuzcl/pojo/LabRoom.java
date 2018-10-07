@@ -8,6 +8,15 @@ public class LabRoom {
     private String room_memo;
     private int place_count;
     private String room_college;
+    private double labRatio;
+
+    public double getLabRatio() {
+        return labRatio;
+    }
+
+    public void setLabRatio(double labRatio) {
+        this.labRatio = labRatio;
+    }
 
     public String getRoom_college() {
         return room_college;
@@ -57,4 +66,16 @@ public class LabRoom {
         this.place_count = place_count;
     }
 
+    @Override
+    public String toString() {
+        return "LabRoom{" +
+                "room_id=" + room_id +
+                ", room_code='" + room_code + '\'' +
+                ", room_name='" + room_name + '\'' +
+                ", room_memo='" + room_memo + '\'' +
+                ", place_count=" + place_count +
+                ", room_college='" + room_college + '\'' +
+                ", labRatio=" + labRatio +
+                '}';
+    }
 }

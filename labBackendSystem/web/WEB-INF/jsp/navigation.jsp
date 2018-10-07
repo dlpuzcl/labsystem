@@ -243,7 +243,7 @@
 							class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
 							<li><a href="${pageContext.request.contextPath }/apply/setItermView.action">学期设置</a></li>
-							<li><a href="#">时间设置</a></li>
+							<li><a href="${pageContext.request.contextPath }/apply/labRatioView.action">实验室利用率</a></li>
 							<li><a href="#">哈哈</a></li>
 
 						</ul>

@@ -97,4 +97,23 @@
             iterm = #{iterm},
             years = #{years};
     </update>
+
+    <select id="queryApplyByItermYear" parameterType="apply" resultType="integer">
+
+        select
+        count(1)
+        from apply
+        <where>
+            <if test="years != null and years != ''">
+                and years = #{years}
+            </if>
+            <if test="iterm == 1 or iterm == 2">
+                and iterm = #{iterm}
+            </if>
+            <if test="room_id != null and room_id !=''">
+                and room_id = #{room_id}
+            </if>
+
+        </where>
+    </select>
 </mapper>

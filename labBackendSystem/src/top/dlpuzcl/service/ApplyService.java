@@ -49,4 +49,15 @@ public interface ApplyService {
      * 学期设置
      */
     LabResult setItermYear(ItermYear itermYear);
+
+    /**
+     * 通过学期·学年和实验室查询利用率
+     */
+
+    List<LabRatio> labRatioByItermYear ();
+
+    /**
+     * 通过学期·学年和实验室查询总利用率
+     */
+    LabRatio labRatioSum();
 }

@@ -57,4 +57,10 @@ public interface ApplyMapper {
      * 学期设置
      */
     void setItermYear(ItermYear itermYear);
+
+    /**
+     * 通过学期·学年和实验室查询申请记录数
+     */
+
+   Integer queryApplyByItermYear (Apply apply);
 }
