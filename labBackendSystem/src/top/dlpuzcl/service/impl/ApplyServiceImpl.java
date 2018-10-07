@@ -1,7 +1,6 @@
 package top.dlpuzcl.service.impl;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.tomcat.util.http.mapper.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.dlpuzcl.mapper.ApplyMapper;
@@ -179,6 +178,16 @@ public class ApplyServiceImpl implements ApplyService {
         }else {
             return LabResult.build(400, "添加失败.学期只能为1或2！");
         }
+    }
+
+    @Override
+    public List<LabRatio> labRatioByItermYear() {
+        return null;
+    }
+
+    @Override
+    public LabRatio labRatioSum() {
+        return null;
     }
 
 
