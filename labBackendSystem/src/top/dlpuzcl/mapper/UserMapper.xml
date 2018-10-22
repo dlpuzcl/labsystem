@@ -119,8 +119,10 @@
 
     <select id="login"  resultType="user" parameterType="user">
         select * from user
-        where user_name = #{user_name}
+        where user_name = #{user_name} or user_phone = #{user_name} or user_email = #{user_name}
               and user_password = #{user_password} and user_mark = 1
+
+
     </select>
 
     <!--修改密码-->

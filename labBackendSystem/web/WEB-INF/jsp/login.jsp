@@ -162,6 +162,8 @@
 
                             $('.pass-err').find('i').attr('class', 'icon-warn').css("color", "#d9585b");
                             $('.code').removeClass('hide');
+                            var a = "<%=basePath%>getpatchcaImage.action"
+                            $("#img1").attr("src", a);
                         }
 
                     });
