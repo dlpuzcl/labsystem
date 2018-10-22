@@ -115,6 +115,7 @@
             professional_title
         from user
         where user_mark = 1
+
     </select>
 
     <select id="login"  resultType="user" parameterType="user">
