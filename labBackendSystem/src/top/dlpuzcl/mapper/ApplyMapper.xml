@@ -37,7 +37,8 @@
             c.course_name,
             c.course_class,
             u.user_name,
-            l.room_name
+            l.room_name,
+            l.room_code
         from apply a
             left join course c on a.course_id = c.course_id
             left join user u on a.user_id = u.user_id
@@ -48,6 +49,9 @@
             </if>
             <if test="applyWeek != null and applyWeek != ''">
                 and a.apply_week = #{applyWeek}
+            </if>
+            <if test="roomCode != null and roomCode != ''">
+                and a.room_id = #{roomCode}
             </if>
             <if test="years != null and years != ''">
                 and a.years = #{years}

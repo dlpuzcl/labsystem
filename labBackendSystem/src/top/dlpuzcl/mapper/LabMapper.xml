@@ -13,6 +13,10 @@
                 and l.room_college = #{roomCollege}
             </if>
 
+            <if test="true">
+                and l.room_mark = 1
+            </if>
+
         </where>
     </sql>
 
@@ -50,7 +54,7 @@
             place_count
         from
             lab_room
-        where room_id = #{id};
+        where room_id = #{id} and room_mark = 1;
     </select>
 
     <!--添加实验室-->
@@ -85,13 +89,21 @@
 
     </update>
 
-    <delete id="deleteLabById" parameterType="int">
-        delete
-        from lab_room
+    <!--删除实验室-->
+    <!--<delete id="deleteLabById" parameterType="int">-->
+        <!--delete-->
+        <!--from lab_room-->
+        <!--where room_id = #{room_id};-->
+    <!--</delete>-->
+    <update id="deleteLabById" parameterType="int">
+        update lab_room
+        set room_mark=0
         where room_id = #{room_id};
-    </delete>
+    </update>
+
+
 
     <select id="queryLabCode" resultType="labroom">
-        select * from lab_room;
+        select * from lab_room where room_mark=1;
     </select>
 </mapper>

@@ -66,13 +66,13 @@
                 <ul class="breadcrumb">
                     <li>
                         <i class="ace-icon fa fa-home home-icon"></i>
-                        <a href="主页.html">首页</a>
+                        <a href="/admini/first.action">首页</a>
                     </li>
                     <li>
                         <a href="javascript:void(0)">用户管理</a>
                     </li>
                     <li>
-                        <a href="教师管理.html">教师管理</a>
+                        <a href="#">教师管理</a>
                     </li>
                 </ul>
                 <!-- /.breadcrumb -->
@@ -86,6 +86,8 @@
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
+
+
         <div class="panel panel-default">
             <div class="panel-body">
                 <form class="form-inline" action="${pageContext.request.contextPath }/user/list.action"
@@ -127,63 +129,83 @@
                        data-target="#customerAddDialog"
                        onclick="editUser(${row.user_id})">添加
                     </a>
+
+                    <a href="${pageContext.request.contextPath }/user/userExcel.action" class="btn btn btn-info"
+                       >下载
+                    </a>
                 </form>
             </div>
         </div>
+
+
+
+
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
-                        教师名单
+                    <div class="panel-heading" style="padding-bottom: 23px;">
+
                     </div>
+
+
                     <!-- /.panel-heading -->
                     <div class="panel-body">
-                        <table width="100%" class="table table-striped table-bordered table-hover"
-                               style="text-align: center;">
-                            <thead>
-                            <tr class="info">
-                                <td>序号</td>
-                                <td>姓名</td>
-                                <td>电话</td>
-                                <td>邮箱</td>
-                                <td>职称</td>
-                                <td>学院</td>
-                                <td>编辑</td>
-                                <td>删除</td>
+                        <div class="row">
+                            <div class=" col-md-12">
+                                <div class="table-responsive">
 
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <c:forEach items="${page.rows}" var="row" varStatus="vs">
-                                <tr>
-                                    <td>${vs.count }</td>
-                                    <td>${row.user_name }</td>
-                                    <td>${row.user_phone}</td>
-                                    <td>${row.user_email}</td>
-                                    <td>${row.professional_title }</td>
-                                    <td>${row.college}</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-xs" data-toggle="modal"
-                                           data-target="#customerEditDialog"
-                                           onclick="editUser(${row.user_id})">
-                                            <i class="ace-icon fa fa-pencil"></i>
-                                            修改
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="btn btn-danger btn-xs"
-                                           onclick="deleteUser(${row.user_id})">
-                                            <i class="ace-icon fa fa-trash-o"></i>
-                                            删除
-                                        </a>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-                        </table>
-                        <div class="col-md-12 text-right">
-                            <itcast:page url="${pageContext.request.contextPath }/user/list.action" />
+                                        <table width="100%" class="table table-striped table-bordered table-hover"
+                                               style="text-align: center;">
+                                            <thead>
+                                            <tr class="info">
+                                                <td>序号</td>
+                                                <td>姓名</td>
+                                                <td>电话</td>
+                                                <td>邮箱</td>
+                                                <td>职称</td>
+                                                <td>学院</td>
+                                                <td>编辑</td>
+                                                <td>删除</td>
+
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <c:forEach items="${page.rows}" var="row" varStatus="vs">
+                                                <tr>
+                                                    <td>${vs.count }</td>
+                                                    <td>${row.user_name }</td>
+                                                    <td>${row.user_phone}</td>
+                                                    <td>${row.user_email}</td>
+                                                    <td>${row.professional_title }</td>
+                                                    <td>${row.college}</td>
+                                                    <td>
+                                                        <a href="#" class="btn btn-primary btn-xs" data-toggle="modal"
+                                                           data-target="#customerEditDialog"
+                                                           onclick="editUser(${row.user_id})">
+                                                            <i class="ace-icon fa fa-pencil"></i>
+                                                            修改
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="#" class="btn btn-danger btn-xs"
+                                                           onclick="deleteUser(${row.user_id})">
+                                                            <i class="ace-icon fa fa-trash-o"></i>
+                                                            删除
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                            </tbody>
+                                        </table>
+                                    <div class="col-md-12 text-right">
+                                        <itcast:page url="${pageContext.request.contextPath }/user/list.action" />
+                                    </div>
+
+                                </div>
+
+                            </div>
                         </div>
+                        <!-- /.row -->
                     </div>
                     <!-- /.panel-body -->
                 </div>
@@ -191,6 +213,9 @@
             </div>
             <!-- /.col-lg-12 -->
         </div>
+
+
+
 
         <%--用户编辑对话框--%>
         <div class="modal fade" id="customerEditDialog" tabindex="-1" role="dialog"
@@ -342,7 +367,7 @@
                             <div class="form-group">
                                 <label for="edit_userEmail" class="col-sm-2 control-label">密码</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control " id="user_password" placeholder="密码"
+                                    <input type="password" class="form-control " id="user_password" placeholder="密码"
                                            name="user_password">
                                 </div>
                             </div>
@@ -350,7 +375,7 @@
                             <div class="form-group">
                                 <label for="edit_userEmail" class="col-sm-2 control-label ">确认密码</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="user_repassword" placeholder="确认密码"
+                                    <input type="password" class="form-control" id="user_repassword" placeholder="确认密码"
                                            name="user_repassword">
                                 </div>
                             </div>

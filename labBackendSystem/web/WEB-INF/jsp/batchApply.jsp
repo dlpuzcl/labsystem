@@ -70,13 +70,13 @@
                 <ul class="breadcrumb">
                     <li>
                         <i class="ace-icon fa fa-home home-icon"></i>
-                        <a href="主页.html">首页</a>
+                        <a href="/admini/first.action">首页</a>
                     </li>
                     <li>
                         <a href="javascript:void(0)">教室预约</a>
                     </li>
                     <li>
-                        <a href="实验室管理.html">批量预约</a>
+                        <a href="#">批量预约</a>
                     </li>
                 </ul>
                 <!-- /.breadcrumb -->
@@ -274,6 +274,45 @@
             <!-- /.col-lg-12 -->
         </div>
 
+        <!-- 模态框（Modal） -->
+        <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div id='modal_message' style="text-align: center"><h3>正在预约.....</h3></div>
+                        <div class="progress progress-striped active">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60"
+                                 aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                                <span class="sr-only">100% 完成</span>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
+
+        <div class="modal fade" id="alertSource" role="dialog" aria-labelledby="gridSystemModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid" id="h5">
+                            <%--<h5>预约成功！</h5>--%>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary pull-right" data-dismiss="modal">确定</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+
     </div>
     <!-- /#wrapper -->
 
@@ -297,6 +336,7 @@
     <script>
 
         function apply() {
+            $("#searchModal").modal("show");//显示“正在查询”字样的模态框
 
             var form2 = $('#form2').serialize();
             var form1 = $('#form1').serialize();
@@ -307,14 +347,25 @@
                 data: formdata,
                 success: function (data) {
 
-                    if (data.status == 200) {
-                        alert("预约成功！");
-                    } else {
-                        alert(data.msg);
-                    }
-                    getApply();
-                    // window.location.reload();
-                    <%--window.location = "<%=basePath%>user/list.action"--%>
+                    $('#searchModal').modal('hide');//服务器停止了5秒,sleep(5)，假设是查询数据用了5秒
+                    // setTimeout("$('#searchModal').modal('hide')",2000); //设置2000毫秒之后模态框消失
+
+
+                    $('#searchModal').on('hidden.bs.modal', function () {
+                        // $("#homeworkContent").html(mydata); //显示后端传递的结果
+                        if (data.status == 200) {
+                            // alert("预约成功！");
+                            $("#h5").html("<h5>预约成功！<h5>");
+                            $("#alertSource").modal("show");//显示“正在查询”字样的模态框
+
+                        } else {
+                            // alert(data.msg);
+                            $("#h5").html("<h5>"+data.msg +"<h5>");
+                            $("#alertSource").modal("show");//显示“正在查询”字样的模态框
+                        }
+                        getApply();
+                    });
+
 
                 }
             })

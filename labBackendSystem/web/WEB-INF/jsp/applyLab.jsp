@@ -54,10 +54,17 @@
             text-align: center;
         }
 
+        table {
+            border-collapse: collapse;
+            border: solid 0px red;
+        }
 
-
-        table{ border-collapse:collapse; border:solid 0px red; }
-        table td{ width:50px; height:20px;  border:solid 0px red; padding:0px 13px;}
+        table td {
+            width: 50px;
+            height: 20px;
+            border: solid 0px red;
+            padding: 0px 6px;
+        }
 
 
     </style>
@@ -76,9 +83,9 @@
             <div class="breadcrumbs" id="breadcrumbs">
                 <ul class="breadcrumb">
                     <li><i class="ace-icon fa fa-home home-icon"></i> <a
-                            href="主页.html">首页</a></li>
-                    <li><a href="javascript:void(0)">教室管理</a></li>
-                    <li><a href="实验室管理.html">实验室预约</a></li>
+                            href="/admini/first.action">首页</a></li>
+                    <li><a href="javascript:void(0)">预约</a></li>
+                    <li><a href="#">单项预约</a></li>
                 </ul>
             </div>
         </div>
@@ -153,185 +160,185 @@
 
                     <!-- /.panel-heading -->
                     <div class="panel-body">
-                        <div class="row" >
+                        <div class="row">
 
 
-                            <div class=" col-md-12"  >
+                            <div class=" col-md-12">
 
                                 <div class="table-responsive" id="jqu">
 
 
-                                        <table width="100%"
-                                               style="text-align: center; " border = "0" >
-                                            <thead>
-                                            <tr class="info">
-                                            <tr>
-                                                <td scope="col"> 周/节</td>
-                                                <td scope="col">星期一</td>
-                                                <td scope="col">星期二</td>
-                                                <td scope="col">星期三</td>
-                                                <td scope="col">星期四</td>
-                                                <td scope="col">星期五</td>
-                                                <td scope="col">星期六</td>
-                                                <td scope="col">星期天</td>
-                                            </tr>
-                                            </tr>
-                                            </thead>
+                                    <table width="100%"
+                                           style="text-align: center; " border="0">
+                                        <thead>
+                                        <tr class="info">
+                                        <tr>
+                                            <td scope="col"> 周/节</td>
+                                            <td scope="col">星期一</td>
+                                            <td scope="col">星期二</td>
+                                            <td scope="col">星期三</td>
+                                            <td scope="col">星期四</td>
+                                            <td scope="col">星期五</td>
+                                            <td scope="col">星期六</td>
+                                            <td scope="col">星期天</td>
+                                        </tr>
+                                        </tr>
+                                        </thead>
 
 
-                                            <tbody style="text-align: center;">
+                                        <tbody style="text-align: center;">
 
-                                            <tr style="height: 80px">
-                                                <td scope="row">第1节
-                                                </td>
-                                                <td id="table_1_1">
-                                                </td>
-                                                <td id="table_2_1"></td>
-                                                <td id="table_3_1"></td>
-                                                <td id="table_4_1"></td>
-                                                <td id="table_5_1"></td>
-                                                <td id="table_6_1"></td>
-                                                <td id="table_7_1"></td>
+                                        <tr style="height: 80px">
+                                            <td scope="row">第1节
+                                            </td>
+                                            <td id="table_1_1">
+                                            </td>
+                                            <td id="table_2_1"></td>
+                                            <td id="table_3_1"></td>
+                                            <td id="table_4_1"></td>
+                                            <td id="table_5_1"></td>
+                                            <td id="table_6_1"></td>
+                                            <td id="table_7_1"></td>
 
-                                            </tr>
-                                            <tr style="height: 80px">
-                                                <td scope="row">第2节
-                                                </td>
-                                                <td id="table_1_2"></td>
-                                                <td id="table_2_2"></td>
-                                                <td id="table_3_2"></td>
-                                                <td id="table_4_2"></td>
-                                                <td id="table_5_2"></td>
-                                                <td id="table_6_2"></td>
-                                                <td id="table_7_2"></td>
-                                            </tr>
-                                            <tr style="height: 80px">
-                                                <td scope="row">第3节
-                                                </td>
-                                                <td id="table_1_3"></td>
-                                                <td id="table_2_3"></td>
-                                                <td id="table_3_3"></td>
-                                                <td id="table_4_3"></td>
-                                                <td id="table_5_3"></td>
-                                                <td id="table_6_3"></td>
-                                                <td id="table_7_3"></td>
-                                            </tr>
-                                            <tr style="height: 80px">
-                                                <td scope="row">第4节
-                                                </td>
-                                                <td id="table_1_4"></td>
-                                                <td id="table_2_4"></td>
-                                                <td id="table_3_4"></td>
-                                                <td id="table_4_4"></td>
-                                                <td id="table_5_4"></td>
-                                                <td id="table_6_4"></td>
-                                                <td id="table_7_4"></td>
-                                            </tr>
-                                            <tr style="height: 80px">
-                                                <td scope="row">第5节
-                                                </td>
-                                                <td id="table_1_5">
-                                                    <%--<div class="inpit" type='inpit/assembly' formname="ack_two">--%>
-                                                        <%--<div class="li " radio>--%>
-                                                            <%--<div name="two-a" value="a-1">--%>
-                                                                <%--<h2>A1</h2>--%>
-                                                                <%--<p>A1</p>--%>
-                                                            <%--</div>--%>
-                                                        <%--</div>--%>
+                                        </tr>
+                                        <tr style="height: 80px">
+                                            <td scope="row">第2节
+                                            </td>
+                                            <td id="table_1_2"></td>
+                                            <td id="table_2_2"></td>
+                                            <td id="table_3_2"></td>
+                                            <td id="table_4_2"></td>
+                                            <td id="table_5_2"></td>
+                                            <td id="table_6_2"></td>
+                                            <td id="table_7_2"></td>
+                                        </tr>
+                                        <tr style="height: 80px">
+                                            <td scope="row">第3节
+                                            </td>
+                                            <td id="table_1_3"></td>
+                                            <td id="table_2_3"></td>
+                                            <td id="table_3_3"></td>
+                                            <td id="table_4_3"></td>
+                                            <td id="table_5_3"></td>
+                                            <td id="table_6_3"></td>
+                                            <td id="table_7_3"></td>
+                                        </tr>
+                                        <tr style="height: 80px">
+                                            <td scope="row">第4节
+                                            </td>
+                                            <td id="table_1_4"></td>
+                                            <td id="table_2_4"></td>
+                                            <td id="table_3_4"></td>
+                                            <td id="table_4_4"></td>
+                                            <td id="table_5_4"></td>
+                                            <td id="table_6_4"></td>
+                                            <td id="table_7_4"></td>
+                                        </tr>
+                                        <tr style="height: 80px">
+                                            <td scope="row">第5节
+                                            </td>
+                                            <td id="table_1_5">
+                                                <%--<div class="inpit" type='inpit/assembly' formname="ack_two">--%>
+                                                <%--<div class="li " radio>--%>
+                                                <%--<div name="two-a" value="a-1">--%>
+                                                <%--<h2>A1</h2>--%>
+                                                <%--<p>A1</p>--%>
+                                                <%--</div>--%>
+                                                <%--</div>--%>
 
-                                                    <%--</div>--%>
-                                                </td>
-                                                <td id="table_2_5"></td>
-                                                <td id="table_3_5">
+                                                <%--</div>--%>
+                                            </td>
+                                            <td id="table_2_5"></td>
+                                            <td id="table_3_5">
 
-                                                </td>
-                                                <td id="table_4_5"></td>
-                                                <td id="table_5_5"></td>
-                                                <td id="table_6_5"></td>
-                                                <td id="table_7_5"></td>
-                                            </tr>
-                                            <tr style="height: 80px">
-                                                <td scope="row">第6节
-                                                </td>
-                                                <td id="table_1_6"></td>
-                                                <td id="table_2_6"></td>
-                                                <td id="table_3_6"></td>
-                                                <td id="table_4_6"></td>
-                                                <td id="table_5_6"></td>
-                                                <td id="table_6_6"></td>
-                                                <td id="table_7_6"></td>
-                                            </tr>
-                                            <tr style="height: 80px">
-                                                <td scope="row">第7节
-                                                </td>
-                                                <td id="table_1_7">
-                                                </td>
-                                                <td id="table_2_7"></td>
-                                                <td id="table_3_7"></td>
-                                                <td id="table_4_7"></td>
-                                                <td id="table_5_7"></td>
-                                                <td id="table_6_7"></td>
-                                                <td id="table_7_7"></td>
+                                            </td>
+                                            <td id="table_4_5"></td>
+                                            <td id="table_5_5"></td>
+                                            <td id="table_6_5"></td>
+                                            <td id="table_7_5"></td>
+                                        </tr>
+                                        <tr style="height: 80px">
+                                            <td scope="row">第6节
+                                            </td>
+                                            <td id="table_1_6"></td>
+                                            <td id="table_2_6"></td>
+                                            <td id="table_3_6"></td>
+                                            <td id="table_4_6"></td>
+                                            <td id="table_5_6"></td>
+                                            <td id="table_6_6"></td>
+                                            <td id="table_7_6"></td>
+                                        </tr>
+                                        <tr style="height: 80px">
+                                            <td scope="row">第7节
+                                            </td>
+                                            <td id="table_1_7">
+                                            </td>
+                                            <td id="table_2_7"></td>
+                                            <td id="table_3_7"></td>
+                                            <td id="table_4_7"></td>
+                                            <td id="table_5_7"></td>
+                                            <td id="table_6_7"></td>
+                                            <td id="table_7_7"></td>
 
-                                            </tr>
-                                            <tr style="height: 80px">
-                                                <td scope="row">第8节
-                                                </td>
-                                                <td id="table_1_8"></td>
-                                                <td id="table_2_8"></td>
-                                                <td id="table_3_8"></td>
-                                                <td id="table_4_8"></td>
-                                                <td id="table_5_8"></td>
-                                                <td id="table_6_8"></td>
-                                                <td id="table_7_8"></td>
-                                            </tr>
-                                            <tr style="height: 80px">
-                                                <td scope="row">第9节
-                                                </td>
-                                                <td id="table_1_9"></td>
-                                                <td id="table_2_9"></td>
-                                                <td id="table_3_9"></td>
-                                                <td id="table_4_9"></td>
-                                                <td id="table_5_9"></td>
-                                                <td id="table_6_9"></td>
-                                                <td id="table_7_9"></td>
-                                            </tr>
-                                            <tr style="height: 80px">
-                                                <td scope="row">第10节d
-                                                </td>
-                                                <td id="table_1_10"></td>
-                                                <td id="table_2_10"></td>
-                                                <td id="table_3_10"></td>
-                                                <td id="table_4_10"></td>
-                                                <td id="table_5_10"></td>
-                                                <td id="table_6_10"></td>
-                                                <td id="table_7_10"></td>
-                                            </tr>
-                                            <tr style="height: 80px">
-                                                <td scope="row">第11节
-                                                </td>
-                                                <td id="table_1_11"></td>
-                                                <td id="table_2_11"></td>
-                                                <td id="table_3_11"></td>
-                                                <td id="table_4_11"></td>
-                                                <td id="table_5_11"></td>
-                                                <td id="table_6_11"></td>
-                                                <td id="table_7_11"></td>
-                                            </tr>
-                                            <tr style="height: 80px">
-                                                <td scope="row">第12节
-                                                </td>
-                                                <td id="table_1_12"></td>
-                                                <td id="table_2_12"></td>
-                                                <td id="table_3_12"></td>
-                                                <td id="table_4_12"></td>
-                                                <td id="table_5_12"></td>
-                                                <td id="table_6_12"></td>
-                                                <td id="table_7_12"></td>
-                                            </tr>
-                                            </tbody>
+                                        </tr>
+                                        <tr style="height: 80px">
+                                            <td scope="row">第8节
+                                            </td>
+                                            <td id="table_1_8"></td>
+                                            <td id="table_2_8"></td>
+                                            <td id="table_3_8"></td>
+                                            <td id="table_4_8"></td>
+                                            <td id="table_5_8"></td>
+                                            <td id="table_6_8"></td>
+                                            <td id="table_7_8"></td>
+                                        </tr>
+                                        <tr style="height: 80px">
+                                            <td scope="row">第9节
+                                            </td>
+                                            <td id="table_1_9"></td>
+                                            <td id="table_2_9"></td>
+                                            <td id="table_3_9"></td>
+                                            <td id="table_4_9"></td>
+                                            <td id="table_5_9"></td>
+                                            <td id="table_6_9"></td>
+                                            <td id="table_7_9"></td>
+                                        </tr>
+                                        <tr style="height: 80px">
+                                            <td scope="row">第10节d
+                                            </td>
+                                            <td id="table_1_10"></td>
+                                            <td id="table_2_10"></td>
+                                            <td id="table_3_10"></td>
+                                            <td id="table_4_10"></td>
+                                            <td id="table_5_10"></td>
+                                            <td id="table_6_10"></td>
+                                            <td id="table_7_10"></td>
+                                        </tr>
+                                        <tr style="height: 80px">
+                                            <td scope="row">第11节
+                                            </td>
+                                            <td id="table_1_11"></td>
+                                            <td id="table_2_11"></td>
+                                            <td id="table_3_11"></td>
+                                            <td id="table_4_11"></td>
+                                            <td id="table_5_11"></td>
+                                            <td id="table_6_11"></td>
+                                            <td id="table_7_11"></td>
+                                        </tr>
+                                        <tr style="height: 80px">
+                                            <td scope="row">第12节
+                                            </td>
+                                            <td id="table_1_12"></td>
+                                            <td id="table_2_12"></td>
+                                            <td id="table_3_12"></td>
+                                            <td id="table_4_12"></td>
+                                            <td id="table_5_12"></td>
+                                            <td id="table_6_12"></td>
+                                            <td id="table_7_12"></td>
+                                        </tr>
+                                        </tbody>
 
-                                        </table>
+                                    </table>
 
                                     <form id="form1">
                                         <div class="col-md-4 col-md-offset-4">
@@ -362,7 +369,7 @@
                                             </div>
                                         </div>
                                     </form>
-                                    <div  type='inpit/assembly' formname="ack_two">
+                                    <div type='inpit/assembly' formname="ack_two">
                                         <button
                                                 class="btn btn-lg btn-success btn-block">提交
                                         </button>
@@ -385,7 +392,45 @@
 
         <!-- /.row -->
     </div>
-    <!-- /#page-wrapper -->
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div id='modal_message' style="text-align: center"><h3>正在预约.....</h3></div>
+                    <div class="progress progress-striped active">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60"
+                             aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                            <span class="sr-only">100% 完成</span>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <!--弹出删除资源警告窗口-->
+    <div class="modal fade" id="alertSource" role="dialog" aria-labelledby="gridSystemModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid" id="h5">
+                        <%--<h5>预约成功！</h5>--%>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary pull-right" data-dismiss="modal">确定</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 
 </div>
 <!-- /#wrapper -->
@@ -421,9 +466,9 @@
 
                         // var checkbox = "<input type='checkbox' name='day_section'  value='" + i + j + "'>"
 
-                        var checkbox ="<div class=\"inpit\" type='inpit/assembly' formname=\"ack_two\">\n" +
-                            "                                                        <div class=\"li \" radio index ='"+i+j+"' >\n" +
-                            "                                                            <div name=\"two-a\" class=\"style_a\" value=\""+ i + j +"\">\n" +
+                        var checkbox = "<div class=\"inpit\" type='inpit/assembly' formname=\"ack_two\">\n" +
+                            "                                                        <div class=\"li \" radio index ='" + i + j + "' >\n" +
+                            "                                                            <div name=\"two-a\" class=\"style_a\" value=\"" + i + j + "\">\n" +
                             "                                                               \n" +
                             "                                                                \n" +
                             "                                                            </div>\n" +
@@ -435,15 +480,35 @@
                         $("#table_" + j + "_" + i).html(checkbox);
                     }
                 }
+                // //遍历课程表
+                // for (var i = 0; i < data.length; i++) {
+                //
+                //     var da = "<div class=\"inpit\" type='inpit/assembly' formname=\"ack_two\">\n" +
+                //         "                                                        <div class=\"li \" radio index ='" + i + j + "' >\n" +
+                //         "                                                            <div name=\"two-a\" disabled value=\"" + i + j + " \">\n" +
+                //         "                                                               " + data[i].course_name + "<br> \n" +
+                //         "                                                                " + data[i].course_class + "<br>\n" +
+                //         "                                                                " + data[i].user_name + "<br>\n" +
+                //         "                                                            </div>\n" +
+                //         "                                                        </div>\n" +
+                //         "\n" +
+                //         "                                                    </div>"
+                //
+                //     $("#table_" + data[i].apply_day + "_" + data[i].apply_section).html(da);
+                //
+                //     // $("#table_" + data[i].apply_day + "_" + data[i].apply_section).html(data[i].course_name + "<br>" + data[i].course_class + "<br>" + data[i].user_name);
+                // }
+
+
                 //遍历课程表
                 for (var i = 0; i < data.length; i++) {
 
                     var da = "<div class=\"inpit\" type='inpit/assembly' formname=\"ack_two\">\n" +
-                        "                                                        <div class=\"li \" radio index ='"+i+j+"' >\n" +
-                        "                                                            <div name=\"two-a\" disabled value=\""+ i + j +" \">\n" +
-                        "                                                               "+ data[i].course_name+"<br> \n" +
-                        "                                                                "+data[i].course_class+"<br>\n" +
-                        "                                                                "+data[i].user_name+"<br>\n" +
+                        "                                                        <div class=\"li \" radio index ='" + i + j + "' >\n" +
+                        "                                                            <div name=\"two-a\" disabled value=\"" + i + j + " \">\n" +
+                        "                                                              <br> \n" +
+                        "                                                               被选 \n" +
+                        "                                                                \n" +
                         "                                                            </div>\n" +
                         "                                                        </div>\n" +
                         "\n" +
@@ -457,10 +522,6 @@
         });
     }
 
-    function apply() {
-
-
-    }
 
     $("#user").change(function () {
         var id = $("#user").val();
@@ -495,35 +556,49 @@
 
     //获取表单的值
     $('#jqu').find("button").click(function () {
+
+        $("#searchModal").modal("show");//显示“正在查询”字样的模态框
+
+
         // * ==========================
         // * 向check_result方法传本身
         // * 如果你忘记，inpit/assembly依旧会提醒你
         // * ==========================
         var val = check_result($(this));
-        var  length = val[0].data.length;
-        for(var i = 0;i<length;i++){
-            var d = "day_section=" + val[0].data[i]+"&";
+        var length = val[0].data.length;
+        for (var i = 0; i < length; i++) {
+            var d = "day_section=" + val[0].data[i] + "&";
             var sum = d + sum;
         }
 
         var queryApply = $('#queryApply').serialize();
         var form1 = $('#form1').serialize();
-        var formdata = queryApply + '&' + form1+ '&' + sum
-            alert(formdata)
-            $.ajax({
+        var formdata = queryApply + '&' + form1 + '&' + sum
+        $.ajax({
             type: "get",
             url: "<%=basePath%>apply/submit.action",
             data: formdata,
             success: function (data) {
 
-                if (data == "0") {
-                    alert("预约成功！");
-                } else {
-                    alert("预约失败！");
-                }
-                getApply();
-                // window.location.reload();
-                <%--window.location = "<%=basePath%>user/list.action"--%>
+                $('#searchModal').modal('hide');//服务器停止了5秒,sleep(5)，假设是查询数据用了5秒
+                // setTimeout("$('#searchModal').modal('hide')",2000); //设置2000毫秒之后模态框消失
+
+
+                $('#searchModal').on('hidden.bs.modal', function () {
+                    // $("#homeworkContent").html(mydata); //显示后端传递的结果
+                    if (data == "0") {
+                        // alert("预约成功！");
+                        $("#h5").html("<h5>预约成功！<h5>");
+                        $("#alertSource").modal("show");//显示“正在查询”字样的模态框
+
+                    } else {
+                        // alert("预约失败！");
+                        $("#h5").html("<h5>预约失败！<h5>");
+                        $("#alertSource").modal("show");
+
+                    }
+                    getApply();
+                });
 
             }
         })

@@ -15,6 +15,9 @@
             <if test="professionalTitle != null and professionalTitle != ''">
                 and u.professional_title = #{professionalTitle}
             </if>
+            <if test="true">
+                and u.user_mark = 1
+            </if>
         </where>
     </sql>
 
@@ -53,7 +56,7 @@
             college,
             professional_title
         from user
-        where user_id = #{id};
+        where user_id = #{id} and user_mark = 1;
     </select>
 
 
@@ -81,11 +84,17 @@
     </update>
 
     <!--删除用户-->
-    <delete id="deleteUserById" parameterType="int">
-        delete
-        from user
+    <!--<delete id="deleteUserById" parameterType="int">-->
+        <!--delete-->
+        <!--from user-->
+        <!--where user_id = #{user_id};-->
+    <!--</delete>-->
+
+    <update id="deleteUserById" parameterType="integer">
+        update user
+        set user_mark = 0
         where user_id = #{user_id};
-    </delete>
+    </update>
 
     <!--添加用户-->
     <insert id="addUser" parameterType="user">
@@ -105,5 +114,19 @@
             college,
             professional_title
         from user
+        where user_mark = 1
     </select>
+
+    <select id="login"  resultType="user" parameterType="user">
+        select * from user
+        where user_name = #{user_name}
+              and user_password = #{user_password} and user_mark = 1
+    </select>
+
+    <!--修改密码-->
+    <update id="updatePassword" parameterType="user">
+        update user
+        set user_password = #{user_password}
+        where user_id = #{user_id}
+    </update>
 </mapper>

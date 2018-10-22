@@ -3,6 +3,7 @@ package top.dlpuzcl.service;
 import top.dlpuzcl.pojo.*;
 import top.dlpuzcl.utils.Page;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface ApplyService {
@@ -11,6 +12,12 @@ public interface ApplyService {
      * @return
      */
     List<Apply> getApplyList(Apply apply);
+
+//    /**
+//     * 查询申请表2
+//     * @return
+//     */
+//    void getApply(Apply apply);
 
     /**
      * 添加单向申请
@@ -38,6 +45,13 @@ public interface ApplyService {
 
     void deleteById(Integer id);
 
+
+    /**
+     * 删除申请通过idall
+     */
+
+    void deleteAllById(String[] ids);
+
     /**
      *查询当前学年学期
      * @return
@@ -60,4 +74,5 @@ public interface ApplyService {
      * 通过学期·学年和实验室查询总利用率
      */
     LabRatio labRatioSum();
+
 }

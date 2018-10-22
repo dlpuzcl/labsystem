@@ -62,13 +62,13 @@
 						<ul class="breadcrumb">
 							<li>
 								<i class="ace-icon fa fa-home home-icon"></i>
-								<a href="index.html">首页</a>
+								<a href="/admini/first.action">首页</a>
 							</li>
 							<li>
 								<a href="javascript:void(0)">教室管理</a>
 							</li>
 							<li>
-								<a href="实验室添加.html">实验室添加</a>
+								<a href="#">实验室添加</a>
 							</li>
 						</ul>
 						<!-- /.breadcrumb -->

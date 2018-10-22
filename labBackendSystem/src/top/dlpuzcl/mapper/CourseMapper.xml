@@ -12,15 +12,18 @@
             <if test="userName != null and userName != ''">
                 and u.user_name = #{userName}
             </if>
+            <if test="true">
+                and c.course_mark=1
+            </if>
 
         </where>
     </sql>
 
     <!--查询所有课程-->
     <select id="courseByUser" parameterType="integer" resultType="course">
-        select course_id,course_name,course_memo,course_class
+        select course_id,course_name,course_memo,course_class,course_nature,course_time
         from course
-        where #{id} = user_id;
+        where #{id} = user_id and course_mark=1;
     </select>
 
     <!--根据条件查询列表总数-->
@@ -38,6 +41,8 @@
             c.course_name,
             c.course_class,
             c.course_memo,
+            c.course_time,
+            c.course_nature,
             u.user_name user_id
         from course c
         left join user u on c.user_id = u.user_id
@@ -54,9 +59,11 @@
             c.course_name,
             c.course_class,
             c.course_memo,
-            c.user_id
+            c.user_id,
+            c.course_time,
+            c.course_nature
         from course c
-        where c.course_id = #{id};
+        where c.course_id = #{id} and c.course_mark=1;
     </select>
     <!--更新课程-->
     <update id="updateCourse" parameterType="course">
@@ -74,6 +81,12 @@
             <if test="user_id != null and user_id != ''">
                 user_id = #{user_id},
             </if>
+            <if test="course_nature != null and course_nature != ''">
+                course_nature = #{course_nature},
+            </if>
+            <if test="course_time != null and course_time != ''">
+                course_time = #{course_time},
+            </if>
         </set>
         where course_id = #{course_id};
     </update>
@@ -81,16 +94,21 @@
     <!--添加课程-->
     <insert id="addCourse" parameterType="course">
         insert into course
-        (course_name,course_class,course_memo,user_id)
-        values(#{course_name},#{course_class},#{course_memo},#{user_id});
+        (course_name,course_class,course_memo,user_id,course_time,course_nature)
+        values(#{course_name},#{course_class},#{course_memo},#{user_id},#{course_time},#{course_nature});
     </insert>
 
-    <!--删除课程-->
-    <delete id="deleteCourse" parameterType="integer">
-        delete
-        from course
+    <!--&lt;!&ndash;删除课程&ndash;&gt;-->
+    <!--<delete id="deleteCourse" parameterType="integer">-->
+        <!--delete-->
+        <!--from course-->
+        <!--where course_id = #{id};-->
+
+    <!--</delete>-->
+
+    <update id="deleteCourse" parameterType="integer">
+        update course
+        set course_mark = 0
         where course_id = #{id};
-
-    </delete>
-
+    </update>
 </mapper>

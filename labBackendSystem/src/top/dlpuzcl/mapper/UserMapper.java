@@ -1,5 +1,6 @@
 package top.dlpuzcl.mapper;
 
+import top.dlpuzcl.pojo.Admini;
 import top.dlpuzcl.pojo.QueryVo;
 import top.dlpuzcl.pojo.User;
 
@@ -54,4 +55,16 @@ public interface UserMapper {
      */
 
     List<User> queryAllUser();
+
+    /**
+     * 登录
+     * @param user
+     * @return
+     */
+    User login(User user);
+
+    /**
+     * 修改密码
+     */
+    void updatePassword(User user);
 }

@@ -155,8 +155,29 @@ public class UserController {
         return labResult;
     }
 
+    /**
+     * 修改用户密码
+     */
+    @RequestMapping("updatePassword")
+    @ResponseBody
+    public String updatePassword(User user){
+
+        String msg = "1";
+        try{
+            userService.updatePassword(user);
+            msg = "0";
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return msg;
+    }
 
 
+    /**
+     * 导出用户excel
+     * @param response
+     * @return
+     */
     @RequestMapping("userExcel")
     @ResponseBody
     public String downlodeUser(HttpServletResponse response){

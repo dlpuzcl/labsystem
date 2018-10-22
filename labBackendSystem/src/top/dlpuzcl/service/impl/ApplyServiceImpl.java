@@ -2,6 +2,7 @@ package top.dlpuzcl.service.impl;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.tomcat.util.http.mapper.Mapper;
+import org.junit.Test;
 import org.springframework.beans.PropertyValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,7 @@ public class ApplyServiceImpl implements ApplyService {
         return applyMapper.getApplyList(apply);
     }
 
-
+//
     /**
      * 添加单向申请
      *
@@ -54,8 +55,21 @@ public class ApplyServiceImpl implements ApplyService {
 
             String daySection = day_section[i];
             //将那节课跟周几分开
-            int applySection = daySection.charAt(0) - '0';
-            int applyDay = daySection.charAt(1) - '0';
+            int applySection;
+            int applyDay;
+            if (daySection.length()==2) {
+                applySection = daySection.charAt(0) - '0';
+                applyDay = daySection.charAt(1) - '0';
+            }else {
+//                applySection = Integer.parseInt(daySection.substring(0,1));
+//                applyDay = Integer.parseInt(daySection.substring(2,2));
+                applySection = (daySection.charAt(0)-'0')*10 + (daySection.charAt(1) - '0');
+                applyDay = daySection.charAt(2) - '0';
+
+            }
+
+            System.out.println("...............applySection:"+applySection);
+            System.out.println("...............applyDay:"+applyDay);
 
             apply.setApply_day(applyDay);
             apply.setApply_section(applySection);
@@ -160,6 +174,22 @@ public class ApplyServiceImpl implements ApplyService {
     public void deleteById(Integer id) {
         applyMapper.deleteById(id);
     }
+
+    /**
+     * 删除申请
+     *
+     * @param ids
+     */
+    @Override
+    public void deleteAllById(String[] ids) {
+
+        for (int i= 0;i<ids.length;i++) {
+            int id = Integer.parseInt(ids[i]);
+            applyMapper.deleteById(id);
+        }
+
+    }
+
 
 
     /**

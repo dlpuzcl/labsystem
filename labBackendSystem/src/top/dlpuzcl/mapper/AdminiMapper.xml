@@ -10,4 +10,16 @@
           (#{admini_name},#{admini_password},#{admini_memo})
     </insert>
 
+    <select id="login"  resultType="admini" parameterType="Admini">
+        select * from admini
+            where admini_name = #{admini_name}
+            and admini_password = #{admini_password}
+    </select>
+
+    <update id="updatePassword" parameterType="Admini">
+        update admini
+        set admini_password = #{admini_password}
+        where admini_id = #{admini_id}
+    </update>
+
 </mapper>

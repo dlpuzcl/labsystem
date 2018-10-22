@@ -10,6 +10,7 @@ public class QueryVo {
     private String applyWeek;
     private String years;
     private int iterm;
+
     //当前页码数
     private Integer page = 1;
     //数据库从哪一条数据开始查

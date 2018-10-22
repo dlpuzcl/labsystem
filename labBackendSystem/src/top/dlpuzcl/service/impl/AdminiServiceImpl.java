@@ -32,4 +32,20 @@ public class AdminiServiceImpl implements AdminiService {
 
         return LabResult.ok();
     }
+
+    @Override
+    public Admini login(Admini admini) {
+        String admini_password = admini.getAdmini_password();
+        String md5_password = DigestUtils.md5DigestAsHex(admini_password.getBytes());
+        admini.setAdmini_password(md5_password);
+        return adminiMapper.login(admini);
+    }
+
+    @Override
+    public void updatePassword(Admini admini) {
+        String admini_password = admini.getAdmini_password();
+        String md5_password = DigestUtils.md5DigestAsHex(admini_password.getBytes());
+        admini.setAdmini_password(md5_password);
+        adminiMapper.updatePassword(admini);
+    }
 }

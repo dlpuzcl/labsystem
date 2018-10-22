@@ -7,6 +7,24 @@ public class Course {
     private String course_class;
 //    private int user_id;
     private String user_id;
+    private String course_time;
+    private String course_nature;
+
+    public String getCourse_time() {
+        return course_time;
+    }
+
+    public void setCourse_time(String course_time) {
+        this.course_time = course_time;
+    }
+
+    public String getCourse_nature() {
+        return course_nature;
+    }
+
+    public void setCourse_nature(String course_nature) {
+        this.course_nature = course_nature;
+    }
 
     public int getCourse_id() {
         return course_id;

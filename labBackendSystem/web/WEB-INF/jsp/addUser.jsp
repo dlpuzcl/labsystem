@@ -66,13 +66,13 @@
 						<ul class="breadcrumb">
 							<li>
 								<i class="ace-icon fa fa-home home-icon"></i>
-								<a href="主页.html">首页</a>
+								<a href="/admini/first.action">首页</a>
 							</li>
 							<li>
-								<a href="javascript:void(0)">教室管理</a>
+								<a href="javascript:void(0)">用户管理</a>
 							</li>
 							<li>
-								<a href="用户添加.html">用户添加</a>
+								<a href="#">用户添加</a>
 							</li>
 						</ul>
 						<!-- /.breadcrumb -->
@@ -495,8 +495,8 @@
                     $.post("<%=basePath%>admini/add.action",$("#add_admini_form").serialize(),function(data){
                         if (data.status == 200){
                             alert("管理员添加成功！");
-                            window.location = "<%=basePath%>user/list.action"
-
+                            <%--window.location = "<%=basePath%>user/list.action"--%>
+                            window.location.reload();
                         } else{
                             alert("管理员添加失败:"+data.msg);
                             window.location.reload();

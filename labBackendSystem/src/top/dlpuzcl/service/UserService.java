@@ -49,4 +49,16 @@ public interface UserService {
      * @return
      */
     List<User> queryAllUser();
+
+    /**
+     * 登录
+     * @param user
+     * @return
+     */
+    User login(User user);
+
+    /**
+     * 修改密码
+     */
+    void updatePassword(User user);
 }

@@ -1,5 +1,7 @@
 package top.dlpuzcl.controller;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,10 +9,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.dlpuzcl.pojo.*;
 import top.dlpuzcl.service.*;
+import top.dlpuzcl.utils.ExcelBeanUtil;
+import top.dlpuzcl.utils.ExcelUtil;
 import top.dlpuzcl.utils.Page;
+import top.dlpuzcl.utils.WebUtil;
 
 import javax.jws.WebParam;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("apply")
@@ -34,8 +42,12 @@ public class ApplyController {
     CourseService courseService;
 
 
+    private String excelApplyName = "实验室课表.xls";
+
+    private String sheetApplyName = "实验室课表";
+
     @RequestMapping("one")
-    public String one(Model model,QueryVo queryVo){
+    public String one(Model model){
 
         List<LabRoom> labRoom = labService.queryLabCode();
         model.addAttribute("labRoom",labRoom);
@@ -153,6 +165,10 @@ public class ApplyController {
 
         model.addAttribute("userList",userList);
 
+        List<LabRoom> labRoom = labService.queryLabCode();
+        model.addAttribute("labRoom", labRoom);
+
+
         //根据查询条件分页查询用户列表
         Page<Apply> page = applyService.queryApplyByUser(queryVo);
 
@@ -175,6 +191,25 @@ public class ApplyController {
         String msg = "1";
         try {
             applyService.deleteById(id);
+            msg = "0";
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return msg;
+    }
+
+    /**
+     * 批量删除申请
+     * @param ids
+     * @return
+     */
+    @RequestMapping("deleteAll")
+    @ResponseBody
+    public String deleteAll(String[] ids){
+        String msg = "1";
+        try {
+            applyService.deleteAllById(ids);
             msg = "0";
         }catch (Exception e){
             e.printStackTrace();
@@ -236,6 +271,32 @@ public class ApplyController {
 
         return labRatio;
     }
+
+//    @RequestMapping("applyExcel")
+//    @ResponseBody
+//    public String downlodApply (HttpServletResponse response,Apply apply){
+//
+//        apply.setRoom_id(3);
+//        apply.setApply_week(1);
+//        try {
+//            List<Apply> applyList = applyService.getApplyList(apply);
+//            String[] header = new String[]{"周/节","星期一","星期二","星期三","星期四","星期五","星期六","星期日"};
+//
+//            List<Map<Integer, Object>> dataList = ExcelBeanUtil.manageApplyList(applyList);
+//
+//            Workbook wb = new HSSFWorkbook();
+//            ExcelUtil.fillExcelSheetData(dataList,wb,header,sheetApplyName);
+//            WebUtil.downloadExcel(response,wb,excelApplyName);
+//
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
+
+
+
+
 
 
 }

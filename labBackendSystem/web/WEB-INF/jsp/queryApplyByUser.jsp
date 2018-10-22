@@ -66,7 +66,7 @@
                 <ul class="breadcrumb">
                     <li>
                         <i class="ace-icon fa fa-home home-icon"></i>
-                        <a href="主页.html">首页</a>
+                        <a href="/admini/first.action">首页</a>
                     </li>
                     <li>
                         <a href="javascript:void(0)">预约查询</a>
@@ -87,7 +87,7 @@
         </div>
 
 
-        <div class="panel panel-default " >
+        <div class="panel panel-default ">
             <div class="panel-body">
                 <form class="form-inline" action="${pageContext.request.contextPath }/apply/queryApplyByUser.action"
                       method="get" id="myform">
@@ -96,13 +96,30 @@
                         <label for="userName">教师</label>
                         <select class="form-control" id="userName" name="userName" onchange="submitForm();">>
                             <option value="">--请选择教师--</option>
-                            <c:forEach items="${userList}" var="item" >
+                            <c:forEach items="${userList}" var="item">
                                 <option value="${item.user_id}"
                                         <c:if test="${item.user_id == vo.userName}"> selected</c:if>
                                 >
                                         ${item.user_name }
                                 </option>
                             </c:forEach>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="userName">实验室</label>
+
+                        <select class="form-control" name="roomCode">
+                            <option value="">--选择实验室--</option>
+                            <c:forEach items="${labRoom }" var="lab" varStatus="vs">
+
+                                <option value="${lab.room_id }"
+                                        <c:if test="${lab.room_id == vo.roomCode}"> selected</c:if>
+                                >${lab.room_code }</option>
+
+                            </c:forEach>
+
                         </select>
                     </div>
 
@@ -137,8 +154,8 @@
                     </div>
 
 
-
                     <button type="submit" class="btn btn-primary">查询</button>
+                    <button type="" class="btn btn-danger" onclick="deleteAll()">批量删除</button>
 
                     </a>
                 </form>
@@ -160,6 +177,7 @@
                                style="text-align: center;">
                             <thead>
                             <tr class="info">
+                                <td><input id="selecteAll" type="checkbox" class="styled"/></td>
                                 <td>序号</td>
                                 <%--<td>周</td>--%>
                                 <td>天</td>
@@ -172,47 +190,51 @@
                             </thead>
 
                             <tbody>
+                            <form id="form1">
 
-                            <c:forEach items="${page.rows }" var="item" varStatus="vs">
-                                <tr>
-                                    <td>${vs.count}</td>
-                                    <%--<td>${item.apply_week}</td>--%>
 
-                                    <c:if test="${item.apply_day == 1}">
-                                        <td>星期一</td>
-                                    </c:if>
-                                    <c:if test="${item.apply_day == 2}">
-                                        <td>星期二</td>
-                                    </c:if>
-                                    <c:if test="${item.apply_day == 3}">
-                                        <td>星期三</td>
-                                    </c:if>
-                                    <c:if test="${item.apply_day == 4}">
-                                        <td>星期四</td>
-                                    </c:if>
-                                    <c:if test="${item.apply_day == 5}">
-                                        <td>星期五</td>
-                                    </c:if>
-                                    <c:if test="${item.apply_day == 6}">
-                                        <td>星期六</td>
-                                    </c:if>
-                                    <c:if test="${item.apply_day == 7}">
-                                        <td>星期日</td>
-                                    </c:if>
-                                    <td>第${item.apply_section}节</td>
-                                    <td>${item.room_code}</td>
-                                    <td>${item.course_class }</td>
-                                    <td>${item.user_name}</td>
+                                <c:forEach items="${page.rows }" var="item" varStatus="vs">
+                                    <tr>
+                                        <td><input type="checkbox" id="" name="ids" value="${item.apply_id}" class="styled"></td>
+                                        <td>${vs.count}</td>
+                                            <%--<td>${item.apply_week}</td>--%>
 
-                                    <td>
-                                        <a href="#" class="btn btn-danger btn-xs"
-                                           onclick="deleteApply(${item.apply_id})">
-                                            <i class="ace-icon fa fa-trash-o"></i>
-                                            删除
-                                        </a>
-                                    </td>
-                                </tr>
-                            </c:forEach>
+                                        <c:if test="${item.apply_day == 1}">
+                                            <td>星期一</td>
+                                        </c:if>
+                                        <c:if test="${item.apply_day == 2}">
+                                            <td>星期二</td>
+                                        </c:if>
+                                        <c:if test="${item.apply_day == 3}">
+                                            <td>星期三</td>
+                                        </c:if>
+                                        <c:if test="${item.apply_day == 4}">
+                                            <td>星期四</td>
+                                        </c:if>
+                                        <c:if test="${item.apply_day == 5}">
+                                            <td>星期五</td>
+                                        </c:if>
+                                        <c:if test="${item.apply_day == 6}">
+                                            <td>星期六</td>
+                                        </c:if>
+                                        <c:if test="${item.apply_day == 7}">
+                                            <td>星期日</td>
+                                        </c:if>
+                                        <td>第${item.apply_section}节</td>
+                                        <td>${item.room_code}</td>
+                                        <td>${item.course_class }</td>
+                                        <td>${item.user_name}</td>
+
+                                        <td>
+                                            <a href="#" class="btn btn-danger btn-xs"
+                                               onclick="deleteApply(${item.apply_id})">
+                                                <i class="ace-icon fa fa-trash-o"></i>
+                                                删除
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </form>
                             </tbody>
                         </table>
 
@@ -228,6 +250,29 @@
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
+
+
+        <!--弹出删除资源警告窗口-->
+        <div class="modal fade" id="alertSource" role="dialog" aria-labelledby="gridSystemModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid" id="h5">
+                            <%--<h5 id="h5">预约成功！</h5>--%>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary pull-right" data-dismiss="modal">确定</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
 
     </div>
     <!-- /#wrapper -->
@@ -261,17 +306,61 @@
 
 
         function deleteApply(id) {
-            if(confirm('确定要删除吗?')) {
-                $.post("<%=basePath%>apply/delete.action",{"id":id},function(data){
-                    if (data == "0"){
-                        alert("删除成功！");
-                    } else{
-                        alert("删除失败！");
+            if (confirm('确定要删除吗?')) {
+                $.post("<%=basePath%>apply/delete.action", {"id": id}, function (data) {
+                    if (data == "0") {
+                        // alert("删除成功！");
+                        $("#h5").html("<h5>删除成功！<h5>");
+                        $("#alertSource").modal("show");
+                    } else {
+                        // alert("删除失败！");
+                        $("#h5").html("<h5>删除失败！<h5>");
+                        $("#alertSource").modal("show");
                     }
                     window.location.reload();
                 });
             }
         }
+
+        function deleteAll() {
+
+            // alert($("#form1").serialize());
+            if (confirm('确定要删除吗?')) {
+                $.post("<%=basePath%>apply/deleteAll.action", $("#form1").serialize(), function (data) {
+                    if (data == "0") {
+                        alert("删除成功！");
+                        // $("#h5").html("<h5>删除成功！<h5>");
+                        // $("#alertSource").modal("show");
+                    } else {
+                        alert("删除失败！");
+                        // $("#h5").html("<h5>删除失败！<h5>");
+                        // $("#alertSource").modal("show");
+                    }
+                    window.location.reload();
+                });
+            }
+        }
+
+
+        $("#selecteAll").click(function () {
+            if (this.checked) {
+                var products = $("input[name='ids']");
+                products.each(function () {
+                    alert("删除成功！");
+                    // $(this).attr('checked', true);
+                    // $(this).parent().attr("class", 'checked');
+                });
+            } else {
+                var products = $("input[name='ids']");
+                products.each(function () {
+                    alert("删除失败！");
+                    // $(this).attr('checked', false);
+                    // $(this).parent().removeClass('checked');
+                });
+            }
+
+        });
+
 
     </script>
 

@@ -73,4 +73,20 @@ public class UserServiceImpl implements UserService {
     public List<User> queryAllUser() {
         return userMapper.queryAllUser();
     }
+
+    @Override
+    public User login(User user) {
+        String user_password = user.getUser_password();
+        String md5_password = DigestUtils.md5DigestAsHex(user_password.getBytes());
+        user.setUser_password(md5_password);
+        return userMapper.login(user);
+    }
+
+    @Override
+    public void updatePassword(User user) {
+        String user_password = user.getUser_password();
+        String md5_password = DigestUtils.md5DigestAsHex(user_password.getBytes());
+        user.setUser_password(md5_password);
+        userMapper.updatePassword(user);
+    }
 }

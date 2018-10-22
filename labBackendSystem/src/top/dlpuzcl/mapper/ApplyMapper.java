@@ -26,7 +26,7 @@ public interface ApplyMapper {
     void addBatchApply (ApplyBatch applyBatch);
 
     /**
-     * 通过user查询申请
+     * 通过查询申请
      * @param queryVo
      * @return
      */
@@ -63,4 +63,6 @@ public interface ApplyMapper {
      */
 
    Integer queryApplyByItermYear (Apply apply);
+
+
 }

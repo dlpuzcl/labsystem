@@ -6,7 +6,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
-
     <!--属性文件加载-->
     <!--<context:property-placeholder location="classpath:crm.properties" />-->
 
@@ -39,4 +38,35 @@
         <!-- 后缀 -->
         <property name="suffix" value=".jsp"/>
     </bean>
+
+    <mvc:interceptors>
+        <!-- 管理员登录拦截器 -->
+        <mvc:interceptor>
+            <!-- path配置</**>拦截所有请求，包括二级以上目录，</*>拦截所有请求，不包括二级以上目录 -->
+            <mvc:mapping path="/lab/*"/>
+            <mvc:mapping path="/user/*"/>
+            <mvc:mapping path="/course/*"/>
+            <mvc:mapping path="/admini/*"/>
+            <mvc:mapping path="/apply/*"/>
+            <!-- 配置不拦截请求的地址 -->
+            <!-- <mvc:exclude-mapping path="/user/toLogin.action"/>
+            <mvc:exclude-mapping path="/user/login.action"/> -->
+            <mvc:exclude-mapping path="/login/*"/>
+            <bean class="top.dlpuzcl.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+
+        <!-- 用户登录拦截器 -->
+        <mvc:interceptor>
+            <!-- path配置</**>拦截所有请求，包括二级以上目录，</*>拦截所有请求，不包括二级以上目录 -->
+            <mvc:mapping path="/front/*"/>
+            <mvc:mapping path="/frontCourse/*"/>
+            <!-- 配置不拦截请求的地址 -->
+            <mvc:exclude-mapping path="/front/courseTable.action"/>
+            <mvc:exclude-mapping path="/front/query.action"/>
+
+            <bean class="top.dlpuzcl.interceptor.UserLoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 </beans>
+

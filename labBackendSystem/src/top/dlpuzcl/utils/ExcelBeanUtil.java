@@ -1,5 +1,6 @@
 package top.dlpuzcl.utils;
 
+import top.dlpuzcl.pojo.Apply;
 import top.dlpuzcl.pojo.User;
 
 import java.util.ArrayList;
@@ -39,4 +40,36 @@ public class ExcelBeanUtil {
 
         return datalist;
     }
+
+//    public static List<Map<Integer,Object>> manageApplyList(final List<Apply> applies){
+//        List<Map<Integer,Object>> datalist = new ArrayList<>();
+//
+//        if(applies!=null && applies.size()>0){
+//            int length = applies.size();
+//             Map<Integer,Object> dataMap = null;
+//             Apply bean;
+//             int sum = 0;
+//             for (int i = 1; i<13; i++){
+//
+//                 for(int j = 1; j<8; j++){
+//                     dataMap = new HashMap<>();
+//                     sum ++;
+//                     if (sum <= length){
+//                         bean = applies.get(sum);
+//                         if(bean.getApply_section() == i && bean.getApply_day() == j){
+//                             dataMap.put(i,bean.getCourse_name()+"/n"+bean.getCourse_class()+"/n"+bean.getUser_name());
+//                         }
+//                     }
+//
+//
+//
+//
+//                 }
+//                 datalist.add(dataMap);
+//
+//             }
+//        }
+//        return datalist;
+//    }
+
 }

@@ -70,13 +70,13 @@
                 <ul class="breadcrumb">
                     <li>
                         <i class="ace-icon fa fa-home home-icon"></i>
-                        <a href="主页.html">首页</a>
+                        <a href="/admini/first.action">首页</a>
                     </li>
                     <li>
                         <a href="javascript:void(0)">教室管理</a>
                     </li>
                     <li>
-                        <a href="实验室管理.html">实验室管理</a>
+                        <a href="#">实验室管理</a>
                     </li>
                 </ul>
                 <!-- /.breadcrumb -->
@@ -127,69 +127,79 @@
         </div>
 
 
-        <!-- /.row -->
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
-                        教师名单
+                    <div class="panel-heading" style="padding-bottom: 23px;">
+
                     </div>
+
+
                     <!-- /.panel-heading -->
                     <div class="panel-body">
-                        <table width="100%" class="table table-striped table-bordered table-hover"
-                               style="text-align: center;">
-                            <thead>
-                            <tr class="info">
-                                <td>序号</td>
-                                <td>房间号</td>
-                                <td>实验室名称</td>
-                                <td>人数</td>
-                                <td>所属学院</td>
-                                <td>备注</td>
-                                <td>编辑</td>
-                                <td>删除</td>
-                            </tr>
-                            </thead>
+                        <div class="row">
+                            <div class=" col-md-12">
+                                <div class="table-responsive">
 
-                            <tbody>
+                                    <table width="100%" class="table table-striped table-bordered table-hover"
+                                           style="text-align: center;">
+                                        <thead>
+                                        <tr class="info">
+                                            <td>序号</td>
+                                            <td>房间号</td>
+                                            <td>实验室名称</td>
+                                            <td>人数</td>
+                                            <td>所属学院</td>
+                                            <td>备注</td>
+                                            <td>编辑</td>
+                                            <td>删除</td>
+                                        </tr>
+                                        </thead>
 
-                            <c:forEach items="${page.rows }" var="lab" varStatus="vs">
-                                <tr>
-                                    <td>${vs.count}</td>
-                                    <td>${lab.room_code }</td>
-                                    <td>${lab.room_name }</td>
-                                    <td>${lab.place_count }</td>
-                                    <td>${lab.room_college }</td>
-                                    <td>${lab.room_memo }</td
-                                    <td>
+                                        <tbody>
 
-                                    </td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-xs" data-toggle="modal"
-                                           data-target="#labEditDialog"
-                                           onclick="editLab(${lab.room_id})">
-                                            <i class="ace-icon fa fa-pencil"></i>
-                                            修改
-                                        </a>
-                                    </td>
+                                        <c:forEach items="${page.rows }" var="lab" varStatus="vs">
+                                            <tr>
+                                                <td>${vs.count}</td>
+                                                <td>${lab.room_code }</td>
+                                                <td>${lab.room_name }</td>
+                                                <td>${lab.place_count }</td>
+                                                <td>${lab.room_college }</td>
+                                                <td>${lab.room_memo }</td
+                                                <td>
+
+                                                </td>
+                                                <td>
+                                                    <a href="#" class="btn btn-primary btn-xs" data-toggle="modal"
+                                                       data-target="#labEditDialog"
+                                                       onclick="editLab(${lab.room_id})">
+                                                        <i class="ace-icon fa fa-pencil"></i>
+                                                        修改
+                                                    </a>
+                                                </td>
 
 
-                                    <td>
-                                        <a href="#" class="btn btn-danger btn-xs"
-                                           onclick="deleteLab(${lab.room_id})">
-                                            <i class="ace-icon fa fa-trash-o"></i>
-                                            删除
-                                        </a>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-                        </table>
+                                                <td>
+                                                    <a href="#" class="btn btn-danger btn-xs"
+                                                       onclick="deleteLab(${lab.room_id})">
+                                                        <i class="ace-icon fa fa-trash-o"></i>
+                                                        删除
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                        </tbody>
+                                    </table>
 
-                        <div class="col-md-12 text-right">
-                            <itcast:page url="${pageContext.request.contextPath }/lab/list.action"/>
+                                    <div class="col-md-12 text-right">
+                                        <itcast:page url="${pageContext.request.contextPath }/lab/list.action"/>
+                                    </div>
+
+                                </div>
+
+                            </div>
                         </div>
-
+                        <!-- /.row -->
                     </div>
                     <!-- /.panel-body -->
                 </div>
@@ -197,6 +207,7 @@
             </div>
             <!-- /.col-lg-12 -->
         </div>
+
         <!-- /.row -->
 
         <%--实验室编辑对话框--%>
