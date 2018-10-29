@@ -9,6 +9,7 @@ import top.dlpuzcl.pojo.LabResult;
 import top.dlpuzcl.pojo.QueryVo;
 import top.dlpuzcl.pojo.User;
 import top.dlpuzcl.service.UserService;
+import top.dlpuzcl.utils.EmailUtil;
 import top.dlpuzcl.utils.Page;
 
 import java.util.List;
@@ -55,10 +56,30 @@ public class UserServiceImpl implements UserService {
     @Override
     public LabResult addUser(User user) {
         if(StringUtils.isEmpty(user.getUser_name())) {
-            return LabResult.build(400, "添加失败.请校验数据后请再提交数据");
+            return LabResult.build(400, "添加失败.请校验数据后请再提交数据！");
         }
         if(StringUtils.isEmpty(user.getUser_password())){
-            return LabResult.build(400, "添加失败.请校验数据后请再提交数据");
+            return LabResult.build(400, "添加失败.请校验数据后请再提交数据！");
+        }
+        List<User> users = userMapper.queryAllUser();
+        for (int i=0;i<users.size();i++){
+            if (user.getUser_name().equals(users.get(i).getUser_name()) ){
+                return LabResult.build(555, "添加失败，此用户名已经被注册！");
+            }
+
+            if (user.getUser_phone().equals(users.get(i).getUser_phone())){
+                return LabResult.build(666, "添加失败，此电话已经被注册！");
+            }
+            if (user.getUser_email().equals(users.get(i).getUser_email())){
+                return LabResult.build(777, "添加失败，次邮箱已经被注册！");
+            }
+
+        }
+        //发送用户激活邮件
+        try {
+            EmailUtil.sendTo(user);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         String user_password = user.getUser_password();
@@ -89,4 +110,10 @@ public class UserServiceImpl implements UserService {
         user.setUser_password(md5_password);
         userMapper.updatePassword(user);
     }
+
+    @Override
+    public void updateState(String email) {
+        userMapper.updateState(email);
+    }
+
 }

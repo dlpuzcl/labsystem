@@ -40,12 +40,6 @@
 
     <link rel="<%=basePath%>stylesheet" type="text/css" href="sweetalert/sweetalert.css">
 
-    <!-- HTML5Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
     <script type="text/javascript">
 
     </script>
@@ -233,7 +227,7 @@
                                     <div class="table-responsive">
                                         <form id="form1">
 
-                                            <table width="100%" class="table table-bordered "
+                                            <table width="100%" class="table  "
                                                    style="text-align: center;">
                                                 <thead>
                                                 <tr class="info">
@@ -438,12 +432,12 @@
                     for (var i = 1; i < 13; i++) {
                         for (var j = 1; j < 8; j++) {
 
-                            $("#table_" + j + "_" + i).html("");
+                            $("#table_" + j + "_" + i).html("<div style='background-color: #E7EAED;padding: 8px 8px; color: #FFFFFF;border-radius:8px' ><br><br><br></div>");
                         }
                     }
                     //遍历课程表
                     for (var i = 0; i < data.length; i++) {
-                        $("#table_" + data[i].apply_day + "_" + data[i].apply_section).html(data[i].course_name + "<br>" + data[i].course_class + "<br>" + data[i].user_name);
+                        $("#table_" + data[i].apply_day + "_" + data[i].apply_section).html("<div style='background-color: " + data[i].user_color + ";padding: 8px 8px;color: #FFFFFF;border-radius:8px' >"+data[i].course_name + "<br>" + data[i].course_class + "<br>" + data[i].user_name+"</div>");
                     }
                 }
             });

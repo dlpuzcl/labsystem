@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.dlpuzcl.pojo.Admini;
+import top.dlpuzcl.pojo.LabResult;
 import top.dlpuzcl.pojo.User;
 import top.dlpuzcl.service.AdminiService;
 import top.dlpuzcl.service.UserService;
@@ -60,18 +61,24 @@ public class Login {
      */
     @RequestMapping("user")
     @ResponseBody
-    public String userLogin(User user, HttpSession session) {
+    public LabResult userLogin(User user, HttpSession session) {
 
-        String msg = "1";
+
         User user_l = userService.login(user);
-        if (user_l != null) {
+        if (user_l.getUser_state() == 0){
+            return LabResult.build(400,"账户未激活，请去邮箱激活账户!");
+        }
+        if (user_l != null && user_l.getUser_state() == 1) {
+
             session.setAttribute("user", user_l);
             //登录成功
-            msg = "0";
+           return LabResult.build(200,"登陆成功");
+
+        }else {
+
+            return LabResult.build(300, "登陆失败");
 
         }
-
-        return msg;
 
     }
 
@@ -84,5 +91,12 @@ public class Login {
         return "login";
     }
 
+    //激活账户
+    @RequestMapping("/activation")
+    public String activation(String code) {
+        //将账户的状态改为1
+        userService.updateState(code);
+        return "login";
+    }
 
 }

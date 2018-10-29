@@ -28,6 +28,8 @@
             u.user_name,
             u.user_phone,
             u.user_email,
+            u.user_state,
+            u.user_color,
             c.dict_item_name college,
             p.dict_item_name professional_title
         from user u
@@ -54,7 +56,8 @@
             user_phone,
             user_email,
             college,
-            professional_title
+            professional_title,
+            user_color
         from user
         where user_id = #{id} and user_mark = 1;
     </select>
@@ -79,6 +82,10 @@
             <if test="college != null and college != ''">
                 college = #{college},
             </if>
+
+            <if test="user_color != null and user_color != ''">
+                user_color = #{user_color},
+            </if>
         </set>
         where user_id = #{user_id};
     </update>
@@ -99,9 +106,9 @@
     <!--添加用户-->
     <insert id="addUser" parameterType="user">
         insert into user
-        (user_name,user_phone,user_email,user_password,college,professional_title)
+        (user_name,user_phone,user_email,user_password,college,professional_title,user_color)
         values
-            (#{user_name},#{user_phone},#{user_email},#{user_password},#{college},#{professional_title});
+            (#{user_name},#{user_phone},#{user_email},#{user_password},#{college},#{professional_title},#{user_color});
     </insert>
 
     <!--查询所有用户-->
@@ -120,7 +127,7 @@
 
     <select id="login"  resultType="user" parameterType="user">
         select * from user
-        where user_name = #{user_name} or user_phone = #{user_name} or user_email = #{user_name}
+        where (user_name = #{user_name} or user_phone = #{user_name} or user_email = #{user_name})
               and user_password = #{user_password} and user_mark = 1
 
 
@@ -131,5 +138,13 @@
         update user
         set user_password = #{user_password}
         where user_id = #{user_id}
+    </update>
+
+
+
+    <update id="updateState" parameterType="string">
+        update user
+        set user_state = 1
+        where user_email = #{email}
     </update>
 </mapper>

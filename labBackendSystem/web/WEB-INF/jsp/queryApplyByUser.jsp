@@ -341,26 +341,22 @@
             }
         }
 
-
         $("#selecteAll").click(function () {
             if (this.checked) {
                 var products = $("input[name='ids']");
                 products.each(function () {
-                    alert("删除成功！");
-                    // $(this).attr('checked', true);
-                    // $(this).parent().attr("class", 'checked');
+                    $(this).attr('checked', true);
+                    $(this).parent().attr("class", 'checked');
                 });
             } else {
                 var products = $("input[name='ids']");
                 products.each(function () {
-                    alert("删除失败！");
-                    // $(this).attr('checked', false);
-                    // $(this).parent().removeClass('checked');
+                    $(this).attr('checked', false);
+                    $(this).parent().removeClass('checked');
                 });
             }
 
         });
-
 
     </script>
 

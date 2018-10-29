@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="itcast" uri="http://itcast.cn/common/"%>
+<%@ taglib prefix="itcast" uri="http://itcast.cn/common/" %>
 
 <%
     String path = request.getContextPath();
@@ -23,7 +23,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="<%=basePath%>bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="<%=basePath%>bootstrap/css/bootstrap-colorpicker.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
     <link href="<%=basePath%>metisMenu/metisMenu.min.css" rel="stylesheet">
 
@@ -37,7 +37,7 @@
     <link href="<%=basePath%>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 
-    <link rel="<%=basePath%>stylesheet" type="text/css" href="sweetalert/sweetalert.css">
+    <link rel="stylesheet" type="text/css" href="<%=basePath%>sweetalert/sweetalert.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -47,8 +47,8 @@
     <![endif]-->
 
     <style type="text/css">
-        .error{
-            color:red
+        .error {
+            color: red
         }
     </style>
 </head>
@@ -94,7 +94,8 @@
                       method="get">
                     <div class="form-group">
                         <label for="userName">教师名称</label>
-                        <input type="text" class="form-control" id="userName" placeholder="教师名称" value="${vo.userName }" name="userName">
+                        <input type="text" class="form-control" id="userName" placeholder="教师名称" value="${vo.userName }"
+                               name="userName">
                     </div>
                     <div class="form-group">
                         <label for="professional_title">职称</label>
@@ -131,13 +132,11 @@
                     </a>
 
                     <a href="${pageContext.request.contextPath }/user/userExcel.action" class="btn btn btn-info"
-                       >下载
+                    >下载
                     </a>
                 </form>
             </div>
         </div>
-
-
 
 
         <div class="row">
@@ -154,51 +153,68 @@
                             <div class=" col-md-12">
                                 <div class="table-responsive">
 
-                                        <table width="100%" class="table table-striped table-bordered table-hover"
-                                               style="text-align: center;">
-                                            <thead>
-                                            <tr class="info">
-                                                <td>序号</td>
-                                                <td>姓名</td>
-                                                <td>电话</td>
-                                                <td>邮箱</td>
-                                                <td>职称</td>
-                                                <td>学院</td>
-                                                <td>编辑</td>
-                                                <td>删除</td>
+                                    <table width="100%" class="table table-striped table-bordered table-hover"
+                                           style="text-align: center;">
+                                        <thead>
+                                        <tr class="info">
+                                            <td>序号</td>
+                                            <td>姓名</td>
+                                            <td>电话</td>
+                                            <td>邮箱</td>
+                                            <td>职称</td>
+                                            <td>学院</td>
+                                            <td>颜色</td>
+                                            <td>状态</td>
+                                            <td>编辑</td>
+                                            <td>删除</td>
 
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <c:forEach items="${page.rows}" var="row" varStatus="vs">
+                                            <tr>
+                                                <td>${vs.count }</td>
+                                                <td>${row.user_name }</td>
+                                                <td>${row.user_phone}</td>
+                                                <td>${row.user_email}</td>
+                                                <td>${row.professional_title }</td>
+                                                <td>${row.college}</td>
+                                                <td>
+                                                    <div style="background-color:${row.user_color};height: 22px"></div>
+
+                                                </td>
+                                                <c:if test="${row.user_state == 1}">
+                                                    <td>
+                                                        <div style="color:#5CB85C"> 已激活</div>
+                                                    </td>
+                                                </c:if>
+                                                <c:if test="${row.user_state == 0}">
+                                                    <td>
+                                                        <div style="color:#D9534F"> 未激活</div>
+                                                    </td>
+                                                </c:if>
+
+                                                <td>
+                                                    <a href="#" class="btn btn-primary btn-xs" data-toggle="modal"
+                                                       data-target="#customerEditDialog"
+                                                       onclick="editUser(${row.user_id})">
+                                                        <i class="ace-icon fa fa-pencil"></i>
+                                                        修改
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="#" class="btn btn-danger btn-xs"
+                                                       onclick="deleteUser(${row.user_id})">
+                                                        <i class="ace-icon fa fa-trash-o"></i>
+                                                        删除
+                                                    </a>
+                                                </td>
                                             </tr>
-                                            </thead>
-                                            <tbody>
-                                            <c:forEach items="${page.rows}" var="row" varStatus="vs">
-                                                <tr>
-                                                    <td>${vs.count }</td>
-                                                    <td>${row.user_name }</td>
-                                                    <td>${row.user_phone}</td>
-                                                    <td>${row.user_email}</td>
-                                                    <td>${row.professional_title }</td>
-                                                    <td>${row.college}</td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-primary btn-xs" data-toggle="modal"
-                                                           data-target="#customerEditDialog"
-                                                           onclick="editUser(${row.user_id})">
-                                                            <i class="ace-icon fa fa-pencil"></i>
-                                                            修改
-                                                        </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-danger btn-xs"
-                                                           onclick="deleteUser(${row.user_id})">
-                                                            <i class="ace-icon fa fa-trash-o"></i>
-                                                            删除
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            </c:forEach>
-                                            </tbody>
-                                        </table>
+                                        </c:forEach>
+                                        </tbody>
+                                    </table>
                                     <div class="col-md-12 text-right">
-                                        <itcast:page url="${pageContext.request.contextPath }/user/list.action" />
+                                        <itcast:page url="${pageContext.request.contextPath }/user/list.action"/>
                                     </div>
 
                                 </div>
@@ -213,8 +229,6 @@
             </div>
             <!-- /.col-lg-12 -->
         </div>
-
-
 
 
         <%--用户编辑对话框--%>
@@ -269,6 +283,18 @@
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <label for="edit_userEmail" class="col-sm-2 control-label">颜色</label>
+                                <div id="cp5" class="input-group colorpicker-component col-sm-10"
+                                     title="Using input value"
+                                     style="padding-left: 15px ;padding-right: 15px">
+                                    <input type="text" class="form-control col-lg-5" name="user_color"
+                                           id="edit_userColor" value="rgb(89, 52, 235)"/>
+                                    <span class="input-group-addon"><i></i></span>
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label for="edit_userEmail" class="col-sm-2 control-label">邮箱</label>
                                 <div class="col-sm-10">
@@ -348,6 +374,19 @@
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <label for="add_userEmail" class="col-sm-2 control-label">颜色</label>
+                                <div id="cp6" class="input-group colorpicker-component col-sm-10"
+                                     data-color="#673AB7"
+                                     title="Using input value"
+                                     style="padding-left: 15px ;padding-right: 15px">
+                                    <input type="text" class="form-control col-lg-5" id="add_userColor"
+                                           name="user_color"/>
+                                    <span class="input-group-addon"><i></i></span>
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label for="edit_userEmail" class="col-sm-2 control-label">邮箱</label>
                                 <div class="col-sm-10">
@@ -390,8 +429,8 @@
                         </form>
                     </div>
                     <%--<div class="modal-footer">--%>
-                        <%--<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>--%>
-                        <%--<button type="button" class="btn btn-primary" type="submit">提交</button>--%>
+                    <%--<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>--%>
+                    <%--<button type="button" class="btn btn-primary" type="submit">提交</button>--%>
 
                     <%--</div>--%>
                 </div>
@@ -399,190 +438,222 @@
         </div>
     </div>
 
-        <!-- jQuery -->
-        <script src="<%=basePath%>jquery/jquery.min.js"></script>
+    <!-- jQuery -->
+    <script src="<%=basePath%>jquery/jquery.min.js"></script>
+    <script src="<%=basePath%>bootstrap/js/bootstrap-colorpicker.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<%=basePath%>bootstrap/js/bootstrap.min.js"></script>
 
-        <!-- Bootstrap Core JavaScript -->
-        <script src="<%=basePath%>bootstrap/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="<%=basePath%>metisMenu/metisMenu.min.js"></script>
 
-        <!-- Metis Menu Plugin JavaScript -->
-        <script src="<%=basePath%>metisMenu/metisMenu.min.js"></script>
-
-        <script src="<%=basePath%>morrisjs/morris.min.js"></script>
-
-
-        <script src="<%=basePath%>sweetalert/sweetalert.min.js"></script>
+    <script src="<%=basePath%>morrisjs/morris.min.js"></script>
 
 
-        <!-- Custom Theme JavaScript -->
-        <script src="<%=basePath%>dist/js/sb-admin-2.js"></script>
-
-        <script src="<%=basePath%>jquery/jquery.validate.min.js"></script>
+    <script src="<%=basePath%>sweetalert/sweetalert.min.js"></script>
 
 
-        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-        <script>
-            // $(document).ready(function () {
-            //     $('#dataTables-example').DataTable({
-            //         responsive: true
-            //     });
-            // });
+    <!-- Custom Theme JavaScript -->
+    <script src="<%=basePath%>dist/js/sb-admin-2.js"></script>
 
-            $("#add_User_form").validate({
-                rules:{
+    <script src="<%=basePath%>jquery/jquery.validate.min.js"></script>
 
-                    "user_name":{
-                        "required":true,
-                    },
-                    "user_phone":{
-                        "required":true,
-                        "rangelength":[11,11]
-                    },
-                    "user_password":{
-                        "required":true,
-                        "rangelength":[6,12]
-                    },
-                    "user_repassword":{
-                        "required":true,
-                        "rangelength":[6,12],
-                        "equalTo":"#user_password"
-                    },
-                    "user_email":{
-                        "required":true,
-                        "email":true
-                    },
-                    "professional_title":{
-                        "required":true,
-                    },
-                    "college":{
-                        "required":true,
+
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+        // $(document).ready(function () {
+        //     $('#dataTables-example').DataTable({
+        //         responsive: true
+        //     });
+        // });
+
+        $("#add_User_form").validate({
+            rules: {
+
+                "user_name": {
+                    "required": true,
+                },
+                "user_phone": {
+                    "required": true,
+                    "rangelength": [11, 11]
+                },
+                "user_password": {
+                    "required": true,
+                    "rangelength": [6, 12]
+                },
+                "user_repassword": {
+                    "required": true,
+                    "rangelength": [6, 12],
+                    "equalTo": "#user_password"
+                },
+                "user_email": {
+                    "required": true,
+                    "email": true
+                },
+                "professional_title": {
+                    "required": true,
+                },
+                "college": {
+                    "required": true,
+                }
+            },
+            messages: {
+
+                "user_name": {
+                    "required": "*姓名不能为空",
+                },
+                "user_phone": {
+                    "required": "*电话不能为空",
+                    "rangelength": "*电话号码格式不正确"
+                },
+                "password": {
+                    "required": "*密码不能为空",
+                    "rangelength": "*密码长度6-12位"
+                },
+                "repassword": {
+                    "required": "*密码不能为空",
+                    "rangelength": "*密码长度6-12位",
+                    "equalTo": "*两次密码不一致"
+                },
+                "user_email": {
+                    "required": "*邮箱不能为空",
+                    "email": "*邮箱格式不正确"
+                },
+                "professional_title": {
+                    "required": "*职称不能为空",
+                },
+                "college": {
+                    "required": "*学院不能为空",
+                }
+            },
+
+            submitHandler: function (form) {  //表单提交后要执行的内容
+                $.post("<%=basePath%>user/add.action", $("#add_User_form").serialize(), function (data) {
+                    if (data.status == 200) {
+                        swal({title:"提示",text:"用户添加成功", type:"success"}, function () {
+                            window.location.reload();
+                        });
+
                     }
-                },
-                messages:{
+                    if (data.status == 400) {
+                        swal("用户添加失败！", data.msg, "warning");
 
-                    "user_name":{
-                        "required":"*姓名不能为空",
-                    },
-                    "user_phone":{
-                        "required":"*电话不能为空",
-                        "rangelength":"*电话号码格式不正确"
-                    },
-                    "password":{
-                        "required":"*密码不能为空",
-                        "rangelength":"*密码长度6-12位"
-                    },
-                    "repassword":{
-                        "required":"*密码不能为空",
-                        "rangelength":"*密码长度6-12位",
-                        "equalTo":"*两次密码不一致"
-                    },
-                    "user_email":{
-                        "required":"*邮箱不能为空",
-                        "email":"*邮箱格式不正确"
-                    },
-                    "professional_title":{
-                        "required":"*职称不能为空",
-                    },
-                    "college":{
-                        "required":"*学院不能为空",
                     }
-                },
+                    if (data.status == 555) {
+                        swal("提示",data.msg, "warning");
 
-                submitHandler:function(form){  //表单提交后要执行的内容
-                    $.post("<%=basePath%>user/add.action",$("#add_User_form").serialize(),function(data){
-                        if (data.status == 200){
-                            alert("用户添加成功！");
-                        } else{
-                            alert("用户添加失败:"+data.msg);
-                        }
-                        window.location.reload();
-                        <%--window.location = "<%=basePath%>user/list.action"--%>
-                    });
-                },
-                invalidHandler: function(form, validator) {  //不通过回调
-                    return false;
+                    }
+                    if (data.status == 666) {
+                        swal("提示",data.msg, "warning");
+
+                    }
+                    if (data.status == 777) {
+                        swal("提示",data.msg, "warning");
+
+                    }
+                    // window.location.reload();
+                    <%--window.location = "<%=basePath%>user/list.action"--%>
+                });
+            },
+            invalidHandler: function (form, validator) {  //不通过回调
+                return false;
+            }
+        });
+
+
+        function editUser(id) {
+            $.ajax({
+                type: "get",
+                url: "<%=basePath%>user/edit.action",
+                data: {"id": id},
+                success: function (data) {
+                    $("#edit_userId").val(data.user_id);
+                    $("#edit_userName").val(data.user_name);
+                    $("#edit_userCollege").val(data.college)
+                    $("#edit_userEmail").val(data.user_email)
+                    $("#edit_userPhone").val(data.user_phone)
+                    $("#edit_userColor").val(data.user_color)
+
+                    $("#edit_professionalTitle").val(data.professional_title)
+
                 }
             });
+        }
 
-
-            function editUser(id) {
-                $.ajax({
-                    type:"get",
-                    url:"<%=basePath%>user/edit.action",
-                    data:{"id":id},
-                    success:function(data) {
-                        $("#edit_userId").val(data.user_id);
-                        $("#edit_userName").val(data.user_name);
-                        $("#edit_userCollege").val(data.college)
-                        $("#edit_userEmail").val(data.user_email)
-                        $("#edit_userPhone").val(data.user_phone)
-                        $("#edit_professionalTitle").val(data.professional_title)
-
-                    }
-                });
-            }
-
-            function updateUser() {
-                $.post("<%=basePath%>user/update.action",$("#edit_User_form").serialize(),function(data){
-                    if (data == "0"){
-                        alert("客户更新成功！");
-                    } else{
-                        alert("客户更新失败！");
-                    }
-                    window.location.reload();
-                });
-            }
-
-            function deleteUser(id) {
-                if(confirm('确实要删除该用户吗?')) {
-                    $.post("<%=basePath%>user/delete.action",{"id":id},function(data){
-                        if (data == "0"){
-                            alert("用户删除成功！");
-                        } else{
-                            alert("用户删除失败！");
-                        }
-                        window.location.reload();
-                    });
+        function updateUser() {
+            $.post("<%=basePath%>user/update.action", $("#edit_User_form").serialize(), function (data) {
+                if (data == "0") {
+                    alert("客户更新成功！");
+                } else {
+                    alert("客户更新失败！");
                 }
-            }
+                window.location.reload();
+            });
+        }
 
-
-
-
-            <%--function deleteUser(userId) {--%>
-                <%--swal(--%>
-                    <%--{--%>
-                        <%--title: "确定删除吗？",--%>
-                        <%--text: "你将无法恢复该用户！",--%>
-                        <%--type: "warning",--%>
-                        <%--showCancelButton: true,--%>
-                        <%--confirmButtonColor: "#DD6B55",--%>
-                        <%--confirmButtonText: "是的，我要删除！",--%>
-                        <%--cancelButtonText: "让我再考虑一下…",--%>
-                        <%--closeOnConfirm: false,--%>
-                        <%--closeOnCancel: false--%>
-                    <%--},--%>
-                    <%--function (isConfirm) {--%>
-                        <%--if (isConfirm) {--%>
-                            <%--swal({--%>
-                                <%--title: "删除成功！",--%>
-                                <%--text: "你成功删除了这个用户。",--%>
-                                <%--type: "success"--%>
-                            <%--}, function () {--%>
-                                <%--window.location = "${pageContext.request.contextPath}/delUser?uid=" + uid--%>
-                            <%--})--%>
-                        <%--}--%>
-                        <%--else {--%>
-                            <%--swal({--%>
-                                <%--title: "已取消",--%>
-                                <%--text: "用户是安全的！",--%>
-                                <%--type: "error"--%>
-                            <%--})--%>
-                        <%--}--%>
+        <%--function deleteUser(id) {--%>
+            <%--if (confirm('确实要删除该用户吗?')) {--%>
+                <%--$.post("<%=basePath%>user/delete.action", {"id": id}, function (data) {--%>
+                    <%--if (data == "0") {--%>
+                        <%--alert("用户删除成功！");--%>
+                    <%--} else {--%>
+                        <%--alert("用户删除失败！");--%>
                     <%--}--%>
-                <%--)--%>
+                    <%--window.location.reload();--%>
+                <%--});--%>
             <%--}--%>
-        </script>
+        <%--}--%>
+
+
+        function deleteUser(id) {
+            swal({
+                    title: "确定删除吗？",
+                    text: "这位用户很重要的！",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "确定删除！",
+                    cancelButtonText: "取消删除！",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                function(isConfirm){
+                    if (isConfirm) {
+                        $.post("<%=basePath%>user/delete.action", {"id": id}, function (data) {
+                            if (data == "0") {
+                                swal({title:"删除！", text:"你的虚拟文件已经被删除。", type:"success"},
+                                    function () {
+                                        window.location.reload();
+                                    });
+
+
+                            } else {
+                                swal("删除！", "你的虚拟删除失败。", "error");
+                            }
+                        });
+
+                    } else {
+                        swal("取消！", "你的虚拟文件是安全的:)",
+                            "error");
+                    }
+
+
+                });
+
+        }
+
+
+        $(function () {
+            $('#mycp').colorpicker();
+        });
+        $(function () {
+
+            $('#cp5,#cp6').colorpicker({
+                format: "rgba"
+            });
+
+        });
+    </script>
 
 </body>
 

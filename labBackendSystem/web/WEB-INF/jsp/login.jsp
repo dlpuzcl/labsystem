@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <title>用户登录</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <meta name="Keywords" content="网站关键词">
+
     <meta name="Description" content="网站介绍">
     <link rel="stylesheet" href="<%=basePath%>./css/base.css">
     <link rel="stylesheet" href="<%=basePath%>./css/iconfont.css">
@@ -45,7 +45,7 @@
                     <p class="p-input pos code">
                         <label for="veri">请输入验证码</label>
                         <input type="text" id="veri">
-                        <img src="/getpatchcaImage.action" id="img1">
+                        <img src="<%=basePath%>getpatchcaImage.action" id="img1">
                         <%--<span class="tel-warn img-err hide"><em>验证码错误，请重新输入</em><i class="icon-warn"></i></span>--%>
                         <!-- <a href="javascript:;">换一换</a> -->
                     </p>
@@ -76,7 +76,7 @@
                     <p class="p-input pos code ">
                         <label for="veri2">请输入验证码</label>
                         <input type="text" id="veri2">
-                        <img src="/getpatchcaImage.action" id="img2">
+                        <img src="<%=basePath%>getpatchcaImage.action" id="img2">
                         <span class="tel-warn img-err hide"><em>账号或密码错误，请重新输入</em><i class="icon-warn"></i></span>
                         <!-- <a href="javascript:;">换一换</a> -->
                     </p>
@@ -151,9 +151,10 @@
 
 
 
-                        if (data == "0") {
+                        if (data.status == 200) {
                             window.location = "<%=basePath%>front/apply.action"
-                        } else if (data == "1") {
+                        }
+                        if (data == 300) {
                             $(".message").addClass("on");
 
                             $('.pass-err').removeClass('hide').find('em').text(data.msg);
@@ -164,6 +165,9 @@
                             $('.code').removeClass('hide');
                             var a = "<%=basePath%>getpatchcaImage.action"
                             $("#img1").attr("src", a);
+                        }
+                        if(data.status==400){
+                            alert(data.msg);
                         }
 
                     });
@@ -182,14 +186,6 @@
             }
         });
 
-
-
-
-
-
-
-
-
     }
 
     function Btn2() {
@@ -202,13 +198,14 @@
             dataType:"text",
             data:'code='+code,
             success:function(data){
-                if(data=="true"){
+                if(data == "true"){
 
                     $.post("<%=basePath%>login/admini.action", $("#form2").serialize(), function (data) {
 
-                        if (data == "0") {
+                        if (data ==0 ) {
                             window.location = "<%=basePath%>admini/first.action"
-                        } else if (data == "1") {
+                        }
+                        else{
 
                             $(".message").addClass("on");
                             $(".account_number").removeClass("on");
@@ -219,6 +216,8 @@
                             $('.num-err').removeClass('hide').find('em').text(data.msg);
                             $('.num-err').find('i').attr('class', 'icon-warn').css("color", "#d9585b");
                             $('.code').removeClass('hide');
+                            var a = "<%=basePath%>getpatchcaImage.action"
+                            $("#img2").attr("src", a);
                         }
                     });
 

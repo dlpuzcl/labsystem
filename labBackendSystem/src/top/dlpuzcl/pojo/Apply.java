@@ -16,6 +16,15 @@ public class Apply {
     private String course_class;
     private String years;
     private int iterm;
+    private String user_color;
+
+    public String getUser_color() {
+        return user_color;
+    }
+
+    public void setUser_color(String user_color) {
+        this.user_color = user_color;
+    }
 
     public String getYears() {
         return years;

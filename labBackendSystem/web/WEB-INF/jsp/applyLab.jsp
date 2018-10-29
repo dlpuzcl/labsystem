@@ -238,15 +238,6 @@
                                             <td scope="row">第5节
                                             </td>
                                             <td id="table_1_5">
-                                                <%--<div class="inpit" type='inpit/assembly' formname="ack_two">--%>
-                                                <%--<div class="li " radio>--%>
-                                                <%--<div name="two-a" value="a-1">--%>
-                                                <%--<h2>A1</h2>--%>
-                                                <%--<p>A1</p>--%>
-                                                <%--</div>--%>
-                                                <%--</div>--%>
-
-                                                <%--</div>--%>
                                             </td>
                                             <td id="table_2_5"></td>
                                             <td id="table_3_5">

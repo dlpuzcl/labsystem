@@ -40,12 +40,7 @@
 
     <link rel="<%=basePath%>stylesheet" type="text/css" href="sweetalert/sweetalert.css">
 
-    <!-- HTML5Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+
     <script type="text/javascript">
 
     </script>
@@ -398,33 +393,38 @@
         //
 
 
-        <%--function delLab(lid){  --%>
-        <%--swal(  --%>
-        <%--{title:"确定删除吗？",  --%>
-        <%--text:"你将无法恢复该课程！",  --%>
-        <%--type:"warning",  --%>
-        <%--showCancelButton:true,  --%>
-        <%--confirmButtonColor:"#DD6B55",  --%>
-        <%--confirmButtonText:"是的，我要删除！",  --%>
-        <%--cancelButtonText:"让我再考虑一下…",  --%>
-        <%--closeOnConfirm:false,  --%>
-        <%--closeOnCancel:false  --%>
-        <%--},  --%>
-        <%--function(isConfirm)  --%>
-        <%--{  --%>
-        <%--if(isConfirm)  --%>
-        <%--{  --%>
-        <%--swal({title:"删除成功！",  --%>
-        <%--text:"你成功删除了这条门课程。",  --%>
-        <%--type:"success"},function(){window.location="${pageContext.request.contextPath}/delLab?lid="+lid})  --%>
-        <%--}  --%>
-        <%--else{  --%>
-        <%--swal({title:"已取消",  --%>
-        <%--text:"这门课程是安全的！",  --%>
-        <%--type:"error"})  --%>
-        <%--}  --%>
-        <%--}  --%>
-        <%--)  --%>
+        <%--function delLab(lid) {--%>
+            <%--swal(--%>
+                <%--{--%>
+                    <%--title: "确定删除吗？",--%>
+                    <%--text: "你将无法恢复该课程！",--%>
+                    <%--type: "warning",--%>
+                    <%--showCancelButton: true,--%>
+                    <%--confirmButtonColor: "#DD6B55",--%>
+                    <%--confirmButtonText: "是的，我要删除！",--%>
+                    <%--cancelButtonText: "让我再考虑一下…",--%>
+                    <%--closeOnConfirm: false,--%>
+                    <%--closeOnCancel: false--%>
+                <%--},--%>
+                <%--function (isConfirm) {--%>
+                    <%--if (isConfirm) {--%>
+                        <%--swal({--%>
+                            <%--title: "删除成功！",--%>
+                            <%--text: "你成功删除了这条门课程。",--%>
+                            <%--type: "success"--%>
+                        <%--}, function () {--%>
+                            <%--window.location = "${pageContext.request.contextPath}/delLab?lid=" + lid--%>
+                        <%--})--%>
+                    <%--}--%>
+                    <%--else {--%>
+                        <%--swal({--%>
+                            <%--title: "已取消",--%>
+                            <%--text: "这门课程是安全的！",--%>
+                            <%--type: "error"--%>
+                        <%--})--%>
+                    <%--}--%>
+                <%--}--%>
+            <%--)--%>
         <%--} --%>
 
         function editLab(id) {

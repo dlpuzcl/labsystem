@@ -63,7 +63,6 @@
             <!-- 配置不拦截请求的地址 -->
             <mvc:exclude-mapping path="/front/courseTable.action"/>
             <mvc:exclude-mapping path="/front/query.action"/>
-
             <bean class="top.dlpuzcl.interceptor.UserLoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>

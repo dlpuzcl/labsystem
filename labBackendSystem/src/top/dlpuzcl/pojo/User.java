@@ -8,7 +8,33 @@ public class User {
     private String professional_title;
     private String college;
     private String user_password;
+    private int user_mark;
+    private int user_state;
+    private String user_color;
 
+    public String getUser_color() {
+        return user_color;
+    }
+
+    public void setUser_color(String user_color) {
+        this.user_color = user_color;
+    }
+
+    public int getUser_mark() {
+        return user_mark;
+    }
+
+    public void setUser_mark(int user_mark) {
+        this.user_mark = user_mark;
+    }
+
+    public int getUser_state() {
+        return user_state;
+    }
+
+    public void setUser_state(int user_state) {
+        this.user_state = user_state;
+    }
 
     public String getUser_password() {
         return user_password;
