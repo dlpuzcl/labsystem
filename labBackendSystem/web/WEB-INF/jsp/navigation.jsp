@@ -236,7 +236,8 @@
                         class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li><a href="${pageContext.request.contextPath }/apply/queryApplyByLab.action">查询课表</a></li>
-                        <li><a href="${pageContext.request.contextPath }/apply/queryApplyByUser.action">所有预约</a></li>
+                        <li><a href="${pageContext.request.contextPath }/apply/queryApplyByUser.action">预约管理</a></li>
+                        <li><a href="${pageContext.request.contextPath }/apply/queryByWeekView.action">所有预约</a></li>
                     </ul>
                 </li>
 

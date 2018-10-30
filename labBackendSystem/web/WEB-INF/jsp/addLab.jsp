@@ -231,12 +231,15 @@
             submitHandler:function(form){  //表单提交后要执行的内容
                 $.post("<%=basePath%>lab/add.action",$("#add_Lab_form").serialize(),function(data){
                     if (data.status == 200){
-                        alert("实验室添加成功！");
-                        window.location = "<%=basePath%>lab/list.action"
+
+                        swal({title:"提示",text:"实验室添加成功", type:"success"}, function () {
+                            window.location = "<%=basePath%>lab/list.action";
+                        });
 
                     } else{
-                        alert("实验室添加失败:"+data.msg);
-                        window.location.reload();
+                        swal({title:"提示",text:"实验室添失败", type:"error"}, function () {
+                            window.location.reload();
+                        });
                     }
 
                 });

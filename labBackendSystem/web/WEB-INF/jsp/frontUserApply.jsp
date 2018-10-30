@@ -49,7 +49,7 @@
     </style>
 </head>
 
-<body onload="getApply() ">
+<body>
 
 <div id="wrapper">
 
@@ -299,36 +299,83 @@
 
 
     function deleteApply(id) {
-        if (confirm('确定要删除吗?')) {
-            $.post("<%=basePath%>front/delete.action", {"id": id}, function (data) {
-                if (data == "0") {
-                    alert("删除成功！");
+
+        swal({
+                title: "确定删除吗？",
+                text: "很重要的！",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "确定删除！",
+                cancelButtonText: "取消删除！",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+            function (isConfirm) {
+                if (isConfirm) {
+                    $.post("<%=basePath%>front/delete.action", {"id": id}, function (data) {
+                        if (data == "0") {
+                            swal({title: "删除！", text: "申请已经被删除。", type: "success"},
+                                function () {
+                                    window.location.reload();
+                                });
+
+
+                        } else {
+                            swal("删除！", "申请删除失败", "error");
+                        }
+                    });
+
                 } else {
-                    alert("删除失败！");
+                    swal("取消！", "安全",
+                        "error");
                 }
-                window.location.reload();
+
+
             });
-        }
+
     }
 
 
     function deleteAll() {
 
-        // alert($("#form1").serialize());
-        if (confirm('确定要删除吗?')) {
-            $.post("<%=basePath%>front/deleteAll.action", $("#form1").serialize(), function (data) {
-                if (data == "0") {
-                    // alert("删除成功！");
-                    $("#h5").html("<h5>删除成功！<h5>");
-                    $("#alertSource").modal("show");
+
+
+
+        swal({
+                title: "确定删除吗？",
+                text: "很重要的！",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "确定删除！",
+                cancelButtonText: "取消删除！",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+            function (isConfirm) {
+                if (isConfirm) {
+                    $.post("<%=basePath%>front/deleteAll.action", $("#form1").serialize(), function (data) {
+                        if (data == "0") {
+                            swal({title: "删除！", text: "申请已经被删除。", type: "success"},
+                                function () {
+                                    window.location.reload();
+                                });
+
+
+                        } else {
+                            swal("删除！", "申请删除失败", "error");
+                        }
+                    });
+
                 } else {
-                    // alert("删除失败！");
-                    $("#h5").html("<h5>删除失败！<h5>");
-                    $("#alertSource").modal("show");
+                    swal("取消！", "安全",
+                        "error");
                 }
-                window.location.reload();
+
+
             });
-        }
+
     }
 
 

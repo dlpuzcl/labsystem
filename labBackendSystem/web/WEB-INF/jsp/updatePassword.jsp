@@ -409,11 +409,14 @@
         submitHandler: function (form) {  //表单提交后要执行的内容
             $.post("<%=basePath%>admini/updatePassword.action", $("#add_admini_form").serialize(), function (data) {
                 if (data == "0") {
-                    alert("密码更新成功！");
+                    swal({title: "提示", text: "密码更新成功", type: "success"}, function () {
+
+                    });
 
                 } else {
-                    alert("密码更新失败");
-                    window.location.reload();
+                    swal({title: "提示", text: data.msg, type: "error"}, function () {
+                        window.location.reload();
+                    });
                 }
 
             });

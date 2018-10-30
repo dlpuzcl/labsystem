@@ -38,6 +38,8 @@
 
 
     <link rel="<%=basePath%>stylesheet" type="text/css" href="sweetalert/sweetalert.css">
+
+    <link rel="stylesheet" type="text/css" href="<%=basePath%>sweetalert/sweetalert.css">
     <style type="text/css">
         .error {
             color: red
@@ -353,6 +355,8 @@
 <!-- 引入表单校验jquery插件 -->
 <script src="<%=basePath%>jquery/jquery.validate.min.js"></script>
 
+<script src="<%=basePath%>sweetalert/sweetalert.min.js"></script>
+
 
 <script>
 
@@ -462,25 +466,26 @@
         submitHandler: function (form) {  //表单提交后要执行的内容
             $.post("<%=basePath%>user/add.action", $("#add_User_form").serialize(), function (data) {
                 if (data.status == 200) {
-                    alert("用户添加成功！");
-                    window.location = "<%=basePath%>user/list.action"
+                    swal({title:"提示",text:"用户添加成功", type:"success"}, function () {
+                        window.location.reload();
+                    });
 
                 }
                 if (data.status == 400) {
-                    alert("管理员添加失败:" + data.msg);
-                    window.location.reload();
+                    swal("用户添加失败！", data.msg, "error");
+
                 }
                 if (data.status == 555) {
-                    alert(data.msg);
-                    window.location.reload();
+                    swal("提示",data.msg, "error");
+
                 }
                 if (data.status == 666) {
-                    alert(data.msg);
-                    window.location.reload();
+                    swal("提示",data.msg, "error");
+
                 }
                 if (data.status == 777) {
-                    alert(data.msg);
-                    window.location.reload();
+                    swal("提示",data.msg, "error");
+
                 }
 
             });
@@ -528,13 +533,12 @@
         submitHandler: function (form) {  //表单提交后要执行的内容
             $.post("<%=basePath%>admini/add.action", $("#add_admini_form").serialize(), function (data) {
                 if (data.status == 200) {
-                    alert("管理员添加成功！");
-                    <%--window.location = "<%=basePath%>user/list.action"--%>
-                    window.location.reload();
+                    swal({title:"提示",text:"用户添加成功", type:"success"}, function () {
+                        window.location.reload();
+                    });
                 }
                 if (data.status == 400) {
-                    alert("管理员添加失败:" + data.msg);
-                    window.location.reload();
+                    swal("用户添加失败！", data.msg, "error");
                 }
 
             });

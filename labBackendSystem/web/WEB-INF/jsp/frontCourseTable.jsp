@@ -144,7 +144,7 @@
                                 <div class="table-responsive">
                                     <form id="form1">
 
-                                        <table width="100%" class="table table-bordered "
+                                        <table width="100%" class="table "
                                                style="text-align: center;">
                                             <thead >
                                             <tr class="info">
@@ -359,26 +359,27 @@
 
     function getApply() {
 
-
-
         $.ajax({
-            type:"get",
-            url:"<%=basePath%>front/query.action",
-            data:$('#queryApply').serialize(),
-            success:function(data) {
+            type: "get",
+            url: "<%=basePath%>front/query.action",
+            data: $('#queryApply').serialize(),
+            success: function (data) {
                 //清空课程表
-                for(var i=1;i<13;i++){
-                    for(var j=1;j<8;j++){
+                for (var i = 1; i < 13; i++) {
+                    for (var j = 1; j < 8; j++) {
 
-                        $("#table_"+j+"_"+i).html("");
+                        // var a =  "<div style='background-color: #E7EAED;padding: 8px 8px; color: #FFFFFF;border-radius:8px' ><br><br><br></div>"
+
+                        $("#table_" + j + "_" + i).html("");
                     }
                 }
                 //遍历课程表
-                for (var i=0;i<data.length;i++) {
-                    $("#table_"+data[i].apply_day+"_"+data[i].apply_section).html(data[i].course_name+"<br>"+data[i].course_class+"<br>"+data[i].user_name);
+                for (var i = 0; i < data.length; i++) {
+                    $("#table_" + data[i].apply_day + "_" + data[i].apply_section).html("<div style='background-color: " + data[i].user_color + ";padding: 8px 8px;color: #FFFFFF;border-radius:8px' >"+data[i].course_name + "<br>" + data[i].course_class + "<br>" + data[i].user_name+"</div>");
                 }
             }
         });
+
     }
 
 

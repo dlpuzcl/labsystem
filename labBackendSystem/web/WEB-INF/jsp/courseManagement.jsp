@@ -122,8 +122,6 @@
         </div>
 
 
-
-
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
@@ -434,11 +432,14 @@
         function updateCourse() {
             $.post("<%=basePath%>course/update.action", $("#edit_course_form").serialize(), function (data) {
                 if (data == "0") {
-                    alert("课程更新成功！");
+                    swal({title: "提示", text: "课程更新成功", type: "success"}, function () {
+                        window.location.reload();
+                    });
                 } else {
-                    alert("课程更新失败！");
+                    swal({title: "提示", text: "课程更新失败", type: "error"}, function () {
+                        // window.location.reload();
+                    });
                 }
-                window.location.reload();
             });
         }
 
@@ -455,13 +456,13 @@
                 "user_id": {
                     "required": true,
                 },
-                "course_time":{
+                "course_time": {
 
                     "required": true,
-                    "number":true
+                    "number": true
                 },
-                "course_nature":{
-                    "required":true,
+                "course_nature": {
+                    "required": true,
                 }
 
             },
@@ -476,24 +477,25 @@
                 "user_id": {
                     "required": "*任课教师不能为空",
                 },
-                "course_time":{
+                "course_time": {
                     "required": "*学时不能为空",
                     "number": "*学时只能为数字"
                 },
-                "course_nature":{
-                    "required":"*课程性质不能为空",
+                "course_nature": {
+                    "required": "*课程性质不能为空",
                 }
             },
 
             submitHandler: function (form) {  //表单提交后要执行的内容
                 $.post("<%=basePath%>course/add.action", $("#add_course_form").serialize(), function (data) {
                     if (data == "0") {
-                        alert("课程添加成功！");
-                        <%--window.location = "<%=basePath%>lab/list.action"--%>
-                        window.location.reload();
+                        swal({title: "提示", text: "课程添加成功", type: "success"}, function () {
+                            window.location.reload();
+                        });
                     } else {
-                        alert("课程添加失败:");
-                        window.location.reload();
+                        swal({title: "提示", text: "课程添加失败", type: "error"}, function () {
+                            // window.location.reload();
+                        });
                     }
 
                 });
@@ -505,16 +507,42 @@
 
 
         function deleteCourse(id) {
-            if (confirm('确实要删除该实验室吗?')) {
-                $.post("<%=basePath%>course/delete.action", {"id": id}, function (data) {
-                    if (data == "0") {
-                        alert("实验室删除成功！");
+
+            swal({
+                    title: "确定删除吗？",
+                    text: "课程很重要的！",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "确定删除！",
+                    cancelButtonText: "取消删除！",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        $.post("<%=basePath%>course/delete.action", {"id": id}, function (data) {
+                            if (data == "0") {
+                                swal({title: "删除！", text: "课程已经被删除。", type: "success"},
+                                    function () {
+                                        window.location.reload();
+                                    });
+
+
+                            } else {
+                                swal("删除！", "课程删除失败。", "error");
+                            }
+                        });
+
                     } else {
-                        alert("实验室删除失败！");
+                        swal("取消！", "课程是安全的)",
+                            "error");
                     }
-                    window.location.reload();
+
+
                 });
-            }
+
+
         }
 
     </script>

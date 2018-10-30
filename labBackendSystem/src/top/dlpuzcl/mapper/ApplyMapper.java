@@ -64,5 +64,7 @@ public interface ApplyMapper {
 
    Integer queryApplyByItermYear (Apply apply);
 
+    List<Apply> querySelectApply(Apply apply);
+
 
 }

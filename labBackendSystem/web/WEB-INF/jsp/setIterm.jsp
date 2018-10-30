@@ -217,12 +217,16 @@
         submitHandler: function (form) {  //表单提交后要执行的内容
             $.post("<%=basePath%>apply/setIterm.action", $("#set_iterm_form").serialize(), function (data) {
                 if (data.status == 200) {
-                    alert("设置成功！");
-                    window.location = "<%=basePath%>apply/setItermView.action"
+                    swal({title: "提示", text: "学期设置成功", type: "success"}, function () {
+                        window.location = "<%=basePath%>apply/setItermView.action"
+
+                    });
 
                 } else {
-                    alert(data.msg);
-                    window.location.reload();
+                    swal({title: "提示", text: data.msg, type: "error"}, function () {
+                        // window.location.reload();
+                    });
+
                 }
 
             });

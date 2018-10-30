@@ -40,6 +40,7 @@
     <link rel="stylesheet" type="text/css" href="<%=basePath%>sweetalert/sweetalert.css">
 
 
+
     <!-- HTML5Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -63,7 +64,7 @@
             width: 50px;
             height: 20px;
             border: solid 0px red;
-            padding: 0px 6px;
+            padding: 0px 10px;
         }
 
 
@@ -295,7 +296,7 @@
                                             <td id="table_7_9"></td>
                                         </tr>
                                         <tr style="height: 80px">
-                                            <td scope="row">第10节d
+                                            <td scope="row">第10节
                                             </td>
                                             <td id="table_1_10"></td>
                                             <td id="table_2_10"></td>
@@ -579,14 +580,15 @@
                     // $("#homeworkContent").html(mydata); //显示后端传递的结果
                     if (data == "0") {
                         // alert("预约成功！");
-                        $("#h5").html("<h5>预约成功！<h5>");
-                        $("#alertSource").modal("show");//显示“正在查询”字样的模态框
+                        swal({title:"提示",text:"预约成功", type:"success"}, function () {
+
+                        });
 
                     } else {
                         // alert("预约失败！");
-                        $("#h5").html("<h5>预约失败！<h5>");
-                        $("#alertSource").modal("show");
+                        swal({title:"提示",text:"预约失败", type:"error"}, function () {
 
+                        });
                     }
                     getApply();
                 });

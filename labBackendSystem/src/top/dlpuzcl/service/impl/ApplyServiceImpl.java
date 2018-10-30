@@ -317,6 +317,16 @@ public class ApplyServiceImpl implements ApplyService {
 
     }
 
+    @Override
+    public List<Apply> querySelectApply(Apply apply) {
+        ItermYear itermYear = applyMapper.queryItermYear();
+
+        //设置学期
+        apply.setIterm(itermYear.getIterm());
+        apply.setYears(itermYear.getYears());
+        return applyMapper.querySelectApply(apply);
+    }
+
 
     /**
      * 查询当前学期

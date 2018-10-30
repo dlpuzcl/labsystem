@@ -15,6 +15,19 @@
           and a.iterm = #{iterm}
     </select>
 
+
+    <select id="querySelectApply" resultType="apply" parameterType="apply">
+        select u.user_name,u.user_color,a.apply_day,a.apply_section,a.apply_week,c.course_name,c.course_class
+        from user u,lab_room l,apply a,course c
+        WHERE u.user_id=a.user_id
+          and l.room_id=a.room_id
+          and c.course_id = a.course_id
+          and a.room_id = #{room_id}
+          and a.years = #{years}
+          and a.iterm = #{iterm}
+    </select>
+
+
     <insert id="addApply" parameterType="apply" >
         insert into apply
         (apply_week,apply_day,apply_section,room_id,user_id,course_id,years,iterm)

@@ -536,19 +536,19 @@
 
                     }
                     if (data.status == 400) {
-                        swal("用户添加失败！", data.msg, "warning");
+                        swal("用户添加失败！", data.msg, "error");
 
                     }
                     if (data.status == 555) {
-                        swal("提示",data.msg, "warning");
+                        swal("提示",data.msg, "error");
 
                     }
                     if (data.status == 666) {
-                        swal("提示",data.msg, "warning");
+                        swal("提示",data.msg, "error");
 
                     }
                     if (data.status == 777) {
-                        swal("提示",data.msg, "warning");
+                        swal("提示",data.msg, "error");
 
                     }
                     // window.location.reload();
@@ -583,11 +583,12 @@
         function updateUser() {
             $.post("<%=basePath%>user/update.action", $("#edit_User_form").serialize(), function (data) {
                 if (data == "0") {
-                    alert("客户更新成功！");
+                    swal({title:"提示",text:"用户更新成功", type:"success"}, function () {
+                        window.location.reload();
+                    });
                 } else {
                     alert("客户更新失败！");
                 }
-                window.location.reload();
             });
         }
 
@@ -621,19 +622,19 @@
                     if (isConfirm) {
                         $.post("<%=basePath%>user/delete.action", {"id": id}, function (data) {
                             if (data == "0") {
-                                swal({title:"删除！", text:"你的虚拟文件已经被删除。", type:"success"},
+                                swal({title:"删除！", text:"用户已经被删除。", type:"success"},
                                     function () {
                                         window.location.reload();
                                     });
 
 
                             } else {
-                                swal("删除！", "你的虚拟删除失败。", "error");
+                                swal("删除！", "用户删除失败。", "error");
                             }
                         });
 
                     } else {
-                        swal("取消！", "你的虚拟文件是安全的:)",
+                        swal("取消！", "用户是安全的:)",
                             "error");
                     }
 

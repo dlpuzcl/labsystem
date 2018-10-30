@@ -1,24 +1,18 @@
 package top.dlpuzcl.controller;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.dlpuzcl.pojo.*;
-import top.dlpuzcl.service.*;
-import top.dlpuzcl.utils.ExcelBeanUtil;
-import top.dlpuzcl.utils.ExcelUtil;
+import top.dlpuzcl.service.ApplyService;
+import top.dlpuzcl.service.CourseService;
+import top.dlpuzcl.service.LabService;
+import top.dlpuzcl.service.UserService;
 import top.dlpuzcl.utils.Page;
-import top.dlpuzcl.utils.WebUtil;
 
-import javax.jws.WebParam;
-import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("apply")
@@ -98,6 +92,30 @@ public class ApplyController {
 
         return applyList;
     }
+
+
+    @RequestMapping("queryByWeekView")
+    public String queryByWeekView( Model model){
+        //查询实验室信息
+        List<LabRoom> labRoom = labService.queryLabCode();
+        model.addAttribute("labRoom",labRoom);
+        return "queryAllApply";
+    }
+
+    /**
+     * 根据周查询申请列表
+     * @param apply
+     * @return
+     */
+    @RequestMapping("queryByWeek")
+    @ResponseBody
+    public List<Apply> queryByWeek(Apply apply){
+
+        List<Apply> listByWeek = applyService.querySelectApply(apply);
+
+        return listByWeek;
+    }
+
 
     /**
      * 跟据user_id查询课程

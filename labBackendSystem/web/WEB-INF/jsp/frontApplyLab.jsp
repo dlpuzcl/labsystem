@@ -756,17 +756,17 @@
                         // $("#homeworkContent").html(mydata); //显示后端传递的结果
                         if (data == "0") {
                             // alert("预约成功！");
-                            $("#h5").html("<h5>预约成功！<h5>");
-                            $("#alertSource").modal("show");//显示“正在查询”字样的模态框
+                            swal({title:"提示",text:"预约成功", type:"success"}, function () {
+
+                            });
 
                         } else {
-
                             // alert("预约失败！");
+                            swal({title:"提示",text:"预约失败", type:"error"}, function () {
 
-                            $("#h5").html("<h5>预约失败！<h5>");
-                            $("#alertSource").modal("show");//显示“正在查询”字样的模态框
-
+                            });
                         }
+
                         getApply();
                     });
 
@@ -805,15 +805,15 @@
                         // $("#homeworkContent").html(mydata); //显示后端传递的结果
                         if (data.status == 200) {
                             // alert("预约成功！");
-                            $("#h5").html("<h5>预约成功！<h5>");
-                            $("#alertSource").modal("show");//显示“正在查询”字样的模态框
-
+                            swal({title:"提示",text:"预约成功", type:"success"}, function () {
+                                window.location.reload();
+                            });
                         } else {
-                            // alert(data.msg);
-                            $("#h5").html("<h5>"+data.msg +"<h5>");
-                            $("#alertSource").modal("show");//显示“正在查询”字样的模态框
+                            swal({title:"提示",text:data.msg, type:"error"}, function () {
+
+                            });
                         }
-                        getApply();
+
                     });
 
 

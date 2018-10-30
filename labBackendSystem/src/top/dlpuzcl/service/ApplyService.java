@@ -3,7 +3,6 @@ package top.dlpuzcl.service;
 import top.dlpuzcl.pojo.*;
 import top.dlpuzcl.utils.Page;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface ApplyService {
@@ -74,5 +73,7 @@ public interface ApplyService {
      * 通过学期·学年和实验室查询总利用率
      */
     LabRatio labRatioSum();
+
+    List<Apply> querySelectApply(Apply apply);
 
 }
