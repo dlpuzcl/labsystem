@@ -15,16 +15,17 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 
     <meta name="Description" content="网站介绍">
-    <link rel="stylesheet" href="<%=basePath%>./css/base.css">
-    <link rel="stylesheet" href="<%=basePath%>./css/iconfont.css">
-    <link rel="stylesheet" href="<%=basePath%>./css/reg.css">
+    <link rel="stylesheet" href="<%=basePath%>css/base.css">
+    <link rel="stylesheet" href="<%=basePath%>css/iconfont.css">
+    <link rel="stylesheet" href="<%=basePath%>css/reg.css">
+    <link rel="stylesheet" type="text/css" href="sweetalert/sweetalert.css">
 </head>
 <body>
 <div id="ajax-hook"></div>
 <div class="wrap">
     <div class="wpn">
         <div class="form-data pos">
-            <a href=""><img src="<%=basePath%>./img/logo.png" class="head-logo"></a>
+            <a href=""><img src="<%=basePath%>img/logo.png" class="head-logo"></a>
             <div class="change-login">
                 <p class="account_number on">教师登录</p>
                 <p class="message">管理员登录</p>
@@ -52,7 +53,7 @@
                     <div class="r-forget cl">
                         <div class="tel-warn img-err hide"><em>验证码错误，请重新输入</em><i class="icon-warn"></i></div>
 
-                    <%--<a href="#" class="z">账号注册</a>--%>
+                        <%--<a href="#" class="z">账号注册</a>--%>
                         <%--<a href="#" class="y">忘记密码</a>--%>
                     </div>
                 </form>
@@ -130,9 +131,10 @@
 
 <script src="<%=basePath%>bootstrap/js/bootstrap.min.js"></script>
 
-<script src="<%=basePath%>./js/jquery.js"></script>
-<script src="<%=basePath%>./js/agree.js"></script>
-<script src="<%=basePath%>./js/login.js"></script>
+<script src="<%=basePath%>js/jquery.js"></script>
+<script src="<%=basePath%>js/agree.js"></script>
+<script src="<%=basePath%>js/login.js"></script>
+<script src="<%=basePath%>sweetalert/sweetalert.min.js"></script>
 
 <script>
     function Btn() {
@@ -167,13 +169,13 @@
                             $("#img1").attr("src", a);
                         }
                         if(data.status==400){
-                            alert(data.msg);
+                            swal("提示", data.msg,  "error")
                         }
 
                     });
                 }else{
 
-                    alert("验证码错误！")
+                    swal("提示", "验证码错误",  "error")
 
                     var a = "<%=basePath%>getpatchcaImage.action"
                     $("#img1").attr("src", a);
@@ -182,7 +184,7 @@
                 }
             },
             error:function(data){
-                alert("ajax调用失败!");
+                swal("提示", "ajax调用失败",  "error")
             }
         });
 
@@ -223,7 +225,8 @@
 
                 }else{
 
-                    alert("验证码错误！")
+                    swal("提示", "验证码错误",  "error")
+
 
                     var a = "<%=basePath%>getpatchcaImage.action"
                     $("#img2").attr("src", a);
@@ -232,7 +235,7 @@
                 }
             },
             error:function(data){
-                alert("ajax调用失败!");
+                swal("提示", "ajax调用失败",  "error")
             }
         });
 

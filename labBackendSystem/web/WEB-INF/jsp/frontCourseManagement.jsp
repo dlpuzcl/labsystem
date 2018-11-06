@@ -49,321 +49,326 @@
     </style>
 </head>
 
-<body onload="getApply() ">
+<body >
 
 <div id="wrapper">
 
     <%@ include file="/WEB-INF/jsp/top.jsp" %>
 
     <div id="page-wrapper"
-         style="min-height: 429px;margin-left: 0px;margin-right: 0px;border-left-width: 0px;padding-left: 200px;padding-right: 200px;">
-        <div class="row">
-            <div class="col-lg-3 col-md-6">
-                <h1 class="page-header">我的课程</h1>
-            </div>
-            <!-- /.col-lg-12 -->
-        </div>
 
-        <%@ include file="/WEB-INF/jsp/middle.jsp" %>
+         class="row" style="background-color:#FFFFFF;margin-left: 0px;margin-right: 0px;">
+        <div class="col-lg-offset-2 col-lg-8">
+            <div class="row">
 
-        <div class="row">
-
-            <!-- /.panel-heading -->
-            <div class="panel-body">
-                <div id="morris-area-chart"></div>
-            </div>
-            <!-- /.panel-body -->
-        </div>
-        <!-- /.row -->
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading" style="padding-bottom: 23px;">
-                        课程列表
-                        <div class="pull-right">
-                            <a href="#" class="btn btn-success" data-toggle="modal"
-                               data-target="#labAddDialog"
-                            >添加
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- /.panel-heading -->
-                    <div class="panel-body">
-                        <table width="100%" class="table table-striped table-bordered table-hover"
-                               style="text-align: center;">
-                            <thead>
-                            <tr class="info">
-                                <td>序号</td>
-                                <td>课程名称</td>
-                                <td>上课班级</td>
-
-                                <td>学时</td>
-                                <td>性质</td>
-                                <td>备注</td>
-                                <td>编辑</td>
-                                <td>删除</td>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-
-                            <c:forEach items="${courseList }" var="iterm" varStatus="vs">
-                                <tr>
-                                    <td>${vs.count}</td>
-                                    <td>${iterm.course_name}</td>
-                                    <td>${iterm.course_class }</td>
-
-                                    <td>${iterm.course_time }</td>
-                                    <td>${iterm.course_nature }</td>
-                                    <td>${iterm.course_memo }</td>
-
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-xs" data-toggle="modal"
-                                           data-target="#courseEditDialog"
-                                           onclick="editCourse(${iterm.course_id})">
-                                            <i class="ace-icon fa fa-pencil"></i>
-                                            修改
-                                        </a>
-                                    </td>
-
-
-                                    <td>
-                                        <a href="#" class="btn btn-danger btn-xs"
-                                           onclick="deleteCourse(${iterm.course_id})">
-                                            <i class="ace-icon fa fa-trash-o"></i>
-                                            删除
-                                        </a>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-                        </table>
-
-                        <%--<div class="col-md-12 text-right">--%>
-                        <%--<itcast:page url="${pageContext.request.contextPath }/frontCourse/list.action"/>--%>
-                        <%--</div>--%>
-
-                    </div>
-                    <!-- /.panel-body -->
+                <div class="col-lg-3 col-md-6">
+                    <h1 class="page-header">我的课程</h1>
                 </div>
-                <!-- /.panel -->
+                <!-- /.col-lg-12 -->
             </div>
-            <!-- /.col-lg-12 -->
-        </div>
-        <!-- /.row -->
 
-        <%--课程编辑对话框--%>
-        <div class="modal fade" id="courseEditDialog" tabindex="-1" role="dialog"
-             aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">修改课程信息</h4>
+            <%@ include file="/WEB-INF/jsp/middle.jsp" %>
+
+            <div class="row">
+
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div id="morris-area-chart"></div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" style="padding-bottom: 23px;">
+                            <i class="fa fa-bar-chart-o fa-fw"></i> 课程列表
+                            <div class="pull-right">
+                                <a href="#" class="btn btn-success" data-toggle="modal"
+                                   data-target="#labAddDialog"
+                                >添加
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <table width="100%" class="table table-striped table-bordered table-hover"
+                                   style="text-align: center;">
+                                <thead>
+                                <tr class="info">
+                                    <td>序号</td>
+                                    <td>课程名称</td>
+                                    <td>上课班级</td>
+
+                                    <td>学时</td>
+                                    <td>性质</td>
+                                    <td>备注</td>
+                                    <td>编辑</td>
+                                    <td>删除</td>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+
+                                <c:forEach items="${courseList }" var="iterm" varStatus="vs">
+                                    <tr>
+                                        <td>${vs.count}</td>
+                                        <td>${iterm.course_name}</td>
+                                        <td>${iterm.course_class }</td>
+
+                                        <td>${iterm.course_time }</td>
+                                        <td>${iterm.course_nature }</td>
+                                        <td>${iterm.course_memo }</td>
+
+                                        <td>
+                                            <a href="#" class="btn btn-primary btn-xs" data-toggle="modal"
+                                               data-target="#courseEditDialog"
+                                               onclick="editCourse(${iterm.course_id})">
+                                                <i class="ace-icon fa fa-pencil"></i>
+                                                修改
+                                            </a>
+                                        </td>
+
+
+                                        <td>
+                                            <a href="#" class="btn btn-danger btn-xs"
+                                               onclick="deleteCourse(${iterm.course_id})">
+                                                <i class="ace-icon fa fa-trash-o"></i>
+                                                删除
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+
+                            <%--<div class="col-md-12 text-right">--%>
+                            <%--<itcast:page url="${pageContext.request.contextPath }/frontCourse/list.action"/>--%>
+                            <%--</div>--%>
+
+                        </div>
+                        <!-- /.panel-body -->
                     </div>
-                    <div class="modal-body">
-                        <form class="form-horizontal" id="edit_course_form">
-                            <input type="hidden" id="edit_course_id" name="course_id"/>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
 
-                            <div class="form-group">
-                                <label for="edit_course_name" class="col-sm-2 control-label">课程名称</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="edit_course_name" placeholder="课程名称"
-                                           name="course_name">
+            <%--课程编辑对话框--%>
+            <div class="modal fade" id="courseEditDialog" tabindex="-1" role="dialog"
+                 aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">修改课程信息</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" id="edit_course_form">
+                                <input type="hidden" id="edit_course_id" name="course_id"/>
+
+                                <div class="form-group">
+                                    <label for="edit_course_name" class="col-sm-2 control-label">课程名称</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="edit_course_name" placeholder="课程名称"
+                                               name="course_name">
+                                    </div>
                                 </div>
-                            </div>
 
-                            <%--<div class="form-group">--%>
-                            <%--<label for="edit_user_id" class="col-sm-2 control-label">任课教师</label>--%>
-                            <%--<div class="col-sm-10">--%>
-                            <%--<select class="form-control" id="edit_user_id" placeholder="任课教师"--%>
-                            <%--name="user_id">--%>
-                            <%--<option value="">--请选择--</option>--%>
-                            <%--<c:forEach items="${userList}" var="item">--%>
-                            <%--<option value="${item.user_id}"<c:if--%>
-                            <%--test="${item.user_name == vo.userName}"> selected</c:if>>${item.user_name }--%>
-                            <%--</option>--%>
-                            <%--</c:forEach>--%>
-                            <%--</select>--%>
-                            <%--</div>--%>
-                            <%--</div>--%>
+                                <%--<div class="form-group">--%>
+                                <%--<label for="edit_user_id" class="col-sm-2 control-label">任课教师</label>--%>
+                                <%--<div class="col-sm-10">--%>
+                                <%--<select class="form-control" id="edit_user_id" placeholder="任课教师"--%>
+                                <%--name="user_id">--%>
+                                <%--<option value="">--请选择--</option>--%>
+                                <%--<c:forEach items="${userList}" var="item">--%>
+                                <%--<option value="${item.user_id}"<c:if--%>
+                                <%--test="${item.user_name == vo.userName}"> selected</c:if>>${item.user_name }--%>
+                                <%--</option>--%>
+                                <%--</c:forEach>--%>
+                                <%--</select>--%>
+                                <%--</div>--%>
+                                <%--</div>--%>
 
-                            <input type="hidden" name="user_id" id="user_id"
-                                   value="${user.user_id}">
+                                <input type="hidden" name="user_id" id="user_id"
+                                       value="${user.user_id}">
 
-                            <div class="form-group">
-                                <label for="edit_course_nature" class="col-sm-2 control-label">课程性质</label>
-                                <div class="col-sm-10">
-                                    <select class="form-control" id="edit_course_nature" placeholder="任课教师"
-                                            name="course_nature">
-                                        <option value="">--请选择--</option>
-                                        <option value="理论课">理论课</option>
-                                        <option value="实验课">实验课</option>
+                                <div class="form-group">
+                                    <label for="edit_course_nature" class="col-sm-2 control-label">课程性质</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" id="edit_course_nature" placeholder="任课教师"
+                                                name="course_nature">
+                                            <option value="">--请选择--</option>
+                                            <option value="理论课">理论课</option>
+                                            <option value="实验课">实验课</option>
 
-                                    </select>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="add_course_class" class="col-sm-2 control-label">学时</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="edit_course_time" placeholder="学时"
-                                           name="course_time">
+                                <div class="form-group">
+                                    <label for="add_course_class" class="col-sm-2 control-label">学时</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="edit_course_time" placeholder="学时"
+                                               name="course_time">
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="edit_course_class" class="col-sm-2 control-label">上课班级</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="edit_course_class" placeholder="上课班级"
-                                           name="course_class">
+                                <div class="form-group">
+                                    <label for="edit_course_class" class="col-sm-2 control-label">上课班级</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="edit_course_class"
+                                               placeholder="上课班级"
+                                               name="course_class">
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="edit_course_memo" class="col-sm-2 control-label">备注</label>
-                                <div class="col-sm-10">
+                                <div class="form-group">
+                                    <label for="edit_course_memo" class="col-sm-2 control-label">备注</label>
+                                    <div class="col-sm-10">
                                     <textarea class="form-control limited autosize-transition" id="edit_course_memo"
                                               maxlength="50" name="course_memo"></textarea>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                <button type="button" class="btn btn-primary" onclick="updateCourse()">
-                                    <i class="ace-icon fa fa-check bigger-110"></i>
-                                    保存修改
-                                </button>
-                            </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    <button type="button" class="btn btn-primary" onclick="updateCourse()">
+                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                        保存修改
+                                    </button>
+                                </div>
 
-                        </form>
+                            </form>
+                        </div>
+
                     </div>
-
                 </div>
             </div>
-        </div>
 
 
-        <%--实验室添加对话框--%>
-        <div class="modal fade" id="labAddDialog" tabindex="-1" role="dialog"
-             aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title" id="myaddLabel">添加实验室信息</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form-horizontal" id="add_course_form">
-                            <%--<input type="hidden" id="add_course_id" name="course_id"/>--%>
+            <%--实验室添加对话框--%>
+            <div class="modal fade" id="labAddDialog" tabindex="-1" role="dialog"
+                 aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myaddLabel">添加实验室信息</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" id="add_course_form">
+                                <%--<input type="hidden" id="add_course_id" name="course_id"/>--%>
 
-                            <div class="form-group">
-                                <label for="edit_course_name" class="col-sm-2 control-label">课程名称</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="add_course_name" placeholder="课程名称"
-                                           name="course_name">
+                                <div class="form-group">
+                                    <label for="edit_course_name" class="col-sm-2 control-label">课程名称</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="add_course_name" placeholder="课程名称"
+                                               name="course_name">
+                                    </div>
                                 </div>
-                            </div>
 
-                            <%--<div class="form-group">--%>
-                            <%--<label for="add_user_id" class="col-sm-2 control-label">任课教师</label>--%>
-                            <%--<div class="col-sm-10">--%>
-                            <%--<select class="form-control" id="add_user_id" placeholder="任课教师"--%>
-                            <%--name="user_id">--%>
-                            <%--<option value="">--请选择--</option>--%>
-                            <%--<c:forEach items="${userList}" var="item">--%>
-                            <%--<option value="${item.user_id}"<c:if--%>
-                            <%--test="${item.user_name == vo.userName}"> selected</c:if>>${item.user_name }--%>
-                            <%--</option>--%>
-                            <%--</c:forEach>--%>
-                            <%--</select>--%>
-                            <%--</div>--%>
-                            <%--</div>--%>
-                            <input type="hidden" name="user_id" id="user_id"
-                                   value="${user.user_id}">
+                                <%--<div class="form-group">--%>
+                                <%--<label for="add_user_id" class="col-sm-2 control-label">任课教师</label>--%>
+                                <%--<div class="col-sm-10">--%>
+                                <%--<select class="form-control" id="add_user_id" placeholder="任课教师"--%>
+                                <%--name="user_id">--%>
+                                <%--<option value="">--请选择--</option>--%>
+                                <%--<c:forEach items="${userList}" var="item">--%>
+                                <%--<option value="${item.user_id}"<c:if--%>
+                                <%--test="${item.user_name == vo.userName}"> selected</c:if>>${item.user_name }--%>
+                                <%--</option>--%>
+                                <%--</c:forEach>--%>
+                                <%--</select>--%>
+                                <%--</div>--%>
+                                <%--</div>--%>
+                                <input type="hidden" name="user_id" id="user_id"
+                                       value="${user.user_id}">
 
-                            <div class="form-group">
-                                <label for="add_course_nature" class="col-sm-2 control-label">课程性质</label>
-                                <div class="col-sm-10">
-                                    <select class="form-control" id="add_course_nature" placeholder="任课教师"
-                                            name="course_nature">
-                                        <option value="">--请选择--</option>
-                                        <option value="理论课">理论课</option>
-                                        <option value="实验课">实验课</option>
+                                <div class="form-group">
+                                    <label for="add_course_nature" class="col-sm-2 control-label">课程性质</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" id="add_course_nature" placeholder="任课教师"
+                                                name="course_nature">
+                                            <option value="">--请选择--</option>
+                                            <option value="理论课">理论课</option>
+                                            <option value="实验课">实验课</option>
 
-                                    </select>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="add_course_class" class="col-sm-2 control-label">学时</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="add_course_time" placeholder="学时"
-                                           name="course_time">
+                                <div class="form-group">
+                                    <label for="add_course_class" class="col-sm-2 control-label">学时</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="add_course_time" placeholder="学时"
+                                               name="course_time">
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="add_course_class" class="col-sm-2 control-label">上课班级</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="add_course_class" placeholder="上课班级"
-                                           name="course_class">
+                                <div class="form-group">
+                                    <label for="add_course_class" class="col-sm-2 control-label">上课班级</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="add_course_class" placeholder="上课班级"
+                                               name="course_class">
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="add_course_memo" class="col-sm-2 control-label">备注</label>
-                                <div class="col-sm-10">
+                                <div class="form-group">
+                                    <label for="add_course_memo" class="col-sm-2 control-label">备注</label>
+                                    <div class="col-sm-10">
                                     <textarea class="form-control limited autosize-transition" id="add_course_memo"
                                               maxlength="50" name="course_memo"></textarea>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="ace-icon fa fa-check bigger-110"></i>
-                                    立即提交
-                                </button>
-                            </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                        立即提交
+                                    </button>
+                                </div>
 
-                        </form>
+                            </form>
+                        </div>
+
                     </div>
-
                 </div>
             </div>
-        </div>
 
-        <!--弹出删除资源警告窗口-->
-        <div class="modal fade" id="deleteSource" role="dialog" aria-labelledby="gridSystemModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container-fluid">
-                            确定要删除该资源？删除后不可恢复！
+            <!--弹出删除资源警告窗口-->
+            <div class="modal fade" id="deleteSource" role="dialog" aria-labelledby="gridSystemModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                确定要删除该资源？删除后不可恢复！
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+                            <button type="button" class="btn btn-xs btn-danger">保 存</button>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
-                        <button type="button" class="btn btn-xs btn-danger">保 存</button>
-                    </div>
+                    <!-- /.modal-content -->
                 </div>
-                <!-- /.modal-content -->
+                <!-- /.modal-dialog -->
             </div>
-            <!-- /.modal-dialog -->
-        </div>
 
+        </div>
     </div>
-</div>
 </div>
 
 

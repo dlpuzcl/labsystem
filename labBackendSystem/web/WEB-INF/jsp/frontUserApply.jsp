@@ -56,7 +56,8 @@
     <%@ include file="/WEB-INF/jsp/top.jsp" %>
 
     <div id="page-wrapper"
-         style="min-height: 429px;margin-left: 0px;margin-right: 0px;border-left-width: 0px;padding-left: 200px;padding-right: 200px;">
+         class="row" style="background-color:#FFFFFF;margin-left: 0px;margin-right: 0px;">
+        <div class="col-lg-offset-2 col-lg-8">
         <div class="row">
             <div class="col-lg-3 col-md-6">
                 <h1 class="page-header">我的预约</h1>

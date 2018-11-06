@@ -106,11 +106,13 @@
                                 </div>
 
 
-
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                                 <div class="btn-group">
-                                    <button class="btn btn btn-info" onClick="$('.exceldown').tableExport({type:'excel',pdfmake:{enabled:true}});">下载</button>
+                                    <button class="btn btn btn-info"
+                                            onClick="$('.exceldown').tableExport({type:'excel',pdfmake:{enabled:true}});">
+                                        下载
+                                    </button>
 
                                 </div>
 
@@ -164,8 +166,7 @@
 <script src="<%=basePath%>sweetalert/sweetalert.min.js"></script>
 
 
-
-<script type="text/javascript" src="<%=basePath%>excel/jquery.js"></script>
+<%--<script type="text/javascript" src="<%=basePath%>excel/jquery.js"></script>--%>
 <script type="text/javascript" src="<%=basePath%>excel/pdfmake.min.js"></script>
 <script type="text/javascript" src="<%=basePath%>excel/vfs_fonts.js"></script>
 <!--
@@ -175,172 +176,175 @@
 <script type="text/javascript" src="<%=basePath%>excel/tableExport.js"></script>
 <script type="text/javascript" src="<%=basePath%>excel/html2canvas.min.js"></script>
 <script>
+    $(function () {
 
-    for (var i = 1; i <= 20; i++) {
-        var table = "<table width=\"100%\" class=\"table table-bordered exceldown\"\n" +
-            "                                               style=\"text-align: center;\">\n" +
-            "                                            <thead>\n" +
-            "                                            <tr class=\"info\">\n" +
-            "                                            <tr>\n" +
-            "                                                <th scope=\"col\">周</th>\n" +
-            "                                                <th scope=\"col\">星期/节次</th>\n" +
-            "                                                <th scope=\"col\">星期一</th>\n" +
-            "                                                <th scope=\"col\">星期二</th>\n" +
-            "                                                <th scope=\"col\">星期三</th>\n" +
-            "                                                <th scope=\"col\">星期四</th>\n" +
-            "                                                <th scope=\"col\">星期五</th>\n" +
-            "                                                <th scope=\"col\">星期六</th>\n" +
-            "                                                <th scope=\"col\">星期天</th>\n" +
-            "                                            </tr>\n" +
-            "                                            </tr>\n" +
-            "                                            </thead>\n" +
-            "\n" +
-            "\n" +
-            "                                            <tbody style=\"text-align: center;\">\n" +
-            "                                            <tr style=\"height: 80px\">\n" +
-            "                                                <td  rowspan=\"12\">第"+i+"周</td>\n" +
-            "                                                <th scope=\"row\">1节\n" +
-            "                                                </th>\n" +
-            "                                                <td id=\"table" + i + "_1_1\">\n" +
-            "                                                    <%--<input type=\"checkbox\" id=\"11\" value=\"11\">--%>\n" +
-            "                                                </td>\n" +
-            "                                                <td id=\"table" + i + "_2_1\"></td>\n" +
-            "                                                <td id=\"table" + i + "_3_1\"></td>\n" +
-            "                                                <td id=\"table" + i + "_4_1\"></td>\n" +
-            "                                                <td id=\"table" + i + "_5_1\"></td>\n" +
-            "                                                <td id=\"table" + i + "_6_1\"></td>\n" +
-            "                                                <td id=\"table" + i + "_7_1\"></td>\n" +
-            "\n" +
-            "                                            </tr>\n" +
-            "                                            <tr style=\"height: 80px\">\n" +
-            "                                                <th scope=\"row\">2节\n" +
-            "                                                </th>\n" +
-            "                                                <td id=\"table" + i + "_1_2\"></td>\n" +
-            "                                                <td id=\"table" + i + "_2_2\"></td>\n" +
-            "                                                <td id=\"table" + i + "_3_2\"></td>\n" +
-            "                                                <td id=\"table" + i + "_4_2\"></td>\n" +
-            "                                                <td id=\"table" + i + "_5_2\"></td>\n" +
-            "                                                <td id=\"table" + i + "_6_2\"></td>\n" +
-            "                                                <td id=\"table" + i + "_7_2\"></td>\n" +
-            "                                            </tr>\n" +
-            "                                            <tr style=\"height: 80px\">\n" +
-            "                                                <th scope=\"row\">3节\n" +
-            "                                                </th>\n" +
-            "                                                <td id=\"table" + i + "_1_3\"></td>\n" +
-            "                                                <td id=\"table" + i + "_2_3\"></td>\n" +
-            "                                                <td id=\"table" + i + "_3_3\"></td>\n" +
-            "                                                <td id=\"table" + i + "_4_3\"></td>\n" +
-            "                                                <td id=\"table" + i + "_5_3\"></td>\n" +
-            "                                                <td id=\"table" + i + "_6_3\"></td>\n" +
-            "                                                <td id=\"table" + i + "_7_3\"></td>\n" +
-            "                                            </tr>\n" +
-            "                                            <tr style=\"height: 80px\">\n" +
-            "                                                <th scope=\"row\">4节\n" +
-            "                                                </th>\n" +
-            "                                                <td id=\"table" + i + "_1_4\"></td>\n" +
-            "                                                <td id=\"table" + i + "_2_4\"></td>\n" +
-            "                                                <td id=\"table" + i + "_3_4\"></td>\n" +
-            "                                                <td id=\"table" + i + "_4_4\"></td>\n" +
-            "                                                <td id=\"table" + i + "_5_4\"></td>\n" +
-            "                                                <td id=\"table" + i + "_6_4\"></td>\n" +
-            "                                                <td id=\"table" + i + "_7_4\"></td>\n" +
-            "                                            </tr>\n" +
-            "                                            <tr style=\"height: 80px\">\n" +
-            "                                                <th scope=\"row\">5节\n" +
-            "                                                </th>\n" +
-            "                                                <td id=\"table" + i + "_1_5\"></td>\n" +
-            "                                                <td id=\"table" + i + "_2_5\"></td>\n" +
-            "                                                <td id=\"table" + i + "_3_5\"></td>\n" +
-            "                                                <td id=\"table" + i + "_4_5\"></td>\n" +
-            "                                                <td id=\"table" + i + "_5_5\"></td>\n" +
-            "                                                <td id=\"table" + i + "_6_5\"></td>\n" +
-            "                                                <td id=\"table" + i + "_7_5\"></td>\n" +
-            "                                            </tr>\n" +
-            "                                            <tr style=\"height: 80px\">\n" +
-            "                                                <th scope=\"row\">6节\n" +
-            "                                                </th>\n" +
-            "                                                <td id=\"table" + i + "_1_6\"></td>\n" +
-            "                                                <td id=\"table" + i + "_2_6\"></td>\n" +
-            "                                                <td id=\"table" + i + "_3_6\"></td>\n" +
-            "                                                <td id=\"table" + i + "_4_6\"></td>\n" +
-            "                                                <td id=\"table" + i + "_5_6\"></td>\n" +
-            "                                                <td id=\"table" + i + "_6_6\"></td>\n" +
-            "                                                <td id=\"table" + i + "_7_6\"></td>\n" +
-            "                                            </tr>\n" +
-            "                                            <tr style=\"height: 80px\">\n" +
-            "                                                <th scope=\"row\">7节\n" +
-            "                                                </th>\n" +
-            "                                                <td id=\"table" + i + "_1_7\">\n" +
-            "                                                </td>\n" +
-            "                                                <td id=\"table" + i + "_2_7\"></td>\n" +
-            "                                                <td id=\"table" + i + "_3_7\"></td>\n" +
-            "                                                <td id=\"table" + i + "_4_7\"></td>\n" +
-            "                                                <td id=\"table" + i + "_5_7\"></td>\n" +
-            "                                                <td id=\"table" + i + "_6_7\"></td>\n" +
-            "                                                <td id=\"table" + i + "_7_7\"></td>\n" +
-            "\n" +
-            "                                            </tr>\n" +
-            "                                            <tr style=\"height: 80px\">\n" +
-            "                                                <th scope=\"row\">8节\n" +
-            "                                                </th>\n" +
-            "                                                <td id=\"table" + i + "_1_8\"></td>\n" +
-            "                                                <td id=\"table" + i + "_2_8\"></td>\n" +
-            "                                                <td id=\"table" + i + "_3_8\"></td>\n" +
-            "                                                <td id=\"table" + i + "_4_8\"></td>\n" +
-            "                                                <td id=\"table" + i + "_5_8\"></td>\n" +
-            "                                                <td id=\"table" + i + "_6_8\"></td>\n" +
-            "                                                <td id=\"table" + i + "_7_8\"></td>\n" +
-            "                                            </tr>\n" +
-            "                                            <tr style=\"height: 80px\">\n" +
-            "                                                <th scope=\"row\">9节\n" +
-            "                                                </th>\n" +
-            "                                                <td id=\"table" + i + "_1_9\"></td>\n" +
-            "                                                <td id=\"table" + i + "_2_9\"></td>\n" +
-            "                                                <td id=\"table" + i + "_3_9\"></td>\n" +
-            "                                                <td id=\"table" + i + "_4_9\"></td>\n" +
-            "                                                <td id=\"table" + i + "_5_9\"></td>\n" +
-            "                                                <td id=\"table" + i + "_6_9\"></td>\n" +
-            "                                                <td id=\"table" + i + "_7_9\"></td>\n" +
-            "                                            </tr>\n" +
-            "                                            <tr style=\"height: 80px\">\n" +
-            "                                                <th scope=\"row\">10节\n" +
-            "                                                </th>\n" +
-            "                                                <td id=\"table" + i + "_1_10\"></td>\n" +
-            "                                                <td id=\"table" + i + "_2_10\"></td>\n" +
-            "                                                <td id=\"table" + i + "_3_10\"></td>\n" +
-            "                                                <td id=\"table" + i + "_4_10\"></td>\n" +
-            "                                                <td id=\"table" + i + "_5_10\"></td>\n" +
-            "                                                <td id=\"table" + i + "_6_10\"></td>\n" +
-            "                                                <td id=\"table" + i + "_7_10\"></td>\n" +
-            "                                            </tr>\n" +
-            "                                            <tr style=\"height: 80px\">\n" +
-            "                                                <th scope=\"row\">11节\n" +
-            "                                                </th>\n" +
-            "                                                <td id=\"table" + i + "_1_11\"></td>\n" +
-            "                                                <td id=\"table" + i + "_2_11\"></td>\n" +
-            "                                                <td id=\"table" + i + "_3_11\"></td>\n" +
-            "                                                <td id=\"table" + i + "_4_11\"></td>\n" +
-            "                                                <td id=\"table" + i + "_5_11\"></td>\n" +
-            "                                                <td id=\"table" + i + "_6_11\"></td>\n" +
-            "                                                <td id=\"table" + i + "_7_11\"></td>\n" +
-            "                                            </tr>\n" +
-            "                                            <tr style=\"height: 80px\">\n" +
-            "                                                <th scope=\"row\">12节\n" +
-            "                                                </th>\n" +
-            "                                                <td id=\"table" + i + "_1_12\"></td>\n" +
-            "                                                <td id=\"table" + i + "_2_12\"></td>\n" +
-            "                                                <td id=\"table" + i + "_3_12\"></td>\n" +
-            "                                                <td id=\"table" + i + "_4_12\"></td>\n" +
-            "                                                <td id=\"table" + i + "_5_12\"></td>\n" +
-            "                                                <td id=\"table" + i + "_6_12\"></td>\n" +
-            "                                                <td id=\"table" + i + "_7_12\"></td>\n" +
-            "                                            </tr>\n" +
-            "                                            </tbody>\n" +
-            "                                        </table>"
 
-        $("#table").append(table);
+        for (var i = 1; i <= 20; i++) {
+            var table = "<table width=\"100%\" class=\"table exceldown\"\n" +
+                "                                               style=\"text-align: center;\">\n" +
+                "                                            <thead>\n" +
+                "                                            <tr class=\"info\">\n" +
+                "                                            <tr>\n" +
+                "                                                <th scope=\"col\">周</th>\n" +
+                "                                                <th scope=\"col\">星期/节次</th>\n" +
+                "                                                <th scope=\"col\">星期一</th>\n" +
+                "                                                <th scope=\"col\">星期二</th>\n" +
+                "                                                <th scope=\"col\">星期三</th>\n" +
+                "                                                <th scope=\"col\">星期四</th>\n" +
+                "                                                <th scope=\"col\">星期五</th>\n" +
+                "                                                <th scope=\"col\">星期六</th>\n" +
+                "                                                <th scope=\"col\">星期天</th>\n" +
+                "                                            </tr>\n" +
+                "                                            </tr>\n" +
+                "                                            </thead>\n" +
+                "\n" +
+                "\n" +
+                "                                            <tbody style=\"text-align: center;\">\n" +
+                "                                            <tr style=\"height: 80px\">\n" +
+                "                                                <td  rowspan=\"12\">第" + i + "周</td>\n" +
+                "                                                <th scope=\"row\">1节\n" +
+                "                                                </th>\n" +
+                "                                                <td id=\"table" + i + "_1_1\">\n" +
+                "                                                    <%--<input type=\"checkbox\" id=\"11\" value=\"11\">--%>\n" +
+                "                                                </td>\n" +
+                "                                                <td id=\"table" + i + "_2_1\"></td>\n" +
+                "                                                <td id=\"table" + i + "_3_1\"></td>\n" +
+                "                                                <td id=\"table" + i + "_4_1\"></td>\n" +
+                "                                                <td id=\"table" + i + "_5_1\"></td>\n" +
+                "                                                <td id=\"table" + i + "_6_1\"></td>\n" +
+                "                                                <td id=\"table" + i + "_7_1\"></td>\n" +
+                "\n" +
+                "                                            </tr>\n" +
+                "                                            <tr style=\"height: 80px\">\n" +
+                "                                                <th scope=\"row\">2节\n" +
+                "                                                </th>\n" +
+                "                                                <td id=\"table" + i + "_1_2\"></td>\n" +
+                "                                                <td id=\"table" + i + "_2_2\"></td>\n" +
+                "                                                <td id=\"table" + i + "_3_2\"></td>\n" +
+                "                                                <td id=\"table" + i + "_4_2\"></td>\n" +
+                "                                                <td id=\"table" + i + "_5_2\"></td>\n" +
+                "                                                <td id=\"table" + i + "_6_2\"></td>\n" +
+                "                                                <td id=\"table" + i + "_7_2\"></td>\n" +
+                "                                            </tr>\n" +
+                "                                            <tr style=\"height: 80px\">\n" +
+                "                                                <th scope=\"row\">3节\n" +
+                "                                                </th>\n" +
+                "                                                <td id=\"table" + i + "_1_3\"></td>\n" +
+                "                                                <td id=\"table" + i + "_2_3\"></td>\n" +
+                "                                                <td id=\"table" + i + "_3_3\"></td>\n" +
+                "                                                <td id=\"table" + i + "_4_3\"></td>\n" +
+                "                                                <td id=\"table" + i + "_5_3\"></td>\n" +
+                "                                                <td id=\"table" + i + "_6_3\"></td>\n" +
+                "                                                <td id=\"table" + i + "_7_3\"></td>\n" +
+                "                                            </tr>\n" +
+                "                                            <tr style=\"height: 80px\">\n" +
+                "                                                <th scope=\"row\">4节\n" +
+                "                                                </th>\n" +
+                "                                                <td id=\"table" + i + "_1_4\"></td>\n" +
+                "                                                <td id=\"table" + i + "_2_4\"></td>\n" +
+                "                                                <td id=\"table" + i + "_3_4\"></td>\n" +
+                "                                                <td id=\"table" + i + "_4_4\"></td>\n" +
+                "                                                <td id=\"table" + i + "_5_4\"></td>\n" +
+                "                                                <td id=\"table" + i + "_6_4\"></td>\n" +
+                "                                                <td id=\"table" + i + "_7_4\"></td>\n" +
+                "                                            </tr>\n" +
+                "                                            <tr style=\"height: 80px\">\n" +
+                "                                                <th scope=\"row\">5节\n" +
+                "                                                </th>\n" +
+                "                                                <td id=\"table" + i + "_1_5\"></td>\n" +
+                "                                                <td id=\"table" + i + "_2_5\"></td>\n" +
+                "                                                <td id=\"table" + i + "_3_5\"></td>\n" +
+                "                                                <td id=\"table" + i + "_4_5\"></td>\n" +
+                "                                                <td id=\"table" + i + "_5_5\"></td>\n" +
+                "                                                <td id=\"table" + i + "_6_5\"></td>\n" +
+                "                                                <td id=\"table" + i + "_7_5\"></td>\n" +
+                "                                            </tr>\n" +
+                "                                            <tr style=\"height: 80px\">\n" +
+                "                                                <th scope=\"row\">6节\n" +
+                "                                                </th>\n" +
+                "                                                <td id=\"table" + i + "_1_6\"></td>\n" +
+                "                                                <td id=\"table" + i + "_2_6\"></td>\n" +
+                "                                                <td id=\"table" + i + "_3_6\"></td>\n" +
+                "                                                <td id=\"table" + i + "_4_6\"></td>\n" +
+                "                                                <td id=\"table" + i + "_5_6\"></td>\n" +
+                "                                                <td id=\"table" + i + "_6_6\"></td>\n" +
+                "                                                <td id=\"table" + i + "_7_6\"></td>\n" +
+                "                                            </tr>\n" +
+                "                                            <tr style=\"height: 80px\">\n" +
+                "                                                <th scope=\"row\">7节\n" +
+                "                                                </th>\n" +
+                "                                                <td id=\"table" + i + "_1_7\">\n" +
+                "                                                </td>\n" +
+                "                                                <td id=\"table" + i + "_2_7\"></td>\n" +
+                "                                                <td id=\"table" + i + "_3_7\"></td>\n" +
+                "                                                <td id=\"table" + i + "_4_7\"></td>\n" +
+                "                                                <td id=\"table" + i + "_5_7\"></td>\n" +
+                "                                                <td id=\"table" + i + "_6_7\"></td>\n" +
+                "                                                <td id=\"table" + i + "_7_7\"></td>\n" +
+                "\n" +
+                "                                            </tr>\n" +
+                "                                            <tr style=\"height: 80px\">\n" +
+                "                                                <th scope=\"row\">8节\n" +
+                "                                                </th>\n" +
+                "                                                <td id=\"table" + i + "_1_8\"></td>\n" +
+                "                                                <td id=\"table" + i + "_2_8\"></td>\n" +
+                "                                                <td id=\"table" + i + "_3_8\"></td>\n" +
+                "                                                <td id=\"table" + i + "_4_8\"></td>\n" +
+                "                                                <td id=\"table" + i + "_5_8\"></td>\n" +
+                "                                                <td id=\"table" + i + "_6_8\"></td>\n" +
+                "                                                <td id=\"table" + i + "_7_8\"></td>\n" +
+                "                                            </tr>\n" +
+                "                                            <tr style=\"height: 80px\">\n" +
+                "                                                <th scope=\"row\">9节\n" +
+                "                                                </th>\n" +
+                "                                                <td id=\"table" + i + "_1_9\"></td>\n" +
+                "                                                <td id=\"table" + i + "_2_9\"></td>\n" +
+                "                                                <td id=\"table" + i + "_3_9\"></td>\n" +
+                "                                                <td id=\"table" + i + "_4_9\"></td>\n" +
+                "                                                <td id=\"table" + i + "_5_9\"></td>\n" +
+                "                                                <td id=\"table" + i + "_6_9\"></td>\n" +
+                "                                                <td id=\"table" + i + "_7_9\"></td>\n" +
+                "                                            </tr>\n" +
+                "                                            <tr style=\"height: 80px\">\n" +
+                "                                                <th scope=\"row\">10节\n" +
+                "                                                </th>\n" +
+                "                                                <td id=\"table" + i + "_1_10\"></td>\n" +
+                "                                                <td id=\"table" + i + "_2_10\"></td>\n" +
+                "                                                <td id=\"table" + i + "_3_10\"></td>\n" +
+                "                                                <td id=\"table" + i + "_4_10\"></td>\n" +
+                "                                                <td id=\"table" + i + "_5_10\"></td>\n" +
+                "                                                <td id=\"table" + i + "_6_10\"></td>\n" +
+                "                                                <td id=\"table" + i + "_7_10\"></td>\n" +
+                "                                            </tr>\n" +
+                "                                            <tr style=\"height: 80px\">\n" +
+                "                                                <th scope=\"row\">11节\n" +
+                "                                                </th>\n" +
+                "                                                <td id=\"table" + i + "_1_11\"></td>\n" +
+                "                                                <td id=\"table" + i + "_2_11\"></td>\n" +
+                "                                                <td id=\"table" + i + "_3_11\"></td>\n" +
+                "                                                <td id=\"table" + i + "_4_11\"></td>\n" +
+                "                                                <td id=\"table" + i + "_5_11\"></td>\n" +
+                "                                                <td id=\"table" + i + "_6_11\"></td>\n" +
+                "                                                <td id=\"table" + i + "_7_11\"></td>\n" +
+                "                                            </tr>\n" +
+                "                                            <tr style=\"height: 80px\">\n" +
+                "                                                <th scope=\"row\">12节\n" +
+                "                                                </th>\n" +
+                "                                                <td id=\"table" + i + "_1_12\"></td>\n" +
+                "                                                <td id=\"table" + i + "_2_12\"></td>\n" +
+                "                                                <td id=\"table" + i + "_3_12\"></td>\n" +
+                "                                                <td id=\"table" + i + "_4_12\"></td>\n" +
+                "                                                <td id=\"table" + i + "_5_12\"></td>\n" +
+                "                                                <td id=\"table" + i + "_6_12\"></td>\n" +
+                "                                                <td id=\"table" + i + "_7_12\"></td>\n" +
+                "                                            </tr>\n" +
+                "                                            </tbody>\n" +
+                "                                        </table>"
 
-    }
+            $("#table").append(table);
+
+        }
+    })
 
     function getApply() {
 
@@ -365,7 +369,7 @@
                 //遍历课程表
                 for (var i = 0; i < data.length; i++) {
 
-                    $("#table" + data[i].apply_week + "_" + data[i].apply_day + "_" + data[i].apply_section).html("<div style='background-color: " + data[i].user_color + ";padding: 8px 8px;color: #FFFFFF;border-radius:8px' >"+data[i].course_name + "<br>" + data[i].course_class + "<br>" + data[i].user_name+"</div>");
+                    $("#table" + data[i].apply_week + "_" + data[i].apply_day + "_" + data[i].apply_section).html("<div style='background-color: " + data[i].user_color + ";padding: 8px 8px;color: #FFFFFF;border-radius:8px' >" + data[i].course_name + "<br>" + data[i].course_class + "<br>" + data[i].user_name + "</div>");
 
 
                     // $("#table" + data[i].apply_week + "_" + data[i].apply_day + "_" + data[i].apply_section).html(data[i].course_name + "<br>" + data[i].course_class + "<br>" + data[i].user_name);

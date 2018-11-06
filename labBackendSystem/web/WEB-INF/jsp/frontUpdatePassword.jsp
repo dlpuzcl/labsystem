@@ -42,11 +42,10 @@
     <link rel="stylesheet" type="text/css" href="<%=basePath%>sweetalert/sweetalert.css">
 
 
-
     <style type="text/css">
         .table th, .table td {
             text-align: center;
-            vertical-align: middle!important;
+            vertical-align: middle !important;
         }
 
     </style>
@@ -59,87 +58,88 @@
     <%@ include file="/WEB-INF/jsp/top.jsp" %>
 
     <div id="page-wrapper"
-         style="min-height: 429px;margin-left: 0px;margin-right: 0px;border-left-width: 0px;padding-left: 200px;padding-right: 200px;">
-        <div class="row">
-            <div class="col-lg-3 col-md-6">
-                <h1 class="page-header">重置密码</h1>
+         class="row" style="background-color:#FFFFFF;margin-left: 0px;margin-right: 0px;">
+        <div class="col-lg-offset-2 col-lg-8">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <h1 class="page-header">重置密码</h1>
+                </div>
+                <!-- /.col-lg-12 -->
             </div>
-            <!-- /.col-lg-12 -->
-        </div>
 
-        <%@ include file="/WEB-INF/jsp/middle.jsp" %>
+            <%@ include file="/WEB-INF/jsp/middle.jsp" %>
 
-        <div class="row">
+            <div class="row">
 
-            <!-- /.panel-heading -->
-            <div class="panel-body">
-                <div id="morris-area-chart"></div>
-            </div>
-            <!-- /.panel-body -->
-        </div>
-        <!-- /.row -->
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        请认真填写以下数据
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-
-                            <div class="col-xs-12">
-                                <!-- PAGE CONTENT BEGINS -->
-                                <form class="form-horizontal" id="add_User_form" action="" >
-
-                                    <!--密码-->
-                                    <div class="form-group">
-                                        <label class="col-lg-3 control-label">密码</label>
-                                        <div class="col-lg-5">
-                                            <input type="password" class="form-control"
-                                                   id="user_password" name="user_password">
-                                        </div>
-                                    </div>
-                                    <!--确认密码-->
-                                    <div class="form-group">
-                                        <label class="col-lg-3 control-label">确认密码</label>
-                                        <div class="col-lg-5">
-                                            <input type="password" class="form-control"
-                                                   id="user_repassword" name="user_repassword">
-                                        </div>
-                                    </div>
-
-                                    <div class="clearfix form-actions">
-                                        <div class="col-md-offset-3 col-md-9">
-                                            <button class="btn btn-primary" type="submit">
-                                                <i class="ace-icon fa fa-check bigger-110"></i>
-                                                立即提交
-                                            </button> &nbsp; &nbsp; &nbsp;
-                                            <button class="btn" type="reset">
-                                                <i class="ace-icon fa fa-undo bigger-110"></i>
-                                                重置
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                </form>
-
-                            </div>
-                            <!-- /.col -->
-                        </div>
-
-                    </div>
-                    <!-- /.row (nested) -->
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div id="morris-area-chart"></div>
                 </div>
                 <!-- /.panel-body -->
             </div>
-            <!-- /.panel -->
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            请认真填写以下数据
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+
+                                <div class="col-xs-12">
+                                    <!-- PAGE CONTENT BEGINS -->
+                                    <form class="form-horizontal" id="add_User_form" action="">
+
+                                        <!--密码-->
+                                        <div class="form-group">
+                                            <label class="col-lg-3 control-label">密码</label>
+                                            <div class="col-lg-5">
+                                                <input type="password" class="form-control"
+                                                       id="user_password" name="user_password">
+                                            </div>
+                                        </div>
+                                        <!--确认密码-->
+                                        <div class="form-group">
+                                            <label class="col-lg-3 control-label">确认密码</label>
+                                            <div class="col-lg-5">
+                                                <input type="password" class="form-control"
+                                                       id="user_repassword" name="user_repassword">
+                                            </div>
+                                        </div>
+
+                                        <div class="clearfix form-actions">
+                                            <div class="col-md-offset-3 col-md-9">
+                                                <button class="btn btn-primary" type="submit">
+                                                    <i class="ace-icon fa fa-check bigger-110"></i>
+                                                    立即提交
+                                                </button> &nbsp; &nbsp; &nbsp;
+                                                <button class="btn" type="reset">
+                                                    <i class="ace-icon fa fa-undo bigger-110"></i>
+                                                    重置
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                                <!-- /.col -->
+                            </div>
+
+                        </div>
+                        <!-- /.row (nested) -->
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.row -->
+
         </div>
-        <!-- /.row -->
 
     </div>
-
-</div>
-<!-- /#pictures -->
+    <!-- /#pictures -->
 </div>
 </div>
 

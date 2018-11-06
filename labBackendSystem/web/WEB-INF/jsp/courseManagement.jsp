@@ -36,9 +36,9 @@
     <link href="<%=basePath%>morrisjs/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="<%=basePath%>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <link rel="<%=basePath%>stylesheet" type="text/css" href="sweetalert/sweetalert.css">
+    <link rel="stylesheet" type="text/css" href="<%=basePath%>sweetalert/sweetalert.css">
 
     <script type="text/javascript">
 

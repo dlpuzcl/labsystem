@@ -467,7 +467,7 @@
             $.post("<%=basePath%>user/add.action", $("#add_User_form").serialize(), function (data) {
                 if (data.status == 200) {
                     swal({title:"提示",text:"用户添加成功", type:"success"}, function () {
-                        window.location.reload();
+                        window.location = "<%=basePath%>user/list.action";
                     });
 
                 }
