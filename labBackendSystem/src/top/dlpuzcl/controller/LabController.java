@@ -61,6 +61,7 @@ public class LabController {
      */
     @RequestMapping("list")
     public String list(Model model, QueryVo queryVo){
+        queryVo.setRoom_mark(1);
         //查询学院
         List<BaseDict> fromCollege = baseDictService.getBaseDictByCode(college);
 
@@ -76,6 +77,33 @@ public class LabController {
         //返回查询条件
         model.addAttribute("vo",queryVo);
         return "labManagement";
+    }
+
+
+    /**
+     * 显示删除的实验室列表
+     * @param model
+     * @param queryVo
+     * @return
+     */
+    @RequestMapping("recycleLab")
+    public String recycleLab(Model model, QueryVo queryVo){
+        queryVo.setUser_mark(0);
+        //查询学院
+        List<BaseDict> fromCollege = baseDictService.getBaseDictByCode(college);
+
+        //设置数据模型返回
+        model.addAttribute("fromCollege",fromCollege);
+
+        //根据查询条件分页查询用户列表
+        Page<LabRoom> page = labService.getLabByQueryVo(queryVo);
+
+        //设置分页返回
+        model.addAttribute("page",page);
+
+        //返回查询条件
+        model.addAttribute("vo",queryVo);
+        return "recycleLab";
     }
 
     /**
@@ -113,9 +141,23 @@ public class LabController {
     @RequestMapping("delete")
     @ResponseBody
     public String delete (Integer id){
+        int room_mark = 0;
         String msg = "1";
         try{
-            labService.deleteLabById(id);
+            labService.deleteLabById(id,room_mark);
+            msg = "0";
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return msg;
+    }
+    @RequestMapping("back")
+    @ResponseBody
+    public String back (Integer id){
+        int room_mark = 1;
+        String msg = "1";
+        try{
+            labService.deleteLabById(id,room_mark);
             msg = "0";
         }catch (Exception e){
             e.printStackTrace();

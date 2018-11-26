@@ -5,9 +5,9 @@ public class ApplyBatch {
     private int apply_week_last;
     private int apply_section_first;
     private int apply_section_last;
-    private int room_id;
-    private int user_id;
-    private int course_id;
+    private int room_id ;
+    private int user_id ;
+    private int course_id ;
     private int apply_day;
     private int apply_week;
     private  int apply_section;

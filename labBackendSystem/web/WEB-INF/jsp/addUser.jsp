@@ -88,7 +88,7 @@
                 <div id="user-profile-2" class="user-profile">
                     <div class="tabbable">
                         <ul class="nav nav-tabs padding-18">
-                            <li class="active">
+                            <li >
                                 <a data-toggle="tab" href="#teacher">
                                     <i class="green icon-user bigger-120"></i> 教师
                                 </a>
@@ -154,6 +154,21 @@
                                                             </div>
 
                                                             <div class="form-group">
+                                                                <label class="col-lg-3 control-label">专业</label>
+                                                                <div class="col-lg-5">
+                                                                    <select class="form-control" id="profession"
+                                                                            name="profession">
+                                                                        <option value="">--请选择--</option>
+                                                                        <c:forEach items="${profession}" var="item">
+                                                                            <option value="${item.dict_id}">
+                                                                                    ${item.dict_item_name }
+                                                                            </option>
+                                                                        </c:forEach>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
                                                                 <label class="col-lg-3 control-label">职称</label>
                                                                 <div class="col-lg-5">
                                                                     <select class="form-control" id="professionalTitle"
@@ -173,10 +188,13 @@
                                                             <div class="form-group">
                                                                 <label class="col-lg-3 control-label">颜色</label>
 
-                                                                <div id="cp5" class="input-group colorpicker-component col-lg-5"
-                                                                     data-color="#673AB7" style="padding-left: 15px;padding-right: 15px";
-                                                                     title="Using input value" >
-                                                                    <input type="text" class="form-control col-lg-5" name="user_color" />
+                                                                <div id="cp5"
+                                                                     class="input-group colorpicker-component col-lg-5"
+                                                                     data-color="#673AB7"
+                                                                     style="padding-left: 15px;padding-right: 15px" ;
+                                                                     title="Using input value">
+                                                                    <input type="text" class="form-control col-lg-5"
+                                                                           name="user_color"/>
                                                                     <span class="input-group-addon"><i></i></span>
                                                                 </div>
                                                             </div>
@@ -257,7 +275,13 @@
                                                                                id="admini_name" name="admini_name">
                                                                     </div>
                                                                 </div>
-
+                                                                <div class="form-group">
+                                                                    <label class="col-lg-3 control-label">邮箱</label>
+                                                                    <div class="col-lg-5">
+                                                                        <input type="email" class="form-control" id="admini_email"
+                                                                               name="admini_email">
+                                                                    </div>
+                                                                </div>
                                                                 <!--密码-->
                                                                 <div class="form-group">
                                                                     <label class="col-lg-3 control-label">密码</label>
@@ -466,7 +490,7 @@
         submitHandler: function (form) {  //表单提交后要执行的内容
             $.post("<%=basePath%>user/add.action", $("#add_User_form").serialize(), function (data) {
                 if (data.status == 200) {
-                    swal({title:"提示",text:"用户添加成功", type:"success"}, function () {
+                    swal({title: "提示", text: "用户添加成功", type: "success"}, function () {
                         window.location = "<%=basePath%>user/list.action";
                     });
 
@@ -476,15 +500,15 @@
 
                 }
                 if (data.status == 555) {
-                    swal("提示",data.msg, "error");
+                    swal("提示", data.msg, "error");
 
                 }
                 if (data.status == 666) {
-                    swal("提示",data.msg, "error");
+                    swal("提示", data.msg, "error");
 
                 }
                 if (data.status == 777) {
-                    swal("提示",data.msg, "error");
+                    swal("提示", data.msg, "error");
 
                 }
 
@@ -512,6 +536,10 @@
                 "rangelength": [6, 12],
                 "equalTo": "#admini_password"
             },
+            "admini_email": {
+                "required": true,
+                "email": true
+            }
         },
         messages: {
             "admini_name": {
@@ -526,6 +554,10 @@
                 "required": "*密码不能为空",
                 "rangelength": "*密码长度6-12位",
                 "equalTo": "*两次密码不一致"
+            },
+            "admini_email": {
+                "required": "*邮箱不能为空",
+                "email": "*邮箱格式不正确"
             }
 
         },
@@ -533,7 +565,7 @@
         submitHandler: function (form) {  //表单提交后要执行的内容
             $.post("<%=basePath%>admini/add.action", $("#add_admini_form").serialize(), function (data) {
                 if (data.status == 200) {
-                    swal({title:"提示",text:"用户添加成功", type:"success"}, function () {
+                    swal({title: "提示", text: "用户添加成功", type: "success"}, function () {
                         window.location.reload();
                     });
                 }

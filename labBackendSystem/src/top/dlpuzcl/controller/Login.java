@@ -65,18 +65,20 @@ public class Login {
 
 
         User user_l = userService.login(user);
-        if (user_l.getUser_state() == 0){
-            return LabResult.build(400,"账户未激活，请去邮箱激活账户!");
-        }
-        if (user_l != null && user_l.getUser_state() == 1) {
 
-            session.setAttribute("user", user_l);
-            //登录成功
-           return LabResult.build(200,"登陆成功");
+        if (user_l != null) {
+            if (user_l.getUser_state() == 0) {
+                return LabResult.build(400, "账户未激活，请去邮箱激活账户!");
+            }else{
+                session.setAttribute("user", user_l);
+                //登录成功
+                return LabResult.build(200,"登陆成功");
+            }
+
 
         }else {
 
-            return LabResult.build(300, "登陆失败");
+            return LabResult.build(300, "账号或密码错误");
 
         }
 

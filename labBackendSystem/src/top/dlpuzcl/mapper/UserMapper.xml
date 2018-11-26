@@ -16,10 +16,11 @@
                 and u.professional_title = #{professionalTitle}
             </if>
             <if test="true">
-                and u.user_mark = 1
+                and u.user_mark = #{user_mark}
             </if>
         </where>
     </sql>
+
 
     <!--根据查询条件分页查询列表-->
     <select id="getUserByQueryVo" parameterType="queryvo"  resultType="user">
@@ -31,13 +32,16 @@
             u.user_state,
             u.user_color,
             c.dict_item_name college,
-            p.dict_item_name professional_title
+            p.dict_item_name professional_title,
+            pr.dict_item_name profession
         from user u
         left join base_dict c on u.college = c.dict_id
         left join base_dict p on u.professional_title = p.dict_id
+        left join base_dict pr on u.profession = pr.dict_id
         <include refid="user_where"></include>
         limit #{start},#{rows};
     </select>
+
 
     <!--根据条件查询总记录数-->
     <select id="getCountByQueryVo" parameterType="queryvo" resultType="int">
@@ -57,7 +61,8 @@
             user_email,
             college,
             professional_title,
-            user_color
+            user_color,
+            profession
         from user
         where user_id = #{id} and user_mark = 1;
     </select>
@@ -86,6 +91,9 @@
             <if test="user_color != null and user_color != ''">
                 user_color = #{user_color},
             </if>
+            <if test="profession != null and profession != ''">
+                profession = #{profession},
+            </if>
         </set>
         where user_id = #{user_id};
     </update>
@@ -103,12 +111,19 @@
         where user_id = #{user_id};
     </update>
 
+    <!--找回用户-->
+    <update id="backUserById" parameterType="integer">
+        update user
+        set user_mark = 1
+        where user_id = #{user_id};
+    </update>
+
     <!--添加用户-->
     <insert id="addUser" parameterType="user">
         insert into user
-        (user_name,user_phone,user_email,user_password,college,professional_title,user_color)
+        (user_name,user_phone,user_email,user_password,college,professional_title,user_color,profession)
         values
-            (#{user_name},#{user_phone},#{user_email},#{user_password},#{college},#{professional_title},#{user_color});
+            (#{user_name},#{user_phone},#{user_email},#{user_password},#{college},#{professional_title},#{user_color},#{profession});
     </insert>
 
     <!--查询所有用户-->
@@ -119,7 +134,8 @@
             user_phone,
             user_email,
             college,
-            professional_title
+            professional_title,
+            profession
         from user
         where user_mark = 1
 

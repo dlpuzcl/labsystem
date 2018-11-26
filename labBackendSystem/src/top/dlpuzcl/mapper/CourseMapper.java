@@ -51,6 +51,9 @@ public interface CourseMapper {
     /**
      * 删除课程
      * @param id
+     * @param course_mark
      */
-    void deleteCourse(Integer id);
+    void deleteCourse(Integer id, Integer course_mark);
+
+
 }

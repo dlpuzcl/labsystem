@@ -27,6 +27,12 @@
           and a.iterm = #{iterm}
     </select>
 
+    <select id="queryApplyByYear" resultType="int" parameterType="itermyear">
+        select count(1)
+        from apply
+        WHERE iterm = #{iterm}
+          and years = #{years}
+    </select>
 
     <insert id="addApply" parameterType="apply" >
         insert into apply
@@ -76,6 +82,38 @@
         </where>
         ORDER BY a.apply_day,a.apply_section ASC
         limit #{start},#{rows};
+    </select>
+
+    <!--统计实验室数据-->
+    <select id="data" resultType="apply" parameterType="apply">
+        SELECT
+            a.apply_id,
+            a.user_id,
+            c.course_name,
+            c.course_class,
+            c.course_students,
+            u.user_name,
+            l.room_name,
+            l.room_code,
+            c.course_nature,
+			count(1) course_time
+        FROM
+             apply a
+            left join course c on a.course_id = c.course_id
+            left join user u on a.user_id = u.user_id
+            left join lab_room l on a.room_id = l.room_id
+        GROUP BY
+           a.room_id,
+           a.years,
+		   a.user_id,
+		   a.course_id,
+		   a.iterm
+        HAVING
+        <if test="room_id != null and room_id != '' and room_id != 0">
+             a.room_id=#{room_id} and
+        </if>
+            a.years=#{years}
+            and a.iterm=#{iterm}
     </select>
 
     <select id="getCountByQueryVo" resultType="integer" parameterType="queryvo">
@@ -132,5 +170,17 @@
             </if>
 
         </where>
+    </select>
+
+    <select id="queryCourseByIdYI" parameterType="apply" resultType="Integer">
+        select count(1)
+        from apply
+        where course_id = #{course_id} and years = #{years} and iterm = #{iterm};
+    </select>
+
+    <select id="queryCourseByIdYIn" parameterType="applyBatch" resultType="Integer">
+        select count(1)
+        from apply
+        where course_id = #{course_id} and years = #{years} and iterm = #{iterm};
     </select>
 </mapper>

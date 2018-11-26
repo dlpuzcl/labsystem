@@ -45,5 +45,5 @@ public interface CourseService {
      * 删除课程
      * @param id
      */
-    void deleteCourse(Integer id);
+    void deleteCourse(Integer id,Integer course_mark);
 }

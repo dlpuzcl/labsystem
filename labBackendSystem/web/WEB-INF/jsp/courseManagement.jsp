@@ -14,18 +14,17 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>课程管理</title>
+    <title>管理界面</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<%=basePath%>bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="<%=basePath%>bootstrap/css/bootstrap-colorpicker.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
     <link href="<%=basePath%>metisMenu/metisMenu.min.css" rel="stylesheet">
 
@@ -36,13 +35,17 @@
     <link href="<%=basePath%>morrisjs/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<%=basePath%>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
 
     <link rel="stylesheet" type="text/css" href="<%=basePath%>sweetalert/sweetalert.css">
 
-    <script type="text/javascript">
-
-    </script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
     <style type="text/css">
         .error {
@@ -144,6 +147,7 @@
                                             <td>课程名称</td>
                                             <td>上课班级</td>
                                             <td>上课教师</td>
+                                            <td>上课人数</td>
                                             <td>学时</td>
                                             <td>性质</td>
                                             <td>备注</td>
@@ -160,6 +164,7 @@
                                                 <td>${course.course_name }</td>
                                                 <td>${course.course_class }</td>
                                                 <td>${course.user_id }</td>
+                                                <td>${course.course_students}</td>
                                                 <td>${course.course_time }</td>
                                                 <td>${course.course_nature }</td>
                                                 <td>${course.course_memo }</td>
@@ -245,15 +250,33 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="add_user_id" class="col-sm-2 control-label">课程性质</label>
+                                <label for="edit_course_nature" class="col-sm-2 control-label">课程性质</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" id="edit_course_nature" placeholder="任课教师"
+                                    <select class="form-control" id="edit_course_nature" placeholder="课程性质"
                                             name="course_nature">
                                         <option value="">--请选择--</option>
-                                        <option value="理论课">理论课</option>
-                                        <option value="实验课">实验课</option>
-
+                                        <c:forEach items="${course_nature_list}" var="item">
+                                            <option value="${item.dict_item_name }">
+                                                    ${item.dict_item_name }
+                                            </option>
+                                        </c:forEach>
                                     </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="edit_course_class" class="col-sm-2 control-label">上课班级</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="edit_course_class" placeholder="上课班级"
+                                           name="course_class">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="edit_course_class" class="col-sm-2 control-label">上课人数</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="edit_course_students" placeholder="上课人数"
+                                           name="course_students">
                                 </div>
                             </div>
 
@@ -265,13 +288,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="edit_course_class" class="col-sm-2 control-label">上课班级</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="edit_course_class" placeholder="上课班级"
-                                           name="course_class">
-                                </div>
-                            </div>
+
 
                             <div class="form-group">
                                 <label for="edit_course_memo" class="col-sm-2 control-label">备注</label>
@@ -297,7 +314,7 @@
         </div>
 
 
-        <%--实验室添加对话框--%>
+        <%--课程添加对话框--%>
         <div class="modal fade" id="labAddDialog" tabindex="-1" role="dialog"
              aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
@@ -338,13 +355,32 @@
                             <div class="form-group">
                                 <label for="add_user_id" class="col-sm-2 control-label">课程性质</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" id="add_course_nature" placeholder="任课教师"
+                                    <select class="form-control" id="add_course_nature" placeholder="课程性质"
                                             name="course_nature">
                                         <option value="">--请选择--</option>
-                                        <option value="理论课">理论课</option>
-                                        <option value="实验课">实验课</option>
+                                        <c:forEach items="${course_nature_list}" var="item">
+                                            <option value="${item.dict_item_name }">
+                                                    ${item.dict_item_name }
+                                            </option>
+                                        </c:forEach>
 
                                     </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="add_course_class" class="col-sm-2 control-label">上课班级</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="add_course_class" placeholder="上课班级"
+                                           name="course_class">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="add_course_class" class="col-sm-2 control-label">上课人数</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="add_course_students" placeholder="上课人数"
+                                           name="course_students">
                                 </div>
                             </div>
 
@@ -356,13 +392,6 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="add_course_class" class="col-sm-2 control-label">上课班级</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="add_course_class" placeholder="上课班级"
-                                           name="course_class">
-                                </div>
-                            </div>
 
                             <div class="form-group">
                                 <label for="add_course_memo" class="col-sm-2 control-label">备注</label>
@@ -390,8 +419,9 @@
     </div>
     <!-- /#wrapper -->
 
+    <!-- jQuery -->
     <script src="<%=basePath%>jquery/jquery.min.js"></script>
-
+    <script src="<%=basePath%>bootstrap/js/bootstrap-colorpicker.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="<%=basePath%>bootstrap/js/bootstrap.min.js"></script>
 
@@ -399,13 +429,15 @@
     <script src="<%=basePath%>metisMenu/metisMenu.min.js"></script>
 
     <script src="<%=basePath%>morrisjs/morris.min.js"></script>
-    <%--表单校验--%>
-    <script src="<%=basePath%>jquery/jquery.validate.min.js"></script>
+
+
+    <script src="<%=basePath%>sweetalert/sweetalert.min.js"></script>
+
 
     <!-- Custom Theme JavaScript -->
     <script src="<%=basePath%>dist/js/sb-admin-2.js"></script>
 
-    <script src="<%=basePath%>sweetalert/sweetalert.min.js"></script>
+    <script src="<%=basePath%>jquery/jquery.validate.min.js"></script>
 
     <script>
 
@@ -424,7 +456,7 @@
                     // $("#edit_user_id").val(data.user_name);
                     $("#edit_course_nature").val(data.course_nature);
                     $("#edit_course_time").val(data.course_time);
-
+                    $("#edit_course_students").val(data.course_students);
                 }
             });
         }
@@ -463,6 +495,9 @@
                 },
                 "course_nature": {
                     "required": true,
+                },
+                "course_students": {
+                    "required": true,
                 }
 
             },
@@ -483,6 +518,11 @@
                 },
                 "course_nature": {
                     "required": "*课程性质不能为空",
+                }
+                ,
+                "course_students": {
+                    "required": "*上课人数不能为空",
+                    "number": "*学时只能为数字"
                 }
             },
 

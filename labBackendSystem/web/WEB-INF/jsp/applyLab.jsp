@@ -19,9 +19,8 @@
 
     <title>实验室管理</title>
 
-    <!-- Bootstrap Core CSS -->
     <link href="<%=basePath%>bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="<%=basePath%>bootstrap/css/bootstrap-colorpicker.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
     <link href="<%=basePath%>metisMenu/metisMenu.min.css" rel="stylesheet">
 
@@ -33,9 +32,7 @@
 
     <!-- Custom Fonts -->
     <link href="<%=basePath%>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
     <link href="<%=basePath%>css/style.css" rel="stylesheet">
-
 
     <link rel="stylesheet" type="text/css" href="<%=basePath%>sweetalert/sweetalert.css">
 
@@ -66,7 +63,9 @@
             border: solid 0px red;
             padding: 0px 10px;
         }
-
+        .error {
+            color: red
+        }
 
     </style>
 
@@ -103,8 +102,8 @@
 
 
                 <div class="panel panel-default">
-                    <div class="panel-heading" style="padding-bottom: 23px;">
-                        <i class="fa fa-bar-chart-o fa-fw"></i> 实验室预约
+                    <div class="panel-heading" style="padding-bottom: 0px;padding-top: 11px;height: 55px;padding-left: 0px;">
+
                         <button onclick="getApply()" class="btn btn-primary pull-right">查询</button>
                         <div class="pull-right">
                             <form action="" id="queryApply">
@@ -122,7 +121,7 @@
 
                                 </div>
 
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;
 
                                 <div class="btn-group">
                                     <select class="form-control" name="apply_week">
@@ -150,7 +149,7 @@
 
                                 </div>
 
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;
 
                             </form>
                         </div>
@@ -360,12 +359,13 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div type='inpit/assembly' formname="ack_two">
+                                            <button
+                                                    class="btn btn-lg btn-success btn-block" type="submit">提交
+                                            </button>
+                                        </div>
                                     </form>
-                                    <div type='inpit/assembly' formname="ack_two">
-                                        <button
-                                                class="btn btn-lg btn-success btn-block">提交
-                                        </button>
-                                    </div>
+
                                 </div>
 
                                 <!-- /.table-responsive -->
@@ -407,7 +407,8 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
                 </div>
                 <div class="modal-body">
@@ -428,21 +429,24 @@
 <!-- /#wrapper -->
 
 <script src="<%=basePath%>jquery/jquery.min.js"></script>
-
+<script src="<%=basePath%>bootstrap/js/bootstrap-colorpicker.js"></script>
 <!-- Bootstrap Core JavaScript -->
 <script src="<%=basePath%>bootstrap/js/bootstrap.min.js"></script>
 
 <!-- Metis Menu Plugin JavaScript -->
 <script src="<%=basePath%>metisMenu/metisMenu.min.js"></script>
 
-<!-- Custom Theme JavaScript -->
-<script src="<%=basePath%>dist/js/sb-admin-2.js"></script>
+<script src="<%=basePath%>morrisjs/morris.min.js"></script>
+
 
 <script src="<%=basePath%>sweetalert/sweetalert.min.js"></script>
 
 
-<script type="text/javascript" src="<%=basePath%>bootstrap/js/inpitassembly-2.0.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="<%=basePath%>dist/js/sb-admin-2.js"></script>
 
+<script src="<%=basePath%>jquery/jquery.validate.min.js"></script>
+<script type="text/javascript" src="<%=basePath%>bootstrap/js/inpitassembly-2.0.js"></script>
 <script>
 
 
@@ -547,56 +551,146 @@
     });
 
     //获取表单的值
-    $('#jqu').find("button").click(function () {
+    <%--$('#jqu').find("button").click(function () {--%>
 
-        $("#searchModal").modal("show");//显示“正在查询”字样的模态框
-
-
-        // * ==========================
-        // * 向check_result方法传本身
-        // * 如果你忘记，inpit/assembly依旧会提醒你
-        // * ==========================
-        var val = check_result($(this));
-        var length = val[0].data.length;
-        for (var i = 0; i < length; i++) {
-            var d = "day_section=" + val[0].data[i] + "&";
-            var sum = d + sum;
-        }
-
-        var queryApply = $('#queryApply').serialize();
-        var form1 = $('#form1').serialize();
-        var formdata = queryApply + '&' + form1 + '&' + sum
-        $.ajax({
-            type: "get",
-            url: "<%=basePath%>apply/submit.action",
-            data: formdata,
-            success: function (data) {
-
-                $('#searchModal').modal('hide');//服务器停止了5秒,sleep(5)，假设是查询数据用了5秒
-                // setTimeout("$('#searchModal').modal('hide')",2000); //设置2000毫秒之后模态框消失
+        <%--$("#searchModal").modal("show");//显示“正在查询”字样的模态框--%>
 
 
-                $('#searchModal').on('hidden.bs.modal', function () {
-                    // $("#homeworkContent").html(mydata); //显示后端传递的结果
-                    if (data == "0") {
-                        // alert("预约成功！");
-                        swal({title:"提示",text:"预约成功", type:"success"}, function () {
+        <%--// * ==========================--%>
+        <%--// * 向check_result方法传本身--%>
+        <%--// * 如果你忘记，inpit/assembly依旧会提醒你--%>
+        <%--// * ==========================--%>
+        <%--var val = check_result($(this));--%>
+        <%--var length = val[0].data.length;--%>
+        <%--for (var i = 0; i < length; i++) {--%>
+            <%--var d = "day_section=" + val[0].data[i] + "&";--%>
+            <%--var sum = d + sum;--%>
+        <%--}--%>
 
-                        });
+        <%--var queryApply = $('#queryApply').serialize();--%>
+        <%--var form1 = $('#form1').serialize();--%>
+        <%--var formdata = queryApply + '&' + form1 + '&' + sum--%>
+        <%--$.ajax({--%>
+            <%--type: "get",--%>
+            <%--url: "<%=basePath%>apply/submit.action",--%>
+            <%--data: formdata,--%>
+            <%--success: function (data) {--%>
 
-                    } else {
-                        // alert("预约失败！");
-                        swal({title:"提示",text:"预约失败", type:"error"}, function () {
+                <%--$('#searchModal').modal('hide');//服务器停止了5秒,sleep(5)，假设是查询数据用了5秒--%>
+                <%--// setTimeout("$('#searchModal').modal('hide')",2000); //设置2000毫秒之后模态框消失--%>
 
-                        });
-                    }
-                    getApply();
-                });
 
+                <%--$('#searchModal').on('hidden.bs.modal', function () {--%>
+                    <%--// $("#homeworkContent").html(mydata); //显示后端传递的结果--%>
+                    <%--if (data.status == 200) {--%>
+                        <%--// alert("预约成功！");--%>
+                        <%--swal({title: "提示", text: "预约成功", type: "success"}, function () {--%>
+
+                        <%--});--%>
+
+                    <%--} else {--%>
+                        <%--// alert("预约失败！");--%>
+                        <%--swal({title: "提示", text: data.msg, type: "error"}, function () {--%>
+
+                        <%--});--%>
+                    <%--}--%>
+                    <%--getApply();--%>
+                <%--});--%>
+
+            <%--}--%>
+        <%--})--%>
+
+
+    <%--});--%>
+
+
+    $("#form1").validate({
+        rules: {
+
+            "room_id": {
+                "required": true,
+            },
+            "user_id": {
+                "required": true,
+            },
+
+            "course_id": {
+                "required": true,
             }
-        })
+
+        },
+        messages: {
+
+            "room_id": {
+                "required": "*实验室不能为空",
+            },
+            "user_id": {
+                "required": "*任课教师不能为空",
+            },
+            "course_id": {
+                "required": "*课程不能为空",
+            }
+        },
+
+        submitHandler: function (form) {  //表单提交后要执行的内容
+            //获取表单的值
+            $('#jqu').find("button").click(function () {
+
+                $("#searchModal").modal("show");//显示“正在查询”字样的模态框
 
 
+                // * ==========================
+                // * 向check_result方法传本身
+                // * 如果你忘记，inpit/assembly依旧会提醒你
+                // * ==========================
+                var val = check_result($(this));
+                var length = val[0].data.length;
+                for (var i = 0; i < length; i++) {
+                    var d = "day_section=" + val[0].data[i] + "&";
+                    var sum = d + sum;
+                }
+
+                var queryApply = $('#queryApply').serialize();
+                var form1 = $('#form1').serialize();
+                var formdata = queryApply + '&' + form1 + '&' + sum
+                $.ajax({
+                    type: "get",
+                    url: "<%=basePath%>apply/submit.action",
+                    data: formdata,
+                    success: function (data) {
+
+                        $('#searchModal').modal('hide');//服务器停止了5秒,sleep(5)，假设是查询数据用了5秒
+                        // setTimeout("$('#searchModal').modal('hide')",2000); //设置2000毫秒之后模态框消失
+
+
+                        $('#searchModal').on('hidden.bs.modal', function () {
+                            // $("#homeworkContent").html(mydata); //显示后端传递的结果
+                            if (data.status == 200) {
+                                // alert("预约成功！");
+                                swal({title: "提示", text: "预约成功", type: "success"}, function () {
+
+                                });
+                                getApply();
+
+                            } else {
+                                // alert("预约失败！");
+                                swal({title: "提示", text: data.msg, type: "error"}, function () {
+
+                                });
+                            }
+
+                        });
+
+                    }
+                })
+
+
+            });
+
+        },
+        invalidHandler: function (form, validator) {  //不通过回调
+            return false;
+        }
     });
 
 </script>

@@ -18,6 +18,7 @@ public interface UserService {
      */
     Page<User> getUserByQueryVo(QueryVo queryVo);
 
+
     /**
      * 根据ID查询用户信息
      * @param id
@@ -36,7 +37,11 @@ public interface UserService {
      * @param id
      */
     void deleteUserById(Integer id);
-
+    /**
+     * 通过ID找回用户
+     * @param id
+     */
+    void backUserById(Integer id);
     /**
      * 添加用户信息
      * @param user

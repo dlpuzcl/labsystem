@@ -38,7 +38,7 @@
 
     <link href="<%=basePath%>css/style.css" rel="stylesheet">
 
-
+    <script src="<%=basePath%>jquery/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="<%=basePath%>sweetalert/sweetalert.css">
 
 
@@ -49,7 +49,7 @@
     </style>
 </head>
 
-<body >
+<body>
 
 <div id="wrapper">
 
@@ -57,7 +57,7 @@
 
     <div id="page-wrapper"
 
-         class="row" style="background-color:#FFFFFF;margin-left: 0px;margin-right: 0px;">
+         class="row" style="background-color:#FFFFFF;margin-left: 0px;margin-right: 0px;padding-left: 0px;padding-right: 0px;">
         <div class="col-lg-offset-2 col-lg-8">
             <div class="row">
 
@@ -81,8 +81,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading" style="padding-bottom: 23px;">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> 课程列表
+                        <div class="panel-heading" style="padding-bottom: 0px;padding-top: 11px;height: 55px;">
                             <div class="pull-right">
                                 <a href="#" class="btn btn-success" data-toggle="modal"
                                    data-target="#labAddDialog"
@@ -93,60 +92,62 @@
 
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <table width="100%" class="table table-striped table-bordered table-hover"
-                                   style="text-align: center;">
-                                <thead>
-                                <tr class="info">
-                                    <td>序号</td>
-                                    <td>课程名称</td>
-                                    <td>上课班级</td>
+                            <div class="row">
+                                <div class=" col-md-12">
+                                    <div class="table-responsive">
+                                        <thead>
+                                        <table width="100%" class="table table-striped table-bordered table-hover"
+                                               style="text-align: center;">
 
-                                    <td>学时</td>
-                                    <td>性质</td>
-                                    <td>备注</td>
-                                    <td>编辑</td>
-                                    <td>删除</td>
-                                </tr>
-                                </thead>
+                                            <tr class="info">
+                                                <td>序号</td>
+                                                <td>课程名称</td>
+                                                <td>上课班级</td>
+                                                <td>上课人数</td>
+                                                <td>学时</td>
+                                                <td>性质</td>
+                                                <td>备注</td>
+                                                <td>编辑</td>
+                                                <td>删除</td>
+                                            </tr>
+                                            </thead>
 
-                                <tbody>
+                                            <tbody>
 
-                                <c:forEach items="${courseList }" var="iterm" varStatus="vs">
-                                    <tr>
-                                        <td>${vs.count}</td>
-                                        <td>${iterm.course_name}</td>
-                                        <td>${iterm.course_class }</td>
+                                            <c:forEach items="${courseList }" var="iterm" varStatus="vs">
+                                                <tr>
+                                                    <td>${vs.count}</td>
+                                                    <td>${iterm.course_name}</td>
+                                                    <td>${iterm.course_class }</td>
+                                                    <td>${iterm.course_students}</td>
+                                                    <td>${iterm.course_time }</td>
+                                                    <td>${iterm.course_nature }</td>
+                                                    <td>${iterm.course_memo }</td>
 
-                                        <td>${iterm.course_time }</td>
-                                        <td>${iterm.course_nature }</td>
-                                        <td>${iterm.course_memo }</td>
-
-                                        <td>
-                                            <a href="#" class="btn btn-primary btn-xs" data-toggle="modal"
-                                               data-target="#courseEditDialog"
-                                               onclick="editCourse(${iterm.course_id})">
-                                                <i class="ace-icon fa fa-pencil"></i>
-                                                修改
-                                            </a>
-                                        </td>
+                                                    <td>
+                                                        <a href="#" class="btn btn-primary btn-xs" data-toggle="modal"
+                                                           data-target="#courseEditDialog"
+                                                           onclick="editCourse(${iterm.course_id})">
+                                                            <i class="ace-icon fa fa-pencil"></i>
+                                                            修改
+                                                        </a>
+                                                    </td>
 
 
-                                        <td>
-                                            <a href="#" class="btn btn-danger btn-xs"
-                                               onclick="deleteCourse(${iterm.course_id})">
-                                                <i class="ace-icon fa fa-trash-o"></i>
-                                                删除
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                                </tbody>
-                            </table>
-
-                            <%--<div class="col-md-12 text-right">--%>
-                            <%--<itcast:page url="${pageContext.request.contextPath }/frontCourse/list.action"/>--%>
-                            <%--</div>--%>
-
+                                                    <td>
+                                                        <a href="#" class="btn btn-danger btn-xs"
+                                                           onclick="deleteCourse(${iterm.course_id})">
+                                                            <i class="ace-icon fa fa-trash-o"></i>
+                                                            删除
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -179,44 +180,24 @@
                                     </div>
                                 </div>
 
-                                <%--<div class="form-group">--%>
-                                <%--<label for="edit_user_id" class="col-sm-2 control-label">任课教师</label>--%>
-                                <%--<div class="col-sm-10">--%>
-                                <%--<select class="form-control" id="edit_user_id" placeholder="任课教师"--%>
-                                <%--name="user_id">--%>
-                                <%--<option value="">--请选择--</option>--%>
-                                <%--<c:forEach items="${userList}" var="item">--%>
-                                <%--<option value="${item.user_id}"<c:if--%>
-                                <%--test="${item.user_name == vo.userName}"> selected</c:if>>${item.user_name }--%>
-                                <%--</option>--%>
-                                <%--</c:forEach>--%>
-                                <%--</select>--%>
-                                <%--</div>--%>
-                                <%--</div>--%>
-
-                                <input type="hidden" name="user_id" id="user_id"
-                                       value="${user.user_id}">
+                                <input type="hidden" name="user_id"
+                                       value="${user.user_id}"/>
 
                                 <div class="form-group">
                                     <label for="edit_course_nature" class="col-sm-2 control-label">课程性质</label>
                                     <div class="col-sm-10">
-                                        <select class="form-control" id="edit_course_nature" placeholder="任课教师"
+                                        <select class="form-control" id="edit_course_nature" placeholder="课程性质"
                                                 name="course_nature">
                                             <option value="">--请选择--</option>
-                                            <option value="理论课">理论课</option>
-                                            <option value="实验课">实验课</option>
-
+                                            <c:forEach items="${course_nature_list}" var="item">
+                                                <option value="${item.dict_item_name }">
+                                                        ${item.dict_item_name }
+                                                </option>
+                                            </c:forEach>
                                         </select>
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="add_course_class" class="col-sm-2 control-label">学时</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="edit_course_time" placeholder="学时"
-                                               name="course_time">
-                                    </div>
-                                </div>
 
                                 <div class="form-group">
                                     <label for="edit_course_class" class="col-sm-2 control-label">上课班级</label>
@@ -227,6 +208,22 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group">
+                                    <label for="edit_course_class" class="col-sm-2 control-label">上课人数</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="edit_course_students"
+                                               placeholder="上课人数"
+                                               name="course_students">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="add_course_class" class="col-sm-2 control-label">学时</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="edit_course_time" placeholder="学时"
+                                               name="course_time">
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label for="edit_course_memo" class="col-sm-2 control-label">备注</label>
                                     <div class="col-sm-10">
@@ -274,33 +271,41 @@
                                     </div>
                                 </div>
 
-                                <%--<div class="form-group">--%>
-                                <%--<label for="add_user_id" class="col-sm-2 control-label">任课教师</label>--%>
-                                <%--<div class="col-sm-10">--%>
-                                <%--<select class="form-control" id="add_user_id" placeholder="任课教师"--%>
-                                <%--name="user_id">--%>
-                                <%--<option value="">--请选择--</option>--%>
-                                <%--<c:forEach items="${userList}" var="item">--%>
-                                <%--<option value="${item.user_id}"<c:if--%>
-                                <%--test="${item.user_name == vo.userName}"> selected</c:if>>${item.user_name }--%>
-                                <%--</option>--%>
-                                <%--</c:forEach>--%>
-                                <%--</select>--%>
-                                <%--</div>--%>
-                                <%--</div>--%>
+
                                 <input type="hidden" name="user_id" id="user_id"
                                        value="${user.user_id}">
 
                                 <div class="form-group">
                                     <label for="add_course_nature" class="col-sm-2 control-label">课程性质</label>
                                     <div class="col-sm-10">
-                                        <select class="form-control" id="add_course_nature" placeholder="任课教师"
+                                        <select class="form-control" id="add_course_nature" placeholder="课程性质"
                                                 name="course_nature">
                                             <option value="">--请选择--</option>
-                                            <option value="理论课">理论课</option>
-                                            <option value="实验课">实验课</option>
+                                            <c:forEach items="${course_nature_list}" var="item">
+                                                <option value="${item.dict_item_name }">
+                                                        ${item.dict_item_name }
+                                                </option>
+                                            </c:forEach>
 
                                         </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="add_course_class" class="col-sm-2 control-label">上课班级</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="add_course_class" placeholder="上课班级"
+                                               name="course_class">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="add_course_class" class="col-sm-2 control-label">上课人数</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="add_course_students"
+                                               placeholder="上课人数"
+                                               name="course_students">
                                     </div>
                                 </div>
 
@@ -309,14 +314,6 @@
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="add_course_time" placeholder="学时"
                                                name="course_time">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="add_course_class" class="col-sm-2 control-label">上课班级</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="add_course_class" placeholder="上课班级"
-                                               name="course_class">
                                     </div>
                                 </div>
 
@@ -405,6 +402,7 @@
                 $("#edit_course_memo").val(data.course_memo);
                 $("#edit_course_nature").val(data.course_nature);
                 $("#edit_course_time").val(data.course_time);
+                $("#edit_course_students").val(data.course_students);
 
             }
         });

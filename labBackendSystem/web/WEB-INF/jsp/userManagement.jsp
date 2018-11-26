@@ -127,8 +127,7 @@
                     <button type="submit" class="btn btn-primary">查询</button>
 
                     <a href="#" class="btn btn-success" data-toggle="modal"
-                       data-target="#customerAddDialog"
-                       onclick="editUser(${row.user_id})">添加
+                       data-target="#customerAddDialog">添加
                     </a>
 
                     <a href="${pageContext.request.contextPath }/user/userExcel.action" class="btn btn btn-info"
@@ -163,6 +162,7 @@
                                             <td>邮箱</td>
                                             <td>职称</td>
                                             <td>学院</td>
+                                            <td>专业</td>
                                             <td>颜色</td>
                                             <td>状态</td>
                                             <td>编辑</td>
@@ -179,8 +179,9 @@
                                                 <td>${row.user_email}</td>
                                                 <td>${row.professional_title }</td>
                                                 <td>${row.college}</td>
+                                                <td>${row.profession}</td>
                                                 <td>
-                                                    <div style="background-color:${row.user_color};height: 22px"></div>
+                                                    <div style="background-color:${row.user_color};height: 22px;border-radius:10px;"></div>
 
                                                 </td>
                                                 <c:if test="${row.user_state == 1}">
@@ -261,6 +262,21 @@
                                         <c:forEach items="${fromCollege}" var="item">
                                             <option value="${item.dict_id}"<c:if
                                                     test="${item.dict_id == userCollege}"> selected</c:if>>${item.dict_item_name }</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="edit_userCollege" class="col-sm-2 control-label">专业</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="edit_profession" placeholder="专业"
+                                            name="profession">
+                                        <option value="">--请选择--</option>
+                                        <c:forEach items="${profession}" var="item">
+                                            <option value="${item.dict_id}">
+                                                    ${item.dict_item_name }
+                                            </option>
                                         </c:forEach>
                                     </select>
                                 </div>
@@ -353,6 +369,21 @@
                                             name="college">
                                         <option value="">--请选择--</option>
                                         <c:forEach items="${fromCollege}" var="item">
+                                            <option value="${item.dict_id}">
+                                                    ${item.dict_item_name }
+                                            </option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="edit_userCollege" class="col-sm-2 control-label">专业</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="add_profession" placeholder="专业"
+                                            name="profession">
+                                        <option value="">--请选择--</option>
+                                        <c:forEach items="${profession}" var="item">
                                             <option value="${item.dict_id}">
                                                     ${item.dict_item_name }
                                             </option>
@@ -495,6 +526,9 @@
                 },
                 "college": {
                     "required": true,
+                },
+                "profession": {
+                    "required": true,
                 }
             },
             messages: {
@@ -524,13 +558,16 @@
                 },
                 "college": {
                     "required": "*学院不能为空",
+                },
+                "profession": {
+                    "required": "*专业不能为空",
                 }
             },
 
             submitHandler: function (form) {  //表单提交后要执行的内容
                 $.post("<%=basePath%>user/add.action", $("#add_User_form").serialize(), function (data) {
                     if (data.status == 200) {
-                        swal({title:"提示",text:"用户添加成功", type:"success"}, function () {
+                        swal({title: "提示", text: "用户添加成功", type: "success"}, function () {
                             window.location.reload();
                         });
 
@@ -540,15 +577,15 @@
 
                     }
                     if (data.status == 555) {
-                        swal("提示",data.msg, "error");
+                        swal("提示", data.msg, "error");
 
                     }
                     if (data.status == 666) {
-                        swal("提示",data.msg, "error");
+                        swal("提示", data.msg, "error");
 
                     }
                     if (data.status == 777) {
-                        swal("提示",data.msg, "error");
+                        swal("提示", data.msg, "error");
 
                     }
                     // window.location.reload();
@@ -573,7 +610,7 @@
                     $("#edit_userEmail").val(data.user_email)
                     $("#edit_userPhone").val(data.user_phone)
                     $("#edit_userColor").val(data.user_color)
-
+                    $("#edit_profession").val(data.profession)
                     $("#edit_professionalTitle").val(data.professional_title)
 
                 }
@@ -583,7 +620,7 @@
         function updateUser() {
             $.post("<%=basePath%>user/update.action", $("#edit_User_form").serialize(), function (data) {
                 if (data == "0") {
-                    swal({title:"提示",text:"用户更新成功", type:"success"}, function () {
+                    swal({title: "提示", text: "用户更新成功", type: "success"}, function () {
                         window.location.reload();
                     });
                 } else {
@@ -591,19 +628,6 @@
                 }
             });
         }
-
-        <%--function deleteUser(id) {--%>
-            <%--if (confirm('确实要删除该用户吗?')) {--%>
-                <%--$.post("<%=basePath%>user/delete.action", {"id": id}, function (data) {--%>
-                    <%--if (data == "0") {--%>
-                        <%--alert("用户删除成功！");--%>
-                    <%--} else {--%>
-                        <%--alert("用户删除失败！");--%>
-                    <%--}--%>
-                    <%--window.location.reload();--%>
-                <%--});--%>
-            <%--}--%>
-        <%--}--%>
 
 
         function deleteUser(id) {
@@ -618,11 +642,11 @@
                     closeOnConfirm: false,
                     closeOnCancel: false
                 },
-                function(isConfirm){
+                function (isConfirm) {
                     if (isConfirm) {
                         $.post("<%=basePath%>user/delete.action", {"id": id}, function (data) {
                             if (data == "0") {
-                                swal({title:"删除！", text:"用户已经被删除。", type:"success"},
+                                swal({title: "删除！", text: "用户已经被删除。", type: "success"},
                                     function () {
                                         window.location.reload();
                                     });

@@ -53,8 +53,8 @@ public class LabServiceImpl implements LabService {
     }
 
     @Override
-    public void deleteLabById(Integer id) {
-        labMapper.deleteLabById(id);
+    public void deleteLabById(Integer id,Integer room_mark) {
+        labMapper.deleteLabById(id,room_mark);
     }
 
     @Override

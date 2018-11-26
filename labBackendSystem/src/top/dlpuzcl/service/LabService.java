@@ -3,7 +3,6 @@ package top.dlpuzcl.service;
 import top.dlpuzcl.pojo.LabResult;
 import top.dlpuzcl.pojo.LabRoom;
 import top.dlpuzcl.pojo.QueryVo;
-import top.dlpuzcl.pojo.User;
 import top.dlpuzcl.utils.Page;
 
 import java.util.List;
@@ -38,7 +37,7 @@ public interface LabService {
      * 通过ID删除实验室
      * @param id
      */
-    void deleteLabById(Integer id);
+    void deleteLabById(Integer id,Integer rome_mark);
 
     /**
      * 查询所有实验室

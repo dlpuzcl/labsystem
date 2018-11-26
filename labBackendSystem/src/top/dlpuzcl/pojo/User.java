@@ -11,6 +11,15 @@ public class User {
     private int user_mark;
     private int user_state;
     private String user_color;
+    private String profession;
+
+    public String getProfession() {
+        return profession;
+    }
+
+    public void setProfession(String profession) {
+        this.profession = profession;
+    }
 
     public String getUser_color() {
         return user_color;

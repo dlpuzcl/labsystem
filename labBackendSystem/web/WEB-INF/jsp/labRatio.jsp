@@ -17,7 +17,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>实验室添加</title>
+    <title>实验室利用率</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<%=basePath%>bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -27,18 +27,17 @@
 
     <!-- Custom CSS -->
     <link href="<%=basePath%>dist/css/sb-admin-2.css" rel="stylesheet">
+
     <!-- Morris Charts CSS -->
     <link href="<%=basePath%>morrisjs/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="<%=basePath%>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <link href="<%=basePath%>css/style.css" rel="stylesheet">
 
-    <link rel="<%=basePath%>stylesheet" type="text/css" href="sweetalert/sweetalert.css">
 
-
-    <script src="<%=basePath%>jquery/jquery.min.js"></script>
-    <script src="<%=basePath%>bootstrap/js/Chart.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="<%=basePath%>sweetalert/sweetalert.css">
 
 
     <![endif]-->
@@ -104,7 +103,8 @@
 <!-- /#wrapper -->
 
 <!-- jQuery -->
-<script src="<%=basePath%>jquery/jquery.min.js"></script>
+<script src="<%=basePath%>jquery/jquery.js"></script>
+<script src="<%=basePath%>bootstrap/js/bootstrap-colorpicker.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="<%=basePath%>bootstrap/js/bootstrap.min.js"></script>
@@ -112,9 +112,7 @@
 <!-- Metis Menu Plugin JavaScript -->
 <script src="<%=basePath%>metisMenu/metisMenu.min.js"></script>
 
-<script src="<%=basePath%>morrisjs/morris.min.js"></script>
 
-<script src="<%=basePath%>morrisjs/morris-data.js"></script>
 
 <script src="<%=basePath%>sweetalert/sweetalert.min.js"></script>
 
@@ -122,6 +120,9 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="<%=basePath%>dist/js/sb-admin-2.js"></script>
+<script src="<%=basePath%>morrisjs/morris.js"></script>
+
+<script src="<%=basePath%>morrisjs/morris-data.js"></script>
 <!-- 引入表单校验jquery插件 -->
 <script src="<%=basePath%>jquery/jquery.validate.min.js"></script>
 <script>

@@ -14,7 +14,7 @@
             </if>
 
             <if test="true">
-                and l.room_mark = 1
+                and l.room_mark = #{room_mark}
             </if>
 
         </where>
@@ -95,11 +95,14 @@
         <!--from lab_room-->
         <!--where room_id = #{room_id};-->
     <!--</delete>-->
-    <update id="deleteLabById" parameterType="int">
+    <update id="deleteLabById" >
         update lab_room
-        set room_mark=0
-        where room_id = #{room_id};
+        set room_mark=#{1}
+        where room_id = #{0};
     </update>
+
+
+
 
 
 

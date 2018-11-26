@@ -9,6 +9,15 @@ public class Course {
     private String user_id;
     private String course_time;
     private String course_nature;
+    private String course_students;
+
+    public String getCourse_students() {
+        return course_students;
+    }
+
+    public void setCourse_students(String course_students) {
+        this.course_students = course_students;
+    }
 
     public String getCourse_time() {
         return course_time;

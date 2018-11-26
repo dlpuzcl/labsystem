@@ -15,4 +15,14 @@ public class BaseDictServiceImpl implements BaseDictService {
 
         return baseDictMapper.getBaseDictByCode(code);
     }
+
+    @Override
+    public void addBaseDict(BaseDict baseDict) {
+        baseDictMapper.addBaseDict(baseDict);
+    }
+
+    @Override
+    public void deleteBaseDict(int id) {
+        baseDictMapper.deleteBaseDict(id);
+    }
 }

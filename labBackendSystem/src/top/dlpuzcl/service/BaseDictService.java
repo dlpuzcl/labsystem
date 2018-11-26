@@ -15,4 +15,15 @@ public interface BaseDictService {
      * @return
      */
     List<BaseDict> getBaseDictByCode(String code);
+
+    /**
+     * 添加数据字典
+     * @param baseDict
+     */
+    void addBaseDict (BaseDict baseDict);
+    /**
+     * 根据ID删除数据字典
+     * @param id
+     */
+    void deleteBaseDict (int id);
 }

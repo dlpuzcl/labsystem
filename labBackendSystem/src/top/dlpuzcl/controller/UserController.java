@@ -38,15 +38,19 @@ public class UserController {
 
     private String professional_title = "001";
 
+    private String profession = "004";
+
     private String excelUserName = "用户信息.xls";
 
     private String sheetUserName = "用户信息";
 
     /**
-     *显示客户列表
+     *显示用户列表
      */
     @RequestMapping("list")
     public String list(Model model,QueryVo queryVo){
+
+        queryVo.setUser_mark(1);
 
         //查询学院
         List<BaseDict> fromCollege = baeDictService.getBaseDictByCode(college);
@@ -54,9 +58,13 @@ public class UserController {
         //查询职称
         List<BaseDict> fromProfessionalTitle = baeDictService.getBaseDictByCode(professional_title);
 
+        //查询专业
+        List<BaseDict> professionList = baeDictService.getBaseDictByCode(profession);
+
         //设置数据模型返回
         model.addAttribute("fromCollege",fromCollege);
         model.addAttribute("fromProfessionalTitle",fromProfessionalTitle);
+        model.addAttribute("profession",professionList);
 
         //根据查询条件分页查询用户列表
         Page<User> page = userService.getUserByQueryVo(queryVo);
@@ -70,6 +78,41 @@ public class UserController {
 
         return"userManagement";
     }
+
+
+    /**
+     *用户回收站
+     */
+    @RequestMapping("recycleUser")
+    public String recycleUser(Model model,QueryVo queryVo){
+        queryVo.setUser_mark(0);
+        //查询学院
+        List<BaseDict> fromCollege = baeDictService.getBaseDictByCode(college);
+
+        //查询职称
+        List<BaseDict> fromProfessionalTitle = baeDictService.getBaseDictByCode(professional_title);
+
+        //查询专业
+        List<BaseDict> professionList = baeDictService.getBaseDictByCode(profession);
+
+        //设置数据模型返回
+        model.addAttribute("fromCollege",fromCollege);
+        model.addAttribute("fromProfessionalTitle",fromProfessionalTitle);
+        model.addAttribute("profession",professionList);
+
+        //根据查询条件分页查询用户列表
+        Page<User> page = userService.getUserByQueryVo(queryVo);
+
+
+        //设置分页返回
+        model.addAttribute("page",page);
+
+        //返回查询条件
+        model.addAttribute("vo",queryVo);
+
+        return"recycleUser";
+    }
+
 
     /**
      * 修改时数据回显
@@ -122,6 +165,25 @@ public class UserController {
     }
 
     /**
+     * 找回用户
+     * @param id
+     * @return
+     */
+
+    @RequestMapping("back")
+    @ResponseBody
+    public String back(Integer id){
+        String msg = "1";
+        try{
+            userService.backUserById(id);
+            msg = "0";
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return msg;
+    }
+
+    /**
      * 显示添加用户时的视图
      * @param model
      * @return
@@ -134,10 +196,13 @@ public class UserController {
         //查询职称
         List<BaseDict> fromProfessionalTitle = baeDictService.getBaseDictByCode(professional_title);
 
+        //查询专业
+        List<BaseDict> professionList = baeDictService.getBaseDictByCode(profession);
+
         //设置数据模型返回
         model.addAttribute("fromCollege",fromCollege);
         model.addAttribute("fromProfessionalTitle",fromProfessionalTitle);
-
+        model.addAttribute("profession",professionList);
         return ("addUser");
     }
 

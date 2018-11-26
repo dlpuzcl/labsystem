@@ -49,7 +49,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public void deleteCourse(Integer id) {
-        courseMapper.deleteCourse(id);
+    public void deleteCourse(Integer id,Integer course_mark) {
+        courseMapper.deleteCourse(id,course_mark);
     }
 }

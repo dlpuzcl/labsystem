@@ -7,16 +7,43 @@ public class Apply {
     private int apply_section;
     private int apply_week;
     private int user_id;
-    private int course_id;
+    private String course_id;
+    private String course_time;
+    private String course_class;
+    private String course_nature;
     private String day_section[];
     private String user_name;
     private String room_name;
     private String course_name;
     private String room_code;
-    private String course_class;
     private String years;
     private int iterm;
     private String user_color;
+    private String course_students;
+
+    public String getCourse_students() {
+        return course_students;
+    }
+
+    public void setCourse_students(String course_students) {
+        this.course_students = course_students;
+    }
+
+    public String getCourse_nature() {
+        return course_nature;
+    }
+
+    public void setCourse_nature(String course_nature) {
+        this.course_nature = course_nature;
+    }
+
+    public String getCourse_time() {
+        return course_time;
+    }
+
+    public void setCourse_time(String course_time) {
+        this.course_time = course_time;
+    }
 
     public String getUser_color() {
         return user_color;
@@ -90,11 +117,12 @@ public class Apply {
         this.user_id = user_id;
     }
 
-    public int getCourse_id() {
+
+    public String getCourse_id() {
         return course_id;
     }
 
-    public void setCourse_id(int course_id) {
+    public void setCourse_id(String course_id) {
         this.course_id = course_id;
     }
 

@@ -2,16 +2,25 @@ package top.dlpuzcl.pojo;
 
 public class Admini {
 
-    private int admini_id;
+    private String admini_id;
     private String admini_name;
     private String admini_password;
     private String admini_memo;
+    private String admini_email;
 
-    public int getAdmini_id() {
+    public String getAdmini_email() {
+        return admini_email;
+    }
+
+    public void setAdmini_email(String admini_email) {
+        this.admini_email = admini_email;
+    }
+
+    public String getAdmini_id() {
         return admini_id;
     }
 
-    public void setAdmini_id(int admini_id) {
+    public void setAdmini_id(String admini_id) {
         this.admini_id = admini_id;
     }
 

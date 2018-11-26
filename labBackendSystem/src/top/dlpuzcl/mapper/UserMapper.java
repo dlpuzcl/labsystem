@@ -16,6 +16,7 @@ public interface UserMapper {
      */
    List<User> getUserByQueryVo(QueryVo queryVo);
 
+
     /**
      * 根据条件查询总记录数
      * @param queryVo
@@ -41,7 +42,11 @@ public interface UserMapper {
      * @param id
      */
    void deleteUserById(Integer id);
-
+    /**
+     * 通过ID找回用户
+     * @param id
+     */
+    void backUserById(Integer id);
     /**
      * 添加用户信息
      * @param user

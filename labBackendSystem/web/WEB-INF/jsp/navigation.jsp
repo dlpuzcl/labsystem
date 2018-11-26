@@ -154,7 +154,7 @@
                 </c:if>
 
                 <c:if test="${!empty admini }">
-                    <li><a href="#"><i class="fa fa-user fa-fw"></i>
+                    <li><a href="/admini/edit.action?id=${admini.admini_id}"><i class="fa fa-user fa-fw"></i>
                             ${admini. admini_name}</a></li>
                     <li><a href="/admini/updatePasswordView.action" >
                         <i class="fa fa-gear fa-fw"></i> 设置</a></li>
@@ -245,11 +245,34 @@
                         class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li><a href="${pageContext.request.contextPath }/apply/setItermView.action">学期设置</a></li>
+                        <li><a href="${pageContext.request.contextPath }/apply/dataStatistical.action">实验室统计</a></li>
                         <li><a href="${pageContext.request.contextPath }/apply/labRatioView.action">实验室利用率</a></li>
-                        <li><a href="#"></a></li>
+
 
                     </ul>
                 </li>
+
+                <li><a href="#"><i class="fa fa-book fa-fw"></i> 数据字典<span
+                        class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="${pageContext.request.contextPath }/baseDict/professional.action">专业设置</a></li>
+                        <li><a href="${pageContext.request.contextPath }/baseDict/college.action">学院设置</a></li>
+                        <li><a href="${pageContext.request.contextPath }/baseDict/professional_title.action">职称设置</a></li>
+                        <li><a href="${pageContext.request.contextPath }/baseDict/courseNature.action">课程性质</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#"><i class="fa fa-recycle fa-fw"></i> 回收站<span
+                        class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="${pageContext.request.contextPath }/user/recycleUser.action">用户</a></li>
+
+                        <li><a href="${pageContext.request.contextPath }/course/recycleCourse.action">课程</a></li>
+                        <li><a href="${pageContext.request.contextPath }/lab/recycleLab.action">实验室</a></li>
+
+                    </ul>
+                </li>
+
 
             </ul>
         </div>

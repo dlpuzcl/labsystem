@@ -21,4 +21,14 @@ public interface AdminiService {
      * 修改密码
      */
     void updatePassword(Admini admini);
+    /**
+     * 根据ID查询管理员
+     */
+    Admini queryAdminiById(Integer id);
+
+    /**
+     * 更新管理员信息
+     * @param admini
+     */
+    LabResult updateAdmini(Admini admini);
 }

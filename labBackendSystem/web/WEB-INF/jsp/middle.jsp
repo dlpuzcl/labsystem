@@ -8,20 +8,22 @@
     <style>
         /*a:link,a:visited{color:#444;text-decoration:none;}*/
         /*a:hover{color:#ff0000;}*/
-
+        .huge {
+            font-size: 33px;
+        }
     </style>
 </head>
 <body>
 
 <!-- /.row -->
 <div class="row">
-    <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
         <div class="panel panel-primary">
             <a href="/front/courseTable.action">
                 <div class="panel-heading" style="background-color:#337AB7;color:#FFFFFF;padding-color:#337AB7;">
                     <div class="row">
                         <div class="col-xs-3">
-                            <i class="fa fa-calendar fa-5x"></i>
+                            <i class="fa fa-calendar fa-4x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
                             <div class="huge">首页</div>
@@ -38,13 +40,13 @@
             </a>
         </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
         <div class="panel panel-green">
             <a href="/frontCourse/list.action?id=${user.user_id}">
                 <div class="panel-heading" style="background-color:#60B860;color:#FFFFFF;padding-color:#60B860;">
                     <div class="row">
                         <div class="col-xs-3">
-                            <i class="fa fa-tasks fa-5x"></i>
+                            <i class="fa fa-tasks fa-4x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
                             <div class="huge">课程</div>
@@ -61,13 +63,13 @@
             </a>
         </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
         <div class="panel panel-yellow">
             <a href="/front/apply.action">
                 <div class="panel-heading" style="background-color:#E8A74B;color:#FFFFFF;padding-color:#E8A74B;">
                     <div class="row">
                         <div class="col-xs-3">
-                            <i class="fa fa-shopping-cart fa-5x"></i>
+                            <i class="fa fa-shopping-cart fa-4x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
                             <div class="huge">预约</div>
@@ -83,13 +85,13 @@
             </a>
         </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
         <div class="panel panel-red">
-            <a href="/front/queryApplyByUser.action?userName=${user.user_id}&applyWeek=1">
+            <a href="/front/queryApplyByUser.action?userName=${user.user_id}">
                 <div class="panel-heading" style="background-color:#D9534F;color:#FFFFFF;padding-color:#D9534F;">
                     <div class="row">
                         <div class="col-xs-3">
-                            <i class="fa fa-support fa-5x"></i>
+                            <i class="fa fa-support fa-4x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
                             <div class="huge">已约</div>

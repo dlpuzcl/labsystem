@@ -86,8 +86,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading" style="padding-bottom: 23px;">
-                        <i class="fa fa-bar-chart-o fa-fw"></i> 实验室查询
+                    <div class="panel-heading" style="padding-bottom: 0px;padding-top: 11px;height: 55px;padding-left: 0px">
                         <button onclick="getApply()" class="btn btn-primary pull-right">查询</button>
                         <div class="pull-right">
                             <form action="" id="queryApply">
@@ -106,17 +105,17 @@
                                 </div>
 
 
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;
 
                                 <div class="btn-group">
                                     <button class="btn btn btn-info"
-                                            onClick="$('.exceldown').tableExport({type:'excel',pdfmake:{enabled:true}});">
+                                            onClick="$('.exceldown').tableExport({type:'excel', pdfmake:{enabled:true}});">
                                         下载
                                     </button>
 
                                 </div>
 
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;
 
                             </form>
                         </div>
@@ -176,6 +175,10 @@
 <script type="text/javascript" src="<%=basePath%>excel/tableExport.js"></script>
 <script type="text/javascript" src="<%=basePath%>excel/html2canvas.min.js"></script>
 <script>
+
+
+
+
     $(function () {
 
 
@@ -187,13 +190,13 @@
                 "                                            <tr>\n" +
                 "                                                <th scope=\"col\">周</th>\n" +
                 "                                                <th scope=\"col\">星期/节次</th>\n" +
-                "                                                <th scope=\"col\">星期一</th>\n" +
-                "                                                <th scope=\"col\">星期二</th>\n" +
-                "                                                <th scope=\"col\">星期三</th>\n" +
-                "                                                <th scope=\"col\">星期四</th>\n" +
-                "                                                <th scope=\"col\">星期五</th>\n" +
-                "                                                <th scope=\"col\">星期六</th>\n" +
-                "                                                <th scope=\"col\">星期天</th>\n" +
+                "                                                <th scope=\"col\"><div style=\"padding: 8px 8px;border-radius:8px;width: 100px;\">  星期一</div></th>\n" +
+                "                                                <th scope=\"col\"><div style=\"padding: 8px 8px;border-radius:8px;width: 100px;\">  星期二</div></th>\n" +
+                "                                                <th scope=\"col\"><div style=\"padding: 8px 8px;border-radius:8px;width: 100px;\">  星期三</div></th>\n" +
+                "                                                <th scope=\"col\"> <div style=\"padding: 8px 8px;border-radius:8px;width: 100px;\">  星期四</div></th>\n" +
+                "                                                <th scope=\"col\"><div style=\"padding: 8px 8px;border-radius:8px;width: 100px;\">  星期五</div></th>\n" +
+                "                                                <th scope=\"col\"><div style=\"padding: 8px 8px;border-radius:8px;width: 100px;\">  星期六</div></th>\n" +
+                "                                                <th scope=\"col\"><div style=\"padding: 8px 8px;border-radius:8px;width: 100px;\">  星期天</div></th>\n" +
                 "                                            </tr>\n" +
                 "                                            </tr>\n" +
                 "                                            </thead>\n" +
@@ -360,7 +363,7 @@
                     for (var i = 1; i < 13; i++) {
                         for (var j = 1; j < 8; j++) {
 
-                            $("#table" + k + "_" + j + "_" + i).html("<div style='background-color: #E7EAED;padding: 8px 8px; color: #FFFFFF;border-radius:8px' ><br><br><br></div>");
+                            $("#table" + k + "_" + j + "_" + i).html("<div style='background-color: #E7EAED;padding: 8px 8px; color: #FFFFFF;border-radius:8px;width: 100px;' ><br><br><br></div>");
                         }
                     }
 
@@ -369,7 +372,7 @@
                 //遍历课程表
                 for (var i = 0; i < data.length; i++) {
 
-                    $("#table" + data[i].apply_week + "_" + data[i].apply_day + "_" + data[i].apply_section).html("<div style='background-color: " + data[i].user_color + ";padding: 8px 8px;color: #FFFFFF;border-radius:8px' >" + data[i].course_name + "<br>" + data[i].course_class + "<br>" + data[i].user_name + "</div>");
+                    $("#table" + data[i].apply_week + "_" + data[i].apply_day + "_" + data[i].apply_section).html("<div style='background-color: " + data[i].user_color + ";padding: 8px 8px;color: #FFFFFF;border-radius:8px;width: 100px;' >" + data[i].course_name + "<br>" + data[i].course_class + "<br>" + data[i].user_name + "</div>");
 
 
                     // $("#table" + data[i].apply_week + "_" + data[i].apply_day + "_" + data[i].apply_section).html(data[i].course_name + "<br>" + data[i].course_class + "<br>" + data[i].user_name);

@@ -6,4 +6,14 @@
     <select id="getBaseDictByCode" parameterType="String" resultType="BaseDict">
         SELECT * from base_dict where dict_type_code = #{code}
     </select>
+
+    <insert id="addBaseDict" parameterType="BaseDict">
+        insert into base_dict(dict_type_code,dict_type_name,dict_item_name)
+        value (#{dict_type_code},#{dict_type_name},#{dict_item_name})
+    </insert>
+
+    <delete id="deleteBaseDict" parameterType="integer">
+        delete from base_dict
+        where dict_id = #{id}
+    </delete>
 </mapper>

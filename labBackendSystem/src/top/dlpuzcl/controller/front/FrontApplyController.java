@@ -59,16 +59,11 @@ public class FrontApplyController {
      */
     @RequestMapping("submit")
     @ResponseBody
-    public String submit(Apply apply) {
+    public LabResult submit(Apply apply) {
+        LabResult labResult = applyService.addApply(apply);
 
-        String msg = "1";
-        try {
-            applyService.addApply(apply);
-            msg = "0";
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return msg;
+
+        return labResult;
     }
 
     /**

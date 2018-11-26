@@ -2,7 +2,6 @@ package top.dlpuzcl.mapper;
 
 import top.dlpuzcl.pojo.LabRoom;
 import top.dlpuzcl.pojo.QueryVo;
-import top.dlpuzcl.pojo.User;
 
 import java.util.List;
 
@@ -45,7 +44,7 @@ public interface LabMapper {
      * 通过ID删除实验室
      * @param id
      */
-    void deleteLabById(Integer id);
+    void deleteLabById(Integer id,Integer room_mark);
 
     /**
      * 查询所有实验室

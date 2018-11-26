@@ -53,7 +53,7 @@
                     <div class="r-forget cl">
                         <div class="tel-warn img-err hide"><em>验证码错误，请重新输入</em><i class="icon-warn"></i></div>
 
-                    <%--<a href="#" class="z">账号注册</a>--%>
+                        <%--<a href="#" class="z">账号注册</a>--%>
                         <%--<a href="#" class="y">忘记密码</a>--%>
                     </div>
                 </form>
@@ -78,56 +78,45 @@
                         <label for="veri2">请输入验证码</label>
                         <input type="text" id="veri2">
                         <img src="<%=basePath%>getpatchcaImage.action" id="img2">
-                        <span class="tel-warn img-err hide"><em>账号或密码错误，请重新输入</em><i class="icon-warn"></i></span>
-                        <!-- <a href="javascript:;">换一换</a> -->
+                    <span class="tel-warn img-err hide"><em>账号或密码错误，请重新输入</em><i class="icon-warn"></i></span>
+                    <!-- <a href="javascript:;">换一换</a> -->
                     </p>
-                    <div class="r-forget cl">
-                        <a href="#" class="z">账号注册</a>
-                        <a href="#" class="y">忘记密码</a>
-                    </div>
+                    <%--<div class="r-forget cl">--%>
+                    <%--<a href="#" class="z">账号注册</a>--%>
+                    <%--<a href="#" class="y">忘记密码</a>--%>
+                    <%--</div>--%>
                 </form>
                 <button class="lang-btn" id="btn2" onclick="Btn2()"> 登录</button>
 
             </div>
-            <%--<div class="r-forget cl">--%>
-            <%--<a href="./reg.html" class="z">账号注册</a>--%>
-            <%--<a href="./getpass.html" class="y">忘记密码</a>--%>
-            <%--</div>--%>
-            <%--<button class="lang-btn off log-btn" > 登录</button>--%>
-            <%--<div class="third-party">--%>
-            <%--<a href="#" class="log-qq icon-qq-round"></a>--%>
-            <%--<a href="#" class="log-qq icon-weixin"></a>--%>
-            <%--<a href="#" class="log-qq icon-sina1"></a>--%>
-            <%--</div>--%>
-            <p class="right">Powered by © 2018</p>
+
+            <p class="right">臧成龙</p>
         </div>
     </div>
-
 
 
 </div>
 
 
-<div class="modal fade" id="alertSource" role="dialog" aria-labelledby="gridSystemModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
-            </div>
-            <div class="modal-body">
-                <div class="container-fluid" id="h5">
-                    <%--<h5 id="h5">预约成功！</h5>--%>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary pull-right" data-dismiss="modal">确定</button>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
+<%--<div class="modal fade" id="alertSource" role="dialog" aria-labelledby="gridSystemModalLabel">--%>
+<%--<div class="modal-dialog" role="document">--%>
+<%--<div class="modal-content">--%>
+<%--<div class="modal-header">--%>
+<%--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--%>
+<%--<h4 class="modal-title" id="gridSystemModalLabel">提示</h4>--%>
+<%--</div>--%>
+<%--<div class="modal-body">--%>
+<%--<div class="container-fluid" id="h5">--%>
+<%--</div>--%>
+<%--</div>--%>
+<%--<div class="modal-footer">--%>
+<%--<button type="button" class="btn btn-primary pull-right" data-dismiss="modal">确定</button>--%>
+<%--</div>--%>
+<%--</div>--%>
+<%--<!-- /.modal-content -->--%>
+<%--</div>--%>
+<%--<!-- /.modal-dialog -->--%>
+<%--</div>--%>
 
 <script src="<%=basePath%>bootstrap/js/bootstrap.min.js"></script>
 
@@ -142,21 +131,20 @@
         var code = $("#veri").val();
 
         $.ajax({
-            type:"POST",
-            url:"<%=basePath%>validateCode.action",
-            dataType:"text",
-            data:'code='+code,
-            success:function(data){
-                if(data=="true"){
+            type: "POST",
+            url: "<%=basePath%>validateCode.action",
+            dataType: "text",
+            data: 'code=' + code,
+            success: function (data) {
+                if (data == "true") {
 
                     $.post("<%=basePath%>login/user.action", $("#form1").serialize(), function (data) {
-
 
 
                         if (data.status == 200) {
                             window.location = "<%=basePath%>front/apply.action"
                         }
-                        if (data == 300) {
+                        if (data.status == 300) {
                             $(".message").addClass("on");
 
                             $('.pass-err').removeClass('hide').find('em').text(data.msg);
@@ -165,26 +153,24 @@
 
                             $('.pass-err').find('i').attr('class', 'icon-warn').css("color", "#d9585b");
                             $('.code').removeClass('hide');
-                            var a = "<%=basePath%>getpatchcaImage.action"
-                            $("#img1").attr("src", a);
+                            $("#img1").attr("src", "<%=basePath%>getpatchcaImage.action");
                         }
-                        if(data.status==400){
-                            swal("提示", data.msg,  "error")
+                        if (data.status == 400) {
+                            swal("提示", data.msg, "error")
                         }
 
                     });
-                }else{
+                } else {
 
-                    swal("提示", "验证码错误",  "error")
+                    swal("提示", "验证码错误", "error")
 
-                    var a = "<%=basePath%>getpatchcaImage.action"
-                    $("#img1").attr("src", a);
+                    $("#img1").attr("src", "<%=basePath%>getpatchcaImage.action");
 
 
                 }
             },
-            error:function(data){
-                swal("提示", "ajax调用失败",  "error")
+            error: function (data) {
+                swal("提示", "ajax调用失败", "error")
             }
         });
 
@@ -195,19 +181,19 @@
         var code = $("#veri2").val();
 
         $.ajax({
-            type:"POST",
-            url:"<%=basePath%>validateCode.action",
-            dataType:"text",
-            data:'code='+code,
-            success:function(data){
-                if(data == "true"){
+            type: "POST",
+            url: "<%=basePath%>validateCode.action",
+            dataType: "text",
+            data: 'code=' + code,
+            success: function (data) {
+                if (data == "true") {
 
                     $.post("<%=basePath%>login/admini.action", $("#form2").serialize(), function (data) {
 
-                        if (data ==0 ) {
+                        if (data == 0) {
                             window.location = "<%=basePath%>admini/first.action"
                         }
-                        else{
+                        else {
 
                             $(".message").addClass("on");
                             $(".account_number").removeClass("on");
@@ -218,39 +204,37 @@
                             $('.num-err').removeClass('hide').find('em').text(data.msg);
                             $('.num-err').find('i').attr('class', 'icon-warn').css("color", "#d9585b");
                             $('.code').removeClass('hide');
-                            var a = "<%=basePath%>getpatchcaImage.action"
-                            $("#img2").attr("src", a);
+                            $("#img2").attr("src", "<%=basePath%>getpatchcaImage.action");
                         }
                     });
 
-                }else{
+                } else {
 
-                    swal("提示", "验证码错误",  "error")
+                    swal("提示", "验证码错误", "error")
 
 
-                    var a = "<%=basePath%>getpatchcaImage.action"
-                    $("#img2").attr("src", a);
+                    $("#img2").attr("src", "<%=basePath%>getpatchcaImage.action");
 
 
                 }
             },
-            error:function(data){
-                swal("提示", "ajax调用失败",  "error")
+            error: function (data) {
+                swal("提示", "ajax调用失败", "error")
             }
         });
 
 
-
-
     }
 
-    $("#img1").click(function(){
-        var a = "<%=basePath%>getpatchcaImage.action"
-        $("#img1").attr("src", a);
+    $("#img1").click(function () {
+
+
+
+
+        document.getElementById('img1').src="/getpatchcaImage.action";
     });
-    $("#img2").click(function(){
-        var a = "<%=basePath%>getpatchcaImage.action"
-        $("#img2").attr("src", a);
+    $("#img2").click(function () {
+        $("#img2").attr("src", "/getpatchcaImage.action");
     });
 
 

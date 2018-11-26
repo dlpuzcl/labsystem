@@ -64,7 +64,30 @@ public interface ApplyMapper {
 
    Integer queryApplyByItermYear (Apply apply);
 
-    List<Apply> querySelectApply(Apply apply);
+   List<Apply> querySelectApply(Apply apply);
+
+    /**
+     * 统计实验室数据
+     * @param apply
+     * @return
+     */
+   List<Apply> data(Apply apply);
+
+    /**
+     * 通过学期年课程ID查询课程
+     * @param apply
+     * @return
+     */
+    Integer queryCourseByIdYI (Apply apply);
 
 
+    /**
+     * 通过学期年课程ID查询课程
+     * @param applyBatch
+     * @return
+     */
+    Integer queryCourseByIdYIn (ApplyBatch applyBatch);
+
+
+    int queryApplyByYear(ItermYear itermYear);
 }

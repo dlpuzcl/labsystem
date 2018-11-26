@@ -22,7 +22,7 @@ public interface ApplyService {
      * 添加单向申请
      * @param apply
      */
-    void addApply(Apply apply);
+    LabResult addApply(Apply apply);
 
     /**
      * 添加批量申请
@@ -75,5 +75,16 @@ public interface ApplyService {
     LabRatio labRatioSum();
 
     List<Apply> querySelectApply(Apply apply);
+
+
+    /**
+     * 统计实验室数据
+     * @param apply
+     * @return
+     */
+    List<Apply> data(Apply apply);
+
+
+    int queryApplyByYear();
 
 }

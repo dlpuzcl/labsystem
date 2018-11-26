@@ -1,6 +1,6 @@
 package top.dlpuzcl.utils;
 
-import top.dlpuzcl.pojo.User;
+import top.dlpuzcl.pojo.*;
 
 import javax.mail.Authenticator;
 import javax.mail.Message.RecipientType;
@@ -37,6 +37,81 @@ public class EmailUtil {
             e.printStackTrace();
         }
     }
+    //批量预约管理员通知
+    public static void applyInform(Admini admini, User user, LabRoom lab, Course course,String week,String sessions,int day) {
+        Session session = getSession();
+        MimeMessage message = new MimeMessage(session);
+        try {
+            message.setSubject("约课通知");
+            message.setSentDate(new Date());
+            message.setFrom(new InternetAddress(FROM));
+            message.setRecipient(RecipientType.TO, new InternetAddress(admini.getAdmini_email()));
+            String msg =
+                    "<h3 align=\"center\">约课通知！</h3></br>\n" + "<div style='margin:0 auto;width: 80%;'>授课教师：" + user.getUser_name() +
+                            "</br>预约教室：" + lab.getRoom_code() + "</br>预约时间：第" + week + "周，星期"+day+"的第"+sessions+"节</br>课程名称：" + course.getCourse_name() + "</br>上课班级：" + course.getCourse_class() + "</br>上课人数：" + course.getCourse_students()+"</div>";
+            message.setContent(msg,"text/html;charset=utf-8");
+            Transport.send(message);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    //批量预约用户通知
+    public static void userInform(User user, LabRoom lab, Course course,String week,String sessions,int day) {
+        Session session = getSession();
+        MimeMessage message = new MimeMessage(session);
+        try {
+            message.setSubject("约课通知");
+            message.setSentDate(new Date());
+            message.setFrom(new InternetAddress(FROM));
+            message.setRecipient(RecipientType.TO, new InternetAddress(user.getUser_email()));
+            String msg =
+                    "<h3 align=\"center\">恭喜你预约成功！</h3></br>\n" + "<div style='margin:0 auto;width: 80%;'>授课教师：" + user.getUser_name() +
+                            "</br>预约教室：" + lab.getRoom_code() + "</br>预约时间：第" + week + "周-，星期"+day+"的第"+sessions+"节</br>课程名称：" + course.getCourse_name() + "</br>上课班级：" + course.getCourse_class() + "</br>上课人数：" + course.getCourse_students()+"</div>";
+            message.setContent(msg, "text/html;charset=utf-8");
+            Transport.send(message);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //单点预约管理员通知
+    public static void applyInform(Admini admini, User user, LabRoom lab, Course course,String week,String daysessions) {
+        Session session = getSession();
+        MimeMessage message = new MimeMessage(session);
+        try {
+            message.setSubject("约课通知");
+            message.setSentDate(new Date());
+            message.setFrom(new InternetAddress(FROM));
+            message.setRecipient(RecipientType.TO, new InternetAddress(admini.getAdmini_email()));
+            String msg =
+                    "<h3 align=\"center\">约课通知！</h3></br>\n" + "<div style='margin:0 auto;width: 80%;'>授课教师：" + user.getUser_name() +
+                            "</br>预约教室：" + lab.getRoom_code() + "</br>课程名称：" + course.getCourse_name() + "</br>上课班级：" + course.getCourse_class() + "</br>上课人数：" + course.getCourse_students()+"</br>预约时间：第" + week + "周</br>"+daysessions+"</div>";
+            message.setContent(msg,"text/html;charset=utf-8");
+            Transport.send(message);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //单点预约用户通知
+    public static void userInform(User user, LabRoom lab, Course course,String week,String daysessions) {
+        Session session = getSession();
+        MimeMessage message = new MimeMessage(session);
+        try {
+            message.setSubject("约课通知");
+            message.setSentDate(new Date());
+            message.setFrom(new InternetAddress(FROM));
+            message.setRecipient(RecipientType.TO, new InternetAddress(user.getUser_email()));
+            String msg =
+                    "<h3 align=\"center\">恭喜你预约成功！</h3></br>\n" + "<div style='margin:0 auto;width: 80%;'>授课教师：" + user.getUser_name() +
+                            "</br>预约教室：" + lab.getRoom_code() + "</br>预约时间：第" + week + "周"+daysessions+"</br>课程名称：" + course.getCourse_name() + "</br>上课班级：" + course.getCourse_class() + "</br>上课人数：" + course.getCourse_students()+"</div>";
+            message.setContent(msg, "text/html;charset=utf-8");
+            Transport.send(message);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
     public static Session getSession() {

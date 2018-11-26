@@ -58,7 +58,7 @@
     <%@ include file="/WEB-INF/jsp/top.jsp" %>
 
     <div id="page-wrapper"
-         class="row" style="background-color:#FFFFFF;margin-left: 0px;margin-right: 0px;">
+         class="row" style="background-color:#FFFFFF;margin-left: 0px;margin-right: 0px;padding-left: 0px;padding-right: 0px;">
         <div class="col-lg-offset-2 col-lg-8">
             <div class="row">
                 <div class="col-lg-3 col-md-6">
@@ -82,7 +82,6 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            请认真填写以下数据
                         </div>
                         <div class="panel-body">
                             <div class="row">

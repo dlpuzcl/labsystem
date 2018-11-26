@@ -6,6 +6,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+    <style type="text/css">
+        .navbar-header {
+            /* float: left; */
+            float: none;
+        }
+    </style>
 </head>
 <body>
  <!-- Navigation -->
@@ -14,39 +20,41 @@
                 
                 <!--<a class="navbar-brand" href="index.html">后台管理界面</a>-->
                 <font class="navbar-brand" href="#" >实验室预约系统</font>
+
+                <ul class="nav navbar-top-links  pull-right">
+                    <!-- /.dropdown -->
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user fa-fw" ></i> <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+
+                            <c:if test="${empty user }">
+                                <li><a href="/login/view.action"><i class="fa fa-user fa-fw"></i> 登录</a>
+                                </li>
+                                <li><a href="#"><i class="fa fa-gear fa-fw"></i> 设置</a>
+                                </li>
+                            </c:if>
+
+                            <c:if test="${!empty user }">
+                                <li><a href="#"><i class="fa fa-user fa-fw"></i> ${user.user_name }</a>
+                                </li>
+                                <li><a href="/front/updatePasswordView.action"><i class="fa fa-gear fa-fw"></i> 设置</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li><a href="/login/userLogout.action"><i class="fa fa-sign-out fa-fw"></i> 注销</a>
+                                </li>
+                            </c:if>
+
+                        </ul>
+                        <!-- /.dropdown-user -->
+                    </li>
+                    <!-- /.dropdown -->
+                </ul>
             </div>
             <!-- /.navbar-header -->
 
-            <ul class="nav navbar-top-links  pull-right"">
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw" ></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                    
-                    	<c:if test="${empty user }">
-	                    	<li><a href="/login/view.action"><i class="fa fa-user fa-fw"></i> 登录</a>
-	                        </li>
-	                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> 设置</a>
-	                        </li>
-                    	</c:if>
-                    	
-                    	<c:if test="${!empty user }">
-	                    	<li><a href="#"><i class="fa fa-user fa-fw"></i> ${user.user_name }</a>
-	                        </li>
-	                        <li><a href="/front/updatePasswordView.action"><i class="fa fa-gear fa-fw"></i> 设置</a>
-	                        </li>
-	                        <li class="divider"></li>
-	                        <li><a href="/login/userLogout.action"><i class="fa fa-sign-out fa-fw"></i> 注销</a>
-	                        </li>
-                    	</c:if>
-                        
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-            </ul>
+
         </nav>
 </body>
 </html>

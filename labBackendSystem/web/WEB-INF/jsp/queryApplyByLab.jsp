@@ -86,8 +86,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading" style="padding-bottom: 23px;">
-                        <i class="fa fa-bar-chart-o fa-fw"></i> 实验室查询
+                    <div class="panel-heading" style="padding-bottom: 0px;padding-top: 11px;height: 55px;padding-left: 0px;">
                         <button onclick="getApply()" class="btn btn-primary pull-right">查询</button>
                         <div class="pull-right">
                             <form action="" id="queryApply">
@@ -105,7 +104,7 @@
 
                                 </div>
 
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;
 
                                 <div class="btn-group">
                                     <select class="form-control" name="apply_week">
@@ -133,7 +132,7 @@
 
                                 </div>
 
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;
 
                             </form>
                         </div>

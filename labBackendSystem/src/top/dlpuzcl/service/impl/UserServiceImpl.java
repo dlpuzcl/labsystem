@@ -38,6 +38,7 @@ public class UserServiceImpl implements UserService {
         return page;
     }
 
+
     @Override
     public User getUserById(Integer id) {
         return userMapper.getUserById(id);
@@ -51,6 +52,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUserById(Integer id) {
         userMapper.deleteUserById(id);
+    }
+
+    @Override
+    public void backUserById(Integer id) {
+        userMapper.backUserById(id);
     }
 
     @Override

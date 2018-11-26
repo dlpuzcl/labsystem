@@ -65,13 +65,13 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">实验室查询</h1>
+                    <h1 class="page-header">首页</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <div class="row">
@@ -93,7 +93,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div class="panel panel-green">
                         <div class="panel-heading">
                             <div class="row">
@@ -115,7 +115,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div class="panel panel-yellow">
                         <div class="panel-heading">
                             <div class="row">
@@ -137,7 +137,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div class="panel panel-red">
                         <div class="panel-heading">
                             <div class="row">
@@ -164,8 +164,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading" style="padding-bottom: 23px;">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> 实验室查询
+                        <div class="panel-heading" style="padding-bottom: 0px;padding-top: 11px;height: 55px;padding-left: 0px;">
+
                             <button onclick="getApply()" class="btn btn-primary pull-right">查询</button>
                             <div class="pull-right">
                                 <form action="" id="queryApply">
@@ -183,8 +183,7 @@
 
                                     </div>
 
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
+                                    &nbsp;&nbsp;
                                     <div class="btn-group">
                                         <select class="form-control" name="apply_week">
                                             <option value="1">第一周</option>
@@ -211,7 +210,7 @@
 
                                     </div>
 
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;
 
                                 </form>
                             </div>
@@ -233,13 +232,27 @@
                                                 <tr class="info">
                                                 <tr>
                                                     <th scope="col"></th>
-                                                    <th scope="col">星期一</th>
-                                                    <th scope="col">星期二</th>
-                                                    <th scope="col">星期三</th>
-                                                    <th scope="col">星期四</th>
-                                                    <th scope="col">星期五</th>
-                                                    <th scope="col">星期六</th>
-                                                    <th scope="col">星期天</th>
+                                                    <th scope="col">
+                                                        <div style="padding: 8px 8px;border-radius:8px;width: 100px;">  星期一</div>
+                                                    </th>
+                                                    <th scope="col">
+                                                        <div style="padding: 8px 8px;border-radius:8px;width: 100px;">  星期二</div>
+                                                    </th>
+                                                    <th scope="col">
+                                                        <div style="padding: 8px 8px;border-radius:8px;width: 100px;">  星期三</div>
+                                                    </th>
+                                                    <th scope="col">
+                                                        <div style="padding: 8px 8px;border-radius:8px;width: 100px;">  星期四</div>
+                                                    </th>
+                                                    <th scope="col">
+                                                        <div style="padding: 8px 8px;border-radius:8px;width: 100px;">  星期五</div>
+                                                    </th>
+                                                    <th scope="col">
+                                                        <div style="padding: 8px 8px;border-radius:8px;width: 100px;">  星期六</div>
+                                                    </th>
+                                                    <th scope="col">
+                                                        <div style="padding: 8px 8px;border-radius:8px;width: 100px;">  星期天</div>
+                                                    </th>
                                                 </tr>
                                                 </tr>
                                                 </thead>
@@ -432,12 +445,12 @@
                     for (var i = 1; i < 13; i++) {
                         for (var j = 1; j < 8; j++) {
 
-                            $("#table_" + j + "_" + i).html("<div style='background-color: #E7EAED;padding: 8px 8px; color: #FFFFFF;border-radius:8px' ><br><br><br></div>");
+                            $("#table_" + j + "_" + i).html("<div style='background-color: #E7EAED;padding: 8px 8px; color: #FFFFFF;border-radius:8px;width: 100px;' ><br><br><br></div>");
                         }
                     }
                     //遍历课程表
                     for (var i = 0; i < data.length; i++) {
-                        $("#table_" + data[i].apply_day + "_" + data[i].apply_section).html("<div style='background-color: " + data[i].user_color + ";padding: 8px 8px;color: #FFFFFF;border-radius:8px' >"+data[i].course_name + "<br>" + data[i].course_class + "<br>" + data[i].user_name+"</div>");
+                        $("#table_" + data[i].apply_day + "_" + data[i].apply_section).html("<div style='background-color: " + data[i].user_color + ";padding: 8px 8px;color: #FFFFFF;border-radius:8px;width: 100px;' >"+data[i].course_name + "<br>" + data[i].course_class + "<br>" + data[i].user_name+"</div>");
                     }
                 }
             });

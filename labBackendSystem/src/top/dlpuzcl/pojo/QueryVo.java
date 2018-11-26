@@ -3,10 +3,13 @@ package top.dlpuzcl.pojo;
 public class QueryVo {
     private String userName;
     private String userCollege;
+    private int user_mark;
     private String professionalTitle;
     private String roomCode;
     private String roomCollege;
+    private int room_mark;
     private String courseName;
+    private int course_mark;
     private String applyWeek;
     private String years;
     private int iterm;
@@ -17,6 +20,30 @@ public class QueryVo {
     private Integer start;
     //每页显示数据的条数
     private Integer rows = 10;
+
+    public int getCourse_mark() {
+        return course_mark;
+    }
+
+    public void setCourse_mark(int course_mark) {
+        this.course_mark = course_mark;
+    }
+
+    public int getRoom_mark() {
+        return room_mark;
+    }
+
+    public void setRoom_mark(int room_mark) {
+        this.room_mark = room_mark;
+    }
+
+    public int getUser_mark() {
+        return user_mark;
+    }
+
+    public void setUser_mark(int user_mark) {
+        this.user_mark = user_mark;
+    }
 
     public String getApplyWeek() {
         return applyWeek;

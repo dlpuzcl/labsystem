@@ -23,8 +23,9 @@
 
     <title>批量预约</title>
 
+    <!-- Bootstrap Core CSS -->
     <link href="<%=basePath%>bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="<%=basePath%>bootstrap/css/bootstrap-colorpicker.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
     <link href="<%=basePath%>metisMenu/metisMenu.min.css" rel="stylesheet">
 
@@ -36,9 +37,7 @@
 
     <!-- Custom Fonts -->
     <link href="<%=basePath%>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
     <link href="<%=basePath%>css/style.css" rel="stylesheet">
-
 
     <link rel="stylesheet" type="text/css" href="<%=basePath%>sweetalert/sweetalert.css">
 
@@ -246,11 +245,13 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <button  type="submit"
+                                                 class="btn btn-lg btn-success btn-block">提交
+                                        </button>
                                     </form>
 
-                                    <button onclick="apply()"
-                                            class="btn btn-lg btn-success btn-block">提交
-                                    </button>
+
                                 </div>
 
                                 <!-- /.table-responsive -->
@@ -288,83 +289,139 @@
             </div><!-- /.modal -->
         </div>
 
-        <%--<div class="modal fade" id="alertSource" role="dialog" aria-labelledby="gridSystemModalLabel">--%>
-            <%--<div class="modal-dialog" role="document">--%>
-                <%--<div class="modal-content">--%>
-                    <%--<div class="modal-header">--%>
-                        <%--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--%>
-                        <%--<h4 class="modal-title" id="gridSystemModalLabel">提示</h4>--%>
-                    <%--</div>--%>
-                    <%--<div class="modal-body">--%>
-                        <%--<div class="container-fluid" id="h5">--%>
-                            <%--&lt;%&ndash;<h5>预约成功！</h5>&ndash;%&gt;--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                    <%--<div class="modal-footer">--%>
-                        <%--<button type="button" class="btn btn-primary pull-right" data-dismiss="modal">确定</button>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-                <%--<!-- /.modal-content -->--%>
-            <%--</div>--%>
-            <%--<!-- /.modal-dialog -->--%>
-        <%--</div>--%>
+
 
     </div>
     <!-- /#wrapper -->
 
         <script src="<%=basePath%>jquery/jquery.min.js"></script>
-
+        <script src="<%=basePath%>bootstrap/js/bootstrap-colorpicker.js"></script>
         <!-- Bootstrap Core JavaScript -->
         <script src="<%=basePath%>bootstrap/js/bootstrap.min.js"></script>
 
         <!-- Metis Menu Plugin JavaScript -->
         <script src="<%=basePath%>metisMenu/metisMenu.min.js"></script>
 
-        <!-- Custom Theme JavaScript -->
-        <script src="<%=basePath%>dist/js/sb-admin-2.js"></script>
+        <script src="<%=basePath%>morrisjs/morris.min.js"></script>
+
 
         <script src="<%=basePath%>sweetalert/sweetalert.min.js"></script>
 
 
+        <!-- Custom Theme JavaScript -->
+        <script src="<%=basePath%>dist/js/sb-admin-2.js"></script>
+
+        <script src="<%=basePath%>jquery/jquery.validate.min.js"></script>
         <script type="text/javascript" src="<%=basePath%>bootstrap/js/inpitassembly-2.0.js"></script>
 
     <script>
 
-        function apply() {
-            $("#searchModal").modal("show");//显示“正在查询”字样的模态框
+        <%--function apply() {--%>
+            <%--$("#searchModal").modal("show");//显示“正在查询”字样的模态框--%>
 
-            var form2 = $('#form2').serialize();
-            var form1 = $('#form1').serialize();
-            var formdata = form2 + '&' + form1
-            $.ajax({
-                type: "get",
-                url: "<%=basePath%>apply/batchSubmit.action",
-                data: formdata,
-                success: function (data) {
+            <%--var form2 = $('#form2').serialize();--%>
+            <%--var form1 = $('#form1').serialize();--%>
+            <%--var formdata = form2 + '&' + form1--%>
+            <%--$.ajax({--%>
+                <%--type: "get",--%>
+                <%--url: "<%=basePath%>apply/batchSubmit.action",--%>
+                <%--data: formdata,--%>
+                <%--success: function (data) {--%>
 
-                    $('#searchModal').modal('hide');//服务器停止了5秒,sleep(5)，假设是查询数据用了5秒
-                    // setTimeout("$('#searchModal').modal('hide')",2000); //设置2000毫秒之后模态框消失
-
-
-                    $('#searchModal').on('hidden.bs.modal', function () {
-                        // $("#homeworkContent").html(mydata); //显示后端传递的结果
-                        if (data.status == 200) {
-                            // alert("预约成功！");
-                            swal({title:"提示",text:"预约成功", type:"success"}, function () {
-                                window.location.reload();
-                            });
-                        } else {
-                            swal({title:"提示",text:data.msg, type:"error"}, function () {
-
-                            });
-                        }
-
-                    });
+                    <%--$('#searchModal').modal('hide');//服务器停止了5秒,sleep(5)，假设是查询数据用了5秒--%>
+                    <%--// setTimeout("$('#searchModal').modal('hide')",2000); //设置2000毫秒之后模态框消失--%>
 
 
+                    <%--$('#searchModal').on('hidden.bs.modal', function () {--%>
+                        <%--// $("#homeworkContent").html(mydata); //显示后端传递的结果--%>
+                        <%--if (data.status == 200) {--%>
+                            <%--// alert("预约成功！");--%>
+                            <%--swal({title:"提示",text:"预约成功", type:"success"}, function () {--%>
+                                <%--window.location.reload();--%>
+                            <%--});--%>
+                        <%--} else {--%>
+                            <%--swal({title:"提示",text:data.msg, type:"error"}, function () {--%>
+
+                            <%--});--%>
+                        <%--}--%>
+
+                    <%--});--%>
+
+
+                <%--}--%>
+            <%--})--%>
+        <%--}--%>
+
+
+        $("#form2").validate({
+            rules: {
+
+                "room_id": {
+                    "required": true,
+                },
+                "user_id": {
+                    "required": true,
+                },
+
+                "course_id": {
+                    "required": true,
                 }
-            })
-        }
+
+            },
+            messages: {
+
+                "room_id": {
+                    "required": "*实验室不能为空",
+                },
+                "user_id": {
+                    "required": "*任课教师不能为空",
+                },
+                "course_id": {
+                    "required": "*课程不能为空",
+                }
+            },
+
+            submitHandler: function (form) {  //表单提交后要执行的内容
+                $("#searchModal").modal("show");//显示“正在查询”字样的模态框
+
+                var form2 = $('#form2').serialize();
+                var form1 = $('#form1').serialize();
+                var formdata = form2 + '&' + form1
+                $.ajax({
+                    type: "get",
+                    url: "<%=basePath%>apply/batchSubmit.action",
+                    data: formdata,
+                    success: function (data) {
+
+                        $('#searchModal').modal('hide');//服务器停止了5秒,sleep(5)，假设是查询数据用了5秒
+                        // setTimeout("$('#searchModal').modal('hide')",2000); //设置2000毫秒之后模态框消失
+
+
+                        $('#searchModal').on('hidden.bs.modal', function () {
+                            // $("#homeworkContent").html(mydata); //显示后端传递的结果
+                            if (data.status == 200) {
+                                // alert("预约成功！");
+                                swal({title:"提示",text:"预约成功", type:"success"}, function () {
+                                    window.location.reload();
+                                });
+                            } else {
+                                swal({title:"提示",text:data.msg, type:"error"}, function () {
+
+                                });
+                            }
+
+                        });
+
+
+                    }
+                })
+                // window.location.reload();
+            },
+            invalidHandler: function (form, validator) {  //不通过回调
+                return false;
+            }
+        });
+
 
         $("#user").change(function () {
             var id = $("#user").val();

@@ -5,9 +5,9 @@
 <mapper namespace="top.dlpuzcl.mapper.AdminiMapper">
     <insert id="addAdmini" parameterType="admini">
         insert into admini
-          (admini_name,admini_password,admini_memo)
+          (admini_name,admini_password,admini_memo,admini_email)
         values
-          (#{admini_name},#{admini_password},#{admini_memo})
+          (#{admini_name},#{admini_password},#{admini_memo},#{admini_email})
     </insert>
 
     <select id="login"  resultType="admini" parameterType="Admini">
@@ -20,6 +20,32 @@
         update admini
         set admini_password = #{admini_password}
         where admini_id = #{admini_id}
+    </update>
+    <select id="queryAdmini" resultType="admini">
+        select admini_name,admini_password,admini_memo,admini_email
+        from admini
+    </select>
+
+    <select id="queryAdminiById" parameterType="integer" resultType="admini">
+        select admini_id,admini_name,admini_password,admini_memo,admini_email
+        from admini
+        where admini_id = #{id}
+    </select>
+
+    <update id="updateAdmini" parameterType="Admini">
+        update admini
+        <set>
+            <if test="admini_name != null and admini_name != ''">
+                admini_name = #{admini_name},
+            </if>
+            <if test="admini_email != null and admini_email != ''">
+                admini_email = #{admini_email},
+            </if>
+            <if test="admini_memo != null and admini_memo != ''">
+                admini_memo = #{admini_memo}
+            </if>
+        </set>
+        where admini_id = #{admini_id};
     </update>
 
 </mapper>

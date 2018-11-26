@@ -71,6 +71,11 @@ public class AdminiController {
         return msg;
     }
 
+    /**
+     * 更新用户密码
+     * @param model
+     * @return
+     */
     @RequestMapping("updatePasswordView")
     public String updatePasswordView(Model model){
         List<User> users = userService.queryAllUser();
@@ -78,6 +83,31 @@ public class AdminiController {
         model.addAttribute("users",users);
 
         return "updatePassword";
+    }
+
+    @RequestMapping("edit")
+    public String edit(Integer id,Model model){
+
+        Admini edit_admini = adminiService.queryAdminiById(id);
+        model.addAttribute("edit_admini",edit_admini);
+        return "editAdmini";
+
+    }
+
+
+    /**
+     * 更新管理员信息
+     * @param admini
+     * @return
+     */
+    @RequestMapping("update")
+    @ResponseBody
+    public LabResult update (Admini admini){
+
+
+        LabResult labResult = adminiService.updateAdmini(admini);
+
+        return labResult;
     }
 
 

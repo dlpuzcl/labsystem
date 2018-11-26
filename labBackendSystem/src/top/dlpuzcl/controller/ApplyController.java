@@ -41,14 +41,14 @@ public class ApplyController {
     private String sheetApplyName = "实验室课表";
 
     @RequestMapping("one")
-    public String one(Model model){
+    public String one(Model model) {
 
         List<LabRoom> labRoom = labService.queryLabCode();
-        model.addAttribute("labRoom",labRoom);
+        model.addAttribute("labRoom", labRoom);
 
         List<User> userList = userService.queryAllUser();
 
-        model.addAttribute("userList",userList);
+        model.addAttribute("userList", userList);
 
 //        //查询学院
 //        List<BaseDict> fromCollege = baseDictService.getBaseDictByCode(college);
@@ -69,24 +69,25 @@ public class ApplyController {
     }
 
     @RequestMapping("batch")
-    public String batch(Model model){
+    public String batch(Model model) {
         List<LabRoom> labRoom = labService.queryLabCode();
-        model.addAttribute("labRoom",labRoom);
+        model.addAttribute("labRoom", labRoom);
 
         List<User> userList = userService.queryAllUser();
 
-        model.addAttribute("userList",userList);
+        model.addAttribute("userList", userList);
         return "batchApply";
     }
 
     /**
      * 查询申请列表
+     *
      * @param apply
      * @return
      */
     @RequestMapping("query")
     @ResponseBody
-    public List<Apply> query(Apply apply){
+    public List<Apply> query(Apply apply) {
 
         List<Apply> applyList = applyService.getApplyList(apply);
 
@@ -95,21 +96,22 @@ public class ApplyController {
 
 
     @RequestMapping("queryByWeekView")
-    public String queryByWeekView( Model model){
+    public String queryByWeekView(Model model) {
         //查询实验室信息
         List<LabRoom> labRoom = labService.queryLabCode();
-        model.addAttribute("labRoom",labRoom);
+        model.addAttribute("labRoom", labRoom);
         return "queryAllApply";
     }
 
     /**
      * 根据周查询申请列表
+     *
      * @param apply
      * @return
      */
     @RequestMapping("queryByWeek")
     @ResponseBody
-    public List<Apply> queryByWeek(Apply apply){
+    public List<Apply> queryByWeek(Apply apply) {
 
         List<Apply> listByWeek = applyService.querySelectApply(apply);
 
@@ -119,12 +121,13 @@ public class ApplyController {
 
     /**
      * 跟据user_id查询课程
+     *
      * @param id
      * @return
      */
     @RequestMapping("courseByUser")
     @ResponseBody
-    public List<Course> courseByUser(Integer id){
+    public List<Course> courseByUser(Integer id) {
 
         List<Course> courseList = courseService.courseByUser(id);
 
@@ -133,31 +136,30 @@ public class ApplyController {
 
     /**
      * 单向预约提交申请
+     *
      * @param apply
      * @return
      */
     @RequestMapping("submit")
     @ResponseBody
-    public String submit(Apply apply){
+    public LabResult submit(Apply apply) {
 
-        String msg = "1";
-        try{
-            applyService.addApply(apply);
-            msg = "0";
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return msg;
+
+        LabResult labResult = applyService.addApply(apply);
+
+
+        return labResult;
     }
 
     /**
      * 批量预约提交申请
+     *
      * @param applyBatch
      * @return
      */
     @RequestMapping("batchSubmit")
     @ResponseBody
-    public LabResult batchSubmit(ApplyBatch applyBatch){
+    public LabResult batchSubmit(ApplyBatch applyBatch) {
 
 
         LabResult labResult = applyService.addBatchApply(applyBatch);
@@ -166,22 +168,22 @@ public class ApplyController {
     }
 
     @RequestMapping("queryApplyByLab")
-    public String  queryApplyByLab(Model model){
+    public String queryApplyByLab(Model model) {
 
         //查询实验室信息
         List<LabRoom> labRoom = labService.queryLabCode();
-        model.addAttribute("labRoom",labRoom);
+        model.addAttribute("labRoom", labRoom);
 
         return "queryApplyByLab";
 
     }
 
     @RequestMapping("queryApplyByUser")
-    public String queryApplyByUser(QueryVo queryVo,Model model){
+    public String queryApplyByUser(QueryVo queryVo, Model model) {
 
         List<User> userList = userService.queryAllUser();
 
-        model.addAttribute("userList",userList);
+        model.addAttribute("userList", userList);
 
         List<LabRoom> labRoom = labService.queryLabCode();
         model.addAttribute("labRoom", labRoom);
@@ -191,26 +193,27 @@ public class ApplyController {
         Page<Apply> page = applyService.queryApplyByUser(queryVo);
 
         //设置分页返回
-        model.addAttribute("page",page);
+        model.addAttribute("page", page);
 
         //返回查询条件
-        model.addAttribute("vo",queryVo);
+        model.addAttribute("vo", queryVo);
         return "queryApplyByUser";
     }
 
     /**
      * 删除申请
+     *
      * @param id
      * @return
      */
     @RequestMapping("delete")
     @ResponseBody
-    public String delete(Integer id){
+    public String delete(Integer id) {
         String msg = "1";
         try {
             applyService.deleteById(id);
             msg = "0";
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -219,17 +222,18 @@ public class ApplyController {
 
     /**
      * 批量删除申请
+     *
      * @param ids
      * @return
      */
     @RequestMapping("deleteAll")
     @ResponseBody
-    public String deleteAll(String[] ids){
+    public String deleteAll(String[] ids) {
         String msg = "1";
         try {
             applyService.deleteAllById(ids);
             msg = "0";
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -237,34 +241,36 @@ public class ApplyController {
     }
 
     @RequestMapping("setItermView")
-    public String setItermView(Model model){
+    public String setItermView(Model model) {
 
         ItermYear itermYear = applyService.queryItermYear();
-        model.addAttribute("itermYear",itermYear);
+        model.addAttribute("itermYear", itermYear);
 
         return "setIterm";
     }
 
     /**
      * 设置学期和学年
+     *
      * @param itermYear
      * @return
      */
 
     @RequestMapping("setIterm")
     @ResponseBody
-    public LabResult setIterm(ItermYear itermYear){
+    public LabResult setIterm(ItermYear itermYear) {
         LabResult labResult = applyService.setItermYear(itermYear);
         return labResult;
     }
 
     @RequestMapping("labRatioView")
-    public String labRatioView(){
+    public String labRatioView() {
         return "labRatio";
     }
 
     /**
      * 查询实验室本学期利用率
+     *
      * @return
      */
     @RequestMapping("labRatio")
@@ -279,6 +285,7 @@ public class ApplyController {
 
     /**
      * 查询实验室本学期总利用率
+     *
      * @return
      */
     @RequestMapping("labRatioSum")
@@ -290,7 +297,7 @@ public class ApplyController {
         return labRatio;
     }
 
-//    @RequestMapping("applyExcel")
+    //    @RequestMapping("applyExcel")
 //    @ResponseBody
 //    public String downlodApply (HttpServletResponse response,Apply apply){
 //
@@ -311,10 +318,21 @@ public class ApplyController {
 //        }
 //        return null;
 //    }
+//
+    @RequestMapping("dataStatistical")
+    public String dataStatistical(Apply apply,Model model){
 
+        List<LabRoom> labRoom = labService.queryLabCode();
 
+        int allLab = labRoom.size();
+        model.addAttribute("allLab",allLab);
+        model.addAttribute("labRoom", labRoom);
+        List<Apply> dataList = applyService.data(apply);
 
-
+        model.addAttribute("dataList",dataList);
+        model.addAttribute("apply",apply);
+        return "dataStatistical";
+    }
 
 
 }
