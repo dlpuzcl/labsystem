@@ -237,6 +237,8 @@
         },
 
         submitHandler: function (form) {  //表单提交后要执行的内容
+            $("button[type=submit]").attr('disabled',true)//在按钮提交之后和AJAX提交之前将按钮设置为禁用
+
             $.post("<%=basePath%>admini/update.action", $("#update_admini_form").serialize(), function (data) {
                 if (data.status == 200) {
                     swal({title: "成功", text: "修改成功，重新登陆生效！", type: "success"}, function () {
@@ -255,6 +257,7 @@
                 if (data.status == 555) {
                     swal("用户修改失败！", data.msg, "error");
                 }
+                $("button[type=submit]").attr('disabled',false)//在提交成功之后重新启用该按钮
 
             });
         },

@@ -25,16 +25,23 @@ public class AdminiServiceImpl implements AdminiService {
         if(StringUtils.isEmpty(admini.getAdmini_password())){
             return LabResult.build(400, "密码不能为空");
         }
-        List<Admini> adminis = adminiMapper.queryAdmini();
-        for (int i=0;i<adminis.size();i++){
-            if (admini.getAdmini_name().equals(adminis.get(i).getAdmini_name()) ){
-                return LabResult.build(400, "添加失败，此用户名已经被注册！");
-            }
 
-            if (admini.getAdmini_email().equals(adminis.get(i).getAdmini_email())){
-                return LabResult.build(400, "添加失败，次邮箱已经被注册！");
-            }
+        Integer integer = adminiMapper.queryAdminiByName(admini.getAdmini_name());
+
+        if (integer>0){
+            return LabResult.build(400, "添加失败，此用户名已经被注册！");
         }
+
+//        List<Admini> adminis = adminiMapper.queryAdmini();
+//        for (int i=0;i<adminis.size();i++){
+//            if (admini.getAdmini_name().equals(adminis.get(i).getAdmini_name()) ){
+//                return LabResult.build(400, "添加失败，此用户名已经被注册！");
+//            }
+//
+//            if (admini.getAdmini_email().equals(adminis.get(i).getAdmini_email())){
+//                return LabResult.build(400, "添加失败，次邮箱已经被注册！");
+//            }
+//        }
 
 
         String admini_password = admini.getAdmini_password();

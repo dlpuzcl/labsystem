@@ -1,6 +1,6 @@
 package top.dlpuzcl.utils;
 
-import top.dlpuzcl.pojo.Apply;
+
 import top.dlpuzcl.pojo.User;
 
 import java.util.ArrayList;

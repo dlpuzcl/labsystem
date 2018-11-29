@@ -53,7 +53,7 @@ public class Login {
     @RequestMapping("adminiLogout")
     public String adminiLogout(HttpSession session){
         session.removeAttribute("admini");
-        return "login";
+        return "../../index";
     }
 
     /**
@@ -63,24 +63,31 @@ public class Login {
     @ResponseBody
     public LabResult userLogin(User user, HttpSession session) {
 
+        User user_l;
+        try {
+             user_l = userService.login(user);
+            if (user_l != null) {
+                if (user_l.getUser_state() == 0) {
+                    return LabResult.build(400, "账户未激活，请去邮箱激活账户!");
+                }else{
+                    session.setAttribute("user", user_l);
+                    //登录成功
+                    return LabResult.build(200,"登陆成功");
+                }
 
-        User user_l = userService.login(user);
 
-        if (user_l != null) {
-            if (user_l.getUser_state() == 0) {
-                return LabResult.build(400, "账户未激活，请去邮箱激活账户!");
-            }else{
-                session.setAttribute("user", user_l);
-                //登录成功
-                return LabResult.build(200,"登陆成功");
+            }else {
+
+                return LabResult.build(300, "账号或密码错误");
+
             }
-
-
-        }else {
-
-            return LabResult.build(300, "账号或密码错误");
-
+        }catch (Exception e){
+            e.printStackTrace();
+            return LabResult.build(500, "登录失败，出现异常");
         }
+
+
+
 
     }
 
@@ -90,7 +97,7 @@ public class Login {
     @RequestMapping("userLogout")
     public String userLogout(HttpSession session){
         session.removeAttribute("user");
-        return "login";
+        return "../../index";
     }
 
     //激活账户
@@ -98,7 +105,7 @@ public class Login {
     public String activation(String code) {
         //将账户的状态改为1
         userService.updateState(code);
-        return "login";
+        return "../../index";
     }
 
 }

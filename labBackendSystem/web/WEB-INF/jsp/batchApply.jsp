@@ -382,11 +382,13 @@
             },
 
             submitHandler: function (form) {  //表单提交后要执行的内容
+                $("button[type=submit]").attr('disabled',true)//在按钮提交之后和AJAX提交之前将按钮设置为禁用
                 $("#searchModal").modal("show");//显示“正在查询”字样的模态框
 
                 var form2 = $('#form2').serialize();
                 var form1 = $('#form1').serialize();
                 var formdata = form2 + '&' + form1
+
                 $.ajax({
                     type: "get",
                     url: "<%=basePath%>apply/batchSubmit.action",
@@ -410,8 +412,9 @@
                                 });
                             }
 
-                        });
 
+                        });
+                        $("button[type=submit]").attr('disabled',false)//在提交成功之后重新启用该按钮
 
                     }
                 })

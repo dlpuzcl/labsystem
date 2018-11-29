@@ -407,6 +407,7 @@
         },
 
         submitHandler: function (form) {  //表单提交后要执行的内容
+            $("button[type=submit]").attr('disabled',false)//在提交成功之后重新启用该按钮
             $.post("<%=basePath%>admini/updatePassword.action", $("#add_admini_form").serialize(), function (data) {
                 if (data == "0") {
                     swal({title: "提示", text: "密码更新成功", type: "success"}, function () {
@@ -418,7 +419,7 @@
                         window.location.reload();
                     });
                 }
-
+                $("button[type=submit]").attr('disabled',false)//在提交成功之后重新启用该按钮
             });
         },
         invalidHandler: function (form, validator) {  //不通过回调

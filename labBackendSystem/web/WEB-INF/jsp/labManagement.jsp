@@ -445,6 +445,7 @@
         }
 
         function updateLab() {
+            $("button[type=submit]").attr('disabled',true)//在按钮提交之后和AJAX提交之前将按钮设置为禁用
             $.post("<%=basePath%>lab/update.action", $("#edit_lab_form").serialize(), function (data) {
                 if (data == "0") {
                     swal({title: "提示", text: "实验室更新成功", type: "success"}, function () {
@@ -455,7 +456,7 @@
                         // window.location.reload();
                     });
                 }
-                window.location.reload();
+                $("button[type=submit]").attr('disabled',false)//在提交成功之后重新启用该按钮
             });
         }
 
@@ -493,6 +494,7 @@
             },
 
             submitHandler:function(form){  //表单提交后要执行的内容
+                $("button[type=submit]").attr('disabled',true)//在按钮提交之后和AJAX提交之前将按钮设置为禁用
                 $.post("<%=basePath%>lab/add.action",$("#add_lab_form").serialize(),function(data){
                     if (data.status == 200){
                         swal({title: "提示", text: "实验室添加成功", type: "success"}, function () {
@@ -504,7 +506,7 @@
                             // window.location.reload();
                         });
                     }
-
+                    $("button[type=submit]").attr('disabled',false)//在提交成功之后重新启用该按钮
                 });
             },
             invalidHandler: function(form, validator) {  //不通过回调

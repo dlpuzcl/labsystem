@@ -653,6 +653,8 @@
                 var queryApply = $('#queryApply').serialize();
                 var form1 = $('#form1').serialize();
                 var formdata = queryApply + '&' + form1 + '&' + sum
+                $("button[type=submit]").attr('disabled',true)//在按钮提交之后和AJAX提交之前将按钮设置为禁用
+                $("#searchModal").modal("show");//显示“正在查询”字样的模态框
                 $.ajax({
                     type: "get",
                     url: "<%=basePath%>apply/submit.action",
@@ -668,19 +670,18 @@
                             if (data.status == 200) {
                                 // alert("预约成功！");
                                 swal({title: "提示", text: "预约成功", type: "success"}, function () {
-
                                 });
                                 getApply();
 
                             } else {
                                 // alert("预约失败！");
                                 swal({title: "提示", text: data.msg, type: "error"}, function () {
-
                                 });
                             }
 
-                        });
 
+                        });
+                        $("button[type=submit]").attr('disabled',false)//在提交成功之后重新启用该按钮
                     }
                 })
 

@@ -83,4 +83,20 @@ public interface UserMapper {
      * @param email
      */
     void updateState(String email);
+
+    /**
+     * 根据ID查询 用户名是否存在验证
+     * @param user_name
+     */
+    Integer queryUserByName(String user_name);
+    /**
+     * 根据phone查询 用户名是否存在验证
+     * @param user_phone
+     */
+    Integer queryUserByPhone(String user_phone);
+    /**
+     * 根据email查询 用户名是否存在验证
+     * @param user_email
+     */
+    Integer queryUserByEmail(String user_email);
 }

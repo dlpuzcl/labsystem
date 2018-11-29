@@ -35,7 +35,7 @@
 		<link href="<%=basePath%>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 
-		<link rel="<%=basePath%>stylesheet" type="text/css" href="sweetalert/sweetalert.css">
+		<link rel="stylesheet" type="text/css" href="<%=basePath%>sweetalert/sweetalert.css">
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 		<!--[if lt IE 9]>
@@ -229,18 +229,23 @@
             },
 
             submitHandler:function(form){  //表单提交后要执行的内容
+                $("button[type=submit]").attr('disabled',true)//在按钮提交之后和AJAX提交之前将按钮设置为禁用
+
                 $.post("<%=basePath%>lab/add.action",$("#add_Lab_form").serialize(),function(data){
                     if (data.status == 200){
 
                         swal({title:"提示",text:"实验室添加成功", type:"success"}, function () {
+
                             window.location = "<%=basePath%>lab/list.action";
                         });
 
                     } else{
                         swal({title:"提示",text:"实验室添失败", type:"error"}, function () {
-                            window.location.reload();
+
+
                         });
                     }
+                    $("button[type=submit]").attr('disabled',false)//在提交成功之后重新启用该按钮
 
                 });
             },

@@ -234,6 +234,7 @@
         },
 
         submitHandler: function (form) {  //表单提交后要执行的内容
+            $("button[type=submit]").attr('disabled',true)//在按钮提交之后和AJAX提交之前将按钮设置为禁用
             $.post("<%=basePath%>front/updatePassword.action", $("#add_User_form").serialize(), function (data) {
                 if (data == "0") {
 
@@ -246,7 +247,7 @@
                         // window.location.reload();
                     });
                 }
-
+                $("button[type=submit]").attr('disabled',false)//在提交成功之后重新启用该按钮
             });
         },
         invalidHandler: function (form, validator) {  //不通过回调

@@ -90,4 +90,7 @@ public interface ApplyMapper {
 
 
     int queryApplyByYear(ItermYear itermYear);
+
+
+
 }

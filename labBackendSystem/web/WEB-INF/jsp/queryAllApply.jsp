@@ -105,7 +105,7 @@
                                 </div>
 
 
-                                &nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;
 
                                 <div class="btn-group">
                                     <button class="btn btn btn-info"
@@ -115,7 +115,7 @@
 
                                 </div>
 
-                                &nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;
 
                             </form>
                         </div>
@@ -372,7 +372,7 @@
                 //遍历课程表
                 for (var i = 0; i < data.length; i++) {
 
-                    $("#table" + data[i].apply_week + "_" + data[i].apply_day + "_" + data[i].apply_section).html("<div style='background-color: " + data[i].user_color + ";padding: 8px 8px;color: #FFFFFF;border-radius:8px;width: 100px;' >" + data[i].course_name + "<br>" + data[i].course_class + "<br>" + data[i].user_name + "</div>");
+                    $("#table" + data[i].apply_week + "_" + data[i].apply_day + "_" + data[i].apply_section).html("<div style='background-color: " + data[i].user_color + ";padding: 8px 8px;color: #FFFFFF;border-radius:8px;width: 100px;' >" + data[i].course_name + "<br>" + data[i].course_class + "<br>" + data[i].user_name +" " + data[i].course_memo+ "</div>");
 
 
                     // $("#table" + data[i].apply_week + "_" + data[i].apply_day + "_" + data[i].apply_section).html(data[i].course_name + "<br>" + data[i].course_class + "<br>" + data[i].user_name);

@@ -13,6 +13,7 @@ public class QueryVo {
     private String applyWeek;
     private String years;
     private int iterm;
+    private String courseNature;
 
     //当前页码数
     private Integer page = 1;
@@ -20,6 +21,14 @@ public class QueryVo {
     private Integer start;
     //每页显示数据的条数
     private Integer rows = 10;
+
+    public String getCourseNature() {
+        return courseNature;
+    }
+
+    public void setCourseNature(String courseNature) {
+        this.courseNature = courseNature;
+    }
 
     public int getCourse_mark() {
         return course_mark;

@@ -81,7 +81,7 @@ public class ApplyServiceImpl implements ApplyService {
         //根据id值查询课程信息
         Course course = courseMapper.courseById(course_id);
         //获取当前课程的学时
-        int course_time = Integer.parseInt(course.getCourse_time());
+        int course_time = course.getCourse_time();
 
         //获取已预约的学时
         int course_timed = applyMapper.queryCourseByIdYI(apply);
@@ -94,7 +94,9 @@ public class ApplyServiceImpl implements ApplyService {
         String[] day_section = apply.getDay_section();
         int l =  day_section.length;
 
-        if (course_timed + l > course_time){
+        int course_time_sum = course_timed + l;
+
+        if (course_time_sum > course_time){
             return LabResult.build(400, "您预约的学时已经超过了当前课程的学时！");
         }
 
@@ -129,6 +131,8 @@ public class ApplyServiceImpl implements ApplyService {
                 e.printStackTrace();
                 return LabResult.build(400, "预约失败：时间重复，请重新选择！");
             }
+
+
             String daysection = "星期"+String.valueOf(applyDay)+"第"+String.valueOf(applySection)+"节</br>";
             sumdaysection = daysection+sumdaysection;
         }
@@ -141,7 +145,7 @@ public class ApplyServiceImpl implements ApplyService {
             for (int t = 0;t<adminis.size();t++){
                 Admini admini = adminis.get(t);
                 //给管理员发送邮件
-                EmailUtil.applyInform(admini,user,lab,course,week,sumdaysection);
+                EmailUtil.applyInform(admini,user,lab,course,week,sumdaysection,course_time_sum);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -150,7 +154,7 @@ public class ApplyServiceImpl implements ApplyService {
         //给用户发送邮件
         try {
 
-                EmailUtil.userInform(user,lab,course,week,sumdaysection);
+                EmailUtil.userInform(user,lab,course,week,sumdaysection,course_time_sum);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -197,14 +201,16 @@ public class ApplyServiceImpl implements ApplyService {
         //根据id值查询课程信息
         Course course = courseMapper.courseById(course_id);
         //获取当前课程的学时
-        int course_time = Integer.parseInt(course.getCourse_time());
+        int course_time = course.getCourse_time();
 
         //获取已预约的学时
         int course_timed = applyMapper.queryCourseByIdYIn(applyBatch);
 
         //批量预约的节数
         int sum = (week+1) * (section+1);
-        if (course_timed + sum > course_time){
+
+        int course_time_sum = course_timed + sum;
+        if (course_time_sum > course_time){
             return LabResult.build(400, "您预约的学时已经超过了当前课程的学时！");
         }
         if (week < 0) {
@@ -246,7 +252,7 @@ public class ApplyServiceImpl implements ApplyService {
             for (int t = 0;t<adminis.size();t++){
                 Admini admini = adminis.get(t);
                 //给管理员发送邮件
-                EmailUtil.applyInform(admini,user,lab,course,weeks,sections,day);
+                EmailUtil.applyInform(admini,user,lab,course,weeks,sections,day,course_time_sum);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -255,7 +261,7 @@ public class ApplyServiceImpl implements ApplyService {
         //给用户发送邮件
         try {
 
-            EmailUtil.userInform(user,lab,course,weeks,sections,day);
+            EmailUtil.userInform(user,lab,course,weeks,sections,day,course_time_sum);
 
         } catch (Exception e) {
             e.printStackTrace();

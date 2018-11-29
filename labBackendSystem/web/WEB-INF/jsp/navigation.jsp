@@ -25,119 +25,119 @@
     <!-- /.navbar-header -->
 
     <ul class="nav navbar-top-links navbar-right">
-        <li class="dropdown"><a class="dropdown-toggle"
-                                data-toggle="dropdown" href="#" style="background-color: #337ab7;">
-            <i class="fa fa-envelope fa-fw" style="color: gainsboro;"></i> <i
-                class="fa fa-caret-down" style="color: gainsboro;"></i>
-        </a>
-            <ul class="dropdown-menu dropdown-messages">
-                <li><a href="#">
-                    <div>
-                        <strong>臧成龙</strong> <span class="pull-right text-muted">
-									<em>昨天</em>
-								</span>
-                    </div>
-                    <div>成功预约了第七周7-8节课</div>
-                </a></li>
-                <li class="divider"></li>
-                <li><a href="#">
-                    <div>
-                        <strong>史伟志</strong> <span class="pull-right text-muted">
-									<em>昨天</em>
-								</span>
-                    </div>
-                    <div>我看见你了，你别走！</div>
-                </a></li>
-                <li class="divider"></li>
-                <li><a href="#">
-                    <div>
-                        <strong>张铁腾</strong> <span class="pull-right text-muted">
-									<em>昨天</em>
-								</span>
-                    </div>
-                    <div>哈哈哈，我要飞的更高</div>
-                </a></li>
-                <li class="divider"></li>
-                <li><a class="text-center" href="#"> <strong>阅读更多的信息</strong>
-                    <i class="fa fa-angle-right"></i>
-                </a></li>
-            </ul> <!-- /.dropdown-messages --></li>
+        <%--<li class="dropdown"><a class="dropdown-toggle"--%>
+        <%--data-toggle="dropdown" href="#" style="background-color: #337ab7;">--%>
+        <%--<i class="fa fa-envelope fa-fw" style="color: gainsboro;"></i> <i--%>
+        <%--class="fa fa-caret-down" style="color: gainsboro;"></i>--%>
+        <%--</a>--%>
+        <%--<ul class="dropdown-menu dropdown-messages">--%>
+        <%--<li><a href="#">--%>
+        <%--<div>--%>
+        <%--<strong>臧成龙</strong> <span class="pull-right text-muted">--%>
+        <%--<em>昨天</em>--%>
+        <%--</span>--%>
+        <%--</div>--%>
+        <%--<div>成功预约了第七周7-8节课</div>--%>
+        <%--</a></li>--%>
+        <%--<li class="divider"></li>--%>
+        <%--<li><a href="#">--%>
+        <%--<div>--%>
+        <%--<strong>史伟志</strong> <span class="pull-right text-muted">--%>
+        <%--<em>昨天</em>--%>
+        <%--</span>--%>
+        <%--</div>--%>
+        <%--<div>我看见你了，你别走！</div>--%>
+        <%--</a></li>--%>
+        <%--<li class="divider"></li>--%>
+        <%--<li><a href="#">--%>
+        <%--<div>--%>
+        <%--<strong>张铁腾</strong> <span class="pull-right text-muted">--%>
+        <%--<em>昨天</em>--%>
+        <%--</span>--%>
+        <%--</div>--%>
+        <%--<div>哈哈哈，我要飞的更高</div>--%>
+        <%--</a></li>--%>
+        <%--<li class="divider"></li>--%>
+        <%--<li><a class="text-center" href="#"> <strong>阅读更多的信息</strong>--%>
+        <%--<i class="fa fa-angle-right"></i>--%>
+        <%--</a></li>--%>
+        <%--</ul> <!-- /.dropdown-messages --></li>--%>
 
-        <!-- /.dropdown -->
-        <li class="dropdown"><a class="dropdown-toggle"
-                                data-toggle="dropdown" href="#" style="background-color: #337ab7;">
-            <i class="fa fa-tasks fa-fw" style="color: gainsboro;"></i> <i
-                class="fa fa-caret-down" style="color: gainsboro;"></i>
-        </a>
-            <ul class="dropdown-menu dropdown-tasks">
-                <li><a href="#">
-                    <div>
-                        <p>
-                            <strong>Task 1</strong> <span class="pull-right text-muted">40%
-										Complete</span>
-                        </p>
-                        <div class="progress progress-striped active">
-                            <div class="progress-bar progress-bar-success"
-                                 role="progressbar" aria-valuenow="40" aria-valuemin="0"
-                                 aria-valuemax="100" style="width: 40%">
-                                <span class="sr-only">40% Complete (success)</span>
-                            </div>
-                        </div>
-                    </div>
-                </a></li>
-                <li class="divider"></li>
-                <li><a href="#">
-                    <div>
-                        <p>
-                            <strong>Task 2</strong> <span class="pull-right text-muted">20%
-										Complete</span>
-                        </p>
-                        <div class="progress progress-striped active">
-                            <div class="progress-bar progress-bar-info" role="progressbar"
-                                 aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"
-                                 style="width: 20%">
-                                <span class="sr-only">20% Complete</span>
-                            </div>
-                        </div>
-                    </div>
-                </a></li>
-                <li class="divider"></li>
-                <li><a href="#">
-                    <div>
-                        <p>
-                            <strong>Task 3</strong> <span class="pull-right text-muted">60%
-										Complete</span>
-                        </p>
-                        <div class="progress progress-striped active">
-                            <div class="progress-bar progress-bar-warning"
-                                 role="progressbar" aria-valuenow="60" aria-valuemin="0"
-                                 aria-valuemax="100" style="width: 60%">
-                                <span class="sr-only">60% Complete (warning)</span>
-                            </div>
-                        </div>
-                    </div>
-                </a></li>
-                <li class="divider"></li>
-                <li><a href="#">
-                    <div>
-                        <p>
-                            <strong>Task 4</strong> <span class="pull-right text-muted">80%
-										Complete</span>
-                        </p>
-                        <div class="progress progress-striped active">
-                            <div class="progress-bar progress-bar-danger"
-                                 role="progressbar" aria-valuenow="80" aria-valuemin="0"
-                                 aria-valuemax="100" style="width: 80%">
-                                <span class="sr-only">80% Complete (danger)</span>
-                            </div>
-                        </div>
-                    </div>
-                </a></li>
-                <li class="divider"></li>
-                <li><a class="text-center" href="#"> <strong>See
-                    All Tasks</strong> <i class="fa fa-angle-right"></i>
-                </a></li>
-            </ul> <!-- /.dropdown-tasks --></li>
+        <%--<!-- /.dropdown -->--%>
+        <%--<li class="dropdown"><a class="dropdown-toggle"--%>
+        <%--data-toggle="dropdown" href="#" style="background-color: #337ab7;">--%>
+        <%--<i class="fa fa-tasks fa-fw" style="color: gainsboro;"></i> <i--%>
+        <%--class="fa fa-caret-down" style="color: gainsboro;"></i>--%>
+        <%--</a>--%>
+        <%--<ul class="dropdown-menu dropdown-tasks">--%>
+        <%--<li><a href="#">--%>
+        <%--<div>--%>
+        <%--<p>--%>
+        <%--<strong>Task 1</strong> <span class="pull-right text-muted">40%--%>
+        <%--Complete</span>--%>
+        <%--</p>--%>
+        <%--<div class="progress progress-striped active">--%>
+        <%--<div class="progress-bar progress-bar-success"--%>
+        <%--role="progressbar" aria-valuenow="40" aria-valuemin="0"--%>
+        <%--aria-valuemax="100" style="width: 40%">--%>
+        <%--<span class="sr-only">40% Complete (success)</span>--%>
+        <%--</div>--%>
+        <%--</div>--%>
+        <%--</div>--%>
+        <%--</a></li>--%>
+        <%--<li class="divider"></li>--%>
+        <%--<li><a href="#">--%>
+        <%--<div>--%>
+        <%--<p>--%>
+        <%--<strong>Task 2</strong> <span class="pull-right text-muted">20%--%>
+        <%--Complete</span>--%>
+        <%--</p>--%>
+        <%--<div class="progress progress-striped active">--%>
+        <%--<div class="progress-bar progress-bar-info" role="progressbar"--%>
+        <%--aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"--%>
+        <%--style="width: 20%">--%>
+        <%--<span class="sr-only">20% Complete</span>--%>
+        <%--</div>--%>
+        <%--</div>--%>
+        <%--</div>--%>
+        <%--</a></li>--%>
+        <%--<li class="divider"></li>--%>
+        <%--<li><a href="#">--%>
+        <%--<div>--%>
+        <%--<p>--%>
+        <%--<strong>Task 3</strong> <span class="pull-right text-muted">60%--%>
+        <%--Complete</span>--%>
+        <%--</p>--%>
+        <%--<div class="progress progress-striped active">--%>
+        <%--<div class="progress-bar progress-bar-warning"--%>
+        <%--role="progressbar" aria-valuenow="60" aria-valuemin="0"--%>
+        <%--aria-valuemax="100" style="width: 60%">--%>
+        <%--<span class="sr-only">60% Complete (warning)</span>--%>
+        <%--</div>--%>
+        <%--</div>--%>
+        <%--</div>--%>
+        <%--</a></li>--%>
+        <%--<li class="divider"></li>--%>
+        <%--<li><a href="#">--%>
+        <%--<div>--%>
+        <%--<p>--%>
+        <%--<strong>Task 4</strong> <span class="pull-right text-muted">80%--%>
+        <%--Complete</span>--%>
+        <%--</p>--%>
+        <%--<div class="progress progress-striped active">--%>
+        <%--<div class="progress-bar progress-bar-danger"--%>
+        <%--role="progressbar" aria-valuenow="80" aria-valuemin="0"--%>
+        <%--aria-valuemax="100" style="width: 80%">--%>
+        <%--<span class="sr-only">80% Complete (danger)</span>--%>
+        <%--</div>--%>
+        <%--</div>--%>
+        <%--</div>--%>
+        <%--</a></li>--%>
+        <%--<li class="divider"></li>--%>
+        <%--<li><a class="text-center" href="#"> <strong>See--%>
+        <%--All Tasks</strong> <i class="fa fa-angle-right"></i>--%>
+        <%--</a></li>--%>
+        <%--</ul> <!-- /.dropdown-tasks --></li>--%>
         <!-- /.dropdown -->
 
         <!-- /.dropdown -->
@@ -154,12 +154,14 @@
                 </c:if>
 
                 <c:if test="${!empty admini }">
-                    <li><a href="/admini/edit.action?id=${admini.admini_id}"><i class="fa fa-user fa-fw"></i>
+                    <li><a href="${pageContext.request.contextPath }/admini/edit.action?id=${admini.admini_id}"><i
+                            class="fa fa-user fa-fw"></i>
                             ${admini. admini_name}</a></li>
-                    <li><a href="/admini/updatePasswordView.action" >
+                    <li><a href="${pageContext.request.contextPath }/admini/updatePasswordView.action">
                         <i class="fa fa-gear fa-fw"></i> 设置</a></li>
                     <li class="divider"></li>
-                    <li><a href="/login/adminiLogout.action"><i class="fa fa-sign-out fa-fw"></i>
+                    <li><a href="${pageContext.request.contextPath }/login/adminiLogout.action"><i
+                            class="fa fa-sign-out fa-fw"></i>
                         注销</a></li>
                 </c:if>
 
@@ -172,8 +174,8 @@
         <div class="sidebar-nav navbar-collapse">
             <div class="user-panel" style="margin-top: 13px;">
                 <a href="/admini/first.action">
-                <img src="<%=basePath%>img/user/b631.jpg" class="img-circle center-block"
-                     height="130px"/>
+                    <img src="<%=basePath%>img/user/b631.jpg" class="img-circle center-block"
+                         height="130px"/>
                 </a>
             </div>
 
@@ -190,12 +192,7 @@
                         <li><a
                                 href="${pageContext.request.contextPath }/user/addview.action">用户添加</a>
                         </li>
-                        <!--
-                                <li>
-                                    <a href="查看用户.html">查看用户</a>
-                                </li>
 
-                        -->
                         <li><a
                                 href="${pageContext.request.contextPath }/user/list.action">教师管理</a>
                         </li>
@@ -220,6 +217,7 @@
                         <li><a
                                 href="${pageContext.request.contextPath}/course/list.action">课程管理</a>
                         </li>
+
                     </ul>
                 </li>
 
@@ -227,7 +225,7 @@
                     教室预约<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li><a
-                                href="${pageContext.request.contextPath }/apply/one.action">单向预约</a></li>
+                                href="${pageContext.request.contextPath }/apply/one.action">单项预约</a></li>
                         <li><a href="${pageContext.request.contextPath }/apply/batch.action">批量预约</a>
                         </li>
                     </ul>
@@ -257,7 +255,8 @@
                     <ul class="nav nav-second-level">
                         <li><a href="${pageContext.request.contextPath }/baseDict/professional.action">专业设置</a></li>
                         <li><a href="${pageContext.request.contextPath }/baseDict/college.action">学院设置</a></li>
-                        <li><a href="${pageContext.request.contextPath }/baseDict/professional_title.action">职称设置</a></li>
+                        <li><a href="${pageContext.request.contextPath }/baseDict/professional_title.action">职称设置</a>
+                        </li>
                         <li><a href="${pageContext.request.contextPath }/baseDict/courseNature.action">课程性质</a></li>
                     </ul>
                 </li>

@@ -7,9 +7,27 @@ public class Course {
     private String course_class;
 //    private int user_id;
     private String user_id;
-    private String course_time;
+    private int course_time;
     private String course_nature;
     private String course_students;
+    private int course_timed;
+
+
+    public int getCourse_time() {
+        return course_time;
+    }
+
+    public void setCourse_time(int course_time) {
+        this.course_time = course_time;
+    }
+
+    public int getCourse_timed() {
+        return course_timed;
+    }
+
+    public void setCourse_timed(int course_timed) {
+        this.course_timed = course_timed;
+    }
 
     public String getCourse_students() {
         return course_students;
@@ -19,13 +37,6 @@ public class Course {
         this.course_students = course_students;
     }
 
-    public String getCourse_time() {
-        return course_time;
-    }
-
-    public void setCourse_time(String course_time) {
-        this.course_time = course_time;
-    }
 
     public String getCourse_nature() {
         return course_nature;

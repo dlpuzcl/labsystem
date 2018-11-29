@@ -104,9 +104,11 @@
                                                 <td>课程名称</td>
                                                 <td>上课班级</td>
                                                 <td>上课人数</td>
-                                                <td>学时</td>
-                                                <td>性质</td>
-                                                <td>备注</td>
+
+                                                <td>课程性质</td>
+                                                <td>协同教师</td>
+                                                <td>课程学时</td>
+                                                <td>已约学时</td>
                                                 <td>编辑</td>
                                                 <td>删除</td>
                                             </tr>
@@ -120,10 +122,25 @@
                                                     <td>${iterm.course_name}</td>
                                                     <td>${iterm.course_class }</td>
                                                     <td>${iterm.course_students}</td>
-                                                    <td>${iterm.course_time }</td>
+
                                                     <td>${iterm.course_nature }</td>
                                                     <td>${iterm.course_memo }</td>
-
+                                                    <td>${iterm.course_time }</td>
+                                                    <c:if test="${iterm.course_timed < iterm.course_time}">
+                                                        <td>
+                                                            <div style="color:#5CB85C"> ${iterm.course_timed }</div>
+                                                        </td>
+                                                    </c:if>
+                                                    <c:if test="${iterm.course_timed == iterm.course_time}">
+                                                        <td>
+                                                            <div style="color:#D9534F"> ${iterm.course_timed }</div>
+                                                        </td>
+                                                    </c:if>
+                                                    <c:if test="${course.course_timed > course.course_time}">
+                                                        <td>
+                                                            <div style="color:#D9534F"> ${course.course_timed }</div>
+                                                        </td>
+                                                    </c:if>
                                                     <td>
                                                         <a href="#" class="btn btn-primary btn-xs" data-toggle="modal"
                                                            data-target="#courseEditDialog"
@@ -218,14 +235,14 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="add_course_class" class="col-sm-2 control-label">学时</label>
+                                    <label for="add_course_class" class="col-sm-2 control-label">课程学时</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="edit_course_time" placeholder="学时"
                                                name="course_time">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="edit_course_memo" class="col-sm-2 control-label">备注</label>
+                                    <label for="edit_course_memo" class="col-sm-2 control-label">协同教师</label>
                                     <div class="col-sm-10">
                                     <textarea class="form-control limited autosize-transition" id="edit_course_memo"
                                               maxlength="50" name="course_memo"></textarea>
@@ -234,7 +251,7 @@
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                    <button type="button" class="btn btn-primary" onclick="updateCourse()">
+                                    <button type="submit" class="btn btn-primary">
                                         <i class="ace-icon fa fa-check bigger-110"></i>
                                         保存修改
                                     </button>
@@ -310,7 +327,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="add_course_class" class="col-sm-2 control-label">学时</label>
+                                    <label for="add_course_class" class="col-sm-2 control-label">课程学时</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="add_course_time" placeholder="学时"
                                                name="course_time">
@@ -318,7 +335,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="add_course_memo" class="col-sm-2 control-label">备注</label>
+                                    <label for="add_course_memo" class="col-sm-2 control-label">协同教师</label>
                                     <div class="col-sm-10">
                                     <textarea class="form-control limited autosize-transition" id="add_course_memo"
                                               maxlength="50" name="course_memo"></textarea>
@@ -409,6 +426,7 @@
     }
 
     function updateCourse() {
+        $("button[type=submit]").attr('disabled',true)//在按钮提交之后和AJAX提交之前将按钮设置为禁用
         $.post("<%=basePath%>frontCourse/update.action", $("#edit_course_form").serialize(), function (data) {
             if (data == "0") {
                 swal({title: "提示", text: "课程更新成功", type: "success"}, function () {
@@ -419,8 +437,77 @@
                     // window.location.reload();
                 });
             }
+            $("button[type=submit]").attr('disabled',false)//在提交成功之后重新启用该按钮
         });
     }
+
+
+    $("#edit_course_form").validate({
+        rules: {
+
+            "course_name": {
+                "required": true,
+            },
+            "course_class": {
+                "required": true,
+            },
+
+            "user_id": {
+                "required": true,
+            },
+            "course_time": {
+
+                "required": true,
+                "number": true
+            },
+            "course_nature": {
+                "required": true,
+            }
+
+        },
+        messages: {
+
+            "course_name": {
+                "required": "*课程名称不能为空",
+            },
+            "course_class": {
+                "required": "*上课班级不能为空",
+            },
+            "user_id": {
+                "required": "*任课教师不能为空",
+            },
+            "course_time": {
+                "required": "*学时不能为空",
+                "number": "*学时只能为数字"
+            },
+            "course_nature": {
+                "required": "*课程性质不能为空",
+            }
+        },
+
+        submitHandler: function (form) {  //表单提交后要执行的内容
+            $("button[type=submit]").attr('disabled',true)//在按钮提交之后和AJAX提交之前将按钮设置为禁用
+            $.post("<%=basePath%>frontCourse/update.action", $("#edit_course_form").serialize(), function (data) {
+                if (data == "0") {
+                    swal({title: "提示", text: "课程更新成功", type: "success"}, function () {
+                        window.location.reload();
+                    });
+                } else {
+                    swal({title: "提示", text: "课程更新失败", type: "error"}, function () {
+                        // window.location.reload();
+                    });
+                }
+                $("button[type=submit]").attr('disabled',false)//在提交成功之后重新启用该按钮
+            });
+
+        },
+        invalidHandler: function (form, validator) {  //不通过回调
+            return false;
+        }
+    });
+
+
+
 
     $("#add_course_form").validate({
         rules: {
@@ -466,6 +553,7 @@
         },
 
         submitHandler: function (form) {  //表单提交后要执行的内容
+            $("button[type=submit]").attr('disabled',true)//在按钮提交之后和AJAX提交之前将按钮设置为禁用
             $.post("<%=basePath%>frontCourse/add.action", $("#add_course_form").serialize(), function (data) {
                 if (data == "0") {
                     swal({title: "提示", text: "课程添加成功", type: "success"}, function () {
@@ -476,7 +564,7 @@
                         window.location.reload();
                     });
                 }
-
+                $("button[type=submit]").attr('disabled',false)//在提交成功之后重新启用该按钮
             });
         },
         invalidHandler: function (form, validator) {  //不通过回调

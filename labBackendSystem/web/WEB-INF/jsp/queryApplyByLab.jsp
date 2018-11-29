@@ -358,7 +358,7 @@
                 }
                 //遍历课程表
                 for (var i = 0; i < data.length; i++) {
-                    $("#table_" + data[i].apply_day + "_" + data[i].apply_section).html(data[i].course_name + "<br>" + data[i].course_class + "<br>" + data[i].user_name);
+                    $("#table_" + data[i].apply_day + "_" + data[i].apply_section).html(data[i].course_name + "<br>" + data[i].course_class + "<br>" + data[i].user_name+" " + data[i].course_memo);
                 }
             }
         });

@@ -220,7 +220,7 @@
                                                             <div class="clearfix form-actions">
                                                                 <div class="col-md-offset-3 col-md-9">
                                                                     <button class="btn btn-primary" onclick="addUser()"
-                                                                            type="submit">
+                                                                            type="submit" id="button1">
                                                                         <i class="ace-icon fa fa-check bigger-110"></i>
                                                                         立即提交
                                                                     </button> &nbsp; &nbsp; &nbsp;
@@ -316,7 +316,7 @@
 
                                                                 <div class="clearfix form-actions">
                                                                     <div class="col-md-offset-3 col-md-9">
-                                                                        <button class="btn btn-primary" type="submit">
+                                                                        <button class="btn btn-primary" type="submit" id="button2">
                                                                             <i class="ace-icon fa fa-check bigger-110"></i>
                                                                             立即提交
                                                                         </button> &nbsp; &nbsp; &nbsp;
@@ -488,29 +488,31 @@
         },
 
         submitHandler: function (form) {  //表单提交后要执行的内容
+            $("#button1").attr('disabled',true)//在按钮提交之后和AJAX提交之前将按钮设置为禁用
+
+
             $.post("<%=basePath%>user/add.action", $("#add_User_form").serialize(), function (data) {
                 if (data.status == 200) {
                     swal({title: "提示", text: "用户添加成功", type: "success"}, function () {
                         window.location = "<%=basePath%>user/list.action";
                     });
 
+
                 }
                 if (data.status == 400) {
                     swal("用户添加失败！", data.msg, "error");
-
                 }
                 if (data.status == 555) {
                     swal("提示", data.msg, "error");
-
                 }
                 if (data.status == 666) {
                     swal("提示", data.msg, "error");
-
                 }
                 if (data.status == 777) {
                     swal("提示", data.msg, "error");
 
                 }
+                $("#button1").attr('disabled',false)//在提交成功之后重新启用该按钮
 
             });
         },
@@ -563,6 +565,7 @@
         },
 
         submitHandler: function (form) {  //表单提交后要执行的内容
+            $("#button2").attr('disabled',true)//在按钮提交之后和AJAX提交之前将按钮设置为禁用
             $.post("<%=basePath%>admini/add.action", $("#add_admini_form").serialize(), function (data) {
                 if (data.status == 200) {
                     swal({title: "提示", text: "用户添加成功", type: "success"}, function () {
@@ -571,7 +574,10 @@
                 }
                 if (data.status == 400) {
                     swal("用户添加失败！", data.msg, "error");
+
+
                 }
+                $("#button2").attr('disabled',false)//在提交成功之后重新启用该按钮
 
             });
         },

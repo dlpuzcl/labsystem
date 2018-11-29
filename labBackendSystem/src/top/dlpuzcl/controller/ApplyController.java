@@ -36,9 +36,9 @@ public class ApplyController {
     CourseService courseService;
 
 
-    private String excelApplyName = "实验室课表.xls";
-
-    private String sheetApplyName = "实验室课表";
+//    private String excelApplyName = "实验室课表.xls";
+//
+//    private String sheetApplyName = "实验室课表";
 
     @RequestMapping("one")
     public String one(Model model) {
@@ -182,11 +182,13 @@ public class ApplyController {
     public String queryApplyByUser(QueryVo queryVo, Model model) {
 
         List<User> userList = userService.queryAllUser();
-
         model.addAttribute("userList", userList);
 
         List<LabRoom> labRoom = labService.queryLabCode();
         model.addAttribute("labRoom", labRoom);
+
+        List<Course> courses = courseService.queryAllCourse();
+        model.addAttribute("courses",courses);
 
 
         //根据查询条件分页查询用户列表

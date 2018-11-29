@@ -40,4 +40,10 @@ public interface AdminiMapper {
      * @param admini
      */
     void updateAdmini(Admini admini);
+
+    /**
+     * 根据ID查询管理员 用户名是否存在验证
+     * @param admini_name
+     */
+    Integer queryAdminiByName(String admini_name);
 }

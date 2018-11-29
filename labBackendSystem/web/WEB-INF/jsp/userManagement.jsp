@@ -565,6 +565,8 @@
             },
 
             submitHandler: function (form) {  //表单提交后要执行的内容
+                $("input[type=submit]").attr('disabled',true)//在按钮提交之后和AJAX提交之前将按钮设置为禁用
+
                 $.post("<%=basePath%>user/add.action", $("#add_User_form").serialize(), function (data) {
                     if (data.status == 200) {
                         swal({title: "提示", text: "用户添加成功", type: "success"}, function () {
@@ -590,6 +592,7 @@
                     }
                     // window.location.reload();
                     <%--window.location = "<%=basePath%>user/list.action"--%>
+                    $("input[type=submit]").attr('disabled',false)//在提交成功之后重新启用该按钮
                 });
             },
             invalidHandler: function (form, validator) {  //不通过回调
@@ -618,6 +621,9 @@
         }
 
         function updateUser() {
+            $("button[type=submit]").attr('disabled',true)//在按钮提交之后和AJAX提交之前将按钮设置为禁用
+
+
             $.post("<%=basePath%>user/update.action", $("#edit_User_form").serialize(), function (data) {
                 if (data == "0") {
                     swal({title: "提示", text: "用户更新成功", type: "success"}, function () {
@@ -626,6 +632,7 @@
                 } else {
                     alert("客户更新失败！");
                 }
+                $("button[type=submit]").attr('disabled',false)//在提交成功之后重新启用该按钮
             });
         }
 

@@ -18,7 +18,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             //放行，执行处理器
             return true;
         }else{
-            response.sendRedirect(request.getContextPath() + "/login/view.action");
+            response.sendRedirect(request.getContextPath() + "/index.jsp");
 
             return false;
         }

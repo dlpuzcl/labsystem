@@ -11,6 +11,7 @@ public class Apply {
     private String course_time;
     private String course_class;
     private String course_nature;
+    private String course_memo;
     private String day_section[];
     private String user_name;
     private String room_name;
@@ -20,6 +21,14 @@ public class Apply {
     private int iterm;
     private String user_color;
     private String course_students;
+
+    public String getCourse_memo() {
+        return course_memo;
+    }
+
+    public void setCourse_memo(String course_memo) {
+        this.course_memo = course_memo;
+    }
 
     public String getCourse_students() {
         return course_students;

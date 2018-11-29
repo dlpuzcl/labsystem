@@ -32,6 +32,12 @@
         where admini_id = #{id}
     </select>
 
+    <select id="queryAdminiByName" parameterType="String" resultType="int">
+        select count(1)
+        from admini
+        where admini_name = #{admini_name}
+    </select>
+
     <update id="updateAdmini" parameterType="Admini">
         update admini
         <set>

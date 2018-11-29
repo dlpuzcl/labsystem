@@ -93,8 +93,8 @@
                       method="get" id="myform">
 
                     <div class="form-group">
-                        <label for="userName">教师</label>
-                        <select class="form-control" id="userName" name="userName" onchange="submitForm();">>
+                        <label for="user">教师</label>
+                        <select class="form-control" id="user" name="userName" onchange="submitForm();">>
                             <option value="">--请选择教师--</option>
                             <c:forEach items="${userList}" var="item">
                                 <option value="${item.user_id}"
@@ -108,7 +108,23 @@
 
 
                     <div class="form-group">
-                        <label for="userName">实验室</label>
+                        <label for="user">课程</label>
+
+                        <select class="form-control" id="course" name="courseName">
+                            <option value="">--选择课程--</option>
+                            <c:forEach items="${courses}" var="item">
+                                <option value="${item.course_name}"
+                                        <c:if test="${item.course_name == vo.courseName}"> selected</c:if>
+                                >
+                                        ${item.course_name }
+                                </option>
+                            </c:forEach>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="user">实验室</label>
 
                         <select class="form-control" name="roomCode">
                             <option value="">--选择实验室--</option>
@@ -125,7 +141,7 @@
 
 
                     <div class="form-group">
-                        <label for="userName">周</label>
+                        <label for="user">周</label>
                         <select class="form-control" name="applyWeek">
                             <option value="">--请选择周--</option>
                             <option value="1" <c:if test="${1 == vo.applyWeek}"> selected</c:if>>
@@ -186,6 +202,8 @@
                                             <td>天</td>
                                             <td>节</td>
                                             <td>上课房间</td>
+                                            <td>课程名称</td>
+                                            <td>课程性质</td>
                                             <td>上课班级</td>
                                             <td>上课教师</td>
                                             <td>删除</td>
@@ -226,6 +244,8 @@
                                                     </c:if>
                                                     <td>第${item.apply_section}节</td>
                                                     <td>${item.room_code}</td>
+                                                    <td>${item.course_name}</td>
+                                                    <td>${item.course_nature}</td>
                                                     <td>${item.course_class }</td>
                                                     <td>${item.user_name}</td>
 

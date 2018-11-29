@@ -80,90 +80,116 @@
             <div class="row">
                 <div class="col-lg-12">
 
-                    <div class="panel panel-default">
 
-                        <div class="panel-heading"
-                             style="padding-bottom: 0px;padding-top: 11px;height: 55px; padding-left: 0px;">
-
-                            <form action="<%=basePath%>front/queryApplyByUser.action" id="queryApply">
-                                <a type="button" class="btn btn-danger pull-right" onclick="deleteAll()">删除</a>&nbsp;
-                                <button type="submit" class="btn btn-primary pull-right"
-                                        style=" margin-left: 3px; margin-right: 3px;">查询
-                                </button>
-
-                                <div class="pull-right">
-
-
-                                    <input type="hidden" name="userName" id="user_id"
-                                           value="${user.user_id}">
-                                    <div class="btn-group">
-                                        <select class="form-control" name="applyWeek" style="padding-left: 8px; padding-right: 8px;">
-                                            <option value="">-选择周-</option>
-                                            <option value="1" <c:if test="${1 == vo.applyWeek}"> selected</c:if>>
-                                                第一周
-                                            </option>
-                                            <option value="2" <c:if test="${2 == vo.applyWeek}"> selected</c:if>>第二周
-                                            </option>
-                                            <option value="3" <c:if test="${3 == vo.applyWeek}"> selected</c:if>>第三周
-                                            </option>
-                                            <option value="4" <c:if test="${4 == vo.applyWeek}"> selected</c:if>>第四周
-                                            </option>
-                                            <option value="5" <c:if test="${5 == vo.applyWeek}"> selected</c:if>>第五周
-                                            </option>
-                                            <option value="6" <c:if test="${6 == vo.applyWeek}"> selected</c:if>>第六周
-                                            </option>
-                                            <option value="7" <c:if test="${7 == vo.applyWeek}"> selected</c:if>>第七周
-                                            </option>
-                                            <option value="8" <c:if test="${8 == vo.applyWeek}"> selected</c:if>>第八周
-                                            </option>
-                                            <option value="9" <c:if test="${9 == vo.applyWeek}"> selected</c:if>>第九周
-                                            </option>
-                                            <option value="10" <c:if test="${10 == vo.applyWeek}"> selected</c:if>>第十周
-                                            </option>
-                                            <option value="11" <c:if test="${11 == vo.applyWeek}"> selected</c:if>>第十一周
-                                            </option>
-                                            <option value="12" <c:if test="${12 == vo.applyWeek}"> selected</c:if>>第十二周
-                                            </option>
-                                            <option value="13" <c:if test="${13 == vo.applyWeek}"> selected</c:if>>第十三周
-                                            </option>
-                                            <option value="14" <c:if test="${14 == vo.applyWeek}"> selected</c:if>>第十四周
-                                            </option>
-                                            <option value="15" <c:if test="${15 == vo.applyWeek}"> selected</c:if>>第十五周
-                                            </option>
-                                            <option value="16" <c:if test="${16 == vo.applyWeek}"> selected</c:if>>第十六周
-                                            </option>
-                                            <option value="17" <c:if test="${17 == vo.applyWeek}"> selected</c:if>>第十七周
-                                            </option>
-                                            <option value="18" <c:if test="${18 == vo.applyWeek}"> selected</c:if>>第十八周
-                                            </option>
-                                            <option value="19" <c:if test="${19 == vo.applyWeek}"> selected</c:if>>第十九周
-                                            </option>
-                                            <option value="20" <c:if test="${20 == vo.applyWeek}"> selected</c:if>>第二十周
-                                            </option>
-                                        </select>
-
-                                    </div>
-
-                                    <div class="btn-group">
-
-                                        <select class="form-control" name="roomCode" style="padding-left: 8px; padding-right: 8px;">
-                                            <option value="">-实验室-</option>
-                                            <c:forEach items="${labRoom }" var="lab" varStatus="vs">
-
-                                                <option value="${lab.room_id }"
-                                                        <c:if test="${lab.room_id == vo.roomCode}"> selected</c:if>
-                                                >${lab.room_code }</option>
-
-                                            </c:forEach>
-
-                                        </select>
-
-                                    </div>
+                    <div class="panel panel-default ">
+                        <div class="panel-body">
+                            <form action="<%=basePath%>front/queryApplyByUser.action" id="queryApply" class="form-inline">
+                                <div class="form-group">
+                                    <select class="form-control" name="applyWeek"
+                                            style="padding-left: 8px; padding-right: 8px;">
+                                        <option value="">--选择周--</option>
+                                        <option value="1" <c:if test="${1 == vo.applyWeek}"> selected</c:if>>
+                                            第一周
+                                        </option>
+                                        <option value="2" <c:if test="${2 == vo.applyWeek}"> selected</c:if>>第二周
+                                        </option>
+                                        <option value="3" <c:if test="${3 == vo.applyWeek}"> selected</c:if>>第三周
+                                        </option>
+                                        <option value="4" <c:if test="${4 == vo.applyWeek}"> selected</c:if>>第四周
+                                        </option>
+                                        <option value="5" <c:if test="${5 == vo.applyWeek}"> selected</c:if>>第五周
+                                        </option>
+                                        <option value="6" <c:if test="${6 == vo.applyWeek}"> selected</c:if>>第六周
+                                        </option>
+                                        <option value="7" <c:if test="${7 == vo.applyWeek}"> selected</c:if>>第七周
+                                        </option>
+                                        <option value="8" <c:if test="${8 == vo.applyWeek}"> selected</c:if>>第八周
+                                        </option>
+                                        <option value="9" <c:if test="${9 == vo.applyWeek}"> selected</c:if>>第九周
+                                        </option>
+                                        <option value="10" <c:if test="${10 == vo.applyWeek}"> selected</c:if>>第十周
+                                        </option>
+                                        <option value="11" <c:if test="${11 == vo.applyWeek}"> selected</c:if>>第十一周
+                                        </option>
+                                        <option value="12" <c:if test="${12 == vo.applyWeek}"> selected</c:if>>第十二周
+                                        </option>
+                                        <option value="13" <c:if test="${13 == vo.applyWeek}"> selected</c:if>>第十三周
+                                        </option>
+                                        <option value="14" <c:if test="${14 == vo.applyWeek}"> selected</c:if>>第十四周
+                                        </option>
+                                        <option value="15" <c:if test="${15 == vo.applyWeek}"> selected</c:if>>第十五周
+                                        </option>
+                                        <option value="16" <c:if test="${16 == vo.applyWeek}"> selected</c:if>>第十六周
+                                        </option>
+                                        <option value="17" <c:if test="${17 == vo.applyWeek}"> selected</c:if>>第十七周
+                                        </option>
+                                        <option value="18" <c:if test="${18 == vo.applyWeek}"> selected</c:if>>第十八周
+                                        </option>
+                                        <option value="19" <c:if test="${19 == vo.applyWeek}"> selected</c:if>>第十九周
+                                        </option>
+                                        <option value="20" <c:if test="${20 == vo.applyWeek}"> selected</c:if>>第二十周
+                                        </option>
+                                    </select>
 
                                 </div>
+
+                                <div class="form-group">
+                                    <select class="form-control" name="courseName">
+                                        <option value="">--选择课程--</option>
+                                        <c:forEach items="${courses}" var="iterm" varStatus="vs">
+
+                                            <option value="${iterm.course_name}"
+                                                    <c:if test="${iterm.course_name == vo.courseName}"> selected</c:if>
+                                            >${iterm.course_name }</option>
+
+                                        </c:forEach>
+
+                                    </select>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <select class="form-control"
+                                            name="courseNature">
+                                        <option value="">--课程性质--</option>
+                                        <c:forEach items="${course_nature_list}" var="nature">
+                                            <option value="${nature.dict_item_name }"
+                                                    <c:if test="${nature.dict_item_name == vo.courseNature}"> selected</c:if>>
+                                                    ${nature.dict_item_name }
+                                            </option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <select class="form-control" name="roomCode">
+                                        <option value="">--选择实验室--</option>
+                                        <c:forEach items="${labRoom }" var="lab" varStatus="vs">
+
+                                            <option value="${lab.room_id}"
+                                                    <c:if test="${lab.room_id == vo.roomCode}"> selected</c:if>
+                                            >${lab.room_code }</option>
+
+                                        </c:forEach>
+
+                                    </select>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">查询</button>
+                                    <a type="button" class="btn btn-danger" onclick="deleteAll()">批量删除</a>
+                                </div>
+
+
+                                <input type="hidden" name="userName" id="user_id" value="${user.user_id}">
                             </form>
                         </div>
+                    </div>
 
+
+                    <div class="panel panel-default">
 
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -181,6 +207,8 @@
                                                 <td>天</td>
                                                 <td>节</td>
                                                 <td>上课房间</td>
+                                                <td>课程名称</td>
+                                                <td>课程性质</td>
                                                 <td>上课班级</td>
                                                 <%--<td>上课教师</td>--%>
                                                 <td>删除</td>
@@ -224,6 +252,9 @@
                                                         </c:if>
                                                         <td>第${item.apply_section}节</td>
                                                         <td>${item.room_code}</td>
+                                                        <td>${item.course_name}</td>
+                                                        <td>${item.course_nature}</td>
+
                                                         <td>${item.course_class }</td>
                                                             <%--<td>${item.user_name}</td>--%>
 
@@ -294,14 +325,6 @@
 <%--表单校验--%>
 <script src="<%=basePath%>jquery/jquery.validate.min.js"></script>
 <script type="text/javascript">
-    // 直接用select提交
-
-    // function submitForm() {
-    //     //获取form表单对象
-    //     var form = document.getElementById("myform");
-    //     form.submit();//form表单提交
-    // }
-
 
     function deleteApply(id) {
 

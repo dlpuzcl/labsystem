@@ -141,9 +141,37 @@
 
     </select>
 
+
+    <select id="queryUserByName" parameterType="String" resultType="int">
+        select count(1)
+        from user
+        where user_name = #{user_name}
+    </select>
+
+    <select id="queryUserByPhone" parameterType="String" resultType="int">
+        select count(1)
+        from user
+        where user_phone = #{user_phone}
+    </select>
+
+    <select id="queryUserByEmail" parameterType="String" resultType="int">
+        select count(1)
+        from user
+        where user_email = #{user_email}
+    </select>
+
     <select id="login"  resultType="user" parameterType="user">
-        select * from user
-        where (user_name = #{user_name} or user_phone = #{user_name} or user_email = #{user_name})
+        select
+            user_id,
+            user_name,
+            user_phone,
+            user_email,
+            user_state,
+            college,
+            professional_title,
+            profession
+            from user
+            where (user_name = #{user_name} or user_phone = #{user_name} or user_email = #{user_name})
               and user_password = #{user_password} and user_mark = 1
 
 

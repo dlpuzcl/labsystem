@@ -84,7 +84,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="/apply/one.action">
+                        <a href="${pageContext.request.contextPath }/apply/one.action">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -106,7 +106,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="/user/list.action">
+                        <a href="${pageContext.request.contextPath }/user/list.action">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -128,7 +128,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="/course/list.action">
+                        <a href="${pageContext.request.contextPath }/course/list.action">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -150,7 +150,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="/lab/list.action">
+                        <a href="${pageContext.request.contextPath }/lab/list.action">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -436,6 +436,7 @@
 
     <script>
         function getApply() {
+
             $.ajax({
                 type: "get",
                 url: "<%=basePath%>apply/query.action",
@@ -450,7 +451,7 @@
                     }
                     //遍历课程表
                     for (var i = 0; i < data.length; i++) {
-                        $("#table_" + data[i].apply_day + "_" + data[i].apply_section).html("<div style='background-color: " + data[i].user_color + ";padding: 8px 8px;color: #FFFFFF;border-radius:8px;width: 100px;' >"+data[i].course_name + "<br>" + data[i].course_class + "<br>" + data[i].user_name+"</div>");
+                        $("#table_" + data[i].apply_day + "_" + data[i].apply_section).html("<div style='background-color: " + data[i].user_color + ";padding: 8px 8px;color: #FFFFFF;border-radius:8px;width: 100px;' >"+data[i].course_name + "<br>" + data[i].course_class + "<br>" + data[i].user_name+" " + data[i].course_memo+"</div>");
                     }
                 }
             });

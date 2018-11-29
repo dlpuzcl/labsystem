@@ -67,6 +67,22 @@
         from course c
         where c.course_id = #{id} and c.course_mark=1;
     </select>
+
+    <!--查询所有课程-->
+    <select id="queryAllCourse" resultType="course">
+        select
+            c.course_id,
+            c.course_name,
+            c.course_class,
+            c.course_memo,
+            c.user_id,
+            c.course_time,
+            c.course_students,
+            c.course_nature
+        from course c
+        where c.course_mark=1;
+    </select>
+
     <!--更新课程-->
     <update id="updateCourse" parameterType="course">
         update course

@@ -91,13 +91,19 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading" style="padding-bottom: 0px;padding-top: 11px;height: 55px;">
-                        <div class="pull-right">
-                            <form class="form-inline"
-                                  action="${pageContext.request.contextPath }/apply/dataStatistical.action"
-                                  method="get" id="myform">
 
-                                <div class="form-group">
-                                    <label for="room_id">实验室名称</label>
+                        <form class="form-inline"
+                              action="${pageContext.request.contextPath }/apply/dataStatistical.action"
+                              method="get" id="myform">
+                            &nbsp;&nbsp;
+                            <a class="btn btn-info pull-right " type="button" style="margin-left: 10px"
+                               onClick="$('.exceldown').tableExport({type:'excel',pdfmake:{enabled:true}});">
+                                下载
+                            </a>
+
+                            &nbsp;&nbsp;
+                            <div class="pull-right">
+                                <div class="btn-group">
                                     <select class="form-control" id="room_id" name="room_id" onchange="submitForm()">
                                         <option value="0">--请选择--</option>
                                         <c:forEach items="${labRoom }" var="lab" varStatus="vs">
@@ -110,23 +116,12 @@
                                         </c:forEach>
                                     </select>
                                 </div>
+                            </div>
+                            <%--<button type="submit" class="btn btn-primary">查询</button>--%>
+                        </form>
 
-                                &nbsp;&nbsp;&nbsp;
+                        <input type="hidden" value="${allLab}" id="allLab">
 
-                                <div class="btn-group">
-                                    <button class="btn btn btn-info"
-                                            onClick="$('.exceldown').tableExport({type:'excel',pdfmake:{enabled:true}});">
-                                        下载
-                                    </button>
-
-                                </div>
-
-                                &nbsp;&nbsp;&nbsp;
-
-                                <%--<button type="submit" class="btn btn-primary">查询</button>--%>
-                            </form>
-                            <input type="hidden" value="${allLab}" id="allLab">
-                        </div>
                     </div>
 
 
@@ -144,10 +139,11 @@
                                             <td>上课教室</td>
                                             <td>课程名称</td>
                                             <td>上课教师</td>
+                                            <td>协同教师</td>
                                             <td>上课班级</td>
                                             <td>上课人数</td>
-                                            <td>性质</td>
-                                            <td>学时</td>
+                                            <td>课程性质</td>
+                                            <td>课程学时</td>
                                         </tr>
                                         </thead>
 
@@ -159,6 +155,7 @@
                                                 <td>${data.room_code }</td>
                                                 <td>${data.course_name }</td>
                                                 <td>${data.user_name }</td>
+                                                <td>${data.course_memo }</td>
                                                 <td>${data.course_class }</td>
                                                 <td>${data.course_students}</td>
                                                 <td>${data.course_nature }</td>
@@ -203,37 +200,37 @@
     </div>
     <!-- /#wrapper -->
 
-        <script src="<%=basePath%>jquery/jquery.min.js"></script>
+    <script src="<%=basePath%>jquery/jquery.min.js"></script>
 
-        <!-- Bootstrap Core JavaScript -->
-        <script src="<%=basePath%>bootstrap/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<%=basePath%>bootstrap/js/bootstrap.min.js"></script>
 
-        <!-- Metis Menu Plugin JavaScript -->
-        <script src="<%=basePath%>metisMenu/metisMenu.min.js"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="<%=basePath%>metisMenu/metisMenu.min.js"></script>
 
-        <!-- Custom Theme JavaScript -->
-        <script src="<%=basePath%>dist/js/sb-admin-2.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="<%=basePath%>dist/js/sb-admin-2.js"></script>
 
-        <script src="<%=basePath%>sweetalert/sweetalert.min.js"></script>
+    <script src="<%=basePath%>sweetalert/sweetalert.min.js"></script>
 
 
-        <%--<script type="text/javascript" src="<%=basePath%>excel/jquery.js"></script>--%>
-        <script type="text/javascript" src="<%=basePath%>excel/pdfmake.min.js"></script>
-        <script type="text/javascript" src="<%=basePath%>excel/vfs_fonts.js"></script>
-        <!--
-        <script type="text/javascript" src="../libs/pdfmake/mirza_fonts.js"></script>
-        -->
-        <script type="text/javascript" src="<%=basePath%>excel/FileSaver.min.js"></script>
-        <script type="text/javascript" src="<%=basePath%>excel/tableExport.js"></script>
-        <script type="text/javascript" src="<%=basePath%>excel/html2canvas.min.js"></script>
+    <%--<script type="text/javascript" src="<%=basePath%>excel/jquery.js"></script>--%>
+    <script type="text/javascript" src="<%=basePath%>excel/pdfmake.min.js"></script>
+    <script type="text/javascript" src="<%=basePath%>excel/vfs_fonts.js"></script>
+    <!--
+    <script type="text/javascript" src="../libs/pdfmake/mirza_fonts.js"></script>
+    -->
+    <script type="text/javascript" src="<%=basePath%>excel/FileSaver.min.js"></script>
+    <script type="text/javascript" src="<%=basePath%>excel/tableExport.js"></script>
+    <script type="text/javascript" src="<%=basePath%>excel/html2canvas.min.js"></script>
 
     <script>
 
         var s = 0;
-        $("table").each(function(){  // 获取表格table中，第几个td的文本
+        $("table").each(function () {  // 获取表格table中，第几个td的文本
             for (var i = 1; i < $(this).find("tr").length; i++) {
-               var  t = $(this).find('tr').eq(i).find('td').eq(7).text();
-               s = Number(s) +Number(t) ;
+                var t = $(this).find('tr').eq(i).find('td').eq(8).text();
+                s = Number(s) + Number(t);
             }
         })
         $("#times").val(s);
@@ -241,10 +238,10 @@
         var ut;
         var room_id = $("#room_id").val();
         var allLab = $("#allLab").val();
-        if (room_id == null || room_id == "" || room_id == 0){
-            ut = s/(20*5*8*allLab);
-        }else {
-            ut = s/(20*5*8);
+        if (room_id == null || room_id == "" || room_id == 0) {
+            ut = s / (20 * 5 * 8 * allLab);
+        } else {
+            ut = s / (20 * 5 * 8);
         }
 
         ut = ut.toFixed(4);

@@ -46,4 +46,10 @@ public interface CourseService {
      * @param id
      */
     void deleteCourse(Integer id,Integer course_mark);
+
+    /**
+     * 查询所有课程
+     */
+
+    List<Course> queryAllCourse();
 }

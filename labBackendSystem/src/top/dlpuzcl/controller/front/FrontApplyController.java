@@ -6,10 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.dlpuzcl.pojo.*;
-import top.dlpuzcl.service.ApplyService;
-import top.dlpuzcl.service.CourseService;
-import top.dlpuzcl.service.LabService;
-import top.dlpuzcl.service.UserService;
+import top.dlpuzcl.service.*;
 import top.dlpuzcl.utils.Page;
 
 import java.util.List;
@@ -25,6 +22,10 @@ public class FrontApplyController {
     CourseService courseService;
     @Autowired
     ApplyService applyService;
+    @Autowired
+    private BaseDictService baeDictService;
+
+    private String course_nature = "003";
 
     @RequestMapping("apply")
     public String apply(Model model) {
@@ -102,9 +103,15 @@ public class FrontApplyController {
     @RequestMapping("queryApplyByUser")
     public String queryApplyByUser(QueryVo queryVo, Model model) {
 
+        List<Course> courses = courseService.courseByUser(Integer.parseInt(queryVo.getUserName()));
+        model.addAttribute("courses", courses);
+
         List<LabRoom> labRoom = labService.queryLabCode();
         model.addAttribute("labRoom", labRoom);
 
+        //查询课程性质
+        List<BaseDict> course_nature_list = baeDictService.getBaseDictByCode(course_nature);
+        model.addAttribute("course_nature_list", course_nature_list);
 
         //根据查询条件分页查询用户列表
         Page<Apply> page = applyService.queryApplyByUser(queryVo);

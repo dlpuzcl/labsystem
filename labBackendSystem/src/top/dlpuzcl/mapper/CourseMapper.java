@@ -55,5 +55,11 @@ public interface CourseMapper {
      */
     void deleteCourse(Integer id, Integer course_mark);
 
+    /**
+     * 查询所有课程
+     */
+
+    List<Course> queryAllCourse();
+
 
 }
