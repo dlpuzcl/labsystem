@@ -58,6 +58,11 @@ public class LabServiceImpl implements LabService {
     }
 
     @Override
+    public void thoroughDeleteLabById(Integer id) {
+        labMapper.thoroughDeleteLabById(id);
+    }
+
+    @Override
     public List<LabRoom> queryLabCode() {
         return labMapper.queryLabCode();
     }

@@ -157,6 +157,7 @@
                                         <thead>
                                         <tr class="info">
                                             <td>序号</td>
+                                            <td>工号</td>
                                             <td>姓名</td>
                                             <td>电话</td>
                                             <td>邮箱</td>
@@ -174,6 +175,7 @@
                                         <c:forEach items="${page.rows}" var="row" varStatus="vs">
                                             <tr>
                                                 <td>${vs.count }</td>
+                                                <td>${row.user_number}</td>
                                                 <td>${row.user_name }</td>
                                                 <td>${row.user_phone}</td>
                                                 <td>${row.user_email}</td>
@@ -246,6 +248,8 @@
                     <div class="modal-body">
                         <form class="form-horizontal" id="edit_User_form">
                             <input type="hidden" id="edit_userId" name="user_id"/>
+
+
                             <div class="form-group">
                                 <label for="edit_userName" class="col-sm-2 control-label">姓名</label>
                                 <div class="col-sm-10">
@@ -253,6 +257,15 @@
                                            name="user_name">
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <label for="edit_userNumber" class="col-sm-2 control-label">工号</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="edit_userNumber" placeholder="工号"
+                                           name="user_number">
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label for="edit_userCollege" class="col-sm-2 control-label">学院</label>
                                 <div class="col-sm-10">
@@ -355,6 +368,8 @@
                     <div class="modal-body">
                         <form class="form-horizontal" id="add_User_form">
                             <%--<input type="hidden" id="add_userId" name="user_id"/>--%>
+
+
                             <div class="form-group">
                                 <label for="edit_userName" class="col-sm-2 control-label">姓名</label>
                                 <div class="col-sm-10">
@@ -362,6 +377,15 @@
                                            name="user_name">
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <label for="add_userNumber" class="col-sm-2 control-label">工号</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="add_userNumber" placeholder="工号"
+                                           name="user_number">
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label for="edit_userCollege" class="col-sm-2 control-label">学院</label>
                                 <div class="col-sm-10">
@@ -529,6 +553,10 @@
                 },
                 "profession": {
                     "required": true,
+                },
+                "usernumber": {
+                    "required": true,
+                    "rangelength": [1, 20],
                 }
             },
             messages: {
@@ -561,11 +589,15 @@
                 },
                 "profession": {
                     "required": "*专业不能为空",
+                },
+                "usernumber": {
+                    "required": "*工号不能为空",
+                    "rangelength": "*工号长度1-20位",
                 }
             },
 
             submitHandler: function (form) {  //表单提交后要执行的内容
-                $("input[type=submit]").attr('disabled',true)//在按钮提交之后和AJAX提交之前将按钮设置为禁用
+                $("input[type=submit]").attr('disabled', true)//在按钮提交之后和AJAX提交之前将按钮设置为禁用
 
                 $.post("<%=basePath%>user/add.action", $("#add_User_form").serialize(), function (data) {
                     if (data.status == 200) {
@@ -592,7 +624,7 @@
                     }
                     // window.location.reload();
                     <%--window.location = "<%=basePath%>user/list.action"--%>
-                    $("input[type=submit]").attr('disabled',false)//在提交成功之后重新启用该按钮
+                    $("input[type=submit]").attr('disabled', false)//在提交成功之后重新启用该按钮
                 });
             },
             invalidHandler: function (form, validator) {  //不通过回调
@@ -615,13 +647,14 @@
                     $("#edit_userColor").val(data.user_color)
                     $("#edit_profession").val(data.profession)
                     $("#edit_professionalTitle").val(data.professional_title)
+                    $("#edit_userNumber").val(data.user_number)
 
                 }
             });
         }
 
         function updateUser() {
-            $("button[type=submit]").attr('disabled',true)//在按钮提交之后和AJAX提交之前将按钮设置为禁用
+            $("button[type=submit]").attr('disabled', true)//在按钮提交之后和AJAX提交之前将按钮设置为禁用
 
 
             $.post("<%=basePath%>user/update.action", $("#edit_User_form").serialize(), function (data) {
@@ -632,7 +665,7 @@
                 } else {
                     alert("客户更新失败！");
                 }
-                $("button[type=submit]").attr('disabled',false)//在提交成功之后重新启用该按钮
+                $("button[type=submit]").attr('disabled', false)//在提交成功之后重新启用该按钮
             });
         }
 

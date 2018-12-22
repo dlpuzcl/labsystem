@@ -93,9 +93,9 @@
             <if test="course_class != null and course_class != ''">
                 course_class = #{course_class},
             </if>
-            <if test="course_memo != null and course_memo != ''">
+
                 course_memo = #{course_memo},
-            </if>
+
             <if test="user_id != null and user_id != ''">
                 user_id = #{user_id},
             </if>
@@ -119,13 +119,13 @@
         values(#{course_name},#{course_class},#{course_memo},#{user_id},#{course_time},#{course_nature},#{course_students});
     </insert>
 
-    <!--&lt;!&ndash;删除课程&ndash;&gt;-->
-    <!--<delete id="deleteCourse" parameterType="integer">-->
-        <!--delete-->
-        <!--from course-->
-        <!--where course_id = #{id};-->
+    <!--删除课程-->
+    <delete id="thoroughDeleteCourse" parameterType="integer">
+        delete
+        from course
+        where course_id = #{id};
 
-    <!--</delete>-->
+    </delete>
 
     <update id="deleteCourse" >
         update course

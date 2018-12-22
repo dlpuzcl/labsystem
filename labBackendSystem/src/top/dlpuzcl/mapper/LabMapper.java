@@ -47,6 +47,13 @@ public interface LabMapper {
     void deleteLabById(Integer id,Integer room_mark);
 
     /**
+     * 通过ID彻底删除实验室
+     * @param id
+     */
+    void thoroughDeleteLabById(Integer id);
+
+
+    /**
      * 查询所有实验室
      *
      */

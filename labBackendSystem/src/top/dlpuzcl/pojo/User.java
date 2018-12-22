@@ -2,6 +2,7 @@ package top.dlpuzcl.pojo;
 
 public class User {
     private String user_id;
+    private String user_number;
     private String user_name;
     private String user_phone;
     private String user_email;
@@ -19,6 +20,14 @@ public class User {
 
     public void setProfession(String profession) {
         this.profession = profession;
+    }
+
+    public String getUser_number() {
+        return user_number;
+    }
+
+    public void setUser_number(String user_number) {
+        this.user_number = user_number;
     }
 
     public String getUser_color() {

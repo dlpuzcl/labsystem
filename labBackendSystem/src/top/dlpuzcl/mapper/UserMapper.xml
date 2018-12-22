@@ -31,6 +31,7 @@
             u.user_email,
             u.user_state,
             u.user_color,
+            u.user_number,
             c.dict_item_name college,
             p.dict_item_name professional_title,
             pr.dict_item_name profession
@@ -62,7 +63,8 @@
             college,
             professional_title,
             user_color,
-            profession
+            profession,
+            user_number
         from user
         where user_id = #{id} and user_mark = 1;
     </select>
@@ -77,6 +79,9 @@
             </if>
             <if test="user_phone != null and user_phone != ''">
                 user_phone = #{user_phone},
+            </if>
+            <if test="user_number != null and user_number != ''">
+                user_number = #{user_number},
             </if>
             <if test="user_email != null and user_email != ''">
                 user_email = #{user_email},
@@ -99,11 +104,11 @@
     </update>
 
     <!--删除用户-->
-    <!--<delete id="deleteUserById" parameterType="int">-->
-        <!--delete-->
-        <!--from user-->
-        <!--where user_id = #{user_id};-->
-    <!--</delete>-->
+    <delete id="thoroughDeleteUserById" parameterType="int">
+        delete
+        from user
+        where user_id = #{user_id};
+    </delete>
 
     <update id="deleteUserById" parameterType="integer">
         update user
@@ -121,9 +126,9 @@
     <!--添加用户-->
     <insert id="addUser" parameterType="user">
         insert into user
-        (user_name,user_phone,user_email,user_password,college,professional_title,user_color,profession)
+        (user_number,user_name,user_phone,user_email,user_password,college,professional_title,user_color,profession)
         values
-            (#{user_name},#{user_phone},#{user_email},#{user_password},#{college},#{professional_title},#{user_color},#{profession});
+            (#{user_number},#{user_name},#{user_phone},#{user_email},#{user_password},#{college},#{professional_title},#{user_color},#{profession});
     </insert>
 
     <!--查询所有用户-->
@@ -131,6 +136,7 @@
         select
             user_id,
             user_name,
+            user_number,
             user_phone,
             user_email,
             college,
@@ -142,10 +148,10 @@
     </select>
 
 
-    <select id="queryUserByName" parameterType="String" resultType="int">
+    <select id="queryUserByNumber" parameterType="String" resultType="int">
         select count(1)
         from user
-        where user_name = #{user_name}
+        where user_number = #{user_number}
     </select>
 
     <select id="queryUserByPhone" parameterType="String" resultType="int">
@@ -167,11 +173,12 @@
             user_phone,
             user_email,
             user_state,
+            user_number,
             college,
             professional_title,
             profession
             from user
-            where (user_name = #{user_name} or user_phone = #{user_name} or user_email = #{user_name})
+            where (user_number = #{user_name} or user_phone = #{user_name} or user_email = #{user_name})
               and user_password = #{user_password} and user_mark = 1
 
 

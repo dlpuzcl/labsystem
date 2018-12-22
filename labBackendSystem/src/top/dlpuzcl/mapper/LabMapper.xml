@@ -90,11 +90,11 @@
     </update>
 
     <!--删除实验室-->
-    <!--<delete id="deleteLabById" parameterType="int">-->
-        <!--delete-->
-        <!--from lab_room-->
-        <!--where room_id = #{room_id};-->
-    <!--</delete>-->
+    <delete id="thoroughDeleteLabById" parameterType="int">
+        delete
+        from lab_room
+        where room_id = #{id};
+    </delete>
     <update id="deleteLabById" >
         update lab_room
         set room_mark=#{1}

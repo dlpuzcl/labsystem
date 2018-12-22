@@ -203,9 +203,9 @@
                                                 <td><input id="selecteAll" type="checkbox" class="styled"/></td>
 
                                                 <%--<td>序号</td>--%>
-                                                <td>周</td>
-                                                <td>天</td>
-                                                <td>节</td>
+                                                <td>周次</td>
+                                                <td>星期</td>
+                                                <td>节次</td>
                                                 <td>上课房间</td>
                                                 <td>课程名称</td>
                                                 <td>课程性质</td>
@@ -226,8 +226,67 @@
                                                                    class="styled"></td>
 
                                                             <%--<td>${vs.count}</td>--%>
+                                                        <c:if test="${item.apply_week == 1}">
+                                                            <td>第一周</td>
+                                                        </c:if>
+                                                        <c:if test="${item.apply_week == 2}">
+                                                            <td>第二周</td>
+                                                        </c:if>
+                                                        <c:if test="${item.apply_week == 3}">
+                                                            <td>第三周</td>
+                                                        </c:if>
+                                                        <c:if test="${item.apply_week == 4}">
+                                                            <td>第四周</td>
+                                                        </c:if>
+                                                        <c:if test="${item.apply_week == 5}">
+                                                            <td>第五周</td>
+                                                        </c:if>
+                                                        <c:if test="${item.apply_week == 6}">
+                                                            <td>第六周</td>
+                                                        </c:if>
+                                                        <c:if test="${item.apply_week == 7}">
+                                                            <td>第七周</td>
+                                                        </c:if>
+                                                        <c:if test="${item.apply_week == 8}">
+                                                            <td>第八周</td>
+                                                        </c:if>
+                                                        <c:if test="${item.apply_week == 9}">
+                                                            <td>第九周</td>
+                                                        </c:if>
+                                                        <c:if test="${item.apply_week == 10}">
+                                                            <td>第十周</td>
+                                                        </c:if>
+                                                        <c:if test="${item.apply_week == 11}">
+                                                            <td>第十一周</td>
+                                                        </c:if>
+                                                        <c:if test="${item.apply_week == 12}">
+                                                            <td>第十二周</td>
+                                                        </c:if>
+                                                        <c:if test="${item.apply_week == 13}">
+                                                            <td>第十三周</td>
+                                                        </c:if>
+                                                        <c:if test="${item.apply_week == 14}">
+                                                            <td>第十四周</td>
+                                                        </c:if>
+                                                        <c:if test="${item.apply_week == 15}">
+                                                            <td>第十五周</td>
+                                                        </c:if>
+                                                        <c:if test="${item.apply_week == 16}">
+                                                            <td>第十六周</td>
+                                                        </c:if>
+                                                        <c:if test="${item.apply_week == 17}">
+                                                            <td>第十七周</td>
+                                                        </c:if>
+                                                        <c:if test="${item.apply_week == 18}">
+                                                            <td>第十八周</td>
+                                                        </c:if>
+                                                        <c:if test="${item.apply_week == 19}">
+                                                            <td>第十九周</td>
+                                                        </c:if>
+                                                        <c:if test="${item.apply_week == 20}">
+                                                            <td>第二十周</td>
+                                                        </c:if>
 
-                                                        <td>${item.apply_week}</td>
 
                                                         <c:if test="${item.apply_day == 1}">
                                                             <td>星期一</td>
@@ -345,19 +404,19 @@
 
                     $.post("<%=basePath%>front/delete.action", {"id": id}, function (data) {
                         if (data == "0") {
-                            swal({title: "删除！", text: "课程已经被删除。", type: "success"},
+                            swal({title: "成功", text: "课程已经被删除", type: "success"},
                                 function () {
                                     window.location.reload();
                                 });
 
 
                         } else {
-                            swal("删除！", "课程删除失败。", "error");
+                            swal("失败", "课程删除失败", "error");
                         }
                     });
 
                 } else {
-                    swal("取消！", "课程是安全的)",
+                    swal("取消", "课程是安全的",
                         "error");
                 }
 
@@ -387,19 +446,19 @@
 
                     $.post("<%=basePath%>front/deleteAll.action", $("#form1").serialize(), function (data) {
                         if (data == "0") {
-                            swal({title: "删除！", text: "课程已经被删除。", type: "success"},
+                            swal({title: "成功", text: "课程已经被删除", type: "success"},
                                 function () {
                                     window.location.reload();
                                 });
 
 
                         } else {
-                            swal("删除！", "课程删除失败。", "error");
+                            swal("失败", "课程删除失败", "error");
                         }
                     });
 
                 } else {
-                    swal("取消！", "课程是安全的)",
+                    swal("取消", "课程是安全的",
                         "error");
                 }
 

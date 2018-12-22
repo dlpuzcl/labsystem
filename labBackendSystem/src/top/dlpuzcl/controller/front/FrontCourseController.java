@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.dlpuzcl.pojo.BaseDict;
 import top.dlpuzcl.pojo.Course;
+import top.dlpuzcl.pojo.LabResult;
 import top.dlpuzcl.service.BaseDictService;
 import top.dlpuzcl.service.CourseService;
 
@@ -50,15 +51,10 @@ public class FrontCourseController {
      */
     @RequestMapping("update")
     @ResponseBody
-    public String update(Course course){
-        String msg = "1";
-        try{
-            courseService.updateCourse(course);
-            msg = "0";
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return msg;
+    public LabResult update(Course course){
+
+        LabResult labResult = courseService.updateCourse(course);
+        return labResult;
     }
 
     /**

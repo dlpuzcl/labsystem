@@ -140,10 +140,10 @@
                                             <td>房间号</td>
                                             <td>实验室名称</td>
                                             <td>人数</td>
-                                            <td>所属学院</td>
+                                            <td>学院</td>
                                             <td>备注</td>
                                             <td>编辑</td>
-                                            <%--<td>删除</td>--%>
+                                            <td>删除</td>
                                         </tr>
                                         </thead>
 
@@ -164,18 +164,18 @@
                                                     <a href="#" class="btn btn-primary btn-xs"
                                                        onclick="backLab(${lab.room_id})">
                                                         <i class="ace-icon fa fa-pencil"></i>
-                                                        修改
+                                                        找回
                                                     </a>
                                                 </td>
 
 
-                                                <%--<td>--%>
-                                                    <%--<a href="#" class="btn btn-danger btn-xs"--%>
-                                                       <%--onclick="deleteLab(${lab.room_id})">--%>
-                                                        <%--<i class="ace-icon fa fa-trash-o"></i>--%>
-                                                        <%--删除--%>
-                                                    <%--</a>--%>
-                                                <%--</td>--%>
+                                                <td>
+                                                    <a href="#" class="btn btn-danger btn-xs"
+                                                       onclick="deleteLab(${lab.room_id})">
+                                                        <i class="ace-icon fa fa-trash-o"></i>
+                                                        彻底删除
+                                                    </a>
+                                                </td>
                                             </tr>
                                         </c:forEach>
                                         </tbody>
@@ -254,6 +254,44 @@
 
                     } else {
                         swal("取消！", "实验室未找回！)",
+                            "error");
+                    }
+
+
+                });
+        }
+
+        function deleteLab(id) {
+
+
+            swal({
+                    title: "确定删除吗？",
+                    text: "彻底删除后将无法找回！",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "确定删除！",
+                    cancelButtonText: "取消删除！",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        $.post("<%=basePath%>lab/thoroughDelete.action", {"id": id}, function (data) {
+                            if (data == "0") {
+                                swal({title: "成功！", text: "实验室已经被删除。", type: "success"},
+                                    function () {
+                                        window.location.reload();
+                                    });
+
+
+                            } else {
+                                swal("失败！", "请检查此实验室是否存在预约。", "error");
+                            }
+                        });
+
+                    } else {
+                        swal("取消！", "实验室是安全的)",
                             "error");
                     }
 

@@ -56,6 +56,13 @@ public interface CourseMapper {
     void deleteCourse(Integer id, Integer course_mark);
 
     /**
+     * 彻底删除课程
+     * @param id
+
+     */
+    void thoroughDeleteCourse(Integer id);
+
+    /**
      * 查询所有课程
      */
 

@@ -151,6 +151,20 @@ public class LabController {
         }
         return msg;
     }
+
+    @RequestMapping("thoroughDelete")
+    @ResponseBody
+    public String thoroughDelete (Integer id){
+        String msg = "1";
+        try{
+            labService.thoroughDeleteLabById(id);
+            msg = "0";
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return msg;
+    }
+
     @RequestMapping("back")
     @ResponseBody
     public String back (Integer id){

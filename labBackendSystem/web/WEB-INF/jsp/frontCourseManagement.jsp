@@ -425,21 +425,21 @@
         });
     }
 
-    function updateCourse() {
-        $("button[type=submit]").attr('disabled',true)//在按钮提交之后和AJAX提交之前将按钮设置为禁用
-        $.post("<%=basePath%>frontCourse/update.action", $("#edit_course_form").serialize(), function (data) {
-            if (data == "0") {
-                swal({title: "提示", text: "课程更新成功", type: "success"}, function () {
-                    window.location.reload();
-                });
-            } else {
-                swal({title: "提示", text: "课程更新失败", type: "error"}, function () {
-                    // window.location.reload();
-                });
-            }
-            $("button[type=submit]").attr('disabled',false)//在提交成功之后重新启用该按钮
-        });
-    }
+    <%--function updateCourse() {--%>
+        <%--$("button[type=submit]").attr('disabled',true)//在按钮提交之后和AJAX提交之前将按钮设置为禁用--%>
+        <%--$.post("<%=basePath%>frontCourse/update.action", $("#edit_course_form").serialize(), function (data) {--%>
+            <%--if (data == "0") {--%>
+                <%--swal({title: "提示", text: "课程更新成功", type: "success"}, function () {--%>
+                    <%--window.location.reload();--%>
+                <%--});--%>
+            <%--} else {--%>
+                <%--swal({title: "提示", text: "课程更新失败", type: "error"}, function () {--%>
+                    <%--// window.location.reload();--%>
+                <%--});--%>
+            <%--}--%>
+            <%--$("button[type=submit]").attr('disabled',false)//在提交成功之后重新启用该按钮--%>
+        <%--});--%>
+    <%--}--%>
 
 
     $("#edit_course_form").validate({
@@ -462,6 +462,9 @@
             },
             "course_nature": {
                 "required": true,
+            },"course_students":{
+                "required": true,
+                "number": true
             }
 
         },
@@ -482,18 +485,22 @@
             },
             "course_nature": {
                 "required": "*课程性质不能为空",
+            },
+            "course_students": {
+                "required": "*上课人数不能为空",
+                "number": "*上课人数只能为数字"
             }
         },
 
         submitHandler: function (form) {  //表单提交后要执行的内容
             $("button[type=submit]").attr('disabled',true)//在按钮提交之后和AJAX提交之前将按钮设置为禁用
             $.post("<%=basePath%>frontCourse/update.action", $("#edit_course_form").serialize(), function (data) {
-                if (data == "0") {
-                    swal({title: "提示", text: "课程更新成功", type: "success"}, function () {
+                if (data.status == 200) {
+                    swal({title: "成功", text: "课程更新成功", type: "success"}, function () {
                         window.location.reload();
                     });
                 } else {
-                    swal({title: "提示", text: "课程更新失败", type: "error"}, function () {
+                    swal({title: "失败", text: data.msg, type: "error"}, function () {
                         // window.location.reload();
                     });
                 }
@@ -529,6 +536,9 @@
             },
             "course_nature": {
                 "required": true,
+            },"course_students":{
+                "required": true,
+                "number": true
             }
 
         },
@@ -549,6 +559,10 @@
             },
             "course_nature": {
                 "required": "*课程性质不能为空",
+            },
+            "course_students": {
+                "required": "*上课人数不能为空",
+                "number": "*上课人数只能为数字"
             }
         },
 
@@ -578,7 +592,7 @@
 
         swal({
                 title: "确定删除吗？",
-                text: "课程很重要的！",
+                text: "删除后可联系管理员找回课程",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
@@ -591,14 +605,14 @@
                 if (isConfirm) {
                     $.post("<%=basePath%>frontCourse/delete.action", {"id": id}, function (data) {
                         if (data == "0") {
-                            swal({title: "删除！", text: "课程已经被删除。", type: "success"},
+                            swal({title: "成功", text: "课程已经被删除", type: "success"},
                                 function () {
                                     window.location.reload();
                                 });
 
 
                         } else {
-                            swal("删除！", "课程删除失败。", "error");
+                            swal("失败", "课程删除失败", "error");
                         }
                     });
 

@@ -88,7 +88,7 @@
                 <div id="user" class="tab-pane in active">
                     <form id="form1">
 
-                        <input type="text" class="text" id="num" name="user_name" placeholder="手机号/用户名/邮箱">
+                        <input type="text" class="text" id="num" name="user_name" placeholder="工号/手机号/邮箱">
                         <input type="password" id="pass" name="user_password" placeholder="请输入密码">
 
                         <div class="">

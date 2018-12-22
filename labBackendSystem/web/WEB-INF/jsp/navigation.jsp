@@ -199,7 +199,7 @@
                     </ul> <!-- /.nav-second-level --></li>
 
                 <li><a href="#"><i class="fa fa-institution fa-fw"></i>
-                    教室管理<span class="fa arrow"></span></a>
+                    实验室管理<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li><a href="${pageContext.request.contextPath }/lab/addview.action">实验室添加</a>
                         </li>

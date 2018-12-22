@@ -159,7 +159,7 @@
                                             <td>颜色</td>
                                             <td>状态</td>
                                             <td>编辑</td>
-                                            <%--<td>删除</td>--%>
+                                            <td>删除</td>
 
                                         </tr>
                                         </thead>
@@ -195,13 +195,13 @@
                                                         找回
                                                     </a>
                                                 </td>
-                                                <%--<td>--%>
-                                                    <%--<a href="#" class="btn btn-danger btn-xs"--%>
-                                                       <%--onclick="deleteUser(${row.user_id})">--%>
-                                                        <%--<i class="ace-icon fa fa-trash-o"></i>--%>
-                                                        <%--删除--%>
-                                                    <%--</a>--%>
-                                                <%--</td>--%>
+                                                <td>
+                                                    <a href="#" class="btn btn-danger btn-xs"
+                                                       onclick="deleteUser(${row.user_id})">
+                                                        <i class="ace-icon fa fa-trash-o"></i>
+                                                        彻底删除
+                                                    </a>
+                                                </td>
                                             </tr>
                                         </c:forEach>
                                         </tbody>
@@ -248,18 +248,6 @@
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
-        // $(document).ready(function () {
-        //     $('#dataTables-example').DataTable({
-        //         responsive: true
-        //     });
-        // });
-
-
-
-
-
-
-
 
         function backUser(id) {
             swal({
@@ -290,6 +278,44 @@
 
                     } else {
                         swal("取消！", "用户未找回！)",
+                            "error");
+                    }
+
+
+                });
+
+        }
+
+
+        function deleteUser(id) {
+            swal({
+                    title: "确定删除吗？",
+                    text: "删除后用户将无法找回！",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "确定删除！",
+                    cancelButtonText: "取消删除！",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        $.post("<%=basePath%>user/thoroughDelete.action", {"id": id}, function (data) {
+                            if (data == "0") {
+                                swal({title: "成功！", text: "用户已经被删除。", type: "success"},
+                                    function () {
+                                        window.location.reload();
+                                    });
+
+
+                            } else {
+                                swal("失败！", "请检查用户是否存在课程和预约", "error");
+                            }
+                        });
+
+                    } else {
+                        swal("取消！", "用户是安全的:)",
                             "error");
                     }
 

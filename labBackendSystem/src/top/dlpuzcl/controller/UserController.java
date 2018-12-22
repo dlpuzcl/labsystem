@@ -163,6 +163,18 @@ public class UserController {
         }
         return msg;
     }
+    @RequestMapping("thoroughDelete")
+    @ResponseBody
+    public String thoroughDelete(Integer id){
+        String msg = "1";
+        try{
+            userService.thoroughDeleteUserById(id);
+            msg = "0";
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return msg;
+    }
 
     /**
      * 找回用户

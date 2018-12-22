@@ -1,6 +1,7 @@
 package top.dlpuzcl.service;
 
 import top.dlpuzcl.pojo.Course;
+import top.dlpuzcl.pojo.LabResult;
 import top.dlpuzcl.pojo.QueryVo;
 import top.dlpuzcl.utils.Page;
 
@@ -33,7 +34,7 @@ public interface CourseService {
      * 更新课程
      * @param course
      */
-    void updateCourse(Course course);
+    LabResult updateCourse(Course course);
 
     /**
      * 添加课程
@@ -46,6 +47,11 @@ public interface CourseService {
      * @param id
      */
     void deleteCourse(Integer id,Integer course_mark);
+    /**
+     * 彻底删除课程
+     * @param id
+     */
+    void thoroughDeleteCourse(Integer id);
 
     /**
      * 查询所有课程

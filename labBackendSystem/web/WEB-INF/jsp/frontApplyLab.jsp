@@ -38,25 +38,43 @@
 
 
     <style>
-        .error {
-            color: red
-        }
-        th {
+
+        /*th {*/
+            /*text-align: center;*/
+
+        /*}*/
+
+        /*table {*/
+            /*border-collapse: collapse;*/
+            /*border: solid 0px red;*/
+        /*}*/
+
+        /*table td {*/
+            /*width: 50px;*/
+            /*height: 65px;*/
+            /*border: solid 0px red;*/
+            /*padding: 1px 5px;*/
+        /*}*/
+
+        .table th, .table td {
             text-align: center;
-
+            vertical-align: middle !important;
         }
 
-        table {
-            border-collapse: collapse;
-            border: solid 0px red;
-        }
 
-        table td {
-            width: 50px;
-            height: 65px;
-            border: solid 0px red;
-            padding: 1px 5px;
-        }
+        /*.all_one{*/
+            /*background-color:#92d5dc ;*/
+        /*}*/
+        /*.all_two{*/
+            /*background-color: #d7c3e9;*/
+        /*}*/
+        /*.all_three{*/
+            /*background-color:#E3C9AA ;*/
+        /*}*/
+        /*.tit{*/
+            /*background-color:#acd8ac ;*/
+            /*!*color: whitesmoke;*!*/
+        /*}*/
 
     </style>
 
@@ -94,7 +112,7 @@
                 <ul class="nav nav-tabs padding-18">
                     <li class="active">
                         <a data-toggle="tab" href="#teacher">
-                            <i class="green icon-user bigger-120"></i> 单向预约
+                            <i class="green icon-user bigger-120" ></i> 单向预约
                         </a>
                     </li>
 
@@ -116,7 +134,7 @@
                                             <form action="" id="queryApply">
                                                 <div class="btn-group">
 
-                                                    <select class="form-control" name="room_id">
+                                                    <select class="form-control" name="room_id" onchange="getApply()" style="width: 121px; padding-left:10px;padding-right: 0px ">
 
                                                         <c:forEach items="${labRoom }" var="lab" varStatus="vs">
 
@@ -131,7 +149,7 @@
                                                 &nbsp;
 
                                                 <div class="btn-group">
-                                                    <select class="form-control" name="apply_week">
+                                                    <select class="form-control" name="apply_week" onchange="getApply()" style="width: 100px;padding-right: 10px">
                                                         <option value="1">第一周</option>
                                                         <option value="2">第二周</option>
                                                         <option value="3">第三周</option>
@@ -166,30 +184,49 @@
                                         <div class="row">
                                             <div class=" col-md-12">
 
-                                                <div class="" id="jqu">
+                                                <div class="table-responsive" id="jqu">
 
 
-                                                    <table width="100%"
-                                                           style="text-align: center; " border="0" cellspacing="20">
-                                                        <thead>
-                                                        <tr class="info">
-                                                        <tr>
-                                                            <td scope="col"> 周/节</td>
-                                                            <td scope="col">星期一</td>
-                                                            <td scope="col">星期二</td>
-                                                            <td scope="col">星期三</td>
-                                                            <td scope="col">星期四</td>
-                                                            <td scope="col">星期五</td>
-                                                            <td scope="col">星期六</td>
-                                                            <td scope="col">星期天</td>
-                                                        </tr>
-                                                        </tr>
-                                                        </thead>
+                                                    <%--<table width="100%"--%>
+                                                           <%--style="text-align: center; " border="0" cellspacing="20">--%>
+                                                        <table width="100%" class="table "
+                                                               style="text-align: center;">
+                                                            <thead>
+                                                            <tr >
+                                                            <tr class="danger">
+                                                                <th scope="col"></th>
+                                                                <th scope="col">
+                                                                    <div >  星期一</div>
+                                                                </th>
+                                                                <th scope="col">
+                                                                    <div >  星期二</div>
+                                                                </th>
+                                                                <th scope="col">
+                                                                    <div >  星期三</div>
+                                                                </th>
+                                                                <th scope="col">
+                                                                    <div >  星期四</div>
+                                                                </th>
+                                                                <th scope="col">
+                                                                    <div >  星期五</div>
+                                                                </th>
+                                                                <th scope="col">
+                                                                    <div >  星期六</div>
+                                                                </th>
+                                                                <th scope="col">
+                                                                    <div >  星期日</div>
+                                                                </th>
+                                                            </tr>
+                                                            </tr>
+                                                            </thead>
 
 
                                                         <tbody style="text-align: center;">
 
-                                                        <tr style="height: 80px">
+
+
+
+                                                        <tr style="height: 80px" class="all_one success">
                                                             <td scope="row">第1节
                                                             </td>
                                                             <td id="table_1_1">
@@ -202,7 +239,7 @@
                                                             <td id="table_7_1"></td>
 
                                                         </tr>
-                                                        <tr style="height: 80px">
+                                                        <tr style="height: 80px" class="all_one success">
                                                             <td scope="row">第2节
                                                             </td>
                                                             <td id="table_1_2"></td>
@@ -213,7 +250,7 @@
                                                             <td id="table_6_2"></td>
                                                             <td id="table_7_2"></td>
                                                         </tr>
-                                                        <tr style="height: 80px">
+                                                        <tr style="height: 80px" class="all_one success">
                                                             <td scope="row">第3节
                                                             </td>
                                                             <td id="table_1_3"></td>
@@ -224,7 +261,7 @@
                                                             <td id="table_6_3"></td>
                                                             <td id="table_7_3"></td>
                                                         </tr>
-                                                        <tr style="height: 80px">
+                                                        <tr style="height: 80px" class="all_one success">
                                                             <td scope="row">第4节
                                                             </td>
                                                             <td id="table_1_4"></td>
@@ -235,19 +272,16 @@
                                                             <td id="table_6_4"></td>
                                                             <td id="table_7_4"></td>
                                                         </tr>
-                                                        <tr style="height: 80px">
+
+
+
+
+
+                                                        <tr style="height: 80px" class="all_two info">
                                                             <td scope="row">第5节
                                                             </td>
                                                             <td id="table_1_5">
-                                                                <%--<div class="inpit" type='inpit/assembly' formname="ack_two">--%>
-                                                                <%--<div class="li " radio>--%>
-                                                                <%--<div name="two-a" value="a-1">--%>
-                                                                <%--<h2>A1</h2>--%>
-                                                                <%--<p>A1</p>--%>
-                                                                <%--</div>--%>
-                                                                <%--</div>--%>
 
-                                                                <%--</div>--%>
                                                             </td>
                                                             <td id="table_2_5"></td>
                                                             <td id="table_3_5">
@@ -258,7 +292,7 @@
                                                             <td id="table_6_5"></td>
                                                             <td id="table_7_5"></td>
                                                         </tr>
-                                                        <tr style="height: 80px">
+                                                        <tr style="height: 80px" class="all_two info">
                                                             <td scope="row">第6节
                                                             </td>
                                                             <td id="table_1_6"></td>
@@ -269,7 +303,7 @@
                                                             <td id="table_6_6"></td>
                                                             <td id="table_7_6"></td>
                                                         </tr>
-                                                        <tr style="height: 80px">
+                                                        <tr style="height: 80px" class="all_two info">
                                                             <td scope="row">第7节
                                                             </td>
                                                             <td id="table_1_7">
@@ -282,7 +316,7 @@
                                                             <td id="table_7_7"></td>
 
                                                         </tr>
-                                                        <tr style="height: 80px">
+                                                        <tr style="height: 80px" class="all_two info">
                                                             <td scope="row">第8节
                                                             </td>
                                                             <td id="table_1_8"></td>
@@ -293,7 +327,8 @@
                                                             <td id="table_6_8"></td>
                                                             <td id="table_7_8"></td>
                                                         </tr>
-                                                        <tr style="height: 80px">
+
+                                                        <tr style="height: 80px" class="all_three warning">
                                                             <td scope="row">第9节
                                                             </td>
                                                             <td id="table_1_9"></td>
@@ -304,7 +339,7 @@
                                                             <td id="table_6_9"></td>
                                                             <td id="table_7_9"></td>
                                                         </tr>
-                                                        <tr style="height: 80px">
+                                                        <tr style="height: 80px" class="all_three warning">
                                                             <td scope="row">第10节
                                                             </td>
                                                             <td id="table_1_10"></td>
@@ -315,7 +350,7 @@
                                                             <td id="table_6_10"></td>
                                                             <td id="table_7_10"></td>
                                                         </tr>
-                                                        <tr style="height: 80px">
+                                                        <tr style="height: 80px" class="all_three warning">
                                                             <td scope="row">第11节
                                                             </td>
                                                             <td id="table_1_11"></td>
@@ -326,7 +361,7 @@
                                                             <td id="table_6_11"></td>
                                                             <td id="table_7_11"></td>
                                                         </tr>
-                                                        <tr style="height: 80px">
+                                                        <tr style="height: 80px" class="all_three warning">
                                                             <td scope="row">第12节
                                                             </td>
                                                             <td id="table_1_12"></td>
@@ -337,6 +372,7 @@
                                                             <td id="table_6_12"></td>
                                                             <td id="table_7_12"></td>
                                                         </tr>
+
                                                         </tbody>
 
                                                     </table>
@@ -591,7 +627,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-body">
-                                <div id='modal_message' style="text-align: center"><h3>正在预约.....</h3></div>
+                                <div id='modal_message' style="text-align: center"><h3 id="h"></h3></div>
                                 <div class="progress progress-striped active">
                                     <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60"
                                          aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
@@ -603,29 +639,7 @@
                     </div><!-- /.modal -->
                 </div>
 
-                <!--弹出删除资源警告窗口-->
-                <div class="modal fade" id="alertSource" role="dialog" aria-labelledby="gridSystemModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid" id="h5">
-                                    <%--<h5 id="h5">预约成功！</h5>--%>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary pull-right" data-dismiss="modal">确定
-                                </button>
-                            </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
+
             </div>
 
 
@@ -652,13 +666,24 @@
 
             <script type="text/javascript">
 
-                function getApply() {
 
+                // $("#click1").change(function(){
+                //     // alert($(this).children('option:selected').val());
+                //     getApply();
+                // })
+                // $("#click2").change(function(){
+                //     // alert($(this).children('option:selected').val());
+                //     getApply();
+                // })
+                function getApply() {
+                    $("#h").html("正在查询.....")
+                    // $("#searchModal").modal("show");//显示“正在查询”字样的模态框
                     $.ajax({
                         type: "get",
                         url: "<%=basePath%>front/query.action",
                         data: $('#queryApply').serialize(),
                         success: function (data) {
+                            // $('#searchModal').modal('hide');
                             //清空课程表
                             for (var i = 1; i < 13; i++) {
                                 for (var j = 1; j < 8; j++) {
@@ -727,7 +752,7 @@
 
                             //遍历课程表
                             for (var i = 0; i < data.length; i++) {
-                                $("#course").append("<option value='" + data[i].course_id + "'>" + data[i].course_name + '：' + data[i].course_class + "</option>");
+                                $("#course").append("<option value='" + data[i].course_id + "'>" + data[i].course_name + '-'+ data[i].course_nature+'：' + data[i].course_class + "</option>");
                             }
 
                             // //清空列表
@@ -735,7 +760,7 @@
 
                             //遍历课程表
                             for (var i = 0; i < data.length; i++) {
-                                $("#course2").append("<option value='" + data[i].course_id + "'>" + data[i].course_name + '：' + data[i].course_class + "</option>");
+                                $("#course2").append("<option value='" + data[i].course_id + "'>" + data[i].course_name+'-'+ data[i].course_nature+ '：' + data[i].course_class + "</option>");
                             }
                         }
                     })
@@ -754,6 +779,7 @@
                     var form1 = $('#form1').serialize();
                     var formdata = queryApply + '&' + form1 + '&' + sum
                     $("button[type=submit]").attr('disabled',true)//在按钮提交之后和AJAX提交之前将按钮设置为禁用
+                    $("#h").html("正在预约.....")
                     $("#searchModal").modal("show");//显示“正在查询”字样的模态框
                     $.ajax({
                         type: "get",
@@ -764,22 +790,22 @@
                             $('#searchModal').modal('hide');//服务器停止了5秒,sleep(5)，假设是查询数据用了5秒
                             // setTimeout("$('#searchModal').modal('hide')",2000); //设置2000毫秒之后模态框消失
 
+                            if (data.status == 200) {
+                                // alert("预约成功！");
+                                swal({title: "提示", text: "预约成功", type: "success"}, function () {
 
+                                });
+
+
+                            } else {
+                                // alert("预约失败！");
+                                swal({title: "提示", text: data.msg, type: "error"}, function () {
+
+                                });
+                            }
                             $('#searchModal').on('hidden.bs.modal', function () {
                                 // $("#homeworkContent").html(mydata); //显示后端传递的结果
-                                if (data.status == 200) {
-                                    // alert("预约成功！");
-                                    swal({title: "提示", text: "预约成功", type: "success"}, function () {
 
-                                    });
-
-
-                                } else {
-                                    // alert("预约失败！");
-                                    swal({title: "提示", text: data.msg, type: "error"}, function () {
-
-                                    });
-                                }
 
                             });
                             getApply();
@@ -819,6 +845,7 @@
                     },
 
                     submitHandler: function (form) {  //表单提交后要执行的内容
+                        $("#h").html("正在预约.....")
                         $("#searchModal").modal("show");//显示“正在查询”字样的模态框
                         var form2 = $('#form2').serialize();
                         var form1 = $('#form3').serialize();
@@ -833,22 +860,23 @@
 
                                 $('#searchModal').modal('hide');//服务器停止了5秒,sleep(5)，假设是查询数据用了5秒
                                 // setTimeout("$('#searchModal').modal('hide')",2000); //设置2000毫秒之后模态框消失
+                                if (data.status == 200) {
+                                    // alert("预约成功！");
+                                    swal({title: "提示", text: "预约成功", type: "success"}, function () {
 
+                                    });
+                                } else {
+                                    swal({title: "提示", text: data.msg, type: "error"}, function () {
+
+                                    });
+                                }
 
                                 $('#searchModal').on('hidden.bs.modal', function () {
                                     // $("#homeworkContent").html(mydata); //显示后端传递的结果
-                                    if (data.status == 200) {
-                                        // alert("预约成功！");
-                                        swal({title: "提示", text: "预约成功", type: "success"}, function () {
-                                            window.location.reload();
-                                        });
-                                    } else {
-                                        swal({title: "提示", text: data.msg, type: "error"}, function () {
 
-                                        });
-                                    }
 
                                 });
+                                getApply();
                                 $("button[type=submit]").attr('disabled',false)//在提交成功之后重新启用该按钮
 
                             }

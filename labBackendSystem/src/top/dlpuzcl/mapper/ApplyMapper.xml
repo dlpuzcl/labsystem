@@ -87,7 +87,7 @@
             </if>
 
         </where>
-        ORDER BY a.apply_day,a.apply_section ASC
+        ORDER BY a.apply_week, a.apply_day, a.apply_section ASC
         limit #{start},#{rows};
     </select>
 

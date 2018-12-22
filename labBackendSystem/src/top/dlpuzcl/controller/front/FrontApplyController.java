@@ -140,6 +140,7 @@ public class FrontApplyController {
             e.printStackTrace();
         }
         return msg;
+
     }
 
 

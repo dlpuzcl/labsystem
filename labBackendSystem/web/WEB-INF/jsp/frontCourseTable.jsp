@@ -87,7 +87,7 @@
                                 <form action="" id="queryApply">
                                     <div class="btn-group">
 
-                                        <select class="form-control" name="room_id">
+                                        <select class="form-control" name="room_id" style="width: 121px; padding-left:10px;padding-right: 0px " onchange="getApply()">
 
                                             <c:forEach items="${labRooms }" var="lab" varStatus="vs">
 
@@ -102,7 +102,7 @@
                                     &nbsp;
 
                                     <div class="btn-group">
-                                        <select class="form-control" name="apply_week">
+                                        <select class="form-control" name="apply_week" style="width: 100px;padding-right: 10px" onchange="getApply()">
                                             <option value="1">第一周</option>
                                             <option value="2">第二周</option>
                                             <option value="3">第三周</option>
@@ -168,7 +168,7 @@
                                                         <div style="padding: 8px 8px;border-radius:8px;width: 100px;">  星期六</div>
                                                     </th>
                                                     <th scope="col">
-                                                        <div style="padding: 8px 8px;border-radius:8px;width: 100px;">  星期天</div>
+                                                        <div style="padding: 8px 8px;border-radius:8px;width: 100px;">  星期日</div>
                                                     </th>
                                                 </tr>
                                                 </tr>
@@ -388,7 +388,7 @@
                 }
                 //遍历课程表
                 for (var i = 0; i < data.length; i++) {
-                    $("#table_" + data[i].apply_day + "_" + data[i].apply_section).html("<div style='background-color: " + data[i].user_color + ";padding: 8px 8px;color: #FFFFFF;border-radius:8px;width: 100px;' >" + data[i].course_name + "<br>" + data[i].course_class + "<br>" + data[i].user_name +" " + data[i].course_memo+ "</div>");
+                    $("#table_" + data[i].apply_day + "_" + data[i].apply_section).html("<div style='background-color: " + data[i].user_color + ";padding: 8px 8px;color: #FFFFFF;border-radius:8px;width: 105px;' >" + data[i].course_name + "<br>" + data[i].course_class + "<br>" + data[i].user_name +" " + data[i].course_memo+ "</div>");
                 }
             }
         });

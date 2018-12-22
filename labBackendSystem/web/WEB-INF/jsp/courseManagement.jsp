@@ -319,7 +319,7 @@
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                <button type="button" class="btn btn-primary" onclick="updateCourse()">
+                                <button type="submit" class="btn btn-primary">
                                     <i class="ace-icon fa fa-check bigger-110"></i>
                                     保存修改
                                 </button>
@@ -342,7 +342,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title" id="myaddLabel">添加实验室信息</h4>
+                        <h4 class="modal-title" id="myaddLabel">添加课程信息</h4>
                     </div>
                     <div class="modal-body">
                         <form class="form-horizontal" id="add_course_form">
@@ -481,24 +481,96 @@
             });
         }
 
-        function updateCourse() {
-            $("button[type=submit]").attr('disabled',true)//在按钮提交之后和AJAX提交之前将按钮设置为禁用
-            $.post("<%=basePath%>course/update.action", $("#edit_course_form").serialize(), function (data) {
-                if (data == "0") {
+        <%--function updateCourse() {--%>
+            <%--$("button[type=submit]").attr('disabled',true)//在按钮提交之后和AJAX提交之前将按钮设置为禁用--%>
+            <%--$.post("<%=basePath%>course/update.action", $("#edit_course_form").serialize(), function (data) {--%>
+                <%--if (data == "0") {--%>
 
-                    swal({title: "提示", text: "课程更新成功", type: "success"}, function () {
+                    <%--swal({title: "提示", text: "课程更新成功", type: "success"}, function () {--%>
 
-                        window.location.reload();
-                    });
-                } else {
-                    swal({title: "提示", text: "课程更新失败", type: "error"}, function () {
-                        // window.location.reload();
-                    });
+                        <%--window.location.reload();--%>
+                    <%--});--%>
+                <%--} else {--%>
+                    <%--swal({title: "提示", text: "课程更新失败", type: "error"}, function () {--%>
+                        <%--// window.location.reload();--%>
+                    <%--});--%>
+                <%--}--%>
+                <%--$("button[type=submit]").attr('disabled',false)//在提交成功之后重新启用该按钮--%>
+
+            <%--});--%>
+        <%--}--%>
+
+
+        $("#edit_course_form").validate({
+            rules: {
+
+                "course_name": {
+                    "required": true,
+                },
+                "course_class": {
+                    "required": true,
+                },
+
+                "user_id": {
+                    "required": true,
+                },
+                "course_time": {
+
+                    "required": true,
+                    "number": true
+                },
+                "course_nature": {
+                    "required": true,
+                },"course_students":{
+                    "required": true,
+                    "number": true
                 }
-                $("button[type=submit]").attr('disabled',false)//在提交成功之后重新启用该按钮
 
-            });
-        }
+            },
+            messages: {
+
+                "course_name": {
+                    "required": "*课程名称不能为空",
+                },
+                "course_class": {
+                    "required": "*上课班级不能为空",
+                },
+                "user_id": {
+                    "required": "*任课教师不能为空",
+                },
+                "course_time": {
+                    "required": "*学时不能为空",
+                    "number": "*学时只能为数字"
+                },
+                "course_nature": {
+                    "required": "*课程性质不能为空",
+                },
+                "course_students": {
+                    "required": "*上课人数",
+                    "number": "*上课人数只能为数字"
+                }
+            },
+
+            submitHandler: function (form) {  //表单提交后要执行的内容
+                $("button[type=submit]").attr('disabled',true)//在按钮提交之后和AJAX提交之前将按钮设置为禁用
+                $.post("<%=basePath%>course/update.action", $("#edit_course_form").serialize(), function (data) {
+                    if (data.status == 200) {
+                        swal({title: "成功", text: "课程更新成功", type: "success"}, function () {
+                            window.location.reload();
+                        });
+                    } else {
+                        swal({title: "失败", text: data.msg, type: "error"}, function () {
+                            // window.location.reload();
+                        });
+                    }
+                    $("button[type=submit]").attr('disabled',false)//在提交成功之后重新启用该按钮
+                });
+
+            },
+            invalidHandler: function (form, validator) {  //不通过回调
+                return false;
+            }
+        });
 
         $("#add_course_form").validate({
             rules: {
@@ -521,8 +593,9 @@
                 "course_nature": {
                     "required": true,
                 },
-                "course_students": {
+                "course_students":{
                     "required": true,
+                    "number": true
                 }
 
             },
@@ -547,7 +620,7 @@
                 ,
                 "course_students": {
                     "required": "*上课人数不能为空",
-                    "number": "*学时只能为数字"
+                    "number": "*上课人数只能为数字"
                 }
             },
 

@@ -38,6 +38,12 @@ public interface UserService {
      */
     void deleteUserById(Integer id);
     /**
+     * 彻底通过ID删除用户
+     * @param id
+     */
+    void thoroughDeleteUserById(Integer id);
+
+    /**
      * 通过ID找回用户
      * @param id
      */

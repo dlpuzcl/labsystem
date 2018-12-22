@@ -36,7 +36,7 @@ public class EmailUtil {
             message.setSentDate(new Date());
             message.setFrom(new InternetAddress(FROM));
             message.setRecipient(RecipientType.TO, new InternetAddress(user.getUser_email()));
-            String msg = "<h1>点击<a href='http://47.93.36.17:8080/login/activation.action?code="+user.getUser_email()+"'>此处"+ user.getUser_email()+"</a>激活账户"+user.getUser_name()+"<h1>";
+            String msg = "<h1>点击<a href='http://47.93.36.17/login/activation.action?code="+user.getUser_email()+"'>此处"+ user.getUser_email()+"</a>激活账户"+user.getUser_name()+"<h1>";
             message.setContent(msg,"text/html;charset=utf-8");
             Transport.send(message);
         } catch (Exception e) {

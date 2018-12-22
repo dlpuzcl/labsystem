@@ -43,6 +43,11 @@ public interface UserMapper {
      */
    void deleteUserById(Integer id);
     /**
+     * 彻底通过ID删除用户
+     * @param id
+     */
+    void thoroughDeleteUserById(Integer id);
+    /**
      * 通过ID找回用户
      * @param id
      */
@@ -86,9 +91,9 @@ public interface UserMapper {
 
     /**
      * 根据ID查询 用户名是否存在验证
-     * @param user_name
+     * @param user_number
      */
-    Integer queryUserByName(String user_name);
+    Integer queryUserByNumber(String user_number);
     /**
      * 根据phone查询 用户名是否存在验证
      * @param user_phone

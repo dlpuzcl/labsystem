@@ -550,58 +550,6 @@
         }
     });
 
-    //获取表单的值
-    <%--$('#jqu').find("button").click(function () {--%>
-
-        <%--$("#searchModal").modal("show");//显示“正在查询”字样的模态框--%>
-
-
-        <%--// * ==========================--%>
-        <%--// * 向check_result方法传本身--%>
-        <%--// * 如果你忘记，inpit/assembly依旧会提醒你--%>
-        <%--// * ==========================--%>
-        <%--var val = check_result($(this));--%>
-        <%--var length = val[0].data.length;--%>
-        <%--for (var i = 0; i < length; i++) {--%>
-            <%--var d = "day_section=" + val[0].data[i] + "&";--%>
-            <%--var sum = d + sum;--%>
-        <%--}--%>
-
-        <%--var queryApply = $('#queryApply').serialize();--%>
-        <%--var form1 = $('#form1').serialize();--%>
-        <%--var formdata = queryApply + '&' + form1 + '&' + sum--%>
-        <%--$.ajax({--%>
-            <%--type: "get",--%>
-            <%--url: "<%=basePath%>apply/submit.action",--%>
-            <%--data: formdata,--%>
-            <%--success: function (data) {--%>
-
-                <%--$('#searchModal').modal('hide');//服务器停止了5秒,sleep(5)，假设是查询数据用了5秒--%>
-                <%--// setTimeout("$('#searchModal').modal('hide')",2000); //设置2000毫秒之后模态框消失--%>
-
-
-                <%--$('#searchModal').on('hidden.bs.modal', function () {--%>
-                    <%--// $("#homeworkContent").html(mydata); //显示后端传递的结果--%>
-                    <%--if (data.status == 200) {--%>
-                        <%--// alert("预约成功！");--%>
-                        <%--swal({title: "提示", text: "预约成功", type: "success"}, function () {--%>
-
-                        <%--});--%>
-
-                    <%--} else {--%>
-                        <%--// alert("预约失败！");--%>
-                        <%--swal({title: "提示", text: data.msg, type: "error"}, function () {--%>
-
-                        <%--});--%>
-                    <%--}--%>
-                    <%--getApply();--%>
-                <%--});--%>
-
-            <%--}--%>
-        <%--})--%>
-
-
-    <%--});--%>
 
 
     $("#form1").validate({
@@ -664,20 +612,20 @@
                         $('#searchModal').modal('hide');//服务器停止了5秒,sleep(5)，假设是查询数据用了5秒
                         // setTimeout("$('#searchModal').modal('hide')",2000); //设置2000毫秒之后模态框消失
 
+                        if (data.status == 200) {
+                            // alert("预约成功！");
+                            swal({title: "提示", text: "预约成功", type: "success"}, function () {
+                            });
+                            getApply();
+
+                        } else {
+                            // alert("预约失败！");
+                            swal({title: "提示", text: data.msg, type: "error"}, function () {
+                            });
+                        }
 
                         $('#searchModal').on('hidden.bs.modal', function () {
                             // $("#homeworkContent").html(mydata); //显示后端传递的结果
-                            if (data.status == 200) {
-                                // alert("预约成功！");
-                                swal({title: "提示", text: "预约成功", type: "success"}, function () {
-                                });
-                                getApply();
-
-                            } else {
-                                // alert("预约失败！");
-                                swal({title: "提示", text: data.msg, type: "error"}, function () {
-                                });
-                            }
 
 
                         });

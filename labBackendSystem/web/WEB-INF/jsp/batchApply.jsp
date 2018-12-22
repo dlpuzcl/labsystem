@@ -316,41 +316,6 @@
 
     <script>
 
-        <%--function apply() {--%>
-            <%--$("#searchModal").modal("show");//显示“正在查询”字样的模态框--%>
-
-            <%--var form2 = $('#form2').serialize();--%>
-            <%--var form1 = $('#form1').serialize();--%>
-            <%--var formdata = form2 + '&' + form1--%>
-            <%--$.ajax({--%>
-                <%--type: "get",--%>
-                <%--url: "<%=basePath%>apply/batchSubmit.action",--%>
-                <%--data: formdata,--%>
-                <%--success: function (data) {--%>
-
-                    <%--$('#searchModal').modal('hide');//服务器停止了5秒,sleep(5)，假设是查询数据用了5秒--%>
-                    <%--// setTimeout("$('#searchModal').modal('hide')",2000); //设置2000毫秒之后模态框消失--%>
-
-
-                    <%--$('#searchModal').on('hidden.bs.modal', function () {--%>
-                        <%--// $("#homeworkContent").html(mydata); //显示后端传递的结果--%>
-                        <%--if (data.status == 200) {--%>
-                            <%--// alert("预约成功！");--%>
-                            <%--swal({title:"提示",text:"预约成功", type:"success"}, function () {--%>
-                                <%--window.location.reload();--%>
-                            <%--});--%>
-                        <%--} else {--%>
-                            <%--swal({title:"提示",text:data.msg, type:"error"}, function () {--%>
-
-                            <%--});--%>
-                        <%--}--%>
-
-                    <%--});--%>
-
-
-                <%--}--%>
-            <%--})--%>
-        <%--}--%>
 
 
         $("#form2").validate({
@@ -398,19 +363,19 @@
                         $('#searchModal').modal('hide');//服务器停止了5秒,sleep(5)，假设是查询数据用了5秒
                         // setTimeout("$('#searchModal').modal('hide')",2000); //设置2000毫秒之后模态框消失
 
+                        if (data.status == 200) {
+                            // alert("预约成功！");
+                            swal({title:"提示",text:"预约成功", type:"success"}, function () {
+                                window.location.reload();
+                            });
+                        } else {
+                            swal({title:"提示",text:data.msg, type:"error"}, function () {
+
+                            });
+                        }
 
                         $('#searchModal').on('hidden.bs.modal', function () {
                             // $("#homeworkContent").html(mydata); //显示后端传递的结果
-                            if (data.status == 200) {
-                                // alert("预约成功！");
-                                swal({title:"提示",text:"预约成功", type:"success"}, function () {
-                                    window.location.reload();
-                                });
-                            } else {
-                                swal({title:"提示",text:data.msg, type:"error"}, function () {
-
-                                });
-                            }
 
 
                         });

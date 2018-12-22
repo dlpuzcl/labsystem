@@ -90,7 +90,7 @@
 
         <div class="panel panel-default ">
             <div class="panel-body">
-                <form class="form-inline" action="${pageContext.request.contextPath }/course/list.action"
+                <form class="form-inline" action="${pageContext.request.contextPath }/course/recycleCourse.action"
                       method="get">
                     <div class="form-group">
                         <label for="courseName">课程名称</label>
@@ -147,7 +147,7 @@
                                             <td>性质</td>
                                             <td>备注</td>
                                             <td>编辑</td>
-                                            <%--<td>删除</td>--%>
+                                            <td>删除</td>
                                         </tr>
                                         </thead>
 
@@ -173,13 +173,13 @@
                                                 </td>
 
 
-                                                <%--<td>--%>
-                                                    <%--<a href="#" class="btn btn-danger btn-xs"--%>
-                                                       <%--onclick="deleteCourse(${course.course_id})">--%>
-                                                        <%--<i class="ace-icon fa fa-trash-o"></i>--%>
-                                                        <%--删除--%>
-                                                    <%--</a>--%>
-                                                <%--</td>--%>
+                                                <td>
+                                                    <a href="#" class="btn btn-danger btn-xs"
+                                                       onclick="deleteCourse(${course.course_id})">
+                                                        <i class="ace-icon fa fa-trash-o"></i>
+                                                        彻底删除
+                                                    </a>
+                                                </td>
                                             </tr>
                                         </c:forEach>
                                         </tbody>
@@ -267,6 +267,46 @@
 
 
         }
+
+        function deleteCourse(id) {
+
+            swal({
+                    title: "确定删除吗？",
+                    text: "课程将彻底删除无法找回！",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "确定删除！",
+                    cancelButtonText: "取消删除！",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        $.post("<%=basePath%>course/thoroughDelete.action", {"id": id}, function (data) {
+                            if (data == "0") {
+                                swal({title: "成功！", text: "课程已经被删除。", type: "success"},
+                                    function () {
+                                        window.location.reload();
+                                    });
+
+
+                            } else {
+                                swal("失败！", "删除失败，请检查此课程是否存在预约！", "error");
+                            }
+                        });
+
+                    } else {
+                        swal("取消！", "课程是安全的)",
+                            "error");
+                    }
+
+
+                });
+
+
+        }
+
 
     </script>
 

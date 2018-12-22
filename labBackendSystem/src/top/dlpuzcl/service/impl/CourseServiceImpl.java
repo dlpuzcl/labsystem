@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.dlpuzcl.mapper.ApplyMapper;
 import top.dlpuzcl.mapper.CourseMapper;
-import top.dlpuzcl.pojo.Apply;
-import top.dlpuzcl.pojo.Course;
-import top.dlpuzcl.pojo.ItermYear;
-import top.dlpuzcl.pojo.QueryVo;
+import top.dlpuzcl.pojo.*;
 import top.dlpuzcl.service.CourseService;
 import top.dlpuzcl.utils.Page;
 
@@ -71,9 +68,33 @@ public class CourseServiceImpl implements CourseService {
         return courseMapper.courseById(id);
     }
 
+    /**
+     * 更新课程
+     * @param course
+     */
     @Override
-    public void updateCourse(Course course) {
-        courseMapper.updateCourse(course);
+    public LabResult updateCourse(Course course) {
+        Apply apply = new Apply();
+        //获取当前课程的学时
+        int course_time = course.getCourse_time();
+        //设置学期
+        ItermYear itermYear = applyMapper.queryItermYear();
+        apply.setIterm(itermYear.getIterm());
+        apply.setYears(itermYear.getYears());
+        apply.setCourse_id(String.valueOf(course.getCourse_id()));
+        //获取已预约的学时
+        int course_timed = applyMapper.queryCourseByIdYI(apply);
+        if (course_time<course_timed){
+            return LabResult.build(400, "已预约的学时数大于修改学时数！");
+        }
+        try {
+            courseMapper.updateCourse(course);
+        }catch (Exception e){
+            e.printStackTrace();
+            return LabResult.build(400, "修改失败，sql异常！");
+        }
+
+        return  LabResult.ok();
     }
 
     @Override
@@ -84,6 +105,11 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public void deleteCourse(Integer id,Integer course_mark) {
         courseMapper.deleteCourse(id,course_mark);
+    }
+
+    @Override
+    public void thoroughDeleteCourse(Integer id) {
+        courseMapper.thoroughDeleteCourse(id);
     }
 
     @Override

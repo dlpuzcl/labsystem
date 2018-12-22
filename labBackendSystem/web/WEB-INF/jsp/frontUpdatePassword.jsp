@@ -89,7 +89,7 @@
                                 <div class="col-xs-12">
                                     <!-- PAGE CONTENT BEGINS -->
                                     <form class="form-horizontal" id="add_User_form" action="">
-
+                                        <input type="hidden" value="${user.user_id}" name="user_id">
                                         <!--密码-->
                                         <div class="form-group">
                                             <label class="col-lg-3 control-label">密码</label>
@@ -119,6 +119,7 @@
                                                 </button>
                                             </div>
                                         </div>
+
 
                                     </form>
 
@@ -176,13 +177,7 @@
     $("#add_User_form").validate({
         rules: {
 
-            "user_id": {
-                "required": true,
-            },
-            "user_phone": {
-                "required": true,
-                "rangelength": [11, 11]
-            },
+
             "user_password": {
                 "required": true,
                 "rangelength": [6, 12]
@@ -191,27 +186,11 @@
                 "required": true,
                 "rangelength": [6, 12],
                 "equalTo": "#user_password"
-            },
-            "user_email": {
-                "required": true,
-                "email": true
-            },
-            "professional_title": {
-                "required": true,
-            },
-            "college": {
-                "required": true,
             }
         },
         messages: {
 
-            "user_id": {
-                "required": "*姓名不能为空",
-            },
-            "user_phone": {
-                "required": "*电话不能为空",
-                "rangelength": "*电话号码格式不正确"
-            },
+
             "password": {
                 "required": "*密码不能为空",
                 "rangelength": "*密码长度6-12位"
@@ -220,16 +199,6 @@
                 "required": "*密码不能为空",
                 "rangelength": "*密码长度6-12位",
                 "equalTo": "*两次密码不一致"
-            },
-            "user_email": {
-                "required": "*邮箱不能为空",
-                "email": "*邮箱格式不正确"
-            },
-            "professional_title": {
-                "required": "*职称不能为空",
-            },
-            "college": {
-                "required": "*学院不能为空",
             }
         },
 
