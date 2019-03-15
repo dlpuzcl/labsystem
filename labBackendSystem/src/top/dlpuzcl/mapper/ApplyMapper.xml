@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.dlpuzcl.mapper.ApplyMapper">
     <select id="getApplyList" resultType="apply" parameterType="apply">
-        select u.user_name,u.user_color,a.apply_day,a.apply_section,a.apply_week,c.course_name,c.course_class,c.course_memo
+        select u.user_name,u.user_color,a.apply_day,a.apply_section,a.apply_week,c.course_name,c.course_class,c.course_memo,c.course_nature
         from user u,lab_room l,apply a,course c
         WHERE u.user_id=a.user_id
           and l.room_id=a.room_id
@@ -17,7 +17,7 @@
 
 
     <select id="querySelectApply" resultType="apply" parameterType="apply">
-        select u.user_name,u.user_color,a.apply_day,a.apply_section,a.apply_week,c.course_name,c.course_class
+        select u.user_name,u.user_color,a.apply_day,a.apply_section,a.apply_week,c.course_name,c.course_class,c.course_nature,c.course_memo
         from user u,lab_room l,apply a,course c
         WHERE u.user_id=a.user_id
           and l.room_id=a.room_id

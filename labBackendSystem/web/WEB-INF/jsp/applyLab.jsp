@@ -532,7 +532,7 @@
 
                 //遍历课程表
                 for (var i = 0; i < data.length; i++) {
-                    $("#course").append("<option value='" + data[i].course_id + "'>" + data[i].course_name + '：' + data[i].course_class + "</option>");
+                    $("#course").append("<option value='" + data[i].course_id + "'>" + data[i].course_name + '-'+ data[i].course_nature + '：' + data[i].course_class + "</option>");
                 }
             }
         })
