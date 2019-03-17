@@ -2,8 +2,8 @@ package top.dlpuzcl.pojo;
 
 public class EmailAccount {
 
-    private String email_name = "dlpuzcl@163.com";
-    private String email_password = "ZHL939589097";
+    private String email_name = "dlpuxxx@163.com";
+    private String email_password = "ZHL1994112";
     private String email_place = "smtp.163.com";
 
     public String getEmail_name() {
